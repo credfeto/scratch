@@ -27,6 +27,15 @@
       "contributions": [
         "test"
       ]
+    },
+    {
+      "login": "nukec",
+      "name": "Amel Salibašić",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/3589518?v=4",
+      "profile": "https://funfair.io",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "repoType": "github",
