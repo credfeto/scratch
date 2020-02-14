@@ -13,6 +13,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 <table>
   <tr>
     <td align="center"><a href="https://www.markridgwell.com/"><img src="https://avatars0.githubusercontent.com/u/1020430?v=4" width="100px;" alt=""/><br /><sub><b>Mark Ridgwell</b></sub></a></td>
+    <td align="center"><a href="https://www.joshstevens.io"><img src="https://avatars0.githubusercontent.com/u/18472422?v=4" width="100px;" alt=""/><br /><sub><b>Josh Stevens</b></sub></a></td>
   </tr>
 </table>
 
