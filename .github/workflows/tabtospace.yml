@@ -19,7 +19,7 @@ jobs:
         git config --local user.name "Mark Ridgwell"
     - name: What Branch Is This
       run: |
-        echo ${{ GITHUB_REF }}
+        echo ${{ env.GITHUB_REF }}
     - name: Install MoreUtils
       run: |
         sudo apt-get install moreutils
