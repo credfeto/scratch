@@ -39,4 +39,4 @@ jobs:
       run: |
         echo HEAD=${{ env.GIT_BRANCH }}
         echo URL "https://${{env.GITHUB_ACTOR}}:${{secrets.GITHUB_PUSH_TOKEN}}@github.com/${{env.GITHUB_REPOSITORY}}.git"
-#        git push "https://credfeto:${{secrets.GITHUB_PUSH_TOKEN}}@github.com/${{env.GITHUB_REPOSITORY}}.git" "HEAD:${{ env.GIT_BRANCH }}"
+        git push "https://credfeto:${{secrets.GITHUB_PUSH_TOKEN}}@github.com/${{env.GITHUB_REPOSITORY}}.git" "HEAD:${{ env.GIT_BRANCH }}"
