@@ -20,10 +20,10 @@ jobs:
     - name: What Branch Is This
       run: |
         echo Current Branch ${GITHUB_REF#refs/heads/}
-        echo "##[set-output name=CURRENT_BRANCH;]$(echo ${GITHUB_REF#refs/heads/})"
+        echo ::set-env name=GIT_BRANCH::$(echo ${GITHUB_REF#refs/heads/})
     - name: What Branch Is This 2
       run: |
-        echo ${{ env.CURRENT_BRANCH }}
+        echo ${{ env.GIT_BRANCH }}
     - name: Install MoreUtils
       run: |
         sudo apt-get install moreutils
@@ -38,4 +38,4 @@ jobs:
     - name: Push
       run: |
         echo HEAD=${{ env.CURRENT_BRANCH }}
-        git push "https://${{env.GITHUB_ACTOR}}:${{secrets.GITHUB_PUSH_TOKEN}}@github.com/${{env.GITHUB_REPOSITORY}}.git" "HEAD:${{ env.CURRENT_BRANCH }}"
+        git push "https://${{env.GITHUB_ACTOR}}:${{secrets.GITHUB_PUSH_TOKEN}}@github.com/${{env.GITHUB_REPOSITORY}}.git" "HEAD:${{ env.GIT_BRANCH }}"
