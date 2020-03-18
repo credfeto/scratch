@@ -37,5 +37,6 @@ jobs:
 
     - name: Push
       run: |
-        echo HEAD=${{ env.CURRENT_BRANCH }}
+        echo HEAD=${{ env.GIT_BRANCH }}
+        echo URL "https://${{env.GITHUB_ACTOR}}:${{secrets.GITHUB_PUSH_TOKEN}}@github.com/${{env.GITHUB_REPOSITORY}}.git"
         git push "https://${{env.GITHUB_ACTOR}}:${{secrets.GITHUB_PUSH_TOKEN}}@github.com/${{env.GITHUB_REPOSITORY}}.git" "HEAD:${{ env.GIT_BRANCH }}"
