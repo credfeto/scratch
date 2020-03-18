@@ -29,6 +29,7 @@ jobs:
         find ./ -iname '*.sql' -type f -exec bash -c 'expand -t 4 "$0" | sponge "$0"' {} \;
     - name: Commit files
       run: |
+        git status
         git commit --all -m"Converted Tabs to spaces" || true
     - name: Push changes
       uses: ad-m/github-push-action@master
