@@ -34,8 +34,7 @@ jobs:
       run: |
         git status
         git commit --all -m"Converted Tabs to spaces" || true
-    - name: Push changes
-      uses: ad-m/github-push-action@master
-      with:
-        github_token: ${{ secrets.GITHUB_PUSH_TOKEN }}
-        branch: ${{ env.CURRENT_BRANCH }}
+
+    - name: Push
+      run: |
+        git push "https://${{env.GITHUB_ACTOR}}:${{secrets.GITHUB_PUSH_TOKEN}}@github.com/${{env.GITHUB_REPOSITORY}}.git" HEAD:${{ env.CURRENT_BRANCH }}
