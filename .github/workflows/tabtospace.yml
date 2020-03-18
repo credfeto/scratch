@@ -17,6 +17,9 @@ jobs:
       run: |
         git config --local user.email "credfeto@users.noreply.github.com"
         git config --local user.name "Mark Ridgwell"
+    - name: What Branch Is This
+      run: |
+        echo ${{ GITHUB_REF }}
     - name: Install MoreUtils
       run: |
         sudo apt-get install moreutils
@@ -30,3 +33,4 @@ jobs:
 #      uses: ad-m/github-push-action@master
 #      with:
 #        github_token: ${{ secrets.GITHUB_PUSH_TOKEN }}
+#        branch: ${{ GITHUB_REF }
