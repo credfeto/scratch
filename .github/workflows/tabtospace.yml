@@ -19,7 +19,7 @@ jobs:
         git config --local user.name "Mark Ridgwell"
     - name: What Branch Is This
       run: |
-        echo Current Branch ${GITHUB_REF#refs/heads/})
+        echo Current Branch ${GITHUB_REF#refs/heads/}
         echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
     - name: Install MoreUtils
       run: |
