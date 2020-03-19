@@ -32,14 +32,15 @@ jobs:
         sudo apt-get install nuget
     - name: Get TSQL Formatter
       run: |
-        curl --output /tmp/sqlformatter.zip http://architectshack.com/GetFile.aspx?Page=PoorMansTSqlFormatter&File=SqlFormatterLibrary_35.1.6.13.zip
-        unzip /tmp/sqlformatter.zip -d /tmp/sqlformatter
+        curl --output sqlformatter.zip http://architectshack.com/GetFile.aspx?Page=PoorMansTSqlFormatter&File=SqlFormatterLibrary_35.1.6.13.zip
+        unzip sqlformatter.zip -d sqlformatter
     - name: Convert tabs to spaces
       run: |
         find ./ -iname '*.sql' -type f -exec bash -c 'expand -t 4 "$0" | sponge "$0"' {} \;
     - name: Commit files
       run: |
         git status
+	git add *.sql
         git commit --all -m"Converted Tabs to spaces" || true
 
     - name: Push
