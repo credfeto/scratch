@@ -35,6 +35,7 @@ jobs:
         curl http://architectshack.com/GetFile.aspx?Page=PoorMansTSqlFormatter\&File=SqlFormatter.1.6.10.zip --output sqlformatter.zip 
         ls
         unzip sqlformatter.zip *.exe -d sqlformatter
+        chmod +x sqlformatter/SqlFormatter.exe
         sqlformatter/SqlFormatter.exe /?
     - name: Reformat
       run: |
