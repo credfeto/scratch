@@ -35,14 +35,17 @@ jobs:
         curl http://architectshack.com/GetFile.aspx?Page=PoorMansTSqlFormatter\&File=SqlFormatter.1.6.10.zip --output sqlformatter.zip 
         ls
         unzip sqlformatter.zip -d sqlformatter
+
+    - name: Reformat
+      run: sqlformatter/SqlFormatter.exe
     - name: Convert tabs to spaces
       run: |
         find ./ -iname '*.sql' -type f -exec bash -c 'expand -t 4 "$0" | sponge "$0"' {} \;
     - name: Commit files
       run: |
-        git status
         git add *.sql
-        git commit --all -m"Converted Tabs to spaces" || true
+        git status
+        git commit -m"Converted Tabs to spaces" || true
 
     - name: Push
       run: |
