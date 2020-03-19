@@ -40,7 +40,7 @@ jobs:
     - name: Commit files
       run: |
         git status
-	git add *.sql
+        git add *.sql
         git commit --all -m"Converted Tabs to spaces" || true
 
     - name: Push
