@@ -38,7 +38,7 @@ jobs:
 
     - name: Reformat
       run: |
-        find ./ -iname '*.sql' -type f -exec sqlformatter/SqlFormatter.exe /is:"    " /tc /sk /r /sac /mw:120 /l:EN /b- /bjo /cb:1 /st:4 /eil- /ecs- /ecl /uk /sb:2 /ebc /ebe
+        find ./ -iname '*.sql' -type f -exec bash -c 'sqlformatter/SqlFormatter.exe $0 /is:"    " /tc /sk /r /sac /mw:120 /l:EN /b- /bjo /cb:1 /st:4 /eil- /ecs- /ecl /uk /sb:2 /ebc /ebe' {} \;
     - name: Convert tabs to spaces
       run: |
         find ./ -iname '*.sql' -type f -exec bash -c 'expand -t 4 "$0" | sponge "$0"' {} \;
