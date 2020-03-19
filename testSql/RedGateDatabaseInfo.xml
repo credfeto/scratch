@@ -59,6 +59,10 @@
     <DataWriteAllFilesInOneDirectory>True</DataWriteAllFilesInOneDirectory>
   </WriteToFileOptions>
   <DataFileSet>
-    <Count>0</Count>
+    <Count>4</Count>
+    <DataFile>production.brands_Data.sql</DataFile>
+    <DataFile>production.categories_Data.sql</DataFile>
+    <DataFile>production.products_Data.sql</DataFile>
+    <DataFile>production.stocks_Data.sql</DataFile>
   </DataFileSet>
 </DatabaseInformation>
