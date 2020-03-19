@@ -1,3 +1,4 @@
-CREATE SCHEMA [production]
-AUTHORIZATION [dbo]
+CREATE SCHEMA [production] AUTHORIZATION [dbo]
 GO
+
+
