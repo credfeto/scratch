@@ -32,7 +32,7 @@ jobs:
         sudo apt-get install nuget
     - name: Get TSQL Formatter
       run: |
-        curl --output sqlformatter.zip http://architectshack.com/GetFile.aspx?Page=PoorMansTSqlFormatter&File=SqlFormatterLibrary_35.1.6.13.zip
+        curl http://architectshack.com/GetFile.aspx?Page=PoorMansTSqlFormatter&File=SqlFormatter.1.6.10.zip --output sqlformatter.zip 
         ls
         unzip sqlformatter.zip -d sqlformatter
     - name: Convert tabs to spaces
