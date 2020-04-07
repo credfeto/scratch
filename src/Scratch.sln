@@ -5,6 +5,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "!!Config", "!!Config", "{7E36F2F5-6F81-4796-833C-F1CC6867C9EA}"
 ProjectSection(SolutionItems) = preProject
 	global.json = global.json
+	CodeAnalysis.ruleset = CodeAnalysis.ruleset
 EndProjectSection
 EndProject
 Global
