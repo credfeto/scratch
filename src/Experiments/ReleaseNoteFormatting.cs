@@ -10,7 +10,7 @@ namespace Experiments
     {
         public ReleaseNoteFormatting(ITestOutputHelper output)
         {
-            _output = output;
+            this._output = output;
         }
 
         private readonly ITestOutputHelper _output;
@@ -20,6 +20,7 @@ namespace Experiments
 - Some Other Stuff
 ### Changed
 - FF-1324 - some text
+- ff-1244 - some more text
 ";
 
         private static string Bold(string value)
@@ -27,34 +28,46 @@ namespace Experiments
             return "**" + value + "**";
         }
 
+        private static string Italic(string value)
+        {
+            return "*" + value + "*";
+        }
+
         private static string Underline(string value)
         {
             return "__" + value + "__";
         }
 
-
         [Fact]
         public void Convert()
         {
-            _output.WriteLine(SIMPLE);
+            this._output.WriteLine(SIMPLE);
 
-            _output.WriteLine("****************************************************");
-            var builder = new StringBuilder();
-            var text = SIMPLE.Split(Environment.NewLine);
-            foreach (var line in text)
+            static string MakeUpperCase(Match match)
             {
-                if (line.StartsWith("### "))
+                return Italic(match.ToString());
+            }
+
+            this._output.WriteLine(message: "****************************************************");
+            StringBuilder builder = new StringBuilder();
+            string[] text = SIMPLE.Split(Environment.NewLine);
+
+            foreach (string line in text)
+            {
+                if (line.StartsWith(value: "### "))
                 {
-                    var replacement = Bold(Underline(line.Substring(4).Trim()));
+                    string replacement = Bold(Underline(line.Substring(startIndex: 4)
+                                                            .Trim()));
                     builder.AppendLine(replacement);
+
                     continue;
                 }
 
-                builder.AppendLine(Regex.Replace(line, "(ff\\-\\d+)", "_$1:_", RegexOptions.IgnoreCase).Trim());
+                builder.AppendLine(Regex.Replace(line, pattern: "(ff\\-\\d+)", MakeUpperCase, RegexOptions.IgnoreCase)
+                                        .Trim());
             }
 
-
-            _output.WriteLine(builder.ToString());
+            this._output.WriteLine(builder.ToString());
         }
     }
 }
