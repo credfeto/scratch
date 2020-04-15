@@ -1,8 +1,12 @@
+#region
+
 using System;
 using System.Text;
 using System.Text.RegularExpressions;
 using Xunit;
 using Xunit.Abstractions;
+
+#endregion
 
 namespace Experiments
 {
