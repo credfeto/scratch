@@ -1,16 +1,26 @@
-name: Code Analysis[MC]
-
+name: PR Lint
 on:
-  [push]
-
+  pull_request:
+    types: [assigned, opened, synchronize, reopened]
+    branches:
+      - master
 jobs:
-
-  has-no-merge-conflicts:
-
+  include-JIRA-ticket:
     runs-on: ubuntu-latest
-
     steps:
-    - uses: actions/checkout@v1
-    - uses: olivernybroe/action-conflict-finder@v1.1
-#    - uses: credfeto/action-conflict-finder@fix/merge-conflicts-only-at-begining-of-line
+# Although the line below works perfectly in a personal repo, it doesn't in any of the FunFair ones!
+#    - if: ${{ !startsWith(github.head_ref, 'release/') && !startsWith(github.head_ref, 'hotfix/') }}
+    - uses: vijaykramesh/pr-lint-action@v1.0
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
+  include-changelog-entry:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - uses: Zomzog/changelog-checker@v1.0.0
+        with:
+          fileName: CHANGELOG.md
+          noChangelogLabel: Changelog Not Requited
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
