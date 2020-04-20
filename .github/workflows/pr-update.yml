@@ -1,7 +1,15 @@
 name: PR Update
 on: 
   pull_request:
-    types: [assigned, unassigned, opened, synchronize, reopened, labeled, unlabeled]
+    types:
+      - labeled
+      - unlabeled
+      - synchronize
+      - opened
+      - edited
+      - ready_for_review
+      - reopened
+      - unlocked
 
 jobs:
   add-pr-label:
