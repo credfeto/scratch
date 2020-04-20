@@ -1,7 +1,5 @@
-{
-  "sdk": {
-    "version": "3.1.201",
-    "allowPrerelease": false,
-    "rollForward": "disable"
-  }
-}
+projects: ['FF']
+check_title: true
+check_branch: false
+check_commits: false
+ignore_case: true
