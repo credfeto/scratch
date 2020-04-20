@@ -1,34 +1,22 @@
-name: Auto PR Creation
-on:
-  push:
-    branches-ignore:
-    - master
-    - "release/*"
-    - "hotfix/*"
-    - "feature/*"
-    
+on: 
+  issue_comment:
+    types: [created]
+name: Automatic Rebase
 jobs:
-  pull-request:
+  rebase:
+    name: Rebase
+    if: github.event.issue.pull_request != '' && contains(github.event.comment.body, '/rebase')
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v1
-    - name: Read the template
-      id: pr-template
-      uses: juliangruber/read-file-action@v1
-      with:
-        path: ./.github/PULL_REQUEST_TEMPLATE.md
-    - run: |
-       echo ::set-env name=COMMIT_MSG::`git log -1 --pretty=%B`
-    - name: pull-request
-      uses: repo-sync/pull-request@v2
-      with:
-        source_branch: ""                     # If blank, default: triggered branch
-        destination_branch: "master"          # If blank, default: master
-        pr_assignee: "${{ github.actor }}"    # Comma-separated list (no spaces)
-        pr_label: "auto-pr"                   # Comma-separated list (no spaces)
-        pr_draft: true                        # Creates pull request as draft
-        pr_title: "${{ env.COMMIT_MSG }}"
-        pr_body: "${{ steps.pr-template.outputs.content }}"
-        #pr_reviewer: "wei,worker"             # Comma-separated list (no spaces)
-        #pr_milestone: "Milestone 1"           # Milestone name
-        github_token: ${{ secrets.GITHUB_TOKEN }}
+    - name: Automatic Rebase
+      uses: cirrus-actions/rebase@master
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  # https://github.community/t5/GitHub-Actions/Workflow-is-failing-if-no-job-can-be-ran-due-to-condition/m-p/38186#M3250
+  always_job:
+    name: Aways run job
+    runs-on: ubuntu-latest
+    steps:
+      - name: Always run
+        run: echo "This job is used to prevent the workflow to fail when all other jobs are skipped [MR1]."
