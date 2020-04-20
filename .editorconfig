@@ -1,15 +1,19 @@
-name: sqlcheck workflow
-on: pull_request
+name: Mark stale issues and pull requests
+
+on:
+  schedule:
+  - cron: "0 0 * * *"
 
 jobs:
-  sqlcheck:
-    name: sqlcheck job 
+  stale:
+
     runs-on: ubuntu-latest
+
     steps:
-    - uses: actions/checkout@master
-    - uses: yokawasa/action-sqlcheck@v1.1.0
+    - uses: actions/stale@v1
       with:
-        post-comment: true
-        risk-level: 1
-        verbose: true
-        token: ${{ secrets.GITHUB_TOKEN }}
+        repo-token: ${{ secrets.GITHUB_TOKEN }}
+        stale-issue-message: 'Stale issue message'
+        stale-pr-message: 'Stale pull request message'
+        stale-issue-label: 'no-issue-activity'
+        stale-pr-label: 'no-pr-activity'
