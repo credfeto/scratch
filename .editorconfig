@@ -1,14 +1,19 @@
-name: Code Analysis[EC]
+# This workflow will triage pull requests and apply a label based on the
+# paths that are modified in the pull request.
+#
+# To use this workflow, you will need to set up a .github/labeler.yml
+# file with configuration.  For more information, see:
+# https://github.com/actions/labeler/blob/master/README.md
 
-on:
-  [push]
+name: Labeler
+on: [pull_request]
 
 jobs:
-
-  conforms-to-editorconfig:
+  label:
 
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v1
-    - run: echo "Hello World"
+    - uses: actions/labeler@v2
+      with:
+        repo-token: "${{ secrets.GITHUB_TOKEN }}"
