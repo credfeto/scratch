@@ -1,6 +1,6 @@
 name: SQL Code Analysis
 on:
-  pull_request
+  pull_request:
     branches:
       - master
     paths:
