@@ -1,14 +1,26 @@
-name: Code Analysis[GL]
+name: Auto merge Dependabot updates
 
 on:
-  [push]
+  check_suite:
+    types:
+      - completed
+  pull_request:
+    types:
+      - labeled
+      - unlabeled
+      - synchronize
+      - opened
+      - edited
+      - ready_for_review
+      - reopened
+      - unlocked
 
 jobs:
-
-  does-not-contain-secrets:
-
+  auto-merge:
     runs-on: ubuntu-latest
-
     steps:
-    - uses: actions/checkout@v1
-    - uses: zricethezav/gitleaks-action@master
+      - name: auto-merge
+        uses: ridedott/dependabot-auto-merge-action@master
+        with:
+          GITHUB_LOGIN: dependabot[bot]
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
