@@ -1,26 +1,13 @@
-name: PR Lint
-on:
-  pull_request:
-    types: [assigned, opened, synchronize, reopened]
-    branches:
-      - master
-jobs:
-  include-JIRA-ticket:
-    runs-on: ubuntu-latest
-    steps:
-# Although the line below works perfectly in a personal repo, it doesn't in any of the FunFair ones!
-#    - if: ${{ !startsWith(github.head_ref, 'release/') && !startsWith(github.head_ref, 'hotfix/') }}
-    - uses: vijaykramesh/pr-lint-action@v1.0
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+name: Assign PR to creator
 
-  include-changelog-entry:
+on: [pull_request]
+
+jobs:
+  automation:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v1
-      - uses: Zomzog/changelog-checker@v1.0.0
-        with:
-          fileName: CHANGELOG.md
-          noChangelogLabel: Changelog Not Requited
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    - name: Assign PR to creator
+      uses: thomaseizinger/assign-pr-creator-action@v1.0.0
+      if: github.event_name == 'pull_request' && github.event.action == 'opened'
+      with:
+        repo-token: ${{ secrets.GITHUB_TOKEN }}
