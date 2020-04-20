@@ -1,13 +1,34 @@
-name: Assign PR to creator
-
-on: [pull_request]
-
+name: Auto PR Creation
+on:
+  push:
+    branches-ignore:
+    - master
+    - "release/*"
+    - "hotfix/*"
+    - "feature/*"
+    
 jobs:
-  automation:
+  pull-request:
     runs-on: ubuntu-latest
     steps:
-    - name: Assign PR to creator
-      uses: thomaseizinger/assign-pr-creator-action@v1.0.0
-      if: github.event_name == 'pull_request' && github.event.action == 'opened'
+    - uses: actions/checkout@v1
+    - name: Read the template
+      id: pr-template
+      uses: juliangruber/read-file-action@v1
       with:
-        repo-token: ${{ secrets.GITHUB_TOKEN }}
+        path: ./.github/PULL_REQUEST_TEMPLATE.md
+    - run: |
+       echo ::set-env name=COMMIT_MSG::`git log -1 --pretty=%B`
+    - name: pull-request
+      uses: repo-sync/pull-request@v2
+      with:
+        source_branch: ""                     # If blank, default: triggered branch
+        destination_branch: "master"          # If blank, default: master
+        pr_assignee: "${{ github.actor }}"    # Comma-separated list (no spaces)
+        pr_label: "auto-pr"                   # Comma-separated list (no spaces)
+        pr_draft: true                        # Creates pull request as draft
+        pr_title: "${{ env.COMMIT_MSG }}"
+        pr_body: "${{ steps.pr-template.outputs.content }}"
+        #pr_reviewer: "wei,worker"             # Comma-separated list (no spaces)
+        #pr_milestone: "Milestone 1"           # Milestone name
+        github_token: ${{ secrets.GITHUB_TOKEN }}
