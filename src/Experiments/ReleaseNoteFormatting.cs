@@ -63,7 +63,7 @@ namespace Experiments
                     continue;
                 }
 
-                builder.AppendLine(Regex.Replace(line, pattern: "(ff\\-\\d+)", MakeUpperCase, RegexOptions.IgnoreCase)
+                builder.AppendLine(Regex.Replace(input: line, pattern: "(ff\\-\\d+)", evaluator: MakeUpperCase, options: RegexOptions.IgnoreCase)
                                         .Trim());
             }
 
