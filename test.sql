@@ -1,7 +1,4 @@
-create table Test.Test
-(
-   Id int IDENTiTY(1,1) NOT NULL,
-
- CONSTRAINT PK_Test PRIMARY KEY (Id) 
-)
-
+CREATE TABLE Test.Test (
+    Id INT IDENTiTY(1, 1) NOT NULL,
+    CONSTRAINT PK_Test PRIMARY KEY (Id)
+    )
