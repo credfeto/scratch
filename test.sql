@@ -6,6 +6,12 @@ CREATE TABLE Test.Test (
     )
 
 INSERT INTO Test.Test (Name) VALUE ('Hello World')
+
+
 SELECT *
 FROM Test.Test
 ORDER BY Name
+
+
+delete from test.test
+where name='Hello World'
