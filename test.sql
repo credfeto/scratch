@@ -5,4 +5,4 @@ CREATE TABLE Test.Test (
     CONSTRAINT IXU_Name UNIQUE (Name)
     )
 
-INSERT INTO Test.Test ( Name ) VALUE ('Hello World')
+INSERT INTO Test.Test (Name) VALUE ('Hello World')
