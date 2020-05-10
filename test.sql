@@ -5,12 +5,7 @@ CREATE TABLE Test.Test (
     CONSTRAINT IXU_Name UNIQUE (Name)
     )
 
-INSERT INTO Test.Test
- (Name) 
-VALUE ('Hello World')
-
-SELECT * 
-
-From Test.Test
-
-order by Name
+INSERT INTO Test.Test (Name) VALUE ('Hello World')
+SELECT *
+FROM Test.Test
+ORDER BY Name
