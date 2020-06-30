@@ -17,7 +17,7 @@ namespace Experiments
         private void BuildGroups(int groupCount, IReadOnlyList<string> tests)
         {
             string[] groupNames = Enumerable.Range(start: 1, count: groupCount)
-                                            .Select(n => $"Group {n}")
+                                            .Select(n => $"Group {n:x2}")
                                             .ToArray();
 
             int group = 0;
@@ -245,7 +245,7 @@ namespace Experiments
                 "ReferenceGame2CoinFlipMultiNoneOrderly2Tests"
             };
 
-            this.BuildGroups(groupCount: 12, tests: tests);
+            this.BuildGroups(groupCount: 22, tests: tests);
         }
     }
 }
