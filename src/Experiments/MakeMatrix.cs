@@ -42,11 +42,11 @@ namespace Experiments
         {
             int[] source = {1, 2, 3, 4};
 
-            (int s, int t)[,] m = Matrix(source);
+            CompatibilityCheck<int>[,] m = Matrix(source);
 
-            foreach ((int s, int t) x in m)
+            foreach (CompatibilityCheck<int> x in m)
             {
-                this._output.WriteLine($"{x.s},{x.t}");
+                this._output.WriteLine($"{x.From},{x.To}");
             }
         }
 
