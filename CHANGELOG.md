@@ -1,4 +1,4 @@
--->
+﻿-->
 
 ## [Unreleased]
 ### Added
@@ -13,6 +13,7 @@
 - FF-1429 - Updated AsyncFixer to latest
 - FF-1429 - Updated Microsoft.Extensions.DependencyInjection.Abstractions to latest
 - FF-1429 - Updated Microsoft.Extensions.DependencyInjection.Abstractions to
+- FF-1429 - Updated Microsoft.NET.Test.Sdk to 16.8.0
 ### Removed
 ### Deployment Changes
 
