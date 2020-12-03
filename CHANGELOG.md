@@ -15,6 +15,7 @@
 - FF-1429 - Updated Microsoft.Extensions.DependencyInjection.Abstractions to
 - FF-1429 - Updated Microsoft.NET.Test.Sdk to 16.8.0
 - FF-1429 - Updated Microsoft.Extensions to 5.0.0
+- FF-1429 - Updated Microsoft.NET.Test.Sdk to 16.8.3
 ### Removed
 ### Deployment Changes
 
