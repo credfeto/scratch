@@ -1,21 +1,15 @@
-﻿-->
+﻿# Changelog
+All notable changes to this project will be documented in this file.
+
+<!--
+Please ADD ALL Changes to the UNRELASED SECTION and not a specific release
+-->
 
 ## [Unreleased]
 ### Added
 ### Fixed
 ### Changed
-- FF-1429 - Updated Microsoft.NET.Test.Sdk to 16.7.1
-- FF-1429 - Updated Microsoft.NET.Test.Sdk to 16.7.0
-- FF-1429 - Updated xunit.runner.visualstudio to 2.4.3
-- FF-1429 - Updated xunit.runner.visualstudio to 2.4.2
-- FF-1429 - Updated NSubstitute.Analyzers.CSharp to latest
-- FF-1429 - Updated DisableDateTimeNow to latest
-- FF-1429 - Updated AsyncFixer to latest
-- FF-1429 - Updated Microsoft.Extensions.DependencyInjection.Abstractions to latest
-- FF-1429 - Updated Microsoft.Extensions.DependencyInjection.Abstractions to
-- FF-1429 - Updated Microsoft.NET.Test.Sdk to 16.8.0
-- FF-1429 - Updated Microsoft.Extensions to 5.0.0
-- FF-1429 - Updated Microsoft.NET.Test.Sdk to 16.8.3
+- Updated dependent components
 ### Removed
 ### Deployment Changes
 
