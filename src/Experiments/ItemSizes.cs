@@ -51,6 +51,7 @@ namespace Experiments
             this.OutputSize("Hello World sdfshfhdfkdsjfhdjfhdjksh fdhsjfhjkfhdsjhf kshfkdsjhf kjhfjdkshfjdhfs shfskhfsdjkhk");
             this.OutputSize(new TestRefTypeWithOnlyValueTypes(i: 1, j: 5));
             this.OutputSize(new TestRefTypeWithOnlyMixedValueTypesAndReferenceTypes(i: 44, j: "Hello"));
+            this.OutputSize(new TestRefTypeWithOnlyMixedValueTypesAndReferenceTypes2(i: 44, j: "Hello", new TestRefTypeWithOnlyMixedValueTypesAndReferenceTypes(i: 44, j: "Hello")));
         }
 
         private readonly struct TestValueTypeWithOnlyValueTypes
@@ -103,6 +104,22 @@ namespace Experiments
             public int I { get; }
 
             public string J { get; }
+        }
+
+        private sealed class TestRefTypeWithOnlyMixedValueTypesAndReferenceTypes2
+        {
+            public TestRefTypeWithOnlyMixedValueTypesAndReferenceTypes2(int i, string j, TestRefTypeWithOnlyMixedValueTypesAndReferenceTypes k)
+            {
+                this.I = i;
+                this.J = j;
+                this.K = k;
+            }
+
+            public int I { get; }
+
+            public string J { get; }
+
+            public TestRefTypeWithOnlyMixedValueTypesAndReferenceTypes K { get; }
         }
     }
 }
