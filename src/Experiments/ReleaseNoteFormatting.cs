@@ -8,13 +8,6 @@ namespace Experiments
 {
     public class ReleaseNoteFormatting
     {
-        public ReleaseNoteFormatting(ITestOutputHelper output)
-        {
-            this._output = output;
-        }
-
-        private readonly ITestOutputHelper _output;
-
         private const string SIMPLE = @"### Added
 - Some Stuff
 - Some Other Stuff
@@ -22,6 +15,13 @@ namespace Experiments
 - FF-1324 - some text
 - ff-1244 - some more text
 ";
+
+        private readonly ITestOutputHelper _output;
+
+        public ReleaseNoteFormatting(ITestOutputHelper output)
+        {
+            this._output = output;
+        }
 
         private static string Bold(string value)
         {
@@ -49,12 +49,12 @@ namespace Experiments
             }
 
             this._output.WriteLine(message: "****************************************************");
-            StringBuilder builder = new StringBuilder();
+            StringBuilder builder = new();
             string[] text = SIMPLE.Split(Environment.NewLine);
 
             foreach (string line in text)
             {
-                if (line.StartsWith(value: "### "))
+                if (line.StartsWith(value: "### ", comparisonType: StringComparison.Ordinal))
                 {
                     string replacement = Bold(Underline(line.Substring(startIndex: 4)
                                                             .Trim()));
