@@ -15,13 +15,16 @@ namespace Experiments
 
         /// <summary>
         ///     The Wallet App ID.
-        /// </summary>
+        /// </summary>
+
         [SuppressMessage(category: ""ReSharper"", checkId: ""AutoPropertyCanBeMadeGetOnly.Global"", Justification = ""TODO: Review"")]
         public WalletAppId WalletAppId { get; set; } = default!;
 
         /// <summary>
         ///     The Other Wallet App ID.
-        /// </summary>
+        /// </summary>
+
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage(category: ""ReSharper"", checkId: ""AutoPropertyCanBeMadeGetOnly.Global"", Justification = ""TODO: Review"")]
         public WalletAppId OtherWalletAppId { get; set; } = default!;
 ";
