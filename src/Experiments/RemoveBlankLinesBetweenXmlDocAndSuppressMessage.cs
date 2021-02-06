@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Text.RegularExpressions;
 using Xunit;
 using Xunit.Abstractions;
@@ -23,6 +23,7 @@ namespace Experiments
         /// <summary>
         ///     The Other Wallet App ID.
         /// </summary>
+
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage(category: ""ReSharper"", checkId: ""AutoPropertyCanBeMadeGetOnly.Global"", Justification = ""TODO: Review"")]
         public WalletAppId OtherWalletAppId { get; set; } = default!;
