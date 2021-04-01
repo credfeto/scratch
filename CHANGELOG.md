@@ -11,6 +11,7 @@ Please ADD ALL Changes to the UNRELASED SECTION and not a specific release
 ### Changed
 - FF-1429 - Updated coverlet to 3.0.3
 - FF-1429 - Updated Microsoft.NET.Test.Sdk to 16.9.1
+- FF-1429 - Updated Microsoft.NET.Test.Sdk to 16.9.4
 ### Removed
 ### Deployment Changes
 
