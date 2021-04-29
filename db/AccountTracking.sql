@@ -1,0 +1,27 @@
+SET XACT_ABORT ON
+BEGIN TRANSACTION
+
+GO
+CREATE SCHEMA Accounts
+
+GO
+
+
+CREATE TABLE Accounts.NativeBalance
+(
+	Network VARCHAR(50) COLLATE Latin1_General_CI_AS NOT NULL,
+	AccountAddress CHAR(42) COLLATE Latin1_General_CI_AS NOT NULL,
+	MinBalance VARCHAR(66) COLLATE Latin1_General_CI_AS NOT NULL,
+	Enabled BIT NOT NULL,
+	DateCreated DATETIME2 NOT NULL CONSTRAINT DF_NativeBalance_DateCreated DEFAULT( SYSUTCDATETIME()),
+	DateUpdated DATETIME2 NOT NULL CONSTRAINT DF_NativeBalance_DateUpdated DEFAULT( SYSUTCDATETIME()),
+
+  LastBalance VARCHAR(66) COLLATE Latin1_General_CI_AS NULL,
+  LastRetrieved DATETIME2 NULL,
+
+	CONSTRAINT PK_NativeBalance PRIMARY KEY (Network, AccountAddress)
+)
+
+GO
+
+ROLLBACK
