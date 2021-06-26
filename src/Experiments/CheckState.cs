@@ -19,7 +19,7 @@ namespace Experiments
         [InlineData(100, true)]
         public void DoStuff(int lastCheckedOffset, bool pass)
         {
-            DateTime now = new DateTime(year: 2019, month: 1, day: 1, hour: 12, minute: 34, second: 56);
+            DateTime now = new(year: 2019, month: 1, day: 1, hour: 12, minute: 34, second: 56);
             DateTime lastChecked = now.AddSeconds(lastCheckedOffset);
 
             TimeSpan whenCanRetry = now - lastChecked;

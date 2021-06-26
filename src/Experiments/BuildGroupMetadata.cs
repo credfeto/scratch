@@ -7,12 +7,12 @@ namespace Experiments
 {
     public sealed class BuildGroupMetadata
     {
+        private readonly ITestOutputHelper _output;
+
         public BuildGroupMetadata(ITestOutputHelper output)
         {
             this._output = output;
         }
-
-        private readonly ITestOutputHelper _output;
 
         private void BuildGroups(int groupCount, IReadOnlyList<string> tests)
         {
