@@ -24,6 +24,17 @@
     <PackageReference Include="ToStringWithoutOverrideAnalyzer" Version="0.6.0" PrivateAssets="All"/>
     <PackageReference Include="xunit.analyzers" Version="0.10.0" PrivateAssets="All"/>
     <!-- Experiments -->
-    <PackageReference Include="Philips.CodeAnalysis.DuplicateCodeAnalyzer" Version="1.1.2" PrivateAssets="All"/>
+    <!-- SecurityCodeScan.VS2019 -->
+    <PackageReference Include="SecurityCodeScan.VS2019" Version="5.1.0" PrivateAssets="all"/>
+    <!-- Obsessive.Defender -->
+    <!--    <PackageReference Include="Obsessive.Defender" Version="1.2.0" PrivateAssets="all" />-->
+
+    <!-- Puma.Security.Rules -->
+    <PackageReference Include="Puma.Security.Rules" Version="2.4.7" PrivateAssets="all"/>
+
+    <!-- No point -->
+    <!--    <PackageReference Include="Roslynator.Formatting.Analyzers" Version="1.2.0" PrivateAssets="All" />-->
+    <!--    <PackageReference Include="Philips.CodeAnalysis.DuplicateCodeAnalyzer" Version="1.1.2" PrivateAssets="All" />-->
+    <!--    <PackageReference Include="Philips.CodeAnalysis.MaintainabilityAnalyzers" Version="1.2.14" PrivateAssets="All" />-->
   </ItemGroup>
 </Project>
