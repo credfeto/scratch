@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Runtime.InteropServices;
+using FunFair.Test.Common;
 using Xunit;
 using Xunit.Abstractions;
 
 namespace Experiments
 {
-    public sealed class ItemSizes
+    public sealed class ItemSizes : TestBase
     {
         private readonly ITestOutputHelper _output;
 
@@ -40,18 +41,21 @@ namespace Experiments
             this.OutputSize(default(byte));
             this.OutputSize(new TestValueTypeWithOnlyValueTypes(i: 1, j: 5));
             this.OutputSize(new TestValueTypeWithOnlyMixedValueTypesAndReferenceTypes(i: 44, j: "Hello"));
+
+            Assert.True(condition: true, userMessage: "Not really a test");
         }
 
         [Fact]
         public void Objects()
         {
-            //this.OutputSize(default(object));
             this.OutputSize(string.Empty);
             this.OutputSize("Hello World");
             this.OutputSize("Hello World sdfshfhdfkdsjfhdjfhdjksh fdhsjfhjkfhdsjhf kshfkdsjhf kjhfjdkshfjdhfs shfskhfsdjkhk");
             this.OutputSize(new TestRefTypeWithOnlyValueTypes(i: 1, j: 5));
             this.OutputSize(new TestRefTypeWithOnlyMixedValueTypesAndReferenceTypes(i: 44, j: "Hello"));
             this.OutputSize(new TestRefTypeWithOnlyMixedValueTypesAndReferenceTypes2(i: 44, j: "Hello", new TestRefTypeWithOnlyMixedValueTypesAndReferenceTypes(i: 44, j: "Hello")));
+
+            Assert.True(condition: true, userMessage: "Not really a test");
         }
 
         private readonly struct TestValueTypeWithOnlyValueTypes

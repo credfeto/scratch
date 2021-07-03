@@ -1,12 +1,13 @@
 using System;
 using System.Text;
 using System.Text.RegularExpressions;
+using FunFair.Test.Common;
 using Xunit;
 using Xunit.Abstractions;
 
 namespace Experiments
 {
-    public class ReleaseNoteFormatting
+    public sealed class ReleaseNoteFormatting : TestBase
     {
         private const string SIMPLE = @"### Added
 - Some Stuff
@@ -68,6 +69,8 @@ namespace Experiments
             }
 
             this._output.WriteLine(builder.ToString());
+
+            Assert.True(condition: true, userMessage: "Not really a test");
         }
     }
 }

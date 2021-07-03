@@ -1,11 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using FunFair.Test.Common;
 using Xunit;
 using Xunit.Abstractions;
 
 namespace Experiments
 {
-    public sealed class BuildGroupMetadata
+    public sealed class BuildGroupMetadata : TestBase
     {
         private readonly ITestOutputHelper _output;
 
@@ -246,6 +247,8 @@ namespace Experiments
             };
 
             this.BuildGroups(groupCount: 22, tests: tests);
+
+            Assert.True(condition: true, userMessage: "Not really a test");
         }
     }
 }

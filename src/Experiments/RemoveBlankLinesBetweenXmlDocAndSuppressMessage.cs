@@ -1,11 +1,12 @@
 using System;
 using System.Text.RegularExpressions;
+using FunFair.Test.Common;
 using Xunit;
 using Xunit.Abstractions;
 
 namespace Experiments
 {
-    public sealed class RemoveBlankLinesBetweenXmlDocAndSuppressMessage
+    public sealed class RemoveBlankLinesBetweenXmlDocAndSuppressMessage : TestBase
     {
         private const string EXAMPLE = @"
         /// <summary>
@@ -56,6 +57,8 @@ namespace Experiments
 
             this._output.WriteLine("---------------- REPLACE ----------------");
             this._output.WriteLine(regex.Replace(input: EXAMPLE, replacement: "$1$7"));
+
+            Assert.True(condition: true, userMessage: "Not really a test");
         }
     }
 }

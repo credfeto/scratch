@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using FunFair.Test.Common;
 using Xunit;
 using Xunit.Abstractions;
 
 namespace Experiments
 {
-    public sealed class MakeMatrix
+    public sealed class MakeMatrix : TestBase
     {
         private readonly ITestOutputHelper _output;
 
@@ -48,6 +49,8 @@ namespace Experiments
             {
                 this._output.WriteLine($"{x.From},{x.To}");
             }
+
+            Assert.True(condition: true, userMessage: "Not really a test");
         }
 
         private sealed class CompatibilityCheck<T>

@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Numerics;
+using FunFair.Test.Common;
 using Xunit;
 using Xunit.Abstractions;
 
 namespace Experiments
 {
-    public sealed class BigIntegerTests
+    public sealed class BigIntegerTests : TestBase
     {
         private readonly ITestOutputHelper _output;
 

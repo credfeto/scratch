@@ -1,10 +1,11 @@
 ﻿using System;
+using FunFair.Test.Common;
 using Xunit;
 using Xunit.Abstractions;
 
 namespace Experiments
 {
-    public sealed class CheckState
+    public sealed class CheckState : TestBase
     {
         private readonly ITestOutputHelper _output;
 
