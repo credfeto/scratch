@@ -31,7 +31,7 @@ namespace Experiments
         {
             BigInteger total = BigInteger.Parse("250000000000000000");
 
-            int percentage = 50;
+            const int percentage = 50;
             BigInteger expected = total / 2;
 
             this._output.WriteLine($"Expected: {expected}");
