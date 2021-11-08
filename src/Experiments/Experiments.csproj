@@ -1,38 +1,40 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-    <PropertyGroup>
-        <TargetFramework>net5.0</TargetFramework>
-        <IsPackable>false</IsPackable>
-    </PropertyGroup>
-    <ItemGroup>
-        <PackageReference Include="FunFair.Test.Common" Version="5.6.3.1339" />
-        <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="5.0.0" />
-        <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.0.0" />
-        <PackageReference Include="xunit" Version="2.4.1" />
-        <PackageReference Include="xunit.runner.visualstudio" Version="2.4.3" />
-        <PackageReference Include="coverlet.collector" Version="3.1.0" />
-    </ItemGroup>
-    <ItemGroup>
-        <PackageReference Include="AsyncFixer" Version="1.5.1" PrivateAssets="All" />
-        <PackageReference Include="coverlet.collector" Version="3.1.0" PrivateAssets="All" />
-        <PackageReference Include="coverlet.msbuild" Version="3.1.0" PrivateAssets="All" />
-        <PackageReference Include="FunFair.CodeAnalysis" Version="5.6.1.965" PrivateAssets="All" />
-        <PackageReference Include="Microsoft.VisualStudio.Threading.Analyzers" Version="17.0.63" PrivateAssets="All" />
-        <PackageReference Include="NSubstitute.Analyzers.CSharp" Version="1.0.14" PrivateAssets="All" />
-        <PackageReference Include="Roslynator.Analyzers" Version="3.2.2" PrivateAssets="All" />
-        <PackageReference Include="SonarAnalyzer.CSharp" Version="8.30.0.37606" PrivateAssets="All" />
-        <PackageReference Include="SourceLink.Create.CommandLine" Version="2.8.3" PrivateAssets="All" />
-        <PackageReference Include="ToStringWithoutOverrideAnalyzer" Version="0.6.0" PrivateAssets="All" />
-        <PackageReference Include="xunit.analyzers" Version="0.10.0" PrivateAssets="All" />
-        <!-- Experiments -->
-        <!-- SecurityCodeScan.VS2019 -->
-        <PackageReference Include="SecurityCodeScan.VS2019" Version="5.2.1" PrivateAssets="all" />
-        <!-- Obsessive.Defender -->
-        <!--    <PackageReference Include="Obsessive.Defender" Version="1.2.0" PrivateAssets="all" />-->
-        <!-- Puma.Security.Rules -->
-        <PackageReference Include="Puma.Security.Rules" Version="2.4.7" PrivateAssets="all" />
-        <!-- No point -->
-        <!--    <PackageReference Include="Roslynator.Formatting.Analyzers" Version="1.2.0" PrivateAssets="All" />-->
-        <!--    <PackageReference Include="Philips.CodeAnalysis.DuplicateCodeAnalyzer" Version="1.1.2" PrivateAssets="All" />-->
-        <!--    <PackageReference Include="Philips.CodeAnalysis.MaintainabilityAnalyzers" Version="1.2.14" PrivateAssets="All" />-->
-    </ItemGroup>
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+  <ItemGroup>
+    <!-- Experiments -->
+    <!-- SecurityCodeScan.VS2019 -->
+    <!-- Obsessive.Defender -->
+    <!--    <PackageReference Include="Obsessive.Defender" Version="1.2.0" PrivateAssets="all" />-->
+    <!-- Puma.Security.Rules -->
+    <!-- No point -->
+    <!--    <PackageReference Include="Roslynator.Formatting.Analyzers" Version="1.2.0" PrivateAssets="All" />-->
+    <!--    <PackageReference Include="Philips.CodeAnalysis.DuplicateCodeAnalyzer" Version="1.1.2" PrivateAssets="All" />-->
+    <!--    <PackageReference Include="Philips.CodeAnalysis.MaintainabilityAnalyzers" Version="1.2.14" PrivateAssets="All" />-->
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="coverlet.collector" Version="3.1.0" />
+    <PackageReference Include="FunFair.Test.Common" Version="5.6.3.1339" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="5.0.0" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.0.0" />
+    <PackageReference Include="xunit" Version="2.4.1" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.4.3" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="AsyncFixer" Version="1.5.1" PrivateAssets="All" />
+    <PackageReference Include="coverlet.collector" Version="3.1.0" PrivateAssets="All" />
+    <PackageReference Include="coverlet.msbuild" Version="3.1.0" PrivateAssets="All" />
+    <PackageReference Include="FunFair.CodeAnalysis" Version="5.6.1.965" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.VisualStudio.Threading.Analyzers" Version="17.0.63" PrivateAssets="All" />
+    <PackageReference Include="NSubstitute.Analyzers.CSharp" Version="1.0.14" PrivateAssets="All" />
+    <PackageReference Include="Puma.Security.Rules" Version="2.4.7" PrivateAssets="all" />
+    <PackageReference Include="Roslynator.Analyzers" Version="3.2.2" PrivateAssets="All" />
+    <PackageReference Include="SecurityCodeScan.VS2019" Version="5.2.1" PrivateAssets="all" />
+    <PackageReference Include="SonarAnalyzer.CSharp" Version="8.30.0.37606" PrivateAssets="All" />
+    <PackageReference Include="SourceLink.Create.CommandLine" Version="2.8.3" PrivateAssets="All" />
+    <PackageReference Include="ToStringWithoutOverrideAnalyzer" Version="0.6.0" PrivateAssets="All" />
+    <PackageReference Include="xunit.analyzers" Version="0.10.0" PrivateAssets="All" />
+  </ItemGroup>
 </Project>
