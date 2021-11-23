@@ -38,6 +38,7 @@ Please ADD ALL Changes to the UNRELASED SECTION and not a specific release
 - FF-1429 - Updated FunFair.Test.Common to 5.6.3.1339
 - FF-1429 - Updated Microsoft.Extensions to 6.0.0
 - FF-1429 - Updated Microsoft.VisualStudio.Threading.Analyzers to 17.0.64
+- FF-1429 - Updated FunFair.Test.Common to 5.6.4.1351
 ### Removed
 ### Deployment Changes
 
