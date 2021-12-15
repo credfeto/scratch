@@ -9,6 +9,14 @@ Please ADD ALL Changes to the UNRELASED SECTION and not a specific release
 ### Added
 ### Fixed
 ### Changed
+### Removed
+### Deployment Changes
+
+<!--
+Releases that have at least been deployed to staging, BUT NOT necessarily released to live.  Changes should be moved from [Unreleased] into here as they are merged into the appropriate release branch
+-->
+## [0.0.3] - 2021-12-15
+### Changed
 - FF-1429 - Updated coverlet to 3.0.3
 - FF-1429 - Updated Microsoft.NET.Test.Sdk to 16.9.1
 - FF-1429 - Updated Microsoft.NET.Test.Sdk to 16.9.4
@@ -49,10 +57,5 @@ Please ADD ALL Changes to the UNRELASED SECTION and not a specific release
 - FF-1429 - Updated SonarAnalyzer.CSharp to 8.33.0.40503
 - FF-1429 - Updated SecurityCodeScan.VS2019 to 5.6.0
 - FF-1429 - Updated FunFair.Test.Common to 5.7.2.1514
-### Removed
-### Deployment Changes
 
-<!--
-Releases that have at least been deployed to staging, BUT NOT necessarily released to live.  Changes should be moved from [Unreleased] into here as they are merged into the appropriate release branch
--->
 ## [0.0.0] - Project created
