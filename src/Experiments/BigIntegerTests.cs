@@ -22,7 +22,7 @@ public sealed class BigIntegerTests : TestBase
     [InlineData("20853920117998328678")]
     public void Parse(string value)
     {
-        bool ok = BigInteger.TryParse(value: value, out BigInteger parsed);
+        bool ok = BigInteger.TryParse(value: value, style: NumberStyles.Integer, provider: CultureInfo.InvariantCulture, out BigInteger parsed);
         Assert.True(condition: ok, userMessage: "Should have parsed");
         this._output.WriteLine($"{parsed}");
     }

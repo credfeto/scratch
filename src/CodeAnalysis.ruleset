@@ -431,8 +431,13 @@
         <!-- MA0005 - Use string.Equals instead of the comparaison operator -->
         <Rule Id="MA0006" Action="Info"/>
     </Rules>
-    <Rules AnalyzerId="SecurityCodeScan.VS2019" RuleNamespace="SecurityCodeScan.VS2019">
-
+    <Rules AnalyzerId="Philips.CodeAnalysis.DuplicateCodeAnalyzer"
+           RuleNamespace="Philips.CodeAnalysis.DuplicateCodeAnalyzer">
+        <!-- TODO -->
+    </Rules>
+    <Rules AnalyzerId="Philips.CodeAnalysis.MaintainabilityAnalyzers" RuleNamespace="SecurityCodeScan.VS2019">
+        <!-- PH2028 - File should start with a copyright statement -->
+        <Rule Id="PH2028" Action="None"/>
     </Rules>
     <Rules AnalyzerId="FunFair.CodeAnalysis" RuleNamespace="FunFair.CodeAnalysis">
         <!-- FFS0001 - Avoid using DateTime.Now - Use IDateTimeSource.UtcNow() -->
