@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using FunFair.Test.Common;
 using Xunit;
 using Xunit.Abstractions;
@@ -22,9 +23,9 @@ namespace Experiments
         [InlineData("00:04:19.3520847")]
         public void Parse(string value)
         {
-            TimeSpan ts = TimeSpan.Parse(value);
+            TimeSpan ts = TimeSpan.Parse(input: value, formatProvider: CultureInfo.InvariantCulture);
 
-            this._output.WriteLine(ts.ToString(@"dd\ \d\a\y\s\,\ hh\ \h\o\u\r\s\ mm\ \m\i\n\s\ ss\ \s\e\c\o\n\d\s"));
+            this._output.WriteLine(ts.ToString(format: @"dd\ \d\a\y\s\,\ hh\ \h\o\u\r\s\ mm\ \m\i\n\s\ ss\ \s\e\c\o\n\d\s", formatProvider: CultureInfo.InvariantCulture));
 
             Assert.NotEqual(expected: TimeSpan.Zero, actual: ts);
         }

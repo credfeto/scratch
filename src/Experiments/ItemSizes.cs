@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Runtime.InteropServices;
 using FunFair.Test.Common;
 using Xunit;
@@ -22,8 +23,13 @@ namespace Experiments
                 return Marshal.SizeOf(item);
             }
 
-            RuntimeTypeHandle th = item.GetType()
-                                       .TypeHandle;
+            return GetSizeInt(item);
+        }
+
+        private static int GetSizeInt<T>([NotNull] T item)
+        {
+            RuntimeTypeHandle th = item!.GetType()
+                                        .TypeHandle;
 
             return Marshal.ReadInt32(ptr: th.Value, ofs: 4);
         }
@@ -58,6 +64,7 @@ namespace Experiments
             Assert.True(condition: true, userMessage: "Not really a test");
         }
 
+        [StructLayout(LayoutKind.Auto)]
         private readonly struct TestValueTypeWithOnlyValueTypes
         {
             public int I { get; }
