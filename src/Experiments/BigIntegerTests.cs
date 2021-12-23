@@ -1,76 +1,76 @@
 ﻿using System;
+using System.Globalization;
 using System.Numerics;
 using FunFair.Test.Common;
 using Xunit;
 using Xunit.Abstractions;
 
-namespace Experiments
+namespace Experiments;
+
+public sealed class BigIntegerTests : TestBase
 {
-    public sealed class BigIntegerTests : TestBase
+    private readonly ITestOutputHelper _output;
+
+    public BigIntegerTests(ITestOutputHelper output)
     {
-        private readonly ITestOutputHelper _output;
+        this._output = output ?? throw new ArgumentNullException(nameof(output));
+    }
 
-        public BigIntegerTests(ITestOutputHelper output)
-        {
-            this._output = output ?? throw new ArgumentNullException(nameof(output));
-        }
+    [Theory]
+    [InlineData("649661572269124152138")]
+    [InlineData("16069726249898850")]
+    [InlineData("20853920117998328678")]
+    public void Parse(string value)
+    {
+        bool ok = BigInteger.TryParse(value: value, out BigInteger parsed);
+        Assert.True(condition: ok, userMessage: "Should have parsed");
+        this._output.WriteLine($"{parsed}");
+    }
 
-        [Theory]
-        [InlineData("649661572269124152138")]
-        [InlineData("16069726249898850")]
-        [InlineData("20853920117998328678")]
-        public void Parse(string value)
-        {
-            bool ok = BigInteger.TryParse(value: value, out BigInteger parsed);
-            Assert.True(condition: ok, userMessage: "Should have parsed");
-            this._output.WriteLine($"{parsed}");
-        }
+    [Fact]
+    public void Percentage50()
+    {
+        BigInteger total = BigInteger.Parse(value: "250000000000000000", provider: CultureInfo.InvariantCulture);
 
-        [Fact]
-        public void Percentage50()
-        {
-            BigInteger total = BigInteger.Parse("250000000000000000");
+        const int percentage = 50;
+        BigInteger expected = total / 2;
 
-            const int percentage = 50;
-            BigInteger expected = total / 2;
+        this._output.WriteLine($"Expected: {expected}");
 
-            this._output.WriteLine($"Expected: {expected}");
+        BigInteger actual = this.Check(percentage: percentage, total: total);
 
-            BigInteger actual = this.Check(percentage: percentage, total: total);
+        Assert.Equal(expected: expected, actual: actual);
+    }
 
-            Assert.Equal(expected: expected, actual: actual);
-        }
+    [Theory]
+    [InlineData(5)]
+    [InlineData(10)]
+    [InlineData(15)]
+    [InlineData(35)]
+    [InlineData(50)]
+    public void Percentage(int percentage)
+    {
+        Assert.True(percentage >= 0, userMessage: "Should be 0% or more");
+        Assert.True(percentage <= 100, userMessage: "Should be 100% or less");
 
-        [Theory]
-        [InlineData(5)]
-        [InlineData(10)]
-        [InlineData(15)]
-        [InlineData(35)]
-        [InlineData(50)]
-        public void Percentage(int percentage)
-        {
-            Assert.True(percentage >= 0, userMessage: "Should be 0% or more");
-            Assert.True(percentage <= 100, userMessage: "Should be 100% or less");
+        BigInteger total = BigInteger.Parse(value: "250000000000000000", provider: CultureInfo.InvariantCulture);
 
-            BigInteger total = BigInteger.Parse("250000000000000000");
+        this.Check(percentage: percentage, total: total);
+    }
 
-            this.Check(percentage: percentage, total: total);
-        }
+    private BigInteger Check(int percentage, BigInteger total)
+    {
+        const int accuracy = 10000;
+        BigInteger numerator = total * accuracy * percentage;
+        const long divisor = accuracy * 100;
 
-        private BigInteger Check(int percentage, BigInteger total)
-        {
-            const int accuracy = 10000;
-            BigInteger numerator = total * accuracy * percentage;
-            const long divisor = accuracy * 100;
+        BigInteger actual = numerator / divisor;
 
-            BigInteger actual = numerator / divisor;
+        this._output.WriteLine($"Total:  {total}");
+        this._output.WriteLine($"Actual: {actual}");
 
-            this._output.WriteLine($"Total:  {total}");
-            this._output.WriteLine($"Actual: {actual}");
+        Assert.True(actual < total, userMessage: "Should be less");
 
-            Assert.True(actual < total, userMessage: "Should be less");
-
-            return actual;
-        }
+        return actual;
     }
 }

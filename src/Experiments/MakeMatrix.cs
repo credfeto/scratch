@@ -1,71 +1,72 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using FunFair.Test.Common;
 using Xunit;
 using Xunit.Abstractions;
 
-namespace Experiments
+namespace Experiments;
+
+public sealed class MakeMatrix : TestBase
 {
-    public sealed class MakeMatrix : TestBase
+    private readonly ITestOutputHelper _output;
+
+    public MakeMatrix(ITestOutputHelper output)
     {
-        private readonly ITestOutputHelper _output;
+        this._output = output ?? throw new ArgumentNullException(nameof(output));
+    }
 
-        public MakeMatrix(ITestOutputHelper output)
+    [SuppressMessage(category: "Microsoft.Design", checkId: "CA1814: Use Jagged Array", Justification = "By Design")]
+    private static CompatibilityCheck<T>[,] Matrix<T>(IReadOnlyList<T> make)
+    {
+        CompatibilityCheck<T>[,] x = new CompatibilityCheck<T>[make.Count, make.Count - 1];
+
+        for (int i = 0; i < make.Count; ++i)
         {
-            this._output = output ?? throw new ArgumentNullException(nameof(output));
-        }
+            int ypos = 0;
 
-        private static CompatibilityCheck<T>[,] Matrix<T>(IReadOnlyList<T> make)
-        {
-            CompatibilityCheck<T>[,] x = new CompatibilityCheck<T>[make.Count, make.Count - 1];
-
-            for (int i = 0; i < make.Count; ++i)
+            for (int j = 0; j < make.Count; ++j)
             {
-                int ypos = 0;
-
-                for (int j = 0; j < make.Count; ++j)
+                if (i == j)
                 {
-                    if (i == j)
-                    {
-                        continue;
-                    }
-
-                    x[i, ypos] = new CompatibilityCheck<T>(make[i], make[j]);
-                    ++ypos;
+                    continue;
                 }
-            }
 
-            return x;
+                x[i, ypos] = new CompatibilityCheck<T>(make[i], make[j]);
+                ++ypos;
+            }
         }
 
-        [Fact]
-        public void Produce()
+        return x;
+    }
+
+    [Fact]
+    public void Produce()
+    {
+        int[] source = { 1, 2, 3, 4 };
+
+        CompatibilityCheck<int>[,] m = Matrix(source);
+
+        foreach (CompatibilityCheck<int> x in m)
         {
-            int[] source = {1, 2, 3, 4};
-
-            CompatibilityCheck<int>[,] m = Matrix(source);
-
-            foreach (CompatibilityCheck<int> x in m)
-            {
-                this._output.WriteLine($"{x.From},{x.To}");
-            }
-
-            Assert.True(condition: true, userMessage: "Not really a test");
+            this._output.WriteLine($"{x.From},{x.To}");
         }
 
-        private sealed class CompatibilityCheck<T>
+        Assert.True(condition: true, userMessage: "Not really a test");
+    }
+
+    private sealed class CompatibilityCheck<T>
+    {
+        public CompatibilityCheck(T from, T to)
         {
-            public CompatibilityCheck(T from, T to)
-            {
-                this.From = from;
-                this.To = to;
-            }
-
-            public T From { get; }
-
-            public T To { get; }
-
-            public bool? Compatibile { get; set; }
+            this.From = from;
+            this.To = to;
         }
+
+        public T From { get; }
+
+        public T To { get; }
+
+        public bool? Compatibile { get; set; }
     }
 }

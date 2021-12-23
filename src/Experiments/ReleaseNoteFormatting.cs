@@ -5,11 +5,11 @@ using FunFair.Test.Common;
 using Xunit;
 using Xunit.Abstractions;
 
-namespace Experiments
+namespace Experiments;
+
+public sealed class ReleaseNoteFormatting : TestBase
 {
-    public sealed class ReleaseNoteFormatting : TestBase
-    {
-        private const string SIMPLE = @"### Added
+    private const string SIMPLE = @"### Added
 - Some Stuff
 - Some Other Stuff
 ### Changed
@@ -17,60 +17,61 @@ namespace Experiments
 - ff-1244 - some more text
 ";
 
-        private readonly ITestOutputHelper _output;
+    private static readonly TimeSpan TimeOut = TimeSpan.FromSeconds(5);
 
-        public ReleaseNoteFormatting(ITestOutputHelper output)
+    private readonly ITestOutputHelper _output;
+
+    public ReleaseNoteFormatting(ITestOutputHelper output)
+    {
+        this._output = output;
+    }
+
+    private static string Bold(string value)
+    {
+        return "**" + value + "**";
+    }
+
+    private static string Italic(string value)
+    {
+        return "*" + value + "*";
+    }
+
+    private static string Underline(string value)
+    {
+        return "__" + value + "__";
+    }
+
+    [Fact]
+    public void Convert()
+    {
+        this._output.WriteLine(SIMPLE);
+
+        static string MakeUpperCase(Match match)
         {
-            this._output = output;
+            return Italic(match.ToString());
         }
 
-        private static string Bold(string value)
-        {
-            return "**" + value + "**";
-        }
+        this._output.WriteLine(message: "****************************************************");
+        StringBuilder builder = new();
+        string[] text = SIMPLE.Split(Environment.NewLine);
 
-        private static string Italic(string value)
+        foreach (string line in text)
         {
-            return "*" + value + "*";
-        }
-
-        private static string Underline(string value)
-        {
-            return "__" + value + "__";
-        }
-
-        [Fact]
-        public void Convert()
-        {
-            this._output.WriteLine(SIMPLE);
-
-            static string MakeUpperCase(Match match)
+            if (line.StartsWith(value: "### ", comparisonType: StringComparison.Ordinal))
             {
-                return Italic(match.ToString());
+                string replacement = Bold(Underline(line.Substring(startIndex: 4)
+                                                        .Trim()));
+                builder.AppendLine(replacement);
+
+                continue;
             }
 
-            this._output.WriteLine(message: "****************************************************");
-            StringBuilder builder = new();
-            string[] text = SIMPLE.Split(Environment.NewLine);
-
-            foreach (string line in text)
-            {
-                if (line.StartsWith(value: "### ", comparisonType: StringComparison.Ordinal))
-                {
-                    string replacement = Bold(Underline(line.Substring(startIndex: 4)
-                                                            .Trim()));
-                    builder.AppendLine(replacement);
-
-                    continue;
-                }
-
-                builder.AppendLine(Regex.Replace(input: line, pattern: "(ff\\-\\d+)", evaluator: MakeUpperCase, options: RegexOptions.IgnoreCase)
-                                        .Trim());
-            }
-
-            this._output.WriteLine(builder.ToString());
-
-            Assert.True(condition: true, userMessage: "Not really a test");
+            builder.AppendLine(Regex.Replace(input: line, pattern: "(ff\\-\\d+)", evaluator: MakeUpperCase, RegexOptions.IgnoreCase | RegexOptions.ExplicitCapture, matchTimeout: TimeOut)
+                                    .Trim());
         }
+
+        this._output.WriteLine(builder.ToString());
+
+        Assert.True(condition: true, userMessage: "Not really a test");
     }
 }
