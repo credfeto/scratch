@@ -397,24 +397,88 @@
         <Rule Id="S4457" Action="None"/>
     </Rules>
     <Rules AnalyzerId="Roslynator.Analyzers" RuleNamespace="Roslynator.Analyzers">
+        <!-- see  https://github.com/JosefPihrt/Roslynator/blob/master/src/Analyzers/README.md -->
+        <!-- RCS1020 - Simplify Nullable<T> to T? -->
+        <Rule Id="RCS1020" Action="Error"/>
+        <!-- RCS1033 - Remove redundant boolean literal -->
+        <Rule Id="RCS1033" Action="Error"/>
         <!-- RCS1038 - RemoveEmptyStatement -->
         <Rule Id="RCS1038" Action="Error"/>
+        <!-- RCS1056 - Avoid usage of using alias directive -->
+        <Rule Id="RCS1056" Action="Error"/>
         <!-- RCS1060 - DeclareEachTypeInSeparateFile n.b. this is too agresssive as it wants Type and Type{T} to be in different files. -->
         <Rule Id="RCS1060" Action="Info"/>
         <!-- RCS1077 - Optimize Linq Method Call -->
         <Rule Id="RCS1077" Action="Error"/>
         <!-- RCS1080 - UseCountOrLengthPropertyInsteadOfAnyMethod -->
         <Rule Id="RCS1080" Action="Error"/>
+        <!-- RCS1089 - Use ++ or \-\- instead of assignment -->
+        <Rule Id="RCS1089" Action="Error"/>
         <!-- RCS1090 - AddCallToConfigureAwaitOrViceVersa -->
         <Rule Id="RCS1090" Action="None"/>
+        <!-- RCS1091 - Remove empty region -->
+        <Rule Id="RCS1091" Action="Error"/>
         <!-- RCS1093 - RemoveFileWithNoCode -->
         <Rule Id="RCS1093" Action="Error"/>
         <!-- RCS1097 - RemoveRedundantToStringCall -->
         <Rule Id="RCS1097" Action="Error"/>
+        <!-- RCS1105 - Unnecessary interpolation -->
+        <Rule Id="RCS1105" Action="Error"/>
+        <!-- RCS1106 - Remove empty destructor -->
+        <Rule Id="RCS1106" Action="Error"/>
+        <!-- RCS1112 - Combine 'Enumerable.Where' method chain -->
+        <Rule Id="RCS1112" Action="Error"/>
+        <!-- RCS1118 - Mark local variable as const -->
+        <Rule Id="RCS1118" Action="Error"/>
+        <!-- RCS1126 - Add braces to if-else -->
+        <Rule Id="RCS1126" Action="Error"/>
+        <!-- RCS1134 - Remove redundant statement -->
+        <Rule Id="RCS1134" Action="Error"/>
+        <!-- RCS1136 - Merge switch sections with equivalent content -->
+        <Rule Id="RCS1136" Action="Error"/>
+        <!-- RCS1143 - Simplify coalesce expression -->
+        <Rule Id="RCS1143" Action="Error"/>
+        <!-- RCS1159 - Use EventHandler<T> -->
+        <Rule Id="RCS1159" Action="Error"/>
+        <!-- RCS1163 - Unused parameter -->
+        <Rule Id="RCS1163" Action="Error"/>
+        <!-- RCS1168 - Parameter name differs from base name -->
+        <Rule Id="RCS1168" Action="Error"/>
+        <!-- RCS1170 - Use read-only auto-implemented property -->
+        <Rule Id="RCS1170" Action="Error"/>
+        <!-- RCS1171 - Simplify lazy initialization -->
+        <Rule Id="RCS1171" Action="Error"/>
+        <!-- RCS1080 - Use 'Count/Length' property instead of 'Any' method -->
+        <Rule Id="RCS1080" Action="Error"/>
         <!-- RCS1197 - OptimizeStringBuilderAppendCall -->
         <Rule Id="RCS1197" Action="Error"/>
+        <!-- RCS1198 - Avoid unnecessary boxing of value type -->
+        <Rule Id="RCS1198" Action="None"/>
+        <!-- RCS1214 - Unnecessary interpolated string -->
+        <Rule Id="RCS1214" Action="Error"/>
+        <!-- RCS1217 - Convert interpolated string to concatenation -->
+        <Rule Id="RCS1217" Action="Error"/>
+        <!-- RCS1220 - Use pattern matching instead of combination of 'is' operator and cast operator -->
+        <Rule Id="RCS1220" Action="Error"/>
+        <!-- RCS1221 - Use pattern matching instead of combination of 'as' operator and null check -->
+        <Rule Id="RCS1221" Action="Error"/>
+        <!-- RCS1231 - Make parameter ref read-only -->
+        <Rule Id="RCS1231" Action="Error"/>
+        <!-- RCS1233 - Use short-circuiting operator -->
+        <Rule Id="RCS1233" Action="Error"/>
+        <!-- RCS1234 - Duplicate enum value -->
+        <Rule Id="RCS1234" Action="Error"/>
+        <!-- RCS1235 - Optimize method call -->
+        <Rule Id="RCS1235" Action="Error"/>
+        <!-- RCS1238 - Avoid nested ?: operators -->
+        <Rule Id="RCS1238" Action="Error"/>
+        <!-- RCS1240 - Operator is unnecessary -->
+        <Rule Id="RCS1240" Action="Error"/>
+        <!-- RCS1242 - Do not pass non-read-only struct by read-only reference -->
+        <Rule Id="RCS1242" Action="Error"/>
     </Rules>
     <Rules AnalyzerId="codecracker.CSharp" RuleNamespace="codecracker.CSharp">
+        <!-- See https://code-cracker.github.io/diagnostics.html -->
         <!-- CC0001 - Use var instead of specifying type name -->
         <Rule Id="CC0001" Action="None"/>
         <!-- CC0105 - Use var instead of specifying type name -->
@@ -422,10 +486,12 @@
     </Rules>
     <Rules AnalyzerId="SmartAnalyzers.CSharpExtensions.Annotations"
            RuleNamespace="SmartAnalyzers.CSharpExtensions.Annotations">
+        <!-- See https://github.com/cezarypiatek/CSharpExtensions -->
         <!-- CSE005 - Use the return value or discard it explicitly -->
         <Rule Id="CSE005" Action="Info"/>
     </Rules>
     <Rules AnalyzerId="Meziantou.Analyzer" RuleNamespace="Meziantou.Analyzer">
+        <!-- See https://github.com/meziantou/Meziantou.Analyzer/tree/main/docs -->
         <!-- MA0004 - Use ConfigureAwait(false) as the current SynchronizationContext is not needed -->
         <Rule Id="MA0004" Action="None"/>
         <!-- MA0005 - Use string.Equals instead of the comparaison operator -->
@@ -433,13 +499,16 @@
     </Rules>
     <Rules AnalyzerId="Philips.CodeAnalysis.DuplicateCodeAnalyzer"
            RuleNamespace="Philips.CodeAnalysis.DuplicateCodeAnalyzer">
+        <!-- See https://github.com/philips-software/roslyn-analyzers/blob/master/Philips.CodeAnalysis.DuplicateCodeAnalyzer/Philips.CodeAnalysis.DuplicateCodeAnalyzer.md -->
         <!-- TODO -->
     </Rules>
     <Rules AnalyzerId="Philips.CodeAnalysis.MaintainabilityAnalyzers" RuleNamespace="SecurityCodeScan.VS2019">
+        <!-- See https://github.com/philips-software/roslyn-analyzers/blob/master/Philips.CodeAnalysis.MaintainabilityAnalyzers/Philips.CodeAnalysis.MaintainabilityAnalyzers.md -->
         <!-- PH2028 - File should start with a copyright statement -->
         <Rule Id="PH2028" Action="None"/>
     </Rules>
     <Rules AnalyzerId="FunFair.CodeAnalysis" RuleNamespace="FunFair.CodeAnalysis">
+        <!-- See https://github.com/funfair-tech/funfair-server-code-analysis -->
         <!-- FFS0001 - Avoid using DateTime.Now - Use IDateTimeSource.UtcNow() -->
         <Rule Id="FFS0001" Action="Error"/>
         <!-- FFS0002 - Avoid using DateTime.UtcNow - Use IDateTimeSource.UtcNow() -->

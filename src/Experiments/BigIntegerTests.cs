@@ -58,7 +58,7 @@ public sealed class BigIntegerTests : TestBase
         this.Check(percentage: percentage, total: total);
     }
 
-    private BigInteger Check(int percentage, BigInteger total)
+    private BigInteger Check(int percentage, in BigInteger total)
     {
         const int accuracy = 10000;
         BigInteger numerator = total * accuracy * percentage;
