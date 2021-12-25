@@ -441,7 +441,7 @@
         <!-- RCS1159 - Use EventHandler<T> -->
         <Rule Id="RCS1159" Action="Error"/>
         <!-- RCS1163 - Unused parameter -->
-        <Rule Id="RCS1163" Action="Error"/>
+        <Rule Id="RCS1163" Action="None"/>
         <!-- RCS1168 - Parameter name differs from base name -->
         <Rule Id="RCS1168" Action="Error"/>
         <!-- RCS1170 - Use read-only auto-implemented property -->
@@ -481,6 +481,8 @@
         <!-- See https://code-cracker.github.io/diagnostics.html -->
         <!-- CC0001 - Use var instead of specifying type name -->
         <Rule Id="CC0001" Action="None"/>
+        <!-- CC0031 - Validate delegates for null before using -->
+        <Rule Id="CC0031" Action="None"/>
         <!-- CC0105 - Use var instead of specifying type name -->
         <Rule Id="CC0105" Action="None"/>
     </Rules>
@@ -497,8 +499,7 @@
         <!-- MA0005 - Use string.Equals instead of the comparaison operator -->
         <Rule Id="MA0006" Action="Info"/>
     </Rules>
-    <Rules AnalyzerId="Philips.CodeAnalysis.DuplicateCodeAnalyzer"
-           RuleNamespace="Philips.CodeAnalysis.DuplicateCodeAnalyzer">
+    <Rules AnalyzerId="Philips.CodeAnalysis.DuplicateCodeAnalyzer" RuleNamespace="Philips.CodeAnalysis.DuplicateCodeAnalyzer">
         <!-- See https://github.com/philips-software/roslyn-analyzers/blob/master/Philips.CodeAnalysis.DuplicateCodeAnalyzer/Philips.CodeAnalysis.DuplicateCodeAnalyzer.md -->
         <!-- TODO -->
     </Rules>
@@ -506,28 +507,110 @@
         <!-- See https://github.com/philips-software/roslyn-analyzers/blob/master/Philips.CodeAnalysis.MaintainabilityAnalyzers/Philips.CodeAnalysis.MaintainabilityAnalyzers.md -->
         <!-- PH2001	- Avoid empty XML Summary comments -->
         <Rule Id="PH2001" Action="Error"/>
+        <!-- PH2006	- Match namespace, path, assembly, and project -->
+        <Rule Id="PH2006" Action="None"/>
+        <!-- PH2020	- Avoid Thread.Sleep -->
+        <Rule Id="PH2020" Action="Error"/>
+        <!-- PH2021	- Avoid inline new -->
+        <Rule Id="PH2021" Action="None"/>
+        <!-- PH2026	- Avoid SuppressMessage attribute -->
+        <Rule Id="PH2026" Action="None"/>
+        <!-- PH2027	- Avoid static methods -->
+        <Rule Id="PH2027" Action="None"/>
         <!-- PH2028 - File should start with a copyright statement -->
         <Rule Id="PH2028" Action="None"/>
+        <!-- PH2029	- Avoid #pragma -->
+        <Rule Id="PH2029" Action="None"/>
+        <!-- PH2030 - Variable naming conventions -->
+        <Rule Id="PH2030" Action="None"/>
+        <!-- PH2031	- Avoid TryParse without Culture -->
+        <Rule Id="PH2031" Action="Error"/>
+        <!-- PH2032	- Avoid Empty Type Initializer -->
+        <Rule Id="PH2032" Action="Error"/>
+        <!-- PH2040	- ServiceContracts have InterfaceContracts -->
+        <Rule Id="PH2040" Action="None"/>
+        <!-- PH2042	- WinForms InitalizeComponent-->
+        <Rule Id="PH2042" Action="None"/>
         <!-- PH2044	- Avoid dynamic keyword -->
         <Rule Id="PH2044" Action="Error"/>
+        <!-- PH2045	- Avoid static classes -->
+        <Rule Id="PH2045" Action="None"/>
+        <!-- PH2047	- Avoid public member variables -->
+        <Rule Id="PH2047" Action="Error"/>
         <!-- PH2051	- Avoid unnecessary range checks -->
         <Rule Id="PH2051" Action="Error"/>
+        <!-- PH2060	- Bool naming conventions -->
+        <Rule Id="PH2060" Action="None"/>
+        <!-- PH2061	Public/Private #regions -->
+        <Rule Id="PH2061" Action="None"/>
+        <!-- PH2064	- Avoid duplicate #regions -->
+        <Rule Id="PH2064" Action="Error"/>
         <!-- PH2066	- Readonly lock -->
         <Rule Id="PH2066" Action="Error"/>
         <!-- PH2067	- Avoid nested string.Format -->
-        <Rule Id="PH2067" Action="Error"/>
+        <Rule Id="PH2067" Action="None"/>
         <!-- PH2073	- Call extension method as instance -->
         <Rule Id="PH2073" Action="Error"/>
+        <!-- PH2068	- Avoid goto -->
+        <Rule Id="PH2068" Action="Error"/>
         <!-- PH2069	- Avoid unnecessary string.Format -->
         <Rule Id="PH2069" Action="Error"/>
+        <!-- PH2070	- Avoid protected fields -->
+        <Rule Id="PH2070" Action="Error"/>
+        <!-- PH2072	- Require local editorconfig -->
+        <Rule Id="PH2072" Action="None"/>
+        <!-- PH2073	- Call extension method as instance -->
+        <Rule Id="PH2073" Action="Error"/>
+        <!-- PH2074	- Avoid register in Dispose-->
+        <Rule Id="PH2074" Action="Error"/>
+        <!-- PH2075	- Avoid AssemblyVersion change -->
+        <Rule Id="PH2075" Action="None"/>
+        <!-- PH2077	- Avoid Switch statement with no cases -->
+        <Rule Id="PH2077" Action="None"/>
+        <!-- PH2078	- Avoid PrivateKey Property -->
+        <Rule Id="PH2078" Action="Error"/>
+        <!-- PH2079	- Namespace prefix -->
+        <Rule Id="PH2079" Action="None"/>
         <!-- PH2080	- Avoid hardcoded absolute paths -->
         <Rule Id="PH2080" Action="Error"/>
+        <!-- PH2081	- Avoid #regions within methods -->
+        <Rule Id="PH2081" Action="Error"/>
+        <!-- PH2082	- Positive naming -->
+        <Rule Id="PH2082" Action="None"/>
+        <!-- PH2083	- Avoid Pass By Reference -->
+        <Rule Id="PH2083" Action="Error"/>
         <!-- PH2084	- Don't lock on "new x()" -->
         <Rule Id="PH2084" Action="Error"/>
+        <!-- PH2085	- Order property accessors -->
+        <Rule Id="PH2085" Action="None"/>
+        <!-- PH2086	- Avoid calling Task.Result -->
+        <Rule Id="PH2086" Action="None"/>
         <!-- PH2087	- Do not use spaces in filenames -->
         <Rule Id="PH2087" Action="Error"/>
+        <!-- PH2088 - Paths should not exceed 260 characters -->
+        <Rule Id="PH2088" Action="None"/>
+        <!-- PH2089 - Avoid assignments in conditions -->
+        <Rule Id="PH2089" Action="Error"/>
+        <!-- PH2090 - Log Exception -->
+        <Rule Id="PH2090" Action="None"/>
+        <!-- PH2091	- Throw Inner Exception -->
+        <Rule Id="PH2091" Action="Error"/>
+        <!-- PH2092	- Limit Condition Complexity -->
+        <Rule Id="PH2092" Action="Error"/>
         <!-- PH2093	- Prefer creating tuples with named fields -->
         <Rule Id="PH2093" Action="Error"/>
+        <!-- PH2094	- Prefer using the named tuple field, not ItemX -->
+        <Rule Id="PH2094" Action="Error"/>
+        <!-- PH2096	- Prefer async Task methods over async void methods -->
+        <Rule Id="PH2096" Action="None"/>
+        <!-- PH2097	- Avoid Empty Statement Blocks -->
+        <Rule Id="PH2097" Action="None"/>
+        <!-- PH2098	- Avoid Empty Catch Block -->
+        <Rule Id="PH2098" Action="None"/>
+        <!-- PH2099	- Enforce FileVersion to be same as PackageVersion -->
+        <Rule Id="PH2099" Action="None"/>
+        <!-- PH2101	- Detect Null Dereference after "as" -->
+        <Rule Id="PH2101" Action="Error"/>
     </Rules>
     <Rules AnalyzerId="FunFair.CodeAnalysis" RuleNamespace="FunFair.CodeAnalysis">
         <!-- See https://github.com/funfair-tech/funfair-server-code-analysis -->
