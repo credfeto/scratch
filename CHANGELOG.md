@@ -15,6 +15,7 @@ Please ADD ALL Changes to the UNRELASED SECTION and not a specific release
 ### Changed
 
 - FF-3881 - Updated DotNet SDK to 6.0.101
+- FF-1429 - Updated Meziantou.Analyzer to 1.0.683
 
 ### Removed
 
