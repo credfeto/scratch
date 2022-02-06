@@ -40,6 +40,7 @@ Please ADD ALL Changes to the UNRELASED SECTION and not a specific release
 - FF-1429 - Updated Meziantou.Analyzer to 1.0.693
 - FF-1429 - Updated Meziantou.Analyzer to 1.0.694
 - FF-1429 - Updated FunFair.Test.Common to 5.8.4.1638
+- FF-1429 - Updated coverlet to 3.1.2
 
 ### Removed
 
