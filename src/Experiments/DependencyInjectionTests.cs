@@ -33,4 +33,17 @@ public sealed class DependencyInjectionTests : TestBase
 
         Assert.Equal(typeof(T1), simpleInterface.ItemType);
     }
+
+    [Fact]
+    public void GenericWithTwoTypeParameters()
+    {
+        IServiceProvider serviceProvider = Build(services => services.AddSingleton(typeof(IGenericInterface2<,>), typeof(GenericInterface2<,>)));
+
+        IGenericInterface2<T1, T2> simpleInterface = serviceProvider.GetRequiredService<IGenericInterface2<T1, T2>>();
+        Assert.NotNull(simpleInterface);
+
+        Assert.Equal(typeof(T1), simpleInterface.ItemType);
+
+        Assert.Equal(typeof(T2), simpleInterface.OtherType);
+    }
 }
