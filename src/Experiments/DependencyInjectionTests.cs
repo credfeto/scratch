@@ -1,5 +1,6 @@
 using System;
 using Experiments.ReferenceObjects;
+using Experiments.ReferenceObjects.Services;
 using FunFair.Test.Common;
 using Microsoft.Extensions.DependencyInjection;
 using Xunit;
@@ -20,5 +21,16 @@ public sealed class DependencyInjectionTests : TestBase
 
         ISimpleInterface simpleInterface = serviceProvider.GetRequiredService<ISimpleInterface>();
         Assert.NotNull(simpleInterface);
+    }
+
+    [Fact]
+    public void GenericWithOneTypeParameter()
+    {
+        IServiceProvider serviceProvider = Build(services => services.AddSingleton(typeof(IGenericInterface<>), typeof(GenericInterface<>)));
+
+        IGenericInterface<T1> simpleInterface = serviceProvider.GetRequiredService<IGenericInterface<T1>>();
+        Assert.NotNull(simpleInterface);
+
+        Assert.Equal(typeof(T1), simpleInterface.ItemType);
     }
 }
