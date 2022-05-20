@@ -82,6 +82,7 @@ Please ADD ALL Changes to the UNRELASED SECTION and not a specific release
 - FF-1429 - Updated SmartAnalyzers.CSharpExtensions.Annotations to 4.2.4
 - FF-1429 - Updated SmartAnalyzers.CSharpExtensions.Annotations to 4.2.5
 - FF-1429 - Updated FunFair.CodeAnalysis to 5.8.2.1317
+- FF-1429 - Updated FunFair.Test.Common to 5.9.5.1833
 
 ### Removed
 
