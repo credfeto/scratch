@@ -1,6 +1,5 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <RunAOTCompilation>true</RunAOTCompilation>
     <DisableImplicitNuGetFallbackFolder>true</DisableImplicitNuGetFallbackFolder>
     <EnablePackageValidation>true</EnablePackageValidation>
     <Features>strict;flow-analysis</Features>
@@ -13,6 +12,7 @@
     <NoWarn />
     <Nullable>enable</Nullable>
     <OutputType>Library</OutputType>
+    <RunAOTCompilation>true</RunAOTCompilation>
     <TargetFramework>net6.0</TargetFramework>
     <TieredCompilation>true</TieredCompilation>
     <TreatSpecificWarningsAsErrors />
