@@ -59,7 +59,7 @@ public sealed class ItemSizes : TestBase
         this.OutputSize("Hello World sdfshfhdfkdsjfhdjfhdjksh fdhsjfhjkfhdsjhf kshfkdsjhf kjhfjdkshfjdhfs shfskhfsdjkhk");
         this.OutputSize(new TestRefTypeWithOnlyValueTypes(i: 1, j: 5));
         this.OutputSize(new TestRefTypeWithOnlyMixedValueTypesAndReferenceTypes(i: 44, j: "Hello"));
-        this.OutputSize(new TestRefTypeWithOnlyMixedValueTypesAndReferenceTypes2(i: 44, j: "Hello", new TestRefTypeWithOnlyMixedValueTypesAndReferenceTypes(i: 44, j: "Hello")));
+        this.OutputSize(new TestRefTypeWithOnlyMixedValueTypesAndReferenceTypes2(i: 44, j: "Hello", new(i: 44, j: "Hello")));
 
         Assert.True(condition: true, userMessage: "Not really a test");
     }

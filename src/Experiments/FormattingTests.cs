@@ -21,10 +21,10 @@ public sealed class FormattingTests : TestBase
     [InlineData(1.01, "1.01")]
     public void Format(double value, string expected)
     {
-        string actual = value.ToString("0.##", CultureInfo.CurrentCulture);
+        string actual = value.ToString(format: "0.##", provider: CultureInfo.CurrentCulture);
 
         this._output.WriteLine($"Actual: {actual}");
 
-        Assert.Equal(expected, actual);
+        Assert.Equal(expected: expected, actual: actual);
     }
 }

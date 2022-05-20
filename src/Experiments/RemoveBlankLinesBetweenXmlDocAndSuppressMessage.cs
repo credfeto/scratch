@@ -9,20 +9,11 @@ namespace Experiments;
 public sealed class RemoveBlankLinesBetweenXmlDocAndSuppressMessage : TestBase
 {
     private const string EXAMPLE = @"
-        /// <summary>
-        ///     The casino metadata
-        /// </summary>
         public CasinoMetadataDto? Metadata { get; set; }
 
-        /// <summary>
-        ///     The Wallet App ID.
-        /// </summary>
         [SuppressMessage(category: ""ReSharper"", checkId: ""AutoPropertyCanBeMadeGetOnly.Global"", Justification = ""TODO: Review"")]
         public WalletAppId WalletAppId { get; set; } = default!;
 
-        /// <summary>
-        ///     The Other Wallet App ID.
-        /// </summary>
         [System.Diagnostics.CodeAnalysis.SuppressMessage(category: ""ReSharper"", checkId: ""AutoPropertyCanBeMadeGetOnly.Global"", Justification = ""TODO: Review"")]
         public WalletAppId OtherWalletAppId { get; set; } = default!;
 ";

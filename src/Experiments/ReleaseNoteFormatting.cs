@@ -66,7 +66,11 @@ public sealed class ReleaseNoteFormatting : TestBase
                 continue;
             }
 
-            builder.AppendLine(Regex.Replace(input: line, pattern: "(ff\\-\\d+)", evaluator: MakeUpperCase, RegexOptions.IgnoreCase | RegexOptions.ExplicitCapture, matchTimeout: TimeOut)
+            builder.AppendLine(Regex.Replace(input: line,
+                                             pattern: "(ff\\-\\d+)",
+                                             evaluator: MakeUpperCase,
+                                             RegexOptions.IgnoreCase | RegexOptions.ExplicitCapture,
+                                             matchTimeout: TimeOut)
                                     .Trim());
         }
 

@@ -32,7 +32,7 @@ public sealed class MakeMatrix : TestBase
                     continue;
                 }
 
-                x[i, ypos] = new CompatibilityCheck<T>(make[i], make[j]);
+                x[i, ypos] = new(make[i], make[j]);
                 ++ypos;
             }
         }
@@ -43,7 +43,13 @@ public sealed class MakeMatrix : TestBase
     [Fact]
     public void Produce()
     {
-        int[] source = { 1, 2, 3, 4 };
+        int[] source =
+        {
+            1,
+            2,
+            3,
+            4
+        };
 
         CompatibilityCheck<int>[,] m = Matrix(source);
 

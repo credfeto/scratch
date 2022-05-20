@@ -11,7 +11,8 @@ public sealed class DependencyInjectionTests : TestBase
 {
     private static IServiceProvider Build(Func<IServiceCollection, IServiceCollection> registration)
     {
-        return registration(new ServiceCollection()).BuildServiceProvider();
+        return registration(new ServiceCollection())
+            .BuildServiceProvider();
     }
 
     [Fact]
@@ -31,7 +32,7 @@ public sealed class DependencyInjectionTests : TestBase
         IGenericInterface<T1> simpleInterface = serviceProvider.GetRequiredService<IGenericInterface<T1>>();
         Assert.NotNull(simpleInterface);
 
-        Assert.Equal(typeof(T1), simpleInterface.ItemType);
+        Assert.Equal(typeof(T1), actual: simpleInterface.ItemType);
     }
 
     [Fact]
@@ -42,8 +43,8 @@ public sealed class DependencyInjectionTests : TestBase
         IGenericInterface2<T1, T2> simpleInterface = serviceProvider.GetRequiredService<IGenericInterface2<T1, T2>>();
         Assert.NotNull(simpleInterface);
 
-        Assert.Equal(typeof(T1), simpleInterface.ItemType);
+        Assert.Equal(typeof(T1), actual: simpleInterface.ItemType);
 
-        Assert.Equal(typeof(T2), simpleInterface.OtherType);
+        Assert.Equal(typeof(T2), actual: simpleInterface.OtherType);
     }
 }
