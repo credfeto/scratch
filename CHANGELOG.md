@@ -89,6 +89,7 @@ Please ADD ALL Changes to the UNRELASED SECTION and not a specific release
 - FF-1429 - Updated FunFair.Test.Common to 5.9.6.1865
 - FF-3881 - Updated DotNet SDK to 6.0.301
 - FF-1429 - Updated FunFair.Test.Common to 5.9.7.1871
+- FF-1429 - Updated FunFair.CodeAnalysis to 5.8.3.1353
 
 ### Removed
 
