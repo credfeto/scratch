@@ -93,6 +93,7 @@ Please ADD ALL Changes to the UNRELASED SECTION and not a specific release
 - FF-1429 - Updated FunFair.Test.Common to 5.9.8.1897
 - FF-1429 - Updated FunFair.Test.Common to 5.9.9.1903
 - FF-1429 - Updated Meziantou.Analyzer to 1.0.703
+- FF-1429 - Updated Meziantou.Analyzer to 1.0.704
 
 ### Removed
 
