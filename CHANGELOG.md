@@ -110,6 +110,7 @@ Please ADD ALL Changes to the UNRELASED SECTION and not a specific release
 - FF-1429 - Updated FunFair.Test.Common to 6.0.2.1981
 - FF-1429 - Updated SonarAnalyzer.CSharp to 8.43.0.51858
 - FF-1429 - Updated FunFair.Test.Common to 6.0.3.1991
+- FF-1429 - Updated FunFair.Test.Common to 6.0.4.1998
 
 ### Removed
 
