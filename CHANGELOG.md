@@ -116,6 +116,7 @@ Please ADD ALL Changes to the UNRELASED SECTION and not a specific release
 - FF-1429 - Updated FunFair.CodeAnalysis to 5.8.5.1436
 - FF-1429 - Updated Microsoft.NET.Test.Sdk to 17.3.0
 - FF-1429 - Updated Meziantou.Analyzer to 1.0.709
+- FF-1429 - Updated Meziantou.Analyzer to 1.0.710
 
 ### Removed
 
