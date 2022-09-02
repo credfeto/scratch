@@ -15,7 +15,6 @@ Please ADD ALL Changes to the UNRELASED SECTION and not a specific release
 ### Changed
 
 - FF-3881 - Updated DotNet SDK to 6.0.101
-- FF-1429 - Updated Meziantou.Analyzer to 1.0.683
 - FF-1429 - Updated Meziantou.Analyzer to 1.0.684
 - FF-1429 - Updated Meziantou.Analyzer to 1.0.685
 - FF-1429 - Updated Meziantou.Analyzer to 1.0.686
@@ -130,6 +129,7 @@ Please ADD ALL Changes to the UNRELASED SECTION and not a specific release
 - FF-1429 - Updated Meziantou.Analyzer to 1.0.719
 - FF-1429 - Updated Meziantou.Analyzer to 1.0.720
 - FF-1429 - Updated Microsoft.NET.Test.Sdk to 17.3.1
+- FF-1429 - Updated Meziantou.Analyzer to 1.0.721
 
 ### Removed
 
