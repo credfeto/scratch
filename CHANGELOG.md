@@ -49,7 +49,6 @@ Please ADD ALL Changes to the UNRELASED SECTION and not a specific release
 - FF-1429 - Updated Microsoft.VisualStudio.Threading.Analyzers to 17.1.46
 - FF-1429 - Updated FunFair.Test.Common to 5.9.2.1676
 - FF-1429 - Updated SonarAnalyzer.CSharp to 8.36.0.43782
-- FF-1429 - Updated SecurityCodeScan.VS2019 to 5.6.1
 - FF-1429 - Updated SecurityCodeScan.VS2019 to 5.6.2
 - FF-1429 - Updated SmartAnalyzers.CSharpExtensions.Annotations to 4.2.2
 - FF-1429 - Updated Meziantou.Analyzer to 1.0.696
@@ -130,6 +129,7 @@ Please ADD ALL Changes to the UNRELASED SECTION and not a specific release
 - FF-1429 - Updated Microsoft.NET.Test.Sdk to 17.3.1
 - FF-1429 - Updated Meziantou.Analyzer to 1.0.721
 - FF-1429 - Updated Meziantou.Analyzer to 1.0.722
+- FF-1429 - Updated SecurityCodeScan.VS2019 to 5.6.7
 
 ### Removed
 
