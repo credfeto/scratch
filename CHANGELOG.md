@@ -15,7 +15,6 @@ Please ADD ALL Changes to the UNRELASED SECTION and not a specific release
 ### Changed
 
 - FF-3881 - Updated DotNet SDK to 6.0.101
-- FF-1429 - Updated Meziantou.Analyzer to 1.0.686
 - FF-1429 - Updated Meziantou.Analyzer to 1.0.687
 - FF-1429 - Updated Philips.CodeAnalysis.MaintainabilityAnalyzers to 1.2.27
 - FF-1429 - Updated Meziantou.Analyzer to 1.0.688
@@ -130,6 +129,7 @@ Please ADD ALL Changes to the UNRELASED SECTION and not a specific release
 - FF-1429 - Updated SecurityCodeScan.VS2019 to 5.6.7
 - FF-1429 - Updated FunFair.CodeAnalysis to 5.9.0.1493
 - FF-1429 - Updated Meziantou.Analyzer to 1.0.723
+- FF-1429 - Updated Meziantou.Analyzer to 1.0.725
 
 ### Removed
 
