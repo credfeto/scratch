@@ -114,6 +114,10 @@
    color: "ff0000"
    description: "This pull request should not be merged yey"
 
+ - name: "Bench"
+   color: "96f7d2"
+   description: "Changes in Bench project"
+
  - name: "Experiments"
    color: "96f7d2"
    description: "Changes in Experiments project"
