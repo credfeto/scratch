@@ -15,7 +15,9 @@ public partial class RegexBench
     private const string GOOD = "0123456789abcdef";
     private const string BAD = "0123456789abcdefg";
 
-    private static readonly Regex CompiledRegex = new(pattern: @"^[0-9a-fA-F]+$", RegexOptions.CultureInvariant | RegexOptions.ExplicitCapture | RegexOptions.Singleline, TimeSpan.FromSeconds(1));
+    private static readonly Regex CompiledRegex = new(pattern: @"^[0-9a-fA-F]+$",
+                                                      RegexOptions.CultureInvariant | RegexOptions.ExplicitCapture | RegexOptions.Singleline,
+                                                      TimeSpan.FromSeconds(1));
 
     [GeneratedRegexAttribute(pattern: @"^[0-9a-fA-F]+$", RegexOptions.CultureInvariant | RegexOptions.ExplicitCapture | RegexOptions.Singleline)]
     private static partial Regex SourceGeneratedRegex();
@@ -128,11 +130,6 @@ public partial class RegexBench
         return IsValidHexStringWithoutPrefix7(input);
     }
 
-    /// <summary>
-    ///     Checks to see if the string is a valid hex string;
-    /// </summary>
-    /// <param name="value">the string to check.</param>
-    /// <returns>True, if the string is all hex characters; otherwise, false.</returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private static bool IsValidHexStringWithoutPrefix(in ReadOnlySpan<char> value)
     {
@@ -147,11 +144,6 @@ public partial class RegexBench
         return true;
     }
 
-    /// <summary>
-    ///     Checks to see if the string is a valid hex string;
-    /// </summary>
-    /// <param name="value">the string to check.</param>
-    /// <returns>True, if the string is all hex characters; otherwise, false.</returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private static bool IsValidHexStringWithoutPrefix7(in ReadOnlySpan<char> value)
     {

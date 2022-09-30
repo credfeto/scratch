@@ -41,11 +41,6 @@ public sealed class RegexTests : TestBase
         Assert.Equal(expected: expected, actual: actual);
     }
 
-    /// <summary>
-    ///     Checks to see if the string is a valid hex string;
-    /// </summary>
-    /// <param name="value">the string to check.</param>
-    /// <returns>True, if the string is all hex characters; otherwise, false.</returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private static bool IsValidHexStringWithoutPrefix(in ReadOnlySpan<char> value)
     {
