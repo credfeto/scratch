@@ -17,7 +17,7 @@ public partial class RegexBench
 
     private static readonly Regex CompiledRegex = new(pattern: @"^[0-9a-fA-F]+$", RegexOptions.CultureInvariant | RegexOptions.ExplicitCapture | RegexOptions.Singleline, TimeSpan.FromSeconds(1));
 
-    [GeneratedRegexAttribute(pattern: @"^[0-9a-fA-F]+$", RegexOptions.CultureInvariant | RegexOptions.ExplicitCapture | RegexOptions.Singleline)]
+    [GeneratedRegex(pattern: @"^[0-9a-fA-F]+$", RegexOptions.CultureInvariant | RegexOptions.ExplicitCapture | RegexOptions.Singleline)]
     private static partial Regex SourceGeneratedRegex();
 
     [Benchmark]
