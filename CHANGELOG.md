@@ -15,7 +15,6 @@ Please ADD ALL Changes to the UNRELASED SECTION and not a specific release
 ### Changed
 
 - FF-3881 - Updated DotNet SDK to 6.0.101
-- FF-1429 - Updated Philips.CodeAnalysis.MaintainabilityAnalyzers to 1.2.27
 - FF-1429 - Updated FunFair.Test.Common to 5.8.0.1567
 - FF-1429 - Updated FunFair.Test.Common to 5.8.1.1595
 - FF-1429 - Updated Roslynator.Analyzers to 4.0.0
@@ -37,7 +36,6 @@ Please ADD ALL Changes to the UNRELASED SECTION and not a specific release
 - FF-1429 - Updated SmartAnalyzers.CSharpExtensions.Annotations to 4.2.2
 - FF-1429 - Updated FunFair.Test.Common to 5.9.3.1699
 - FF-3881 - Updated DotNet SDK to 6.0.201
-- FF-1429 - Updated Philips.CodeAnalysis.MaintainabilityAnalyzers to 1.2.28
 - FF-1429 - Updated FunFair.Test.Common to 5.9.4.1729
 - FF-1429 - Updated Roslynator.Analyzers to 4.1.0
 - FF-3881 - Updated DotNet SDK to 6.0.202
@@ -81,6 +79,7 @@ Please ADD ALL Changes to the UNRELASED SECTION and not a specific release
 - FF-1429 - Updated Philips.CodeAnalysis.DuplicateCodeAnalyzer to 1.1.7
 - FF-1429 - Updated Meziantou.Analyzer to 1.0.734
 - FF-1429 - Updated SonarAnalyzer.CSharp to 8.47.0.55603
+- FF-1429 - Updated Philips.CodeAnalysis.MaintainabilityAnalyzers to 1.2.29
 
 ### Removed
 
