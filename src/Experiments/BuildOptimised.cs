@@ -87,10 +87,13 @@ public sealed class BuildOptimised : LoggingTestBase
 
     private void ReplaceTextFilesInRenamableTextFiles(IReadOnlyList<StrippedFile> renamableTextFiles, Dictionary<string, string> fileHashes, Dictionary<string, string> textFiles)
     {
+        int pass = 0;
         bool changes;
 
         do
         {
+            ++pass;
+            this.Output.WriteLine($"{nameof(this.ReplaceTextFilesInRenamableTextFiles)}: Pass {pass}");
             changes = false;
 
             foreach (StrippedFile file in renamableTextFiles)
@@ -191,10 +194,13 @@ public sealed class BuildOptimised : LoggingTestBase
                                                IReadOnlyList<StrippedFile> binaryFiles,
                                                Dictionary<string, string> fileHashes)
     {
+        int pass = 0;
         bool changes;
 
         do
         {
+            ++pass;
+            this.Output.WriteLine($"{nameof(this.ReplaceBinaryFilesInTextFiles)}: Pass {pass}");
             changes = false;
 
             foreach (StrippedFile file in renamableTextFiles)
