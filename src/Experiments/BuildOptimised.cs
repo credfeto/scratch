@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
+using System.Text;
 using System.Threading.Tasks;
 using FunFair.Test.Common;
 using Xunit;
@@ -80,6 +81,89 @@ public sealed class BuildOptimised : LoggingTestBase
                                                                      .ToArray();
 
         this.ReplaceBinaryFilesInTextFiles(renamableTextFiles: renamableTextFiles, textFiles: textFiles, binaryFiles: binaryFiles, fileHashes: fileHashes);
+
+        this.ReplaceTextFilesInRenamableTextFiles(renamableTextFiles: renamableTextFiles, fileHashes: fileHashes, textFiles: textFiles);
+    }
+
+    private void ReplaceTextFilesInRenamableTextFiles(IReadOnlyList<StrippedFile> renamableTextFiles, Dictionary<string, string> fileHashes, Dictionary<string, string> textFiles)
+    {
+        bool changes;
+
+        do
+        {
+            changes = false;
+
+            foreach (StrippedFile file in renamableTextFiles)
+            {
+                bool hasReferenecesToOtherFiles = false;
+
+                if (fileHashes.ContainsKey(file.Path))
+                {
+                    // already
+                    continue;
+                }
+
+                string content = textFiles[file.Path];
+
+                foreach (StrippedFile referencedFile in renamableTextFiles)
+                {
+                    if (referencedFile.Path == file.Path)
+                    {
+                        continue;
+                    }
+
+                    string relative = GetRelativePath(documentPath: file.Path, referencedFilePath: referencedFile.Path);
+
+                    if (content.Contains(value: relative, comparisonType: StringComparison.Ordinal))
+                    {
+                        hasReferenecesToOtherFiles = true;
+
+                        break;
+                    }
+                }
+
+                if (!hasReferenecesToOtherFiles)
+                {
+                    string hash = HashFileContent(Encoding.UTF8.GetBytes(content));
+                    string hashRelative = this.MakeRelativeHashFileName(file: file, hash: hash);
+
+                    this.Output.WriteLine($"*: {file.RootRelativePath} : {hashRelative}");
+
+                    fileHashes.Add(key: file.Path, value: hashRelative);
+
+                    MakeReplacment(renamableTextFiles: renamableTextFiles, fileHashes: fileHashes, textFiles: textFiles, file: file, content: content, hashRelative: hashRelative);
+
+                    changes = true;
+                }
+            }
+        } while (changes);
+    }
+
+    private static void MakeReplacment(IReadOnlyList<StrippedFile> renamableTextFiles,
+                                       Dictionary<string, string> fileHashes,
+                                       Dictionary<string, string> textFiles,
+                                       StrippedFile file,
+                                       string content,
+                                       string hashRelative)
+    {
+        foreach (StrippedFile referencing in renamableTextFiles)
+        {
+            if (fileHashes.ContainsKey(referencing.Path))
+            {
+                continue;
+            }
+
+            string relativeInReferencing = GetRelativePath(documentPath: referencing.Path, referencedFilePath: file.Path);
+            string referencingContent = textFiles[referencing.Path];
+
+            if (content.Contains(value: relativeInReferencing, comparisonType: StringComparison.Ordinal))
+            {
+                string newFileName = relativeInReferencing.Substring(startIndex: 0, relativeInReferencing.Length - file.FileName.Length) + hashRelative;
+                referencingContent = referencingContent.Replace(oldValue: relativeInReferencing, newValue: newFileName, comparisonType: StringComparison.Ordinal);
+
+                textFiles[referencing.Path] = referencingContent;
+            }
+        }
     }
 
     private async Task<Dictionary<string, string>> HashBinaryFilesAsync(IReadOnlyList<StrippedFile> binaryFiles)
@@ -202,6 +286,11 @@ public sealed class BuildOptimised : LoggingTestBase
     {
         byte[] b = await File.ReadAllBytesAsync(filePath);
 
+        return HashFileContent(b);
+    }
+
+    private static string HashFileContent(byte[] b)
+    {
         byte[] x = SHA256.HashData(b);
 
         return BitConverter.ToString(x)
