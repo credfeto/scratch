@@ -46,7 +46,7 @@ public sealed class HashedContentOptimizer : IHashedContentOptimizer
 
         this.ChangeReferencesInNonRenamableTextFiles(fixedNameTextFiles: fixedNameTextFiles, textFiles: textFiles, fileHashes: fileHashes);
 
-        this.SaveFiles(destination: destination, binaryFiles: binaryFiles, fileHashes: fileHashes, allTextFiles: allTextFiles);
+        await this.SaveFilesAsync(destination: destination, binaryFiles: binaryFiles, fileHashes: fileHashes, allTextFiles: allTextFiles, textFiles: textFiles);
     }
 
     private static IReadOnlyList<StrippedFile> GetFixedNameTextFiles(IReadOnlyList<StrippedFile> allTextFiles)
@@ -81,7 +81,11 @@ public sealed class HashedContentOptimizer : IHashedContentOptimizer
                         .ToArray();
     }
 
-    private void SaveFiles(string destination, IReadOnlyList<StrippedFile> binaryFiles, Dictionary<string, string> fileHashes, IReadOnlyList<StrippedFile> allTextFiles)
+    private async Task SaveFilesAsync(string destination,
+                                      IReadOnlyList<StrippedFile> binaryFiles,
+                                      Dictionary<string, string> fileHashes,
+                                      IReadOnlyList<StrippedFile> allTextFiles,
+                                      Dictionary<string, string> textFiles)
     {
         this._logger.LogInformation($"Writing files to {destination}");
 
@@ -90,6 +94,9 @@ public sealed class HashedContentOptimizer : IHashedContentOptimizer
             string hashedPath = fileHashes[binaryFile.Path];
             string destinationPath = Path.Combine(path1: destination, path2: hashedPath);
             this._logger.LogInformation($"*: Writing {binaryFile.Path} to {destinationPath}");
+
+            EnsureFolderExists(destinationPath);
+            File.Copy(sourceFileName: binaryFile.Path, destFileName: destinationPath, overwrite: true);
         }
 
         foreach (StrippedFile textFile in allTextFiles)
@@ -97,6 +104,20 @@ public sealed class HashedContentOptimizer : IHashedContentOptimizer
             string hashedPath = fileHashes[textFile.Path];
             string destinationPath = Path.Combine(path1: destination, path2: hashedPath);
             this._logger.LogInformation($"*: Writing {textFile.Path} to {destinationPath}");
+
+            string content = textFiles[textFile.Path];
+            EnsureFolderExists(destinationPath);
+            await File.WriteAllTextAsync(path: destinationPath, contents: content, encoding: Encoding.UTF8);
+        }
+    }
+
+    private static void EnsureFolderExists(string destinationPath)
+    {
+        string dp = Path.GetDirectoryName(destinationPath)!;
+
+        if (!Directory.Exists(dp))
+        {
+            Directory.CreateDirectory(dp);
         }
     }
 
