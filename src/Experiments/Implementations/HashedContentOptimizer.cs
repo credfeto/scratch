@@ -74,10 +74,45 @@ public sealed class HashedContentOptimizer : IHashedContentOptimizer
 
         IReadOnlyList<StrippedFile> renamableTextFiles = allTextFiles.Where(f => f.IsRenamable)
                                                                      .ToArray();
+        IReadOnlyList<StrippedFile> fixedNameTextFiles = allTextFiles.Where(f => !f.IsRenamable)
+                                                                     .ToArray();
 
         this.ReplaceBinaryFilesInTextFiles(renamableTextFiles: renamableTextFiles, textFiles: textFiles, binaryFiles: binaryFiles, fileHashes: fileHashes);
 
         this.ReplaceTextFilesInRenamableTextFiles(renamableTextFiles: renamableTextFiles, fileHashes: fileHashes, textFiles: textFiles);
+
+        this.ChangeReferencesInNonRenamableTextFiles(fixedNameTextFiles: fixedNameTextFiles, textFiles: textFiles, fileHashes: fileHashes);
+    }
+
+    private void ChangeReferencesInNonRenamableTextFiles(IReadOnlyList<StrippedFile> fixedNameTextFiles, Dictionary<string, string> textFiles, Dictionary<string, string> fileHashes)
+    {
+        this._logger.LogInformation("Changing references in non-renamable text files");
+
+        foreach (StrippedFile file in fixedNameTextFiles)
+        {
+            this._logger.LogInformation($"*: {file.Path}");
+            bool changed = false;
+            string content = textFiles[file.Path];
+
+            foreach ((string hashedFilePath, string newHashedPath) in fileHashes)
+            {
+                string relative = PathHelpers.GetRelativePath(documentFullPath: file.Path, referencedFileFullPath: hashedFilePath);
+
+                if (content.Contains(value: relative, comparisonType: StringComparison.Ordinal))
+                {
+                    this._logger.LogInformation($"  --> Adjusting {hashedFilePath} to {newHashedPath}");
+                    string newRelative = PathHelpers.GetRelativePath(documentFullPath: file.Path, referencedFileFullPath: newHashedPath);
+
+                    content = content.Replace(oldValue: relative, newValue: newRelative, comparisonType: StringComparison.Ordinal);
+                    changed = true;
+                }
+            }
+
+            if (changed)
+            {
+                textFiles[file.Path] = content;
+            }
+        }
     }
 
     private void ReplaceTextFilesInRenamableTextFiles(IReadOnlyList<StrippedFile> renamableTextFiles, Dictionary<string, string> fileHashes, Dictionary<string, string> textFiles)
