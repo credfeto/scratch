@@ -73,8 +73,8 @@ public sealed class BuildOptimised : LoggingTestBase
 
         Dictionary<string, string> fileHashes = await this.HashBinaryFilesAsync(binaryFiles);
 
-        StrippedFile[] allTextFiles = files.Where(f => f.IsText)
-                                           .ToArray();
+        IReadOnlyList<StrippedFile> allTextFiles = files.Where(f => f.IsText)
+                                                        .ToArray();
         Dictionary<string, string> textFiles = await LoadTextFilesAsync(allTextFiles);
 
         IReadOnlyList<StrippedFile> renamableTextFiles = allTextFiles.Where(f => f.IsRenamable)
@@ -252,12 +252,10 @@ public sealed class BuildOptimised : LoggingTestBase
         int commonLength = documentPathParts.TakeWhile((t, i) => t == referencedFilePathParts[i])
                                             .Count();
 
-        string relativePath = string.Join(Path.DirectorySeparatorChar.ToString(), referencedFilePathParts.Skip(commonLength));
-
-        return relativePath;
+        return string.Join(Path.DirectorySeparatorChar.ToString(), referencedFilePathParts.Skip(commonLength));
     }
 
-    private static async Task<Dictionary<string, string>> LoadTextFilesAsync(StrippedFile[] allTextFiles)
+    private static async Task<Dictionary<string, string>> LoadTextFilesAsync(IReadOnlyList<StrippedFile> allTextFiles)
     {
         Dictionary<string, string> textFiles = new(StringComparer.Ordinal);
 
