@@ -203,12 +203,16 @@ public sealed class HashedContentOptimizer : IHashedContentOptimizer
         return regex;
     }
 
-    private static string BuildExpression(string escaped)
+    private static string BuildExpression(string escapedFilename)
     {
-        return string.Join(separator: "|",
-                           Quote(before: "\"", after: "\"", Capture(groupName: "FileDoubleQuote", pattern: escaped)),
-                           Quote(before: "'", after: "'", Capture(groupName: "FileSingleQuote", pattern: escaped)),
-                           Quote(before: "(\\", after: "\\)", Capture(groupName: "FileBraces", pattern: escaped)));
+        return string.Join(separator: "|", BuildCaptures(escapedFilename));
+    }
+
+    private static IEnumerable<string> BuildCaptures(string escapedFilename)
+    {
+        yield return Quote(before: "\"", after: "\"", Capture(groupName: "FileDoubleQuote", pattern: escapedFilename));
+        yield return Quote(before: "'", after: "'", Capture(groupName: "FileSingleQuote", pattern: escapedFilename));
+        yield return Quote(before: "(\\", after: "\\)", Capture(groupName: "FileBraces", pattern: escapedFilename));
     }
 
     private static string Capture(string groupName, string pattern)
