@@ -7,6 +7,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using Experiments.Helpers;
+using Experiments.Implementations;
 using FunFair.Test.Common;
 using Xunit;
 using Xunit.Abstractions;
@@ -319,74 +320,4 @@ public sealed class BuildOptimised : LoggingTestBase
 
     [DebuggerDisplay("{Path}")]
     private sealed record StrippedFile(string Path, string RootRelativePath, string FileName, string Extension, bool IsRenamable, bool IsText, bool HasHash);
-
-    /// <summary>
-    ///     Detects whether files have a hash in their filename so they can be treated specially when caching.
-    /// </summary>
-    private interface IHashedFileDetector
-    {
-        /// <summary>
-        ///     Checks to see if the given filename contains a hash.
-        /// </summary>
-        /// <param name="fileName">The filename.</param>
-        /// <returns>True, if the filename contains a hash; otherwise, false.</returns>
-        bool IsHashedFileName(string fileName);
-    }
-
-    private sealed class HashedFileDetector : IHashedFileDetector
-    {
-        private static readonly IReadOnlyList<string> NonHexSuffix = new[]
-                                                                     {
-                                                                         "bundle",
-                                                                         "chunked",
-                                                                         "chunk"
-                                                                     };
-
-        /// <inheritdoc />
-        public bool IsHashedFileName(string fileName)
-        {
-            for (string filenameWithoutExtension = Path.GetFileNameWithoutExtension(fileName);
-                 filenameWithoutExtension.Contains(value: '.', comparisonType: StringComparison.Ordinal);
-                 filenameWithoutExtension = Path.GetFileNameWithoutExtension(filenameWithoutExtension))
-
-            {
-                string hash = ExtractHashFromFileName(filenameWithoutExtension);
-
-                if (string.IsNullOrWhiteSpace(hash))
-                {
-                    return false;
-                }
-
-                if (IsNonHexSuffix(hash))
-                {
-                    continue;
-                }
-
-                return IsValidHash(hash);
-            }
-
-            return false;
-        }
-
-        private static bool IsValidHash(string hash)
-        {
-            return hash.All(IsHexDigit);
-        }
-
-        private static bool IsNonHexSuffix(string hash)
-        {
-            return NonHexSuffix.Any(suffix => StringComparer.InvariantCultureIgnoreCase.Equals(x: hash, y: suffix));
-        }
-
-        private static bool IsHexDigit(char x)
-        {
-            return x is >= '0' and <= '9' or >= 'a' and <= 'f' or >= 'A' and <= 'F';
-        }
-
-        private static string ExtractHashFromFileName(string filenameWithoutExtension)
-        {
-            return Path.GetExtension(filenameWithoutExtension)
-                       .TrimStart(trimChar: '.');
-        }
-    }
 }
