@@ -3,7 +3,7 @@ namespace Experiments.Implementations;
 /// <summary>
 ///     Detects whether files have a hash in their filename so they can be treated specially when caching.
 /// </summary>
-internal interface IHashedFileDetector
+public interface IHashedFileDetector
 {
     /// <summary>
     ///     Checks to see if the given filename contains a hash.
