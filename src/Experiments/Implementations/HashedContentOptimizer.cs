@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Experiments.Helpers;
 using Microsoft.Extensions.Logging;
@@ -46,7 +47,7 @@ public sealed class HashedContentOptimizer : IHashedContentOptimizer
 
         this.ChangeReferencesInNonRenamableTextFiles(fixedNameTextFiles: fixedNameTextFiles, textFiles: textFiles, fileHashes: fileHashes);
 
-        await this.SaveFilesAsync(destination: destination, binaryFiles: binaryFiles, fileHashes: fileHashes, allTextFiles: allTextFiles, textFiles: textFiles);
+        await this.SaveFilesAsync(source: source, destination: destination, binaryFiles: binaryFiles, fileHashes: fileHashes, allTextFiles: allTextFiles, textFiles: textFiles);
     }
 
     private static IReadOnlyList<StrippedFile> GetFixedNameTextFiles(IReadOnlyList<StrippedFile> allTextFiles)
@@ -81,7 +82,8 @@ public sealed class HashedContentOptimizer : IHashedContentOptimizer
                         .ToArray();
     }
 
-    private async Task SaveFilesAsync(string destination,
+    private async Task SaveFilesAsync(string source,
+                                      string destination,
                                       IReadOnlyList<StrippedFile> binaryFiles,
                                       Dictionary<string, string> fileHashes,
                                       IReadOnlyList<StrippedFile> allTextFiles,
@@ -91,8 +93,7 @@ public sealed class HashedContentOptimizer : IHashedContentOptimizer
 
         foreach (StrippedFile binaryFile in binaryFiles)
         {
-            string hashedPath = fileHashes[binaryFile.Path];
-            string destinationPath = Path.Combine(path1: destination, path2: hashedPath);
+            string destinationPath = this.GetDestinationPath(source: source, destination: destination, fileHashes: fileHashes, file: binaryFile);
             this._logger.LogInformation($"*: Writing {binaryFile.Path} to {destinationPath}");
 
             EnsureFolderExists(destinationPath);
@@ -101,14 +102,22 @@ public sealed class HashedContentOptimizer : IHashedContentOptimizer
 
         foreach (StrippedFile textFile in allTextFiles)
         {
-            string hashedPath = fileHashes[textFile.Path];
-            string destinationPath = Path.Combine(path1: destination, path2: hashedPath);
+            string destinationPath = this.GetDestinationPath(source: source, destination: destination, fileHashes: fileHashes, file: textFile);
             this._logger.LogInformation($"*: Writing {textFile.Path} to {destinationPath}");
 
             string content = textFiles[textFile.Path];
             EnsureFolderExists(destinationPath);
             await File.WriteAllTextAsync(path: destinationPath, contents: content, encoding: Encoding.UTF8);
         }
+    }
+
+    private string GetDestinationPath(string source, string destination, Dictionary<string, string> fileHashes, StrippedFile file)
+    {
+        string hashedPath = fileHashes[file.Path];
+        this._logger.LogInformation($"Generating Destination file for {hashedPath} from {source} to {destination}");
+        string destinationPath = Path.Combine(path1: destination, hashedPath.Substring(source.Length));
+
+        return destinationPath;
     }
 
     private static void EnsureFolderExists(string destinationPath)
@@ -134,15 +143,9 @@ public sealed class HashedContentOptimizer : IHashedContentOptimizer
             foreach ((string hashedFilePath, string newHashedPath) in fileHashes)
             {
                 string relative = PathHelpers.GetRelativePath(documentFullPath: file.Path, referencedFileFullPath: hashedFilePath);
+                string newRelative = PathHelpers.GetRelativePath(documentFullPath: file.Path, referencedFileFullPath: newHashedPath);
 
-                if (content.Contains(value: relative, comparisonType: StringComparison.Ordinal))
-                {
-                    this._logger.LogInformation($"  --> Adjusting {hashedFilePath} to {newHashedPath}");
-                    string newRelative = PathHelpers.GetRelativePath(documentFullPath: file.Path, referencedFileFullPath: newHashedPath);
-
-                    content = content.Replace(oldValue: relative, newValue: newRelative, comparisonType: StringComparison.Ordinal);
-                    changed = true;
-                }
+                changed |= this.ChangeContent(relative: relative, newRelative: newRelative, hashedFilePath: hashedFilePath, newHashedPath: newHashedPath, content: ref content);
             }
 
             if (changed)
@@ -150,8 +153,35 @@ public sealed class HashedContentOptimizer : IHashedContentOptimizer
                 textFiles[file.Path] = content;
             }
 
-            fileHashes.Add(key: file.Path, value: file.RootRelativePath);
+            fileHashes.Add(key: file.Path, value: file.Path);
         }
+    }
+
+    private bool ChangeContent(string relative, string newRelative, string hashedFilePath, string newHashedPath, ref string content)
+    {
+        Regex regex = GetRegex(relative);
+        string changedContent = regex.Replace(input: content, replacement: newRelative);
+
+        if (!StringComparer.Ordinal.Equals(x: content, y: changedContent))
+        {
+            this._logger.LogInformation($"  --> Adjusting {hashedFilePath} to {newHashedPath}");
+            this._logger.LogInformation($"  --> Adjusting {relative} to {newRelative}");
+
+            content = changedContent;
+
+            return true;
+        }
+
+        return false;
+    }
+
+    private static Regex GetRegex(string relative)
+    {
+        string escaped = Regex.Escape(relative);
+
+        Regex regex = new("\"(" + escaped + "\")", RegexOptions.Compiled | RegexOptions.Singleline | RegexOptions.ExplicitCapture, TimeSpan.FromSeconds(1));
+
+        return regex;
     }
 
     private void ReplaceTextFilesInRenamableTextFiles(IReadOnlyList<StrippedFile> renamableTextFiles, Dictionary<string, string> fileHashes, Dictionary<string, string> textFiles)
@@ -185,8 +215,9 @@ public sealed class HashedContentOptimizer : IHashedContentOptimizer
                     }
 
                     string relative = PathHelpers.GetRelativePath(documentFullPath: file.Path, referencedFileFullPath: referencedFile.Path);
+                    Regex regex = GetRegex(relative);
 
-                    if (content.Contains(value: relative, comparisonType: StringComparison.Ordinal))
+                    if (regex.IsMatch(content))
                     {
                         hasReferenceToOtherFiles = true;
 
@@ -198,7 +229,7 @@ public sealed class HashedContentOptimizer : IHashedContentOptimizer
                 {
                     string hashRelative = this.HashRenamableContent(fileHashes: fileHashes, content: content, file: file);
 
-                    MakeReplacement(renamableTextFiles: renamableTextFiles, fileHashes: fileHashes, textFiles: textFiles, file: file, hashRelative: hashRelative);
+                    this.MakeReplacement(renamableTextFiles: renamableTextFiles, fileHashes: fileHashes, textFiles: textFiles, file: file, newHashedPath: hashRelative);
 
                     changes = true;
                 }
@@ -215,13 +246,13 @@ public sealed class HashedContentOptimizer : IHashedContentOptimizer
     private string HashRenamableContent(Dictionary<string, string> fileHashes, string content, StrippedFile file)
     {
         string hash = HashFileContent(Encoding.UTF8.GetBytes(content));
-        string hashRelative = this.MakeRelativeHashFileName(file: file, hash: hash);
+        string hashedFile = this.MakeNewHashFileName(file: file, hash: hash);
 
-        this._logger.LogInformation($"*: {file.RootRelativePath} : {hashRelative}");
+        this._logger.LogInformation($"*: {file.Path} : {hashedFile}");
 
-        fileHashes.Add(key: file.Path, value: hashRelative);
+        fileHashes.Add(key: file.Path, value: hashedFile);
 
-        return hashRelative;
+        return hashedFile;
     }
 
     private void AddRemainingRenamableFiles(IReadOnlyList<StrippedFile> renamableTextFiles, Dictionary<string, string> fileHashes, Dictionary<string, string> textFiles)
@@ -238,11 +269,7 @@ public sealed class HashedContentOptimizer : IHashedContentOptimizer
         }
     }
 
-    private static void MakeReplacement(IReadOnlyList<StrippedFile> renamableTextFiles,
-                                        Dictionary<string, string> fileHashes,
-                                        Dictionary<string, string> textFiles,
-                                        StrippedFile file,
-                                        string hashRelative)
+    private void MakeReplacement(IReadOnlyList<StrippedFile> renamableTextFiles, Dictionary<string, string> fileHashes, Dictionary<string, string> textFiles, StrippedFile file, string newHashedPath)
     {
         foreach (StrippedFile referencing in renamableTextFiles)
         {
@@ -252,13 +279,13 @@ public sealed class HashedContentOptimizer : IHashedContentOptimizer
             }
 
             string relativeInReferencing = PathHelpers.GetRelativePath(documentFullPath: referencing.Path, referencedFileFullPath: file.Path);
+            string newRelative = PathHelpers.GetRelativePath(documentFullPath: referencing.Path, referencedFileFullPath: newHashedPath);
             string referencingContent = textFiles[referencing.Path];
 
-            if (referencingContent.Contains(value: relativeInReferencing, comparisonType: StringComparison.Ordinal))
-            {
-                string newFileName = relativeInReferencing.Substring(startIndex: 0, relativeInReferencing.Length - file.FileName.Length) + hashRelative;
-                referencingContent = referencingContent.Replace(oldValue: relativeInReferencing, newValue: newFileName, comparisonType: StringComparison.Ordinal);
+            bool changed = this.ChangeContent(relative: relativeInReferencing, newRelative: newRelative, hashedFilePath: file.Path, newHashedPath: newHashedPath, content: ref referencingContent);
 
+            if (changed)
+            {
                 textFiles[referencing.Path] = referencingContent;
             }
         }
@@ -270,15 +297,15 @@ public sealed class HashedContentOptimizer : IHashedContentOptimizer
 
         Dictionary<string, string> fileHashes = new(StringComparer.Ordinal);
 
-        foreach (StrippedFile file1 in binaryFiles)
+        foreach (StrippedFile file in binaryFiles)
         {
-            string hash = await HashFileAsync(file1.Path);
+            string hash = await HashFileAsync(file.Path);
 
-            string hashRelative = this.MakeRelativeHashFileName(file: file1, hash: hash);
+            string hashedFile = this.MakeNewHashFileName(file: file, hash: hash);
 
-            this._logger.LogInformation($"*: {file1.RootRelativePath} : {hashRelative}");
+            this._logger.LogInformation($"*: {file.Path} : {hashedFile}");
 
-            fileHashes.Add(key: file1.Path, value: hashRelative);
+            fileHashes.Add(key: file.Path, value: hashedFile);
         }
 
         return fileHashes;
@@ -353,9 +380,9 @@ public sealed class HashedContentOptimizer : IHashedContentOptimizer
         return textFiles;
     }
 
-    private string MakeRelativeHashFileName(StrippedFile file, string hash)
+    private string MakeNewHashFileName(StrippedFile file, string hash)
     {
-        string path = file.RootRelativePath.Substring(startIndex: 0, file.RootRelativePath.Length - file.FileName.Length);
+        string path = file.Path.Substring(startIndex: 0, file.Path.Length - file.FileName.Length);
 
         if (this._hashedFileDetector.IsHashedFileName(path))
         {
