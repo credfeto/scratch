@@ -6,6 +6,7 @@ using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
+using Experiments.Helpers;
 using FunFair.Test.Common;
 using Xunit;
 using Xunit.Abstractions;
@@ -115,7 +116,7 @@ public sealed class BuildOptimised : LoggingTestBase
                         continue;
                     }
 
-                    string relative = GetRelativePath(documentPath: file.Path, referencedFilePath: referencedFile.Path);
+                    string relative = PathHelpers.GetRelativePath(documentFullPath: file.Path, referencedFileFullPath: referencedFile.Path);
 
                     if (content.Contains(value: relative, comparisonType: StringComparison.Ordinal))
                     {
@@ -156,7 +157,7 @@ public sealed class BuildOptimised : LoggingTestBase
                 continue;
             }
 
-            string relativeInReferencing = GetRelativePath(documentPath: referencing.Path, referencedFilePath: file.Path);
+            string relativeInReferencing = PathHelpers.GetRelativePath(documentFullPath: referencing.Path, referencedFileFullPath: file.Path);
             string referencingContent = textFiles[referencing.Path];
 
             if (content.Contains(value: relativeInReferencing, comparisonType: StringComparison.Ordinal))
@@ -222,7 +223,7 @@ public sealed class BuildOptimised : LoggingTestBase
                         hasChange = true;
                     }
 
-                    string relative = GetRelativePath(documentPath: file.Path, referencedFilePath: binaryFile.Path);
+                    string relative = PathHelpers.GetRelativePath(documentFullPath: file.Path, referencedFileFullPath: binaryFile.Path);
 
                     if (content.Contains(value: relative, comparisonType: StringComparison.Ordinal))
                     {
@@ -242,17 +243,6 @@ public sealed class BuildOptimised : LoggingTestBase
                 changes |= hasChange;
             }
         } while (changes);
-    }
-
-    private static string GetRelativePath(string documentPath, string referencedFilePath)
-    {
-        string[] documentPathParts = documentPath.Split(Path.DirectorySeparatorChar);
-        string[] referencedFilePathParts = referencedFilePath.Split(Path.DirectorySeparatorChar);
-
-        int commonLength = documentPathParts.TakeWhile((t, i) => t == referencedFilePathParts[i])
-                                            .Count();
-
-        return string.Join(Path.DirectorySeparatorChar.ToString(), referencedFilePathParts.Skip(commonLength));
     }
 
     private static async Task<Dictionary<string, string>> LoadTextFilesAsync(IReadOnlyList<StrippedFile> allTextFiles)

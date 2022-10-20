@@ -1,6 +1,4 @@
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
+using Experiments.Helpers;
 using FunFair.Test.Common;
 using Xunit;
 using Xunit.Abstractions;
@@ -14,26 +12,6 @@ public sealed class RelativePathTests : LoggingTestBase
     {
     }
 
-    private static string GetRelativePath(string documentFullPath, string referencedFileFullPath)
-    {
-        IReadOnlyList<string> documentPathParts = documentFullPath.Split(Path.DirectorySeparatorChar);
-        IReadOnlyList<string> referencedFilePathParts = referencedFileFullPath.Split(Path.DirectorySeparatorChar);
-
-        int commonLength = documentPathParts.TakeWhile((t, i) => t == referencedFilePathParts[i])
-                                            .Count();
-
-        if (commonLength == referencedFilePathParts.Count && documentPathParts.Count == commonLength)
-        {
-            return documentPathParts[commonLength - 1];
-        }
-
-        int upDir = documentPathParts.Count - commonLength - 1;
-
-        return string.Join(Path.DirectorySeparatorChar.ToString(),
-                           Enumerable.Repeat(element: "..", count: upDir)
-                                     .Concat(referencedFilePathParts.Skip(commonLength)));
-    }
-
     [Theory]
     [InlineData("/index.html", "/index.html", "index.html")]
     [InlineData("/index.html", "/image.jpg", "image.jpg")]
@@ -45,7 +23,7 @@ public sealed class RelativePathTests : LoggingTestBase
     [InlineData("/folder1/index.html", "/folder2/folder2a/index.html", "../folder2/folder2a/index.html")]
     public void ProducesSaneRelativePath(string documentPath, string referencedFilePath, string expectedRelativePath)
     {
-        string relativePath = GetRelativePath(documentFullPath: documentPath, referencedFileFullPath: referencedFilePath);
+        string relativePath = PathHelpers.GetRelativePath(documentFullPath: documentPath, referencedFileFullPath: referencedFilePath);
 
         this.Output.WriteLine($"Doc: {documentPath}");
         this.Output.WriteLine($"Ref: {referencedFilePath}");
