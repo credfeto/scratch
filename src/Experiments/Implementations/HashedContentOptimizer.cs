@@ -31,57 +31,73 @@ public sealed class HashedContentOptimizer : IHashedContentOptimizer
 
         Directory.CreateDirectory(destination);
 
-        IReadOnlyList<StrippedFile> files = Directory.GetFiles(path: source, searchPattern: "*", searchOption: SearchOption.AllDirectories)
-                                                     .Select(p => this.GetStrippedFile(sourceBasePath: source, fileName: p))
-                                                     .OrderBy(s => s.Path)
-                                                     .ToArray();
-
-        this._logger.LogInformation("Content:");
-
-        foreach (StrippedFile file in files)
-        {
-            this._logger.LogInformation($"*: {file.RootRelativePath}");
-        }
-
-        IReadOnlyList<StrippedFile> renamableFile = files.Where(f => f.IsRenamable)
-                                                         .ToArray();
-
-        IReadOnlyList<StrippedFile> fixedNameFiles = files.Where(f => !f.IsRenamable)
-                                                          .ToArray();
-
-        this._logger.LogInformation("Renamable:");
-
-        foreach (StrippedFile file in renamableFile)
-        {
-            this._logger.LogInformation($"*: {file.RootRelativePath}");
-        }
-
-        this._logger.LogInformation("Fixed Names:");
-
-        foreach (StrippedFile file in fixedNameFiles)
-        {
-            this._logger.LogInformation($"*: {file.RootRelativePath}");
-        }
-
-        IReadOnlyList<StrippedFile> binaryFiles = files.Where(f => !f.IsText && f.IsRenamable)
-                                                       .ToArray();
+        IReadOnlyList<StrippedFile> files = this.FindFiles(source);
+        IReadOnlyList<StrippedFile> binaryFiles = GetBinaryFiles(files);
+        IReadOnlyList<StrippedFile> allTextFiles = GetAllTextFiles(files);
 
         Dictionary<string, string> fileHashes = await this.HashBinaryFilesAsync(binaryFiles);
-
-        IReadOnlyList<StrippedFile> allTextFiles = files.Where(f => f.IsText)
-                                                        .ToArray();
         Dictionary<string, string> textFiles = await LoadTextFilesAsync(allTextFiles);
-
-        IReadOnlyList<StrippedFile> renamableTextFiles = allTextFiles.Where(f => f.IsRenamable)
-                                                                     .ToArray();
-        IReadOnlyList<StrippedFile> fixedNameTextFiles = allTextFiles.Where(f => !f.IsRenamable)
-                                                                     .ToArray();
+        IReadOnlyList<StrippedFile> renamableTextFiles = GetRenamableTextFiles(allTextFiles);
+        IReadOnlyList<StrippedFile> fixedNameTextFiles = GetFixedNameTextFiles(allTextFiles);
 
         this.ReplaceBinaryFilesInTextFiles(renamableTextFiles: renamableTextFiles, textFiles: textFiles, binaryFiles: binaryFiles, fileHashes: fileHashes);
 
         this.ReplaceTextFilesInRenamableTextFiles(renamableTextFiles: renamableTextFiles, fileHashes: fileHashes, textFiles: textFiles);
 
         this.ChangeReferencesInNonRenamableTextFiles(fixedNameTextFiles: fixedNameTextFiles, textFiles: textFiles, fileHashes: fileHashes);
+
+        this.SaveFiles(destination: destination, binaryFiles: binaryFiles, fileHashes: fileHashes, allTextFiles: allTextFiles);
+    }
+
+    private static IReadOnlyList<StrippedFile> GetFixedNameTextFiles(IReadOnlyList<StrippedFile> allTextFiles)
+    {
+        return allTextFiles.Where(f => !f.IsRenamable)
+                           .ToArray();
+    }
+
+    private static IReadOnlyList<StrippedFile> GetRenamableTextFiles(IReadOnlyList<StrippedFile> allTextFiles)
+    {
+        return allTextFiles.Where(f => f.IsRenamable)
+                           .ToArray();
+    }
+
+    private static IReadOnlyList<StrippedFile> GetAllTextFiles(IReadOnlyList<StrippedFile> files)
+    {
+        return files.Where(f => f.IsText)
+                    .ToArray();
+    }
+
+    private static IReadOnlyList<StrippedFile> GetBinaryFiles(IReadOnlyList<StrippedFile> files)
+    {
+        return files.Where(f => !f.IsText && f.IsRenamable)
+                    .ToArray();
+    }
+
+    private IReadOnlyList<StrippedFile> FindFiles(string source)
+    {
+        return Directory.GetFiles(path: source, searchPattern: "*", searchOption: SearchOption.AllDirectories)
+                        .Select(p => this.GetStrippedFile(sourceBasePath: source, fileName: p))
+                        .OrderBy(s => s.Path)
+                        .ToArray();
+    }
+
+    private void SaveFiles(string destination, IReadOnlyList<StrippedFile> binaryFiles, Dictionary<string, string> fileHashes, IReadOnlyList<StrippedFile> allTextFiles)
+    {
+        this._logger.LogInformation($"Writing files to {destination}");
+
+        foreach (StrippedFile binaryFile in binaryFiles)
+        {
+            string hashedPath = fileHashes[binaryFile.Path];
+            string destinationPath = Path.Combine(path1: destination, path2: hashedPath);
+            this._logger.LogInformation($"*: Writing {binaryFile.Path} to {destinationPath}");
+        }
+
+        foreach (StrippedFile textFile in allTextFiles)
+        {
+            string hashedPath = fileHashes[textFile.Path];
+            string destinationPath = Path.Combine(path1: destination, path2: hashedPath);
+            this._logger.LogInformation($"*: Writing {textFile.Path} to {destinationPath}");
+        }
     }
 
     private void ChangeReferencesInNonRenamableTextFiles(IReadOnlyList<StrippedFile> fixedNameTextFiles, Dictionary<string, string> textFiles, Dictionary<string, string> fileHashes)
@@ -112,6 +128,8 @@ public sealed class HashedContentOptimizer : IHashedContentOptimizer
             {
                 textFiles[file.Path] = content;
             }
+
+            fileHashes.Add(key: file.Path, value: file.Path);
         }
     }
 
