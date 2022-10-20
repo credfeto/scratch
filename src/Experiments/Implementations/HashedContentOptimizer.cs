@@ -160,7 +160,24 @@ public sealed class HashedContentOptimizer : IHashedContentOptimizer
     private bool ChangeContent(string relative, string newRelative, string hashedFilePath, string newHashedPath, ref string content)
     {
         Regex regex = GetRegex(relative);
-        string changedContent = regex.Replace(input: content, replacement: newRelative);
+
+        string Evaluator(Match m)
+        {
+            string txt = m.Value;
+
+            if (string.IsNullOrEmpty(txt))
+            {
+                return string.Empty;
+            }
+
+            return Quote(txt[0]
+                             .ToString(),
+                         txt[txt.Length - 1]
+                             .ToString(),
+                         toQuote: newRelative);
+        }
+
+        string changedContent = regex.Replace(input: content, evaluator: Evaluator);
 
         if (!StringComparer.Ordinal.Equals(x: content, y: changedContent))
         {
@@ -179,9 +196,23 @@ public sealed class HashedContentOptimizer : IHashedContentOptimizer
     {
         string escaped = Regex.Escape(relative);
 
-        Regex regex = new("\"(" + escaped + "\")", RegexOptions.Compiled | RegexOptions.Singleline | RegexOptions.ExplicitCapture, TimeSpan.FromSeconds(1));
+        string expression = Quote(before: "\"", after: "\"", Capture(groupName: "FileDoubleQuote", pattern: escaped)) + "|" +
+                            Quote(before: "'", after: "'", Capture(groupName: "FileSingleQuote", pattern: escaped)) + "|" +
+                            Quote(before: "(\\", after: "\\)", Capture(groupName: "FileBraces", pattern: escaped));
+
+        Regex regex = new(pattern: expression, RegexOptions.Compiled | RegexOptions.Singleline | RegexOptions.ExplicitCapture, TimeSpan.FromSeconds(1));
 
         return regex;
+    }
+
+    private static string Capture(string groupName, string pattern)
+    {
+        return string.Concat("(?<", groupName, ">", pattern, ")");
+    }
+
+    private static string Quote(string before, string after, string toQuote)
+    {
+        return string.Concat(str0: before, str1: toQuote, str2: after);
     }
 
     private void ReplaceTextFilesInRenamableTextFiles(IReadOnlyList<StrippedFile> renamableTextFiles, Dictionary<string, string> fileHashes, Dictionary<string, string> textFiles)
@@ -335,23 +366,10 @@ public sealed class HashedContentOptimizer : IHashedContentOptimizer
                 foreach (StrippedFile binaryFile in binaryFiles)
                 {
                     string hashedBinary = fileHashes[binaryFile.Path];
-
-                    string search = "/" + binaryFile.RootRelativePath;
-
-                    if (content.Contains(value: search, comparisonType: StringComparison.Ordinal))
-                    {
-                        content = content.Replace(oldValue: search, "/" + hashedBinary, comparisonType: StringComparison.Ordinal);
-                        hasChange = true;
-                    }
-
                     string relative = PathHelpers.GetRelativePath(documentFullPath: file.Path, referencedFileFullPath: binaryFile.Path);
+                    string newRelative = relative.Substring(startIndex: 0, relative.Length - binaryFile.FileName.Length) + hashedBinary;
 
-                    if (content.Contains(value: relative, comparisonType: StringComparison.Ordinal))
-                    {
-                        string newFileName = relative.Substring(startIndex: 0, relative.Length - binaryFile.FileName.Length) + hashedBinary;
-                        content = content.Replace(oldValue: relative, newValue: newFileName, comparisonType: StringComparison.Ordinal);
-                        hasChange = true;
-                    }
+                    hasChange |= this.ChangeContent(relative: relative, newRelative: newRelative, hashedFilePath: binaryFile.Path, newHashedPath: hashedBinary, content: ref content);
                 }
 
                 if (hasChange)
