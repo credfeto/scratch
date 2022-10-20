@@ -122,19 +122,46 @@ public sealed class HashedContentOptimizer : IHashedContentOptimizer
 
                 if (!hasReferenceToOtherFiles)
                 {
-                    string hash = HashFileContent(Encoding.UTF8.GetBytes(content));
-                    string hashRelative = this.MakeRelativeHashFileName(file: file, hash: hash);
-
-                    this._logger.LogInformation($"*: {file.RootRelativePath} : {hashRelative}");
-
-                    fileHashes.Add(key: file.Path, value: hashRelative);
+                    string hashRelative = this.HashRenamableContent(fileHashes: fileHashes, content: content, file: file);
 
                     MakeReplacement(renamableTextFiles: renamableTextFiles, fileHashes: fileHashes, textFiles: textFiles, file: file, hashRelative: hashRelative);
 
                     changes = true;
                 }
+                else
+                {
+                    this._logger.LogInformation($"*: {file.RootRelativePath} : Has references to other files");
+                }
             }
         } while (changes);
+
+        this.AddRemainingRenamableFiles(renamableTextFiles: renamableTextFiles, fileHashes: fileHashes, textFiles: textFiles);
+    }
+
+    private string HashRenamableContent(Dictionary<string, string> fileHashes, string content, StrippedFile file)
+    {
+        string hash = HashFileContent(Encoding.UTF8.GetBytes(content));
+        string hashRelative = this.MakeRelativeHashFileName(file: file, hash: hash);
+
+        this._logger.LogInformation($"*: {file.RootRelativePath} : {hashRelative}");
+
+        fileHashes.Add(key: file.Path, value: hashRelative);
+
+        return hashRelative;
+    }
+
+    private void AddRemainingRenamableFiles(IReadOnlyList<StrippedFile> renamableTextFiles, Dictionary<string, string> fileHashes, Dictionary<string, string> textFiles)
+    {
+        foreach (StrippedFile file in renamableTextFiles)
+        {
+            if (fileHashes.ContainsKey(file.Path))
+            {
+                continue;
+            }
+
+            string content = textFiles[file.Path];
+            this.HashRenamableContent(fileHashes: fileHashes, content: content, file: file);
+        }
     }
 
     private static void MakeReplacement(IReadOnlyList<StrippedFile> renamableTextFiles,
