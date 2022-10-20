@@ -129,7 +129,7 @@ public sealed class HashedContentOptimizer : IHashedContentOptimizer
 
                     fileHashes.Add(key: file.Path, value: hashRelative);
 
-                    MakeReplacement(renamableTextFiles: renamableTextFiles, fileHashes: fileHashes, textFiles: textFiles, file: file, content: content, hashRelative: hashRelative);
+                    MakeReplacement(renamableTextFiles: renamableTextFiles, fileHashes: fileHashes, textFiles: textFiles, file: file, hashRelative: hashRelative);
 
                     changes = true;
                 }
@@ -141,7 +141,6 @@ public sealed class HashedContentOptimizer : IHashedContentOptimizer
                                         Dictionary<string, string> fileHashes,
                                         Dictionary<string, string> textFiles,
                                         StrippedFile file,
-                                        string content,
                                         string hashRelative)
     {
         foreach (StrippedFile referencing in renamableTextFiles)
@@ -154,7 +153,7 @@ public sealed class HashedContentOptimizer : IHashedContentOptimizer
             string relativeInReferencing = PathHelpers.GetRelativePath(documentFullPath: referencing.Path, referencedFileFullPath: file.Path);
             string referencingContent = textFiles[referencing.Path];
 
-            if (content.Contains(value: relativeInReferencing, comparisonType: StringComparison.Ordinal))
+            if (referencingContent.Contains(value: relativeInReferencing, comparisonType: StringComparison.Ordinal))
             {
                 string newFileName = relativeInReferencing.Substring(startIndex: 0, relativeInReferencing.Length - file.FileName.Length) + hashRelative;
                 referencingContent = referencingContent.Replace(oldValue: relativeInReferencing, newValue: newFileName, comparisonType: StringComparison.Ordinal);
