@@ -150,7 +150,7 @@ public sealed class HashedContentOptimizer : IHashedContentOptimizer
                 textFiles[file.Path] = content;
             }
 
-            fileHashes.Add(key: file.Path, value: file.Path);
+            fileHashes.Add(key: file.Path, value: file.RootRelativePath);
         }
     }
 
@@ -403,7 +403,7 @@ public sealed class HashedContentOptimizer : IHashedContentOptimizer
 
     private static bool IsFixedResourceName(string fileName)
     {
-        return fileName is "index.html" or "favicon.ico" or "manifest.json" or "robots.txt" or "mimetypes.json" or "packagemanifest.json" or "routing.json";
+        return fileName is "index.html" or "favicon.ico" or "manifest.json" or "robots.txt" or "mimetypes.json" or "packagemanifest.json" or "routing.json" or "api.json";
     }
 
     private static bool IsText(string extension)
