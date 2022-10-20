@@ -205,8 +205,10 @@ public sealed class HashedContentOptimizer : IHashedContentOptimizer
 
     private static string BuildExpression(string escaped)
     {
-        return Quote(before: "\"", after: "\"", Capture(groupName: "FileDoubleQuote", pattern: escaped)) + "|" +
-               Quote(before: "'", after: "'", Capture(groupName: "FileSingleQuote", pattern: escaped)) + "|" + Quote(before: "(\\", after: "\\)", Capture(groupName: "FileBraces", pattern: escaped));
+        return string.Join(separator: "|",
+                           Quote(before: "\"", after: "\"", Capture(groupName: "FileDoubleQuote", pattern: escaped)),
+                           Quote(before: "'", after: "'", Capture(groupName: "FileSingleQuote", pattern: escaped)),
+                           Quote(before: "(\\", after: "\\)", Capture(groupName: "FileBraces", pattern: escaped)));
     }
 
     private static string Capture(string groupName, string pattern)
