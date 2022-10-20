@@ -9,7 +9,7 @@ namespace Experiments;
 public sealed class BuildOptimised : LoggingTestBase
 {
     private const string SOURCE = "/home/markr/work/scratch/";
-    private const string DESTINATION = "/home/markr/work/scratch-dest/";
+    private const string DESTINATION = "/home/markr/Downloads/scratch-dest/";
     private readonly IHashedContentOptimizer _hashedContentOptimizer;
     private readonly IHashedFileDetector _hashedFileDetector;
 
