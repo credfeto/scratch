@@ -196,13 +196,17 @@ public sealed class HashedContentOptimizer : IHashedContentOptimizer
     {
         string escaped = Regex.Escape(relative);
 
-        string expression = Quote(before: "\"", after: "\"", Capture(groupName: "FileDoubleQuote", pattern: escaped)) + "|" +
-                            Quote(before: "'", after: "'", Capture(groupName: "FileSingleQuote", pattern: escaped)) + "|" +
-                            Quote(before: "(\\", after: "\\)", Capture(groupName: "FileBraces", pattern: escaped));
+        string expression = BuildExpression(escaped);
 
         Regex regex = new(pattern: expression, RegexOptions.Compiled | RegexOptions.Singleline | RegexOptions.ExplicitCapture, TimeSpan.FromSeconds(1));
 
         return regex;
+    }
+
+    private static string BuildExpression(string escaped)
+    {
+        return Quote(before: "\"", after: "\"", Capture(groupName: "FileDoubleQuote", pattern: escaped)) + "|" +
+               Quote(before: "'", after: "'", Capture(groupName: "FileSingleQuote", pattern: escaped)) + "|" + Quote(before: "(\\", after: "\\)", Capture(groupName: "FileBraces", pattern: escaped));
     }
 
     private static string Capture(string groupName, string pattern)
