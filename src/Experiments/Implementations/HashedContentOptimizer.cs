@@ -93,7 +93,7 @@ public sealed class HashedContentOptimizer : IHashedContentOptimizer
 
             foreach (StrippedFile file in renamableTextFiles)
             {
-                bool hasReferenecesToOtherFiles = false;
+                bool hasReferenceToOtherFiles = false;
 
                 if (fileHashes.ContainsKey(file.Path))
                 {
@@ -114,13 +114,13 @@ public sealed class HashedContentOptimizer : IHashedContentOptimizer
 
                     if (content.Contains(value: relative, comparisonType: StringComparison.Ordinal))
                     {
-                        hasReferenecesToOtherFiles = true;
+                        hasReferenceToOtherFiles = true;
 
                         break;
                     }
                 }
 
-                if (!hasReferenecesToOtherFiles)
+                if (!hasReferenceToOtherFiles)
                 {
                     string hash = HashFileContent(Encoding.UTF8.GetBytes(content));
                     string hashRelative = this.MakeRelativeHashFileName(file: file, hash: hash);
@@ -129,7 +129,7 @@ public sealed class HashedContentOptimizer : IHashedContentOptimizer
 
                     fileHashes.Add(key: file.Path, value: hashRelative);
 
-                    MakeReplacment(renamableTextFiles: renamableTextFiles, fileHashes: fileHashes, textFiles: textFiles, file: file, content: content, hashRelative: hashRelative);
+                    MakeReplacement(renamableTextFiles: renamableTextFiles, fileHashes: fileHashes, textFiles: textFiles, file: file, content: content, hashRelative: hashRelative);
 
                     changes = true;
                 }
@@ -137,12 +137,12 @@ public sealed class HashedContentOptimizer : IHashedContentOptimizer
         } while (changes);
     }
 
-    private static void MakeReplacment(IReadOnlyList<StrippedFile> renamableTextFiles,
-                                       Dictionary<string, string> fileHashes,
-                                       Dictionary<string, string> textFiles,
-                                       StrippedFile file,
-                                       string content,
-                                       string hashRelative)
+    private static void MakeReplacement(IReadOnlyList<StrippedFile> renamableTextFiles,
+                                        Dictionary<string, string> fileHashes,
+                                        Dictionary<string, string> textFiles,
+                                        StrippedFile file,
+                                        string content,
+                                        string hashRelative)
     {
         foreach (StrippedFile referencing in renamableTextFiles)
         {
