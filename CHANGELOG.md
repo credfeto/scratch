@@ -17,8 +17,6 @@ Please ADD ALL Changes to the UNRELASED SECTION and not a specific release
 - FF-3881 - Updated DotNet SDK to 6.0.101
 - FF-1429 - Updated Roslynator.Analyzers to 4.0.0
 - FF-1429 - Updated Roslynator.Analyzers to 4.0.2
-- FF-1429 - Updated coverlet to 3.1.1
-- FF-1429 - Updated coverlet to 3.1.2
 - FF-3881 - Updated DotNet SDK to 6.0.102
 - FF-1429 - Updated FunFair.CodeAnalysis to 5.8.1.1203
 - FF-1429 - Updated SecurityCodeScan.VS2019 to 5.6.2
@@ -56,6 +54,7 @@ Please ADD ALL Changes to the UNRELASED SECTION and not a specific release
 - FF-1429 - Updated Microsoft.VisualStudio.Threading.Analyzers to 17.3.48
 - FF-1429 - Updated FunFair.Test.Common to 6.0.5.2217
 - FF-1429 - Updated Meziantou.Analyzer to 1.0.744
+- FF-1429 - Updated coverlet to 3.2.0
 
 ### Removed
 
