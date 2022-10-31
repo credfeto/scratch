@@ -15,14 +15,11 @@ Please ADD ALL Changes to the UNRELASED SECTION and not a specific release
 ### Changed
 
 - FF-3881 - Updated DotNet SDK to 6.0.101
-- FF-1429 - Updated Roslynator.Analyzers to 4.0.0
-- FF-1429 - Updated Roslynator.Analyzers to 4.0.2
 - FF-3881 - Updated DotNet SDK to 6.0.102
 - FF-1429 - Updated FunFair.CodeAnalysis to 5.8.1.1203
 - FF-1429 - Updated SecurityCodeScan.VS2019 to 5.6.2
 - FF-1429 - Updated SmartAnalyzers.CSharpExtensions.Annotations to 4.2.2
 - FF-3881 - Updated DotNet SDK to 6.0.201
-- FF-1429 - Updated Roslynator.Analyzers to 4.1.0
 - FF-3881 - Updated DotNet SDK to 6.0.202
 - FF-1429 - Updated xunit.runner.visualstudio to 2.4.4
 - FF-1429 - Updated xunit.runner.visualstudio to 2.4.5
@@ -32,7 +29,6 @@ Please ADD ALL Changes to the UNRELASED SECTION and not a specific release
 - FF-1429 - Updated SmartAnalyzers.CSharpExtensions.Annotations to 4.2.4
 - FF-1429 - Updated SmartAnalyzers.CSharpExtensions.Annotations to 4.2.5
 - FF-1429 - Updated FunFair.CodeAnalysis to 5.8.2.1317
-- FF-1429 - Updated Roslynator.Analyzers to 4.1.1
 - FF-1429 - Updated SecurityCodeScan.VS2019 to 5.6.3
 - FF-3881 - Updated DotNet SDK to 6.0.301
 - FF-1429 - Updated FunFair.CodeAnalysis to 5.8.3.1353
@@ -55,6 +51,7 @@ Please ADD ALL Changes to the UNRELASED SECTION and not a specific release
 - FF-1429 - Updated FunFair.Test.Common to 6.0.5.2217
 - FF-1429 - Updated Meziantou.Analyzer to 1.0.744
 - FF-1429 - Updated coverlet to 3.2.0
+- FF-1429 - Updated Roslynator.Analyzers to 4.1.2
 
 ### Removed
 
