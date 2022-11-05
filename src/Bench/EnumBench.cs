@@ -6,7 +6,7 @@ namespace Bench;
 
 [SimpleJob]
 [MemoryDiagnoser(false)]
-public class EnumBench : BenchBase
+public abstract class EnumBench : BenchBase
 {
     [Benchmark]
     public void GetNameReflection()

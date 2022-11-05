@@ -8,7 +8,7 @@ namespace Bench;
 
 [SimpleJob]
 [MemoryDiagnoser(false)]
-public partial class RegexBench : BenchBase
+public abstract partial class RegexBench : BenchBase
 {
     private const string GOOD = "0123456789abcdef";
     private const string BAD = "0123456789abcdefg";
