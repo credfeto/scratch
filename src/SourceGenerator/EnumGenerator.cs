@@ -1,4 +1,6 @@
-﻿using System.Text;
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Text;
@@ -21,30 +23,23 @@ public sealed class EnumGenerator : ISourceGenerator
         {
             string className = enumDeclaration.Name + "GeneratedExtensions";
 
-            StringBuilder source = new();
+            CodeBuilder source = new();
 
             source.AppendLine("using System;")
                   .AppendLine("using System.CodeDom.Compiler;")
                   .AppendLine("using System.Diagnostics.CodeAnalysis;")
-                  .AppendLine()
-                  .Append("namespace ")
-                  .Append(enumDeclaration.Namespace)
+                  .AppendBlankLine()
+                  .AppendLine("namespace " + enumDeclaration.Namespace + ";")
                   .AppendLine(";")
-                  .AppendLine()
-                  .AppendLine($"[GeneratedCode(tool: \"{nameof(EnumGenerator)}\", version: \"{VERSION}\")]")
-                  .Append("public static class ")
-                  .AppendLine(className)
-                  .AppendLine("{");
+                  .AppendBlankLine()
+                  .AppendLine($"[GeneratedCode(tool: \"{nameof(EnumGenerator)}\", version: \"{VERSION}\")]");
 
-            foreach (EnumMemberDeclarationSyntax member in enumDeclaration.Members)
+            using (source.StartBlock(ConvertAccessType(enumDeclaration.AccessType) + " static class " + className))
             {
-                source.Append(" // ")
-                      .AppendLine(member.Identifier.ValueText);
+                GenerateGetName(source: source, enumDeclaration: enumDeclaration);
             }
 
-            source.AppendLine("}");
-
-            context.AddSource(enumDeclaration.Namespace + "." + className, SourceText.From(source.ToString(), encoding: Encoding.UTF8));
+            context.AddSource(enumDeclaration.Namespace + "." + className, SourceText.From(text: source.Text, encoding: Encoding.UTF8));
         }
     }
 
@@ -52,5 +47,43 @@ public sealed class EnumGenerator : ISourceGenerator
     {
         // Register a syntax receiver that will be created for each generation pass
         context.RegisterForSyntaxNotifications(() => new EnumSyntaxReceiver());
+    }
+
+    private static void GenerateGetName(CodeBuilder source, EnumGeneration enumDeclaration)
+    {
+        using (source.StartBlock("public static string GetName(this " + enumDeclaration.Name + " value)"))
+        {
+            HashSet<string> names = new(StringComparer.Ordinal);
+
+            using (source.StartBlock(text: "return value switch", start: "{", end: "};"))
+            {
+                foreach (EnumMemberDeclarationSyntax member in enumDeclaration.Members)
+                {
+                    string gubbins = member.EqualsValue!.Value.ToString();
+
+                    if (!names.Add(gubbins))
+                    {
+                        continue;
+                    }
+
+                    source.AppendLine(enumDeclaration.Name + "." + member.Identifier.Text + " => \"" + member.Identifier.Text + "\",");
+                }
+
+                source.AppendLine("_ => throw new ArgumentOutOfRangeException(nameof(value), actualValue: value, message: \"Unknown enum member\")");
+            }
+        }
+    }
+
+    private static string ConvertAccessType(AccessType accessType)
+    {
+        return accessType switch
+        {
+            AccessType.Public => "public",
+            AccessType.Private => "private",
+            AccessType.Protected => "protected",
+            AccessType.ProtectedInternal => "protected internal",
+            AccessType.Internal => "internal",
+            _ => throw new ArgumentOutOfRangeException(nameof(accessType), actualValue: accessType, message: "Unknown access type")
+        };
     }
 }
