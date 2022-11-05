@@ -16,7 +16,7 @@ public sealed class EnumTests : LoggingTestBase
     [Fact]
     public void DoIt()
     {
-        Assert.Equal(expected: "ONE", EnumHelpers.GetName(ExampleEnumValues.ONE));
-        Assert.Equal(expected: "ONE", EnumHelpers.GetName(ExampleEnumValues.SAME_AS_ONE));
+        Assert.Equal(expected: "ONE", ExampleEnumValues.ONE.GetNameReflection());
+        Assert.Equal(expected: "ONE", ExampleEnumValues.SAME_AS_ONE.GetNameReflection());
     }
 }

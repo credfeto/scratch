@@ -11,6 +11,12 @@ public abstract class EnumBench : BenchBase
     [Benchmark]
     public void GetNameReflection()
     {
-        this.Test(EnumHelpers.GetName(ExampleEnumValues.ONE));
+        this.Test(ExampleEnumValues.ONE.GetNameReflection());
+    }
+
+    [Benchmark]
+    public void GetNameCachedReflection()
+    {
+        this.Test(ExampleEnumValues.ONE.GetNameCachedReflection());
     }
 }

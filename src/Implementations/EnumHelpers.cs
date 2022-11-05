@@ -1,35 +1,27 @@
 using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Reflection;
+using NonBlocking;
 
 namespace Implementations;
 
 public static class EnumHelpers
 {
-    public static string GetName<T>(T value)
+    private static readonly ConcurrentDictionary<Enum, string> CachedNames = new();
+
+    public static string GetNameReflection<T>(this T value)
         where T : Enum
     {
-        Type type = value.GetType();
-
-        IReadOnlyList<FieldInfo> fields = type.GetFields(BindingFlags.Static | BindingFlags.Public);
-
-        DumpFields(fields: fields, type: type);
-
-        return Enum.GetName(enumType: type, value: value) ?? UnknownName(value);
+        return Enum.GetName(value.GetType(), value: value) ?? UnknownName(value);
     }
 
-    [Conditional("DEBUG")]
-    private static void DumpFields(IReadOnlyList<FieldInfo> fields, Type type)
-
+    public static string GetNameCachedReflection<T>(this T value)
+        where T : Enum
     {
-        foreach (FieldInfo field in fields)
+        if (CachedNames.TryGetValue(key: value, out string? name))
         {
-            Enum x = (Enum)field.GetValue(null)!;
-            string xName = Enum.GetName(enumType: type, value: x) ?? "NFI";
-
-            Debug.WriteLine($"{field.Name} = {xName}");
+            return name;
         }
+
+        return CachedNames.GetOrAdd(key: value, value.GetNameReflection());
     }
 
     private static string UnknownName(Enum value)
