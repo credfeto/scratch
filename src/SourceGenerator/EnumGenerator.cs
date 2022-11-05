@@ -4,6 +4,7 @@ using System.Text;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Text;
+using SourceGenerator.Helpers;
 
 namespace SourceGenerator;
 
@@ -78,11 +79,11 @@ public sealed class EnumGenerator : ISourceGenerator
     {
         return accessType switch
         {
-            AccessType.Public => "public",
-            AccessType.Private => "private",
-            AccessType.Protected => "protected",
-            AccessType.ProtectedInternal => "protected internal",
-            AccessType.Internal => "internal",
+            AccessType.PUBLIC => "public",
+            AccessType.PRIVATE => "private",
+            AccessType.PROTECTED => "protected",
+            AccessType.PROTECTED_INTERNAL => "protected internal",
+            AccessType.INTERNAL => "internal",
             _ => throw new ArgumentOutOfRangeException(nameof(accessType), actualValue: accessType, message: "Unknown access type")
         };
     }

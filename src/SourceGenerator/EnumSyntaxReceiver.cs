@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
+using SourceGenerator.Helpers;
 
 namespace SourceGenerator;
 
@@ -25,7 +26,7 @@ public sealed class EnumSyntaxReceiver : ISyntaxContextReceiver
 
         AccessType accessType = GetAccessType(enumDeclarationSyntax);
 
-        if (accessType == AccessType.Private)
+        if (accessType == AccessType.PRIVATE)
         {
             // skip privates
             return;
@@ -42,14 +43,14 @@ public sealed class EnumSyntaxReceiver : ISyntaxContextReceiver
 
         if (isPublic)
         {
-            return AccessType.Public;
+            return AccessType.PUBLIC;
         }
 
         bool isPrivate = generatorSyntaxContext.Modifiers.Any(SyntaxKind.PrivateKeyword);
 
         if (isPrivate)
         {
-            return AccessType.Private;
+            return AccessType.PRIVATE;
         }
 
         bool isInternal = generatorSyntaxContext.Modifiers.Any(SyntaxKind.InternalKeyword);
@@ -59,10 +60,10 @@ public sealed class EnumSyntaxReceiver : ISyntaxContextReceiver
         if (isProtected)
         {
             return isInternal
-                ? AccessType.ProtectedInternal
-                : AccessType.Protected;
+                ? AccessType.PROTECTED_INTERNAL
+                : AccessType.PROTECTED;
         }
 
-        return AccessType.Internal;
+        return AccessType.INTERNAL;
     }
 }

@@ -1,7 +1,7 @@
 using System;
 using System.Text;
 
-namespace SourceGenerator;
+namespace SourceGenerator.Helpers;
 
 public sealed class CodeBuilder
 {
