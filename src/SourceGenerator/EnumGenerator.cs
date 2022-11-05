@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Immutable;
+using System.Linq;
 using System.Text;
 using Microsoft.CodeAnalysis;
+using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Text;
 using SourceGenerator.Helpers;
@@ -53,15 +56,26 @@ public sealed class EnumGenerator : ISourceGenerator
     {
         using (source.StartBlock("public static string GetName(this " + enumDeclaration.Name + " value)"))
         {
-            HashSet<string> names = new(StringComparer.Ordinal);
-
             using (source.StartBlock(text: "return value switch", start: "{", end: "};"))
             {
+                ImmutableHashSet<string> names = UniqueEnumMemberNames(enumDeclaration);
+
                 foreach (EnumMemberDeclarationSyntax member in enumDeclaration.Members)
                 {
-                    string gubbins = member.EqualsValue!.Value.ToString();
+                    if (member.EqualsValue?.Value.Kind() == SyntaxKind.IdentifierName)
+                    {
+                        string memberName = member.EqualsValue.Value.ToString();
 
-                    if (!names.Add(gubbins))
+                        source.AppendLine("// " + member.EqualsValue.Value.Kind());
+                        source.AppendLine("// " + memberName);
+
+                        if (names.Contains(memberName))
+                        {
+                            continue;
+                        }
+                    }
+
+                    if (IsObsolete(member))
                     {
                         continue;
                     }
@@ -72,6 +86,23 @@ public sealed class EnumGenerator : ISourceGenerator
                 source.AppendLine("_ => throw new ArgumentOutOfRangeException(nameof(value), actualValue: value, message: \"Unknown enum member\")");
             }
         }
+    }
+
+    private static bool IsObsolete(EnumMemberDeclarationSyntax member)
+    {
+        List<string> a = member.AttributeLists.SelectMany(x => x.Attributes)
+                               .Select(x => x.Name.ToString())
+                               .ToList();
+        bool isObsolete = a.Contains(value: "Obsolete", comparer: StringComparer.Ordinal) || a.Contains(value: "ObsoleteAttribute", comparer: StringComparer.Ordinal);
+
+        return isObsolete;
+    }
+
+    private static ImmutableHashSet<string> UniqueEnumMemberNames(EnumGeneration enumDeclaration)
+    {
+        return enumDeclaration.Members.Select(m => m.Identifier.Text)
+                              .Distinct(StringComparer.Ordinal)
+                              .ToImmutableHashSet(StringComparer.Ordinal);
     }
 
     private static string ConvertAccessType(AccessType accessType)
