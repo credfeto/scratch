@@ -40,8 +40,7 @@
     <EnableNETAnalyzers>true</EnableNETAnalyzers>
     <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
   </PropertyGroup>
-  <ItemGroup>
-    <!--    <PackageReference Include="AsyncFixer" Version="1.6.0" PrivateAssets="All" />-->
+  <ItemGroup><!--    <PackageReference Include="AsyncFixer" Version="1.6.0" PrivateAssets="All" />-->
     <!--    <PackageReference Include="codecracker.CSharp" Version="1.1.0" PrivateAssets="All" />-->
     <!--    <PackageReference Include="FunFair.CodeAnalysis" Version="5.9.0.1493" PrivateAssets="All" />-->
     <!--    <PackageReference Include="Meziantou.Analyzer" Version="1.0.732" PrivateAssets="All" />-->
@@ -56,6 +55,10 @@
     <!--    <PackageReference Include="SonarAnalyzer.CSharp" Version="8.45.0.54064" PrivateAssets="All" />-->
     <!--    <PackageReference Include="SourceLink.Create.CommandLine" Version="2.8.3" PrivateAssets="All" />-->
     <!--    <PackageReference Include="ToStringWithoutOverrideAnalyzer" Version="0.6.0" PrivateAssets="All" />-->
+
+    <ProjectReference Include="..\Implementations\Implementations.csproj"/>
+
+    <ProjectReference Include="..\Models\Models.csproj"/>
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="BenchmarkDotNet" Version="0.13.2" />
