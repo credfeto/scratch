@@ -31,7 +31,6 @@ public sealed class EnumGenerator : ISourceGenerator
                   .AppendLine("using System.Diagnostics.CodeAnalysis;")
                   .AppendBlankLine()
                   .AppendLine("namespace " + enumDeclaration.Namespace + ";")
-                  .AppendLine(";")
                   .AppendBlankLine()
                   .AppendLine($"[GeneratedCode(tool: \"{nameof(EnumGenerator)}\", version: \"{VERSION}\")]");
 
