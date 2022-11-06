@@ -23,25 +23,7 @@ public sealed class EnumGenerator : ISourceGenerator
 
         foreach (EnumGeneration enumDeclaration in receiver.Enums)
         {
-            string className = enumDeclaration.Name + "GeneratedExtensions";
-
-            CodeBuilder source = new();
-
-            using (source.AppendLine("using System;")
-                         .AppendLine("using System.CodeDom.Compiler;")
-                         .AppendLine("using System.Diagnostics.CodeAnalysis;")
-                         .AppendLine("using System.Runtime.CompilerServices;")
-                         .AppendBlankLine()
-                         .AppendLine("namespace " + enumDeclaration.Namespace + ";")
-                         .AppendBlankLine()
-                         .AppendLine($"[GeneratedCode(tool: \"{nameof(EnumGenerator)}\", version: \"{VERSION}\")]")
-                         .StartBlock(ConvertAccessType(enumDeclaration.AccessType) + " static class " + className))
-            {
-                GenerateGetName(source: source, enumDeclaration: enumDeclaration);
-                GenerateGetDescription(source: source, enumDeclaration: enumDeclaration);
-            }
-
-            context.AddSource(enumDeclaration.Namespace + "." + className, sourceText: source.Text);
+            GenerateClassForEnum(context: context, enumDeclaration: enumDeclaration);
         }
     }
 
@@ -49,6 +31,29 @@ public sealed class EnumGenerator : ISourceGenerator
     {
         // Register a syntax receiver that will be created for each generation pass
         context.RegisterForSyntaxNotifications(() => new EnumSyntaxReceiver());
+    }
+
+    private static void GenerateClassForEnum(in GeneratorExecutionContext context, EnumGeneration enumDeclaration)
+    {
+        string className = enumDeclaration.Name + "GeneratedExtensions";
+
+        CodeBuilder source = new();
+
+        using (source.AppendLine("using System;")
+                     .AppendLine("using System.CodeDom.Compiler;")
+                     .AppendLine("using System.Diagnostics.CodeAnalysis;")
+                     .AppendLine("using System.Runtime.CompilerServices;")
+                     .AppendBlankLine()
+                     .AppendLine("namespace " + enumDeclaration.Namespace + ";")
+                     .AppendBlankLine()
+                     .AppendLine($"[GeneratedCode(tool: \"{nameof(EnumGenerator)}\", version: \"{VERSION}\")]")
+                     .StartBlock(ConvertAccessType(enumDeclaration.AccessType) + " static class " + className))
+        {
+            GenerateGetName(source: source, enumDeclaration: enumDeclaration);
+            GenerateGetDescription(source: source, enumDeclaration: enumDeclaration);
+        }
+
+        context.AddSource(enumDeclaration.Namespace + "." + className, sourceText: source.Text);
     }
 
     private static void GenerateGetName(CodeBuilder source, EnumGeneration enumDeclaration)
