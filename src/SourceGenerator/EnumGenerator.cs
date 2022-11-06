@@ -27,16 +27,15 @@ public sealed class EnumGenerator : ISourceGenerator
 
             CodeBuilder source = new();
 
-            source.AppendLine("using System;")
-                  .AppendLine("using System.CodeDom.Compiler;")
-                  .AppendLine("using System.Diagnostics.CodeAnalysis;")
-                  .AppendLine("using System.Runtime.CompilerServices;")
-                  .AppendBlankLine()
-                  .AppendLine("namespace " + enumDeclaration.Namespace + ";")
-                  .AppendBlankLine()
-                  .AppendLine($"[GeneratedCode(tool: \"{nameof(EnumGenerator)}\", version: \"{VERSION}\")]");
-
-            using (source.StartBlock(ConvertAccessType(enumDeclaration.AccessType) + " static class " + className))
+            using (source.AppendLine("using System;")
+                         .AppendLine("using System.CodeDom.Compiler;")
+                         .AppendLine("using System.Diagnostics.CodeAnalysis;")
+                         .AppendLine("using System.Runtime.CompilerServices;")
+                         .AppendBlankLine()
+                         .AppendLine("namespace " + enumDeclaration.Namespace + ";")
+                         .AppendBlankLine()
+                         .AppendLine($"[GeneratedCode(tool: \"{nameof(EnumGenerator)}\", version: \"{VERSION}\")]")
+                         .StartBlock(ConvertAccessType(enumDeclaration.AccessType) + " static class " + className))
             {
                 GenerateGetName(source: source, enumDeclaration: enumDeclaration);
                 GenerateGetDescription(source: source, enumDeclaration: enumDeclaration);
@@ -54,9 +53,8 @@ public sealed class EnumGenerator : ISourceGenerator
 
     private static void GenerateGetName(CodeBuilder source, EnumGeneration enumDeclaration)
     {
-        source.AppendLine("[MethodImpl(MethodImplOptions.AggressiveInlining)]");
-
-        using (source.StartBlock("public static string GetName(this " + enumDeclaration.Name + " value)"))
+        using (source.AppendLine("[MethodImpl(MethodImplOptions.AggressiveInlining)]")
+                     .StartBlock("public static string GetName(this " + enumDeclaration.Name + " value)"))
         {
             using (source.StartBlock(text: "return value switch", start: "{", end: "};"))
             {
@@ -79,9 +77,8 @@ public sealed class EnumGenerator : ISourceGenerator
 
     private static void GenerateGetDescription(CodeBuilder source, EnumGeneration enumDeclaration)
     {
-        source.AppendLine("[MethodImpl(MethodImplOptions.AggressiveInlining)]");
-
-        using (source.StartBlock("public static string GetDescription(this " + enumDeclaration.Name + " value)"))
+        using (source.AppendLine("[MethodImpl(MethodImplOptions.AggressiveInlining)]")
+                     .StartBlock("public static string GetDescription(this " + enumDeclaration.Name + " value)"))
         {
             IReadOnlyList<string> items = GetDescriptionCaseOptions(enumDeclaration);
 
