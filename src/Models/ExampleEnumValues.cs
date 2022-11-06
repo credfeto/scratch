@@ -7,6 +7,7 @@ public enum ExampleEnumValues
 {
     ZERO = 0,
 
+    [Description("One \"1\"")]
     ONE = 1,
 
     SAME_AS_ONE = ONE,

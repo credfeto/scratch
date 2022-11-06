@@ -30,6 +30,7 @@ public sealed class EnumGenerator : ISourceGenerator
             source.AppendLine("using System;")
                   .AppendLine("using System.CodeDom.Compiler;")
                   .AppendLine("using System.Diagnostics.CodeAnalysis;")
+                  .AppendLine("using System.Runtime.CompilerServices;")
                   .AppendBlankLine()
                   .AppendLine("namespace " + enumDeclaration.Namespace + ";")
                   .AppendBlankLine()
@@ -38,6 +39,7 @@ public sealed class EnumGenerator : ISourceGenerator
             using (source.StartBlock(ConvertAccessType(enumDeclaration.AccessType) + " static class " + className))
             {
                 GenerateGetName(source: source, enumDeclaration: enumDeclaration);
+                GenerateGetDescription(source: source, enumDeclaration: enumDeclaration);
             }
 
             context.AddSource(enumDeclaration.Namespace + "." + className, sourceText: source.Text);
@@ -52,6 +54,8 @@ public sealed class EnumGenerator : ISourceGenerator
 
     private static void GenerateGetName(CodeBuilder source, EnumGeneration enumDeclaration)
     {
+        source.AppendLine("[MethodImpl(MethodImplOptions.AggressiveInlining)]");
+
         using (source.StartBlock("public static string GetName(this " + enumDeclaration.Name + " value)"))
         {
             using (source.StartBlock(text: "return value switch", start: "{", end: "};"))
@@ -60,20 +64,7 @@ public sealed class EnumGenerator : ISourceGenerator
 
                 foreach (EnumMemberDeclarationSyntax member in enumDeclaration.Members)
                 {
-                    if (member.EqualsValue?.Value.Kind() == SyntaxKind.IdentifierName)
-                    {
-                        string memberName = member.EqualsValue.Value.ToString();
-
-                        source.AppendLine("// " + member.EqualsValue.Value.Kind());
-                        source.AppendLine("// " + memberName);
-
-                        if (names.Contains(memberName))
-                        {
-                            continue;
-                        }
-                    }
-
-                    if (IsObsolete(member))
+                    if (IsSkipEnumValue(member: member, names: names) || IsObsolete(member))
                     {
                         continue;
                     }
@@ -84,6 +75,78 @@ public sealed class EnumGenerator : ISourceGenerator
                 source.AppendLine("_ => throw new ArgumentOutOfRangeException(nameof(value), actualValue: value, message: \"Unknown enum member\")");
             }
         }
+    }
+
+    private static void GenerateGetDescription(CodeBuilder source, EnumGeneration enumDeclaration)
+    {
+        source.AppendLine("[MethodImpl(MethodImplOptions.AggressiveInlining)]");
+
+        using (source.StartBlock("public static string GetDescription(this " + enumDeclaration.Name + " value)"))
+        {
+            IReadOnlyList<string> items = GetDescriptionCaseOptions(enumDeclaration);
+
+            if (items.Count == 0)
+            {
+                source.AppendLine("return GetName(value);");
+            }
+            else
+            {
+                using (source.StartBlock(text: "return value switch", start: "{", end: "};"))
+                {
+                    foreach (string line in items)
+                    {
+                        source.AppendLine(line);
+                    }
+
+                    source.AppendLine("_ => GetName(value)");
+                }
+            }
+        }
+    }
+
+    private static IReadOnlyList<string> GetDescriptionCaseOptions(EnumGeneration enumDeclaration)
+    {
+        List<string> items = new();
+
+        ImmutableHashSet<string> names = UniqueEnumMemberNames(enumDeclaration);
+
+        foreach (EnumMemberDeclarationSyntax member in enumDeclaration.Members)
+        {
+            if (IsSkipEnumValue(member: member, names: names) || IsObsolete(member))
+            {
+                continue;
+            }
+
+            AttributeSyntax? description = member.AttributeLists.SelectMany(x => x.Attributes)
+                                                 .FirstOrDefault(IsDescriptionAttribute);
+
+            if (description == null)
+            {
+                continue;
+            }
+
+            string? attributeText = description.ArgumentList?.Arguments.FirstOrDefault()
+                                               ?.Expression.ToString();
+
+            if (string.IsNullOrWhiteSpace(attributeText))
+            {
+                continue;
+            }
+
+            items.Add(enumDeclaration.Name + "." + member.Identifier.Text + " => " + attributeText + ",");
+        }
+
+        return items;
+    }
+
+    private static bool IsSkipEnumValue(EnumMemberDeclarationSyntax member, ImmutableHashSet<string> names)
+    {
+        return member.EqualsValue?.Value.Kind() == SyntaxKind.IdentifierName && names.Contains(member.EqualsValue.Value.ToString());
+    }
+
+    private static bool IsDescriptionAttribute(AttributeSyntax attribute)
+    {
+        return StringComparer.Ordinal.Equals(attribute.Name.ToString(), y: "Description") || StringComparer.Ordinal.Equals(attribute.Name.ToString(), y: "DescriptionAttribute");
     }
 
     private static bool IsObsolete(EnumMemberDeclarationSyntax member)
