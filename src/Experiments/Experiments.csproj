@@ -41,29 +41,6 @@
     <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
   </PropertyGroup>
   <ItemGroup>
-    <!--        <PackageReference Include="AsyncFixer" Version="1.5.1" PrivateAssets="All" />-->
-    <!--        <PackageReference Include="coverlet.collector" Version="3.1.0" PrivateAssets="All" />-->
-    <!--        <PackageReference Include="coverlet.msbuild" Version="3.1.0" PrivateAssets="All" />-->
-    <!--        <PackageReference Include="FunFair.CodeAnalysis" Version="5.7.3.1052" PrivateAssets="All" />-->
-    <!--        <PackageReference Include="Microsoft.VisualStudio.Threading.Analyzers" Version="17.0.64" PrivateAssets="All" />-->
-    <!--        <PackageReference Include="NSubstitute.Analyzers.CSharp" Version="1.0.15" PrivateAssets="All" />-->
-    <!--        <PackageReference Include="Roslynator.Analyzers" Version="3.3.0" PrivateAssets="All" />-->
-    <!--        <PackageReference Include="SonarAnalyzer.CSharp" Version="8.33.0.40503" PrivateAssets="All" />-->
-    <!--        <PackageReference Include="SourceLink.Create.CommandLine" Version="2.8.3" PrivateAssets="All" />-->
-    <!--        <PackageReference Include="ToStringWithoutOverrideAnalyzer" Version="0.6.0" PrivateAssets="All" />-->
-    <!--        <PackageReference Include="xunit.analyzers" Version="0.10.0" PrivateAssets="All" />-->
-    <!--        &lt;!&ndash; Experiments &ndash;&gt;-->
-    <!--        &lt;!&ndash; SecurityCodeScan.VS2019 &ndash;&gt;-->
-    <!--        <PackageReference Include="SecurityCodeScan.VS2019" Version="5.6.0" PrivateAssets="all" />-->
-    <!--        &lt;!&ndash; Obsessive.Defender &ndash;&gt;-->
-    <!--        &lt;!&ndash;    <PackageReference Include="Obsessive.Defender" Version="1.2.0" PrivateAssets="all" />&ndash;&gt;-->
-    <!--        &lt;!&ndash; Puma.Security.Rules &ndash;&gt;-->
-    <!--        <PackageReference Include="Puma.Security.Rules" Version="2.4.7" PrivateAssets="all" />-->
-    <!--        &lt;!&ndash; No point &ndash;&gt;-->
-    <!--        &lt;!&ndash;    <PackageReference Include="Roslynator.Formatting.Analyzers" Version="1.2.0" PrivateAssets="All" />&ndash;&gt;-->
-    <!--        &lt;!&ndash;    <PackageReference Include="Philips.CodeAnalysis.DuplicateCodeAnalyzer" Version="1.1.2" PrivateAssets="All" />&ndash;&gt;-->
-  </ItemGroup>
-  <ItemGroup>
     <PackageReference Include="coverlet.collector" Version="3.2.0" />
     <PackageReference Include="FunFair.Test.Common" Version="6.0.5.2217" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="6.0.0" />
@@ -77,15 +54,25 @@
     <PackageReference Include="FunFair.CodeAnalysis" Version="5.9.0.1493" PrivateAssets="All" />
     <PackageReference Include="Meziantou.Analyzer" Version="1.0.745" PrivateAssets="All" />
     <PackageReference Include="Microsoft.VisualStudio.Threading.Analyzers" Version="17.3.48" PrivateAssets="All" />
-    <PackageReference Include="NSubstitute.Analyzers.CSharp" Version="1.0.15" PrivateAssets="All" />
-    <PackageReference Include="Nullable.Extended.Analyzer" Version="1.10.4539" PrivateAssets="All" />
-    <PackageReference Include="Philips.CodeAnalysis.DuplicateCodeAnalyzer" Version="1.1.7" PrivateAssets="All" />
-    <PackageReference Include="Philips.CodeAnalysis.MaintainabilityAnalyzers" Version="1.2.29" PrivateAssets="All" />
-    <PackageReference Include="Roslynator.Analyzers" Version="4.1.2" PrivateAssets="All" />
-    <PackageReference Include="SecurityCodeScan.VS2019" Version="5.6.7" PrivateAssets="All" />
-    <PackageReference Include="SmartAnalyzers.CSharpExtensions.Annotations" Version="4.2.7" PrivateAssets="All" />
-    <PackageReference Include="SonarAnalyzer.CSharp" Version="8.47.0.55603" PrivateAssets="All" />
-    <PackageReference Include="SourceLink.Create.CommandLine" Version="2.8.3" PrivateAssets="All" />
-    <PackageReference Include="ToStringWithoutOverrideAnalyzer" Version="0.6.0" PrivateAssets="All" />
+    <PackageReference Include="NSubstitute.Analyzers.CSharp" Version="1.0.15" PrivateAssets="All"/>
+    <PackageReference Include="Nullable.Extended.Analyzer" Version="1.10.4539" PrivateAssets="All"/>
+    <PackageReference Include="Philips.CodeAnalysis.DuplicateCodeAnalyzer" Version="1.1.7" PrivateAssets="All"/>
+    <PackageReference Include="Philips.CodeAnalysis.MaintainabilityAnalyzers" Version="1.2.29" PrivateAssets="All"/>
+    <PackageReference Include="Roslynator.Analyzers" Version="4.1.2" PrivateAssets="All"/>
+    <PackageReference Include="SecurityCodeScan.VS2019" Version="5.6.7" PrivateAssets="All"/>
+    <PackageReference Include="SmartAnalyzers.CSharpExtensions.Annotations" Version="4.2.7" PrivateAssets="All"/>
+    <PackageReference Include="SonarAnalyzer.CSharp" Version="8.47.0.55603" PrivateAssets="All"/>
+    <PackageReference Include="SourceLink.Create.CommandLine" Version="2.8.3" PrivateAssets="All"/>
+    <PackageReference Include="ToStringWithoutOverrideAnalyzer" Version="0.6.0" PrivateAssets="All"/>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Implementations\Implementations.csproj"/>
+    <ProjectReference Include="..\Models\Models.csproj"/>
+
+    <!-- Note that this is not a "normal" ProjectReference.
+         It needs the additional 'OutputItemType' and 'ReferenceOutputAssmbly' attributes. -->
+    <ProjectReference Include="..\SourceGenerator\SourceGenerator.csproj"
+                      OutputItemType="Analyzer"
+                      ReferenceOutputAssembly="false"/>
   </ItemGroup>
 </Project>

@@ -1,5 +1,4 @@
 using System;
-using System.Diagnostics.CodeAnalysis;
 using System.Diagnostics.Contracts;
 using System.Runtime.CompilerServices;
 using System.Text.RegularExpressions;
@@ -7,91 +6,88 @@ using BenchmarkDotNet.Attributes;
 
 namespace Bench;
 
-[SuppressMessage(category: "Microsoft.Performance", checkId: "CA1822:Mark methods static", Justification = "Needed for BenchmarkDotNet")]
 [SimpleJob]
 [MemoryDiagnoser(false)]
-public partial class RegexBench
+public abstract partial class RegexBench : BenchBase
 {
     private const string GOOD = "0123456789abcdef";
     private const string BAD = "0123456789abcdefg";
 
-    private static readonly Regex CompiledRegex = new(pattern: @"^[0-9a-fA-F]+$",
-                                                      RegexOptions.CultureInvariant | RegexOptions.ExplicitCapture | RegexOptions.Singleline,
-                                                      TimeSpan.FromSeconds(1));
+    private static readonly Regex CompiledRegex = new(pattern: @"^[0-9a-fA-F]+$", RegexOptions.CultureInvariant | RegexOptions.ExplicitCapture | RegexOptions.Singleline, TimeSpan.FromSeconds(1));
 
-    [GeneratedRegexAttribute(pattern: @"^[0-9a-fA-F]+$", RegexOptions.CultureInvariant | RegexOptions.ExplicitCapture | RegexOptions.Singleline)]
+    [GeneratedRegex(pattern: @"^[0-9a-fA-F]+$", RegexOptions.CultureInvariant | RegexOptions.ExplicitCapture | RegexOptions.Singleline)]
     private static partial Regex SourceGeneratedRegex();
 
     [Benchmark]
-    public bool GoodNormalRegexString()
+    public void GoodNormalRegexString()
     {
-        return ShouldBeNormalHexRegexString(GOOD);
+        this.Test(ShouldBeNormalHexRegexString(GOOD));
     }
 
     [Benchmark]
-    public bool GoodNormalRegexSpan()
+    public void GoodNormalRegexSpan()
     {
-        return ShouldBeNormalHexRegexSpan(GOOD);
+        this.Test(ShouldBeNormalHexRegexSpan(GOOD));
     }
 
     [Benchmark]
-    public bool GoodSourceGeneratedRegexString()
+    public void GoodSourceGeneratedRegexString()
     {
-        return ShouldBeHexSourceGeneratedRegexString(GOOD);
+        this.Test(ShouldBeHexSourceGeneratedRegexString(GOOD));
     }
 
     [Benchmark]
-    public bool GoodSourceGeneratedRegexSpan()
+    public void GoodSourceGeneratedRegexSpan()
     {
-        return ShouldBeHexSourceGeneratedRegexSpan(GOOD);
+        this.Test(ShouldBeHexSourceGeneratedRegexSpan(GOOD));
     }
 
     [Benchmark]
-    public bool GoodMethodSpan()
+    public void GoodMethodSpan()
     {
-        return ShouldBeHexMethodSpan(GOOD);
+        this.Test(ShouldBeHexMethodSpan(GOOD));
     }
 
     [Benchmark]
-    public bool GoodMethod7Span()
+    public void GoodMethod7Span()
     {
-        return ShouldBeHexMethodSpan7(GOOD);
+        this.Test(ShouldBeHexMethodSpan7(GOOD));
     }
 
     [Benchmark]
-    public bool BadSourceGeneratedRegexString()
+    public void BadSourceGeneratedRegexString()
     {
-        return ShouldBeHexSourceGeneratedRegexString(BAD);
+        this.Test(ShouldBeHexSourceGeneratedRegexString(BAD));
     }
 
     [Benchmark]
-    public bool BadNormalRegexString()
+    public void BadNormalRegexString()
     {
-        return ShouldBeNormalHexRegexString(BAD);
+        this.Test(ShouldBeNormalHexRegexString(BAD));
     }
 
     [Benchmark]
-    public bool BadRegexSpan()
+    public void BadRegexSpan()
     {
-        return ShouldBeNormalHexRegexSpan(BAD);
+        this.Test(ShouldBeNormalHexRegexSpan(BAD));
     }
 
     [Benchmark]
-    public bool BadSourceGeneratedRegexSpan()
+    public void BadSourceGeneratedRegexSpan()
     {
-        return ShouldBeHexSourceGeneratedRegexSpan(BAD);
+        this.Test(ShouldBeHexSourceGeneratedRegexSpan(BAD));
     }
 
     [Benchmark]
-    public bool BadMethodSpan()
+    public void BadMethodSpan()
     {
-        return ShouldBeHexMethodSpan(BAD);
+        this.Test(ShouldBeHexMethodSpan(BAD));
     }
 
     [Benchmark]
-    public bool BadMethodSpan7()
+    public void BadMethodSpan7()
     {
-        return ShouldBeHexMethodSpan7(BAD);
+        this.Test(ShouldBeHexMethodSpan7(BAD));
     }
 
     private static bool ShouldBeNormalHexRegexString(string input)

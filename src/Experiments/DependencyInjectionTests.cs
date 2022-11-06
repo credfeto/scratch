@@ -3,6 +3,7 @@ using Experiments.ReferenceObjects;
 using Experiments.ReferenceObjects.Services;
 using FunFair.Test.Common;
 using Microsoft.Extensions.DependencyInjection;
+using Models;
 using Xunit;
 
 namespace Experiments;
