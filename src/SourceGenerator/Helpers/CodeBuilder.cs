@@ -1,5 +1,6 @@
 using System;
 using System.Text;
+using Microsoft.CodeAnalysis.Text;
 
 namespace SourceGenerator.Helpers;
 
@@ -9,7 +10,7 @@ public sealed class CodeBuilder
 
     private int _indent;
 
-    public string Text => this._stringBuilder.ToString();
+    public SourceText Text => SourceText.From(this._stringBuilder.ToString(), encoding: Encoding.UTF8);
 
     public CodeBuilder AppendBlankLine()
     {

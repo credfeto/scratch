@@ -2,11 +2,9 @@
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
-using System.Text;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
-using Microsoft.CodeAnalysis.Text;
 using SourceGenerator.Helpers;
 
 namespace SourceGenerator;
@@ -42,7 +40,7 @@ public sealed class EnumGenerator : ISourceGenerator
                 GenerateGetName(source: source, enumDeclaration: enumDeclaration);
             }
 
-            context.AddSource(enumDeclaration.Namespace + "." + className, SourceText.From(text: source.Text, encoding: Encoding.UTF8));
+            context.AddSource(enumDeclaration.Namespace + "." + className, sourceText: source.Text);
         }
     }
 

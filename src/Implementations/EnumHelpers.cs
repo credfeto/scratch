@@ -10,10 +10,10 @@ public static class EnumHelpers
     public static string GetNameReflection<T>(this T value)
         where T : Enum
     {
-        return Enum.GetName(value.GetType(), value: value) ?? UnknownName(value);
+        return Enum.GetName(value.GetType(), value: value)!;
     }
 
-    public static string GetNameCachedReflection<T>(this T value)
+    public static string GetName<T>(this T value)
         where T : Enum
     {
         if (CachedNames.TryGetValue(key: value, out string? name))
@@ -22,10 +22,5 @@ public static class EnumHelpers
         }
 
         return CachedNames.GetOrAdd(key: value, value.GetNameReflection());
-    }
-
-    private static string UnknownName(Enum value)
-    {
-        return "??" + value;
     }
 }
