@@ -14,29 +14,21 @@ Please ADD ALL Changes to the UNRELASED SECTION and not a specific release
 
 ### Changed
 
-- FF-3881 - Updated DotNet SDK to 6.0.101
-- FF-3881 - Updated DotNet SDK to 6.0.102
 - FF-1429 - Updated FunFair.CodeAnalysis to 5.8.1.1203
 - FF-1429 - Updated SecurityCodeScan.VS2019 to 5.6.2
 - FF-1429 - Updated SmartAnalyzers.CSharpExtensions.Annotations to 4.2.2
-- FF-3881 - Updated DotNet SDK to 6.0.201
-- FF-3881 - Updated DotNet SDK to 6.0.202
 - FF-1429 - Updated xunit.runner.visualstudio to 2.4.4
 - FF-1429 - Updated xunit.runner.visualstudio to 2.4.5
 - FF-1429 - Updated AsyncFixer to 1.6.0
-- FF-3881 - Updated DotNet SDK to 6.0.300
 - FF-1429 - Updated SmartAnalyzers.CSharpExtensions.Annotations to 4.2.3
 - FF-1429 - Updated SmartAnalyzers.CSharpExtensions.Annotations to 4.2.4
 - FF-1429 - Updated SmartAnalyzers.CSharpExtensions.Annotations to 4.2.5
 - FF-1429 - Updated FunFair.CodeAnalysis to 5.8.2.1317
 - FF-1429 - Updated SecurityCodeScan.VS2019 to 5.6.3
-- FF-3881 - Updated DotNet SDK to 6.0.301
 - FF-1429 - Updated FunFair.CodeAnalysis to 5.8.3.1353
-- FF-3881 - Updated DotNet SDK to 6.0.302
 - FF-1429 - Updated SmartAnalyzers.CSharpExtensions.Annotations to 4.2.6
 - FF-1429 - Updated SmartAnalyzers.CSharpExtensions.Annotations to 4.2.7
 - FF-1429 - Updated xunit to 2.4.2
-- FF-3881 - Updated DotNet SDK to 6.0.400
 - FF-1429 - Updated FunFair.CodeAnalysis to 5.8.5.1436
 - FF-1429 - Updated SecurityCodeScan.VS2019 to 5.6.4
 - FF-1429 - Updated SecurityCodeScan.VS2019 to 5.6.5
@@ -53,6 +45,7 @@ Please ADD ALL Changes to the UNRELASED SECTION and not a specific release
 - FF-1429 - Updated Microsoft.Extensions to 7.0.0
 - FF-1429 - Updated FunFair.Test.Common to 6.0.7.2278
 - FF-1429 - Updated SonarAnalyzer.CSharp to 8.48.0.56517
+- FF-3881 - Updated DotNet SDK to 7.0.100
 
 ### Removed
 
