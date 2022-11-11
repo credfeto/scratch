@@ -19,6 +19,25 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Models", "Models\Models.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SourceGenerator", "SourceGenerator\SourceGenerator.csproj", "{D0ECD1E8-C097-4CA7-A5FF-3FD022E0A9E2}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Workflows", "Workflows", "{B3A98333-98FA-4EFA-9BD9-07672F9D3BA8}"
+	ProjectSection(SolutionItems) = preProject
+		..\.github\workflows\pr-lint.yml = ..\.github\workflows\pr-lint.yml
+		..\.github\workflows\all-contributors.yml = ..\.github\workflows\all-contributors.yml
+		..\.github\workflows\pull-request.yml = ..\.github\workflows\pull-request.yml
+		..\.github\workflows\build-and-publish-pre-release.yml = ..\.github\workflows\build-and-publish-pre-release.yml
+		..\.github\workflows\stale.yml = ..\.github\workflows\stale.yml
+		..\.github\workflows\pr-update.yml = ..\.github\workflows\pr-update.yml
+		..\.github\workflows\codeql-analysis-javascript.yml = ..\.github\workflows\codeql-analysis-javascript.yml
+		..\.github\workflows\build-and-publish-release.yml = ..\.github\workflows\build-and-publish-release.yml
+		..\.github\workflows\update-labels.yml = ..\.github\workflows\update-labels.yml
+		..\.github\workflows\create-prs-for-stale-branches.yml = ..\.github\workflows\create-prs-for-stale-branches.yml
+		..\.github\workflows\codeql-analysis-python.yml = ..\.github\workflows\codeql-analysis-python.yml
+		..\.github\workflows\codeql-analysis-csharp.yml = ..\.github\workflows\codeql-analysis-csharp.yml
+		..\.github\workflows\on_new_pr.yml = ..\.github\workflows\on_new_pr.yml
+		..\.github\workflows\reformat-yaml.yml = ..\.github\workflows\reformat-yaml.yml
+		..\.github\workflows\reformat-sql.yml = ..\.github\workflows\reformat-sql.yml
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,5 +64,8 @@ Global
 		{D0ECD1E8-C097-4CA7-A5FF-3FD022E0A9E2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D0ECD1E8-C097-4CA7-A5FF-3FD022E0A9E2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D0ECD1E8-C097-4CA7-A5FF-3FD022E0A9E2}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{B3A98333-98FA-4EFA-9BD9-07672F9D3BA8} = {7E36F2F5-6F81-4796-833C-F1CC6867C9EA}
 	EndGlobalSection
 EndGlobal
