@@ -55,9 +55,6 @@ jobs:
           fetch-depth: 0
       - if: ${{ github.actor != 'dependabot[bot]' || endsWith(github.repository , '-template') }}
         run: echo "CHANGES=$(git diff --exit-code origin/main CHANGELOG.md)" >> "$GITHUB_ENV"
-#        run: |
-#           [[ $(git diff --exit-code origin/main CHANGELOG.md) == 0 ]] && echo "CHANGELOG=Unchanged" >> $GITHUB_ENV
-#           [[ $(git diff --quiet origin/main CHANGELOG.md) != 0 ]] && echo "CHANGELOG=Updated" >> $GITHUB_ENV
       - if: ${{ env.CHANGES == '0' }}
         uses: actions/github-script@v6.3.3
         with:
@@ -176,7 +173,7 @@ jobs:
           fetch-depth: 0
       - if: ${{ steps.visibility.outputs.is_public == 'true' }}
         name: 'Dependency Review'
-        uses: actions/dependency-review-action@v2.5.1
+        uses: actions/dependency-review-action@v3.0.0
 
   lint-code:
     if: ${{ github.event.pull_request.draft == false && ( !startsWith(github.head_ref, 'release/') && !startsWith(github.head_ref, 'hotfix/') ) }}
