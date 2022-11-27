@@ -40,5 +40,3 @@
  - any: [ 'src/Implementations/**/*' ]
 "Models":
  - any: [ 'src/Models/**/*' ]
-"SourceGenerator":
- - any: [ 'src/SourceGenerator/**/*' ]
