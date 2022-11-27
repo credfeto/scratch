@@ -17,8 +17,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Implementations", "Implemen
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Models", "Models\Models.csproj", "{033AFF18-7F13-4E2F-9CD8-344D6A457261}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SourceGenerator", "SourceGenerator\SourceGenerator.csproj", "{D0ECD1E8-C097-4CA7-A5FF-3FD022E0A9E2}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Workflows", "Workflows", "{B3A98333-98FA-4EFA-9BD9-07672F9D3BA8}"
 	ProjectSection(SolutionItems) = preProject
 		..\.github\workflows\pr-lint.yml = ..\.github\workflows\pr-lint.yml
@@ -60,10 +58,6 @@ Global
 		{033AFF18-7F13-4E2F-9CD8-344D6A457261}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{033AFF18-7F13-4E2F-9CD8-344D6A457261}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{033AFF18-7F13-4E2F-9CD8-344D6A457261}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D0ECD1E8-C097-4CA7-A5FF-3FD022E0A9E2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D0ECD1E8-C097-4CA7-A5FF-3FD022E0A9E2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D0ECD1E8-C097-4CA7-A5FF-3FD022E0A9E2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D0ECD1E8-C097-4CA7-A5FF-3FD022E0A9E2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{B3A98333-98FA-4EFA-9BD9-07672F9D3BA8} = {7E36F2F5-6F81-4796-833C-F1CC6867C9EA}
