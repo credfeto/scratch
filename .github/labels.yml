@@ -130,7 +130,3 @@
    color: "96f7d2"
    description: "Changes in Models project"
 
- - name: "SourceGenerator"
-   color: "96f7d2"
-   description: "Changes in SourceGenerator project"
-
