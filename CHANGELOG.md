@@ -45,7 +45,7 @@ Please ADD ALL Changes to the UNRELASED SECTION and not a specific release
 - FF-1429 - Updated Microsoft.Extensions to 7.0.0
 - FF-1429 - Updated FunFair.Test.Common to 6.0.7.2278
 - FF-1429 - Updated SonarAnalyzer.CSharp to 8.48.0.56517
-- FF-3881 - Updated DotNet SDK to 7.0.101
+- FF-3881 - Updated DotNet SDK to 7.0.102
 
 ### Removed
 
