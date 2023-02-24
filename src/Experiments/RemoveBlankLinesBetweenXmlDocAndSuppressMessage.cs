@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Text.RegularExpressions;
 using FunFair.Test.Common;
 using Xunit;
@@ -26,6 +27,7 @@ public sealed class RemoveBlankLinesBetweenXmlDocAndSuppressMessage : TestBase
     }
 
     [Fact]
+    [SuppressMessage(category: "Meziantou.Analyzers", checkId: "MA0110: Use regex source generator", Justification = "cannot be for a test case")]
     public void Detect()
     {
         this._output.WriteLine("-------------------------");

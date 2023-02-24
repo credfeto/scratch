@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Diagnostics.Contracts;
 using System.Runtime.CompilerServices;
 using System.Text.RegularExpressions;
@@ -13,6 +14,7 @@ public abstract partial class RegexBench : BenchBase
     private const string GOOD = "0123456789abcdef";
     private const string BAD = "0123456789abcdefg";
 
+    [SuppressMessage(category: "Meziantou.Analyzers", checkId: "MA0110: Use regex source generator", Justification = "cannot be for a test case")]
     private static readonly Regex CompiledRegex = new(pattern: @"^[0-9a-fA-F]+$", RegexOptions.CultureInvariant | RegexOptions.ExplicitCapture | RegexOptions.Singleline, TimeSpan.FromSeconds(1));
 
     [GeneratedRegex(pattern: @"^[0-9a-fA-F]+$", RegexOptions.CultureInvariant | RegexOptions.ExplicitCapture | RegexOptions.Singleline)]

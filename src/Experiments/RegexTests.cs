@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Diagnostics.Contracts;
 using System.Runtime.CompilerServices;
 using System.Text.RegularExpressions;
@@ -9,6 +10,7 @@ namespace Experiments;
 
 public sealed class RegexTests : TestBase
 {
+    [SuppressMessage(category: "Meziantou.Analyzers", checkId: "MA0110: Use regex source generator", Justification = "cannot be for a test case")]
     private static readonly Regex Regex = new(pattern: @"^[0-9a-fA-F]+$",
                                               RegexOptions.Compiled | RegexOptions.CultureInvariant | RegexOptions.ExplicitCapture | RegexOptions.Singleline,
                                               TimeSpan.FromSeconds(1));
