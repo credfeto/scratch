@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Diagnostics.Contracts;
 using System.Runtime.CompilerServices;
 using System.Text.RegularExpressions;
@@ -9,6 +10,7 @@ namespace Experiments;
 
 public sealed class RegexTests : TestBase
 {
+    [SuppressMessage(category: "Meziantou.Analyzers", checkId: "MA0110: Use regex source generator", Justification = "cannot be for a test case")]
     private static readonly Regex Regex = new(pattern: @"^[0-9a-fA-F]+$",
                                               RegexOptions.Compiled | RegexOptions.CultureInvariant | RegexOptions.ExplicitCapture | RegexOptions.Singleline,
                                               TimeSpan.FromSeconds(1));
@@ -41,11 +43,6 @@ public sealed class RegexTests : TestBase
         Assert.Equal(expected: expected, actual: actual);
     }
 
-    /// <summary>
-    ///     Checks to see if the string is a valid hex string;
-    /// </summary>
-    /// <param name="value">the string to check.</param>
-    /// <returns>True, if the string is all hex characters; otherwise, false.</returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private static bool IsValidHexStringWithoutPrefix(in ReadOnlySpan<char> value)
     {

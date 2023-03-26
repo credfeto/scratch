@@ -1,4 +1,4 @@
-name: Pull Request
+name: "Dependabot: Approve actions updates in template repos"
 on:
   # https://securitylab.github.com/research/github-actions-preventing-pwn-requests
   # could and should work, at least for public repos;
@@ -11,9 +11,14 @@ on:
     - reopened
     - synchronize
     - ready_for_review
+    branches:
+    - main
 
 jobs:
   enable-auto-merge:
+    if: |-
+      ${{endsWith(github.repository, '-template') &&
+      startsWith(github.head_ref, 'dependabot/github_actions/')}}
     runs-on: ubuntu-latest
 
     permissions:
@@ -21,22 +26,31 @@ jobs:
       pull-requests: write
 
     # Specifically check that dependabot (or another trusted party) created this pull-request, and that it has been labelled correctly.
-    if: contains(github.event.pull_request.labels.*.name, 'dependencies')
+
     steps:
-    - uses: alexwilson/enable-github-automerge-action@1.0.0
+    - run: sudo chown -R "$USER:$USER" "$GITHUB_WORKSPACE"
+    - run: echo "${{github.repository_owner}}"
+    - if: github.repository_owner != 'funfair-tech'
+      uses: alexwilson/enable-github-automerge-action@1.0.0
       with:
         github-token: ${{secrets.SOURCE_PUSH_TOKEN}}
         merge-method: "MERGE"
 
   auto_approve_dependabot:
+    if: |-
+      ${{endsWith(github.repository, '-template') &&
+      startsWith(github.head_ref, 'dependabot/github_actions/')}}
     runs-on: ubuntu-latest
 
     permissions:
       contents: write
       pull-requests: write
 
-    if: contains(github.event.pull_request.labels.*.name, 'dependencies')
     steps:
+    - run: sudo chown -R "$USER:$USER" "$GITHUB_WORKSPACE"
+    - run: echo "${{github.repository_owner}}"
     - uses: hmarr/auto-approve-action@v3
       with:
         github-token: ${{secrets.SOURCE_PUSH_TOKEN}}
+
+

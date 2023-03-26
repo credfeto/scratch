@@ -19,6 +19,7 @@ updates:
   - dependency-name: "AWSSDK.*"
   - dependency-name: "codecracker.CSharp"
   - dependency-name: "Coverlet.*"
+  - dependency-name: "Credfeto.*"
   - dependency-name: "FunFair.*"
   - dependency-name: "Microsoft.AspNetCore.*"
   - dependency-name: "Microsoft.CodeAnalysis.*"
@@ -44,6 +45,7 @@ updates:
   - dependency-name: "Microsoft.ApplicationInsights.AspNetCore"
   - dependency-name: "Microsoft.NET.Test.Sdk"
   - dependency-name: "Microsoft.VisualStudio.Threading.Analyzers"
+  - dependency-name: "MSBuild.Sdk.SqlProj"
   - dependency-name: "NBitcoin"
   - dependency-name: "Newtonsoft.Json"
   - dependency-name: "NonBlocking"
@@ -62,6 +64,7 @@ updates:
   - dependency-name: "SmartAnalyzers.CSharpExtensions.Annotations"
   - dependency-name: "SonarAnalyzer.CSharp"
   - dependency-name: "SourceLink.Create.CommandLine"
+  - dependency-name: "System.Data.SqlClient"
   - dependency-name: "TeamCity.VSTest.TestAdapter"
   - dependency-name: "ToStringWithoutOverrideAnalyzer"
   - dependency-name: "TwitchLib.Api"
@@ -71,10 +74,32 @@ updates:
   - dependency-name: "xunit.runner.visualstudio"
   - dependency-name: "Yoti"
   commit-message:
-    prefix: "[FF-1429]"
+    prefix: "[Dependencies]"
   rebase-strategy: "auto"
   labels:
   - "dotnet"
+  - "dependencies"
+  - "Changelog Not Required"
+
+
+- package-ecosystem: github-actions
+  directory: "/"
+  schedule:
+    interval: daily
+    time: "03:00"
+    timezone: "Europe/London"
+  open-pull-requests-limit: 99
+  reviewers:
+  - credfeto
+  assignees:
+  - credfeto
+  allow:
+  - dependency-type: all
+  commit-message:
+    prefix: "[Dependencies]"
+  rebase-strategy: "auto"
+  labels:
+  - "github-actions"
   - "dependencies"
   - "Changelog Not Required"
 

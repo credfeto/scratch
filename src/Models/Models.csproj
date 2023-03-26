@@ -41,22 +41,11 @@
     <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="FunFair.Test.Common" Version="6.0.7.2278" />
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="7.0.0" />
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.4.0" />
-    <PackageReference Include="xunit" Version="2.4.2" />
-    <PackageReference Include="xunit.runner.visualstudio" Version="2.4.5" />
-  </ItemGroup>
-  <ItemGroup>
     <PackageReference Include="AsyncFixer" Version="1.6.0" PrivateAssets="All" ExcludeAssets="runtime"/>
     <PackageReference Include="codecracker.CSharp" Version="1.1.0" PrivateAssets="All" ExcludeAssets="runtime"/>
-    <PackageReference Include="Credfeto.Enumeration.Source.Generation" Version="1.0.2.14" PrivateAssets="All" ExcludeAssets="runtime"/>
-    <PackageReference Include="coverlet.collector" Version="3.2.0" PrivateAssets="All" ExcludeAssets="runtime"/>
-    <PackageReference Include="coverlet.msbuild" Version="3.2.0" PrivateAssets="All" ExcludeAssets="runtime"/>
     <PackageReference Include="FunFair.CodeAnalysis" Version="5.9.0.1493" PrivateAssets="All" ExcludeAssets="runtime"/>
     <PackageReference Include="Meziantou.Analyzer" Version="1.0.757" PrivateAssets="All" ExcludeAssets="runtime"/>
     <PackageReference Include="Microsoft.VisualStudio.Threading.Analyzers" Version="17.4.27" PrivateAssets="All" ExcludeAssets="runtime"/>
-    <PackageReference Include="NSubstitute.Analyzers.CSharp" Version="1.0.15" PrivateAssets="All" ExcludeAssets="runtime"/>
     <PackageReference Include="Nullable.Extended.Analyzer" Version="1.10.4539" PrivateAssets="All" ExcludeAssets="runtime"/>
     <PackageReference Include="Philips.CodeAnalysis.DuplicateCodeAnalyzer" Version="1.1.7" PrivateAssets="All" ExcludeAssets="runtime"/>
     <PackageReference Include="Philips.CodeAnalysis.MaintainabilityAnalyzers" Version="1.2.30" PrivateAssets="All" ExcludeAssets="runtime"/>
@@ -66,12 +55,6 @@
     <PackageReference Include="SonarAnalyzer.CSharp" Version="8.51.0.59060" PrivateAssets="All" ExcludeAssets="runtime"/>
     <PackageReference Include="SourceLink.Create.CommandLine" Version="2.8.3" PrivateAssets="All" ExcludeAssets="runtime"/>
     <PackageReference Include="ToStringWithoutOverrideAnalyzer" Version="0.6.0" PrivateAssets="All" ExcludeAssets="runtime"/>
-    <PackageReference Include="xunit.analyzers" Version="1.1.0" PrivateAssets="All" ExcludeAssets="runtime"/>
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Implementations\Implementations.csproj" />
-    <ProjectReference Include="..\Models\Models.csproj" />
-    <!-- Note that this is not a "normal" ProjectReference.
-         It needs the additional 'OutputItemType' and 'ReferenceOutputAssmbly' attributes. -->
-  </ItemGroup>
+
 </Project>

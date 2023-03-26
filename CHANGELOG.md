@@ -14,74 +14,39 @@ Please ADD ALL Changes to the UNRELASED SECTION and not a specific release
 
 ### Changed
 
-- FF-3881 - Updated DotNet SDK to 6.0.101
-- FF-1429 - Updated Philips.CodeAnalysis.MaintainabilityAnalyzers to 1.2.27
-- FF-1429 - Updated Philips.CodeAnalysis.DuplicateCodeAnalyzer to 1.1.5
-- FF-1429 - Updated Philips.CodeAnalysis.DuplicateCodeAnalyzer to 1.1.6
-- FF-1429 - Updated FunFair.Test.Common to 5.8.0.1567
-- FF-1429 - Updated FunFair.Test.Common to 5.8.1.1595
-- FF-1429 - Updated Roslynator.Analyzers to 4.0.0
-- FF-1429 - Updated FunFair.Test.Common to 5.8.2.1611
-- FF-1429 - Updated FunFair.Test.Common to 5.8.2.1613
-- FF-1429 - Updated Roslynator.Analyzers to 4.0.2
-- FF-1429 - Updated coverlet to 3.1.1
-- FF-1429 - Updated FunFair.Test.Common to 5.8.3.1625
-- FF-1429 - Updated FunFair.Test.Common to 5.8.4.1638
-- FF-1429 - Updated coverlet to 3.1.2
-- FF-1429 - Updated FunFair.Test.Common to 5.8.5.1649
-- FF-1429 - Updated FunFair.Test.Common to 5.9.0.1658
-- FF-3881 - Updated DotNet SDK to 6.0.102
-- FF-1429 - Updated FunFair.Test.Common to 5.9.1.1665
 - FF-1429 - Updated FunFair.CodeAnalysis to 5.8.1.1203
-- FF-1429 - Updated Microsoft.VisualStudio.Threading.Analyzers to 17.1.46
-- FF-1429 - Updated FunFair.Test.Common to 5.9.2.1676
 - FF-1429 - Updated SecurityCodeScan.VS2019 to 5.6.2
 - FF-1429 - Updated SmartAnalyzers.CSharpExtensions.Annotations to 4.2.2
-- FF-1429 - Updated FunFair.Test.Common to 5.9.3.1699
-- FF-3881 - Updated DotNet SDK to 6.0.201
-- FF-1429 - Updated Philips.CodeAnalysis.MaintainabilityAnalyzers to 1.2.28
-- FF-1429 - Updated FunFair.Test.Common to 5.9.4.1729
-- FF-1429 - Updated Roslynator.Analyzers to 4.1.0
-- FF-3881 - Updated DotNet SDK to 6.0.202
 - FF-1429 - Updated xunit.runner.visualstudio to 2.4.4
 - FF-1429 - Updated xunit.runner.visualstudio to 2.4.5
-- FF-1429 - Updated Microsoft.VisualStudio.Threading.Analyzers to 17.2.32
 - FF-1429 - Updated AsyncFixer to 1.6.0
-- FF-3881 - Updated DotNet SDK to 6.0.300
 - FF-1429 - Updated SmartAnalyzers.CSharpExtensions.Annotations to 4.2.3
 - FF-1429 - Updated SmartAnalyzers.CSharpExtensions.Annotations to 4.2.4
 - FF-1429 - Updated SmartAnalyzers.CSharpExtensions.Annotations to 4.2.5
 - FF-1429 - Updated FunFair.CodeAnalysis to 5.8.2.1317
-- FF-1429 - Updated FunFair.Test.Common to 5.9.5.1833
-- FF-1429 - Updated Roslynator.Analyzers to 4.1.1
 - FF-1429 - Updated SecurityCodeScan.VS2019 to 5.6.3
-- FF-1429 - Updated FunFair.Test.Common to 5.9.6.1865
-- FF-3881 - Updated DotNet SDK to 6.0.301
-- FF-1429 - Updated FunFair.Test.Common to 5.9.7.1871
 - FF-1429 - Updated FunFair.CodeAnalysis to 5.8.3.1353
-- FF-1429 - Updated FunFair.Test.Common to 5.9.8.1897
-- FF-1429 - Updated FunFair.Test.Common to 5.9.9.1903
-- FF-1429 - Updated FunFair.Test.Common to 5.9.10.1914
-- FF-1429 - Updated FunFair.Test.Common to 6.0.0.1932
-- FF-3881 - Updated DotNet SDK to 6.0.302
-- FF-1429 - Updated FunFair.Test.Common to 6.0.1.1951
 - FF-1429 - Updated SmartAnalyzers.CSharpExtensions.Annotations to 4.2.6
 - FF-1429 - Updated SmartAnalyzers.CSharpExtensions.Annotations to 4.2.7
 - FF-1429 - Updated xunit to 2.4.2
-- FF-1429 - Updated FunFair.Test.Common to 6.0.2.1981
-- FF-1429 - Updated FunFair.Test.Common to 6.0.3.1991
-- FF-1429 - Updated FunFair.Test.Common to 6.0.4.1998
-- FF-1429 - Updated Microsoft.VisualStudio.Threading.Analyzers to 17.3.44
-- FF-3881 - Updated DotNet SDK to 6.0.400
 - FF-1429 - Updated FunFair.CodeAnalysis to 5.8.5.1436
 - FF-1429 - Updated SecurityCodeScan.VS2019 to 5.6.4
 - FF-1429 - Updated SecurityCodeScan.VS2019 to 5.6.5
 - FF-1429 - Updated SecurityCodeScan.VS2019 to 5.6.6
 - FF-1429 - Updated SecurityCodeScan.VS2019 to 5.6.7
 - FF-1429 - Updated FunFair.CodeAnalysis to 5.9.0.1493
-- FF-1429 - Updated SonarAnalyzer.CSharp to 8.45.0.54064
-- FF-1429 - Updated Meziantou.Analyzer to 1.0.732
-- FF-1429 - Updated Microsoft.NET.Test.Sdk to 17.3.2
+- FF-1429 - Updated Philips.CodeAnalysis.DuplicateCodeAnalyzer to 1.1.7
+- FF-1429 - Updated Philips.CodeAnalysis.MaintainabilityAnalyzers to 1.2.29
+- FF-1429 - Updated Microsoft.VisualStudio.Threading.Analyzers to 17.3.48
+- FF-1429 - Updated coverlet to 3.2.0
+- FF-1429 - Updated Roslynator.Analyzers to 4.1.2
+- FF-1429 - Updated Meziantou.Analyzer to 1.0.745
+- FF-1429 - Updated Microsoft.NET.Test.Sdk to 17.4.0
+- FF-1429 - Updated Microsoft.Extensions to 7.0.0
+- FF-1429 - Updated FunFair.Test.Common to 6.0.7.2278
+- FF-1429 - Updated SonarAnalyzer.CSharp to 8.48.0.56517
+- FF-3881 - Updated DotNet SDK to 7.0.200
+- SDK - Updated DotNet SDK to 7.0.202
 
 ### Removed
 
