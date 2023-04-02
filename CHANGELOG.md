@@ -51,6 +51,7 @@ Please ADD ALL Changes to the UNRELASED SECTION and not a specific release
 - Dependencies - Updated Microsoft.VisualStudio.Threading.Analyzers to 17.5.22
 - Dependencies - Updated NSubstitute.Analyzers.CSharp to 1.0.16
 - Dependencies - Updated Philips.CodeAnalysis.MaintainabilityAnalyzers to 1.2.32
+- Dependencies - Updated SmartAnalyzers.CSharpExtensions.Annotations to 4.2.8
 
 ### Removed
 
