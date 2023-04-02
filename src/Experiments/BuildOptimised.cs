@@ -1,3 +1,4 @@
+using System.Threading;
 using System.Threading.Tasks;
 using Experiments.Implementations;
 using FunFair.Test.Common;
@@ -25,6 +26,6 @@ public sealed class BuildOptimised : LoggingTestBase
     {
         await Task.CompletedTask;
 
-        await this._hashedContentOptimizer.OptimizeAsync(source: SOURCE, destination: DESTINATION);
+        await this._hashedContentOptimizer.OptimizeAsync(source: SOURCE, destination: DESTINATION, cancellationToken: CancellationToken.None);
     }
 }

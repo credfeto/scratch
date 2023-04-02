@@ -6,6 +6,7 @@ using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Threading;
 using System.Threading.Tasks;
 using Experiments.Helpers;
 using Microsoft.Extensions.Logging;
@@ -23,7 +24,7 @@ public sealed class HashedContentOptimizer : IHashedContentOptimizer
         this._logger = logger;
     }
 
-    public async Task OptimizeAsync(string source, string destination)
+    public async Task OptimizeAsync(string source, string destination, CancellationToken cancellationToken)
     {
         if (Directory.Exists(destination))
         {
@@ -36,8 +37,8 @@ public sealed class HashedContentOptimizer : IHashedContentOptimizer
         IReadOnlyList<StrippedFile> binaryFiles = GetBinaryFiles(files);
         IReadOnlyList<StrippedFile> allTextFiles = GetAllTextFiles(files);
 
-        Dictionary<string, string> fileHashes = await this.HashBinaryFilesAsync(binaryFiles);
-        Dictionary<string, string> textFiles = await LoadTextFilesAsync(allTextFiles);
+        Dictionary<string, string> fileHashes = await this.HashBinaryFilesAsync(binaryFiles: binaryFiles, cancellationToken: cancellationToken);
+        Dictionary<string, string> textFiles = await LoadTextFilesAsync(allTextFiles: allTextFiles, cancellationToken: cancellationToken);
         IReadOnlyList<StrippedFile> renamableTextFiles = GetRenamableTextFiles(allTextFiles);
         IReadOnlyList<StrippedFile> fixedNameTextFiles = GetFixedNameTextFiles(allTextFiles);
 
@@ -47,7 +48,13 @@ public sealed class HashedContentOptimizer : IHashedContentOptimizer
 
         this.ChangeReferencesInNonRenamableTextFiles(fixedNameTextFiles: fixedNameTextFiles, textFiles: textFiles, fileHashes: fileHashes);
 
-        await this.SaveFilesAsync(source: source, destination: destination, binaryFiles: binaryFiles, fileHashes: fileHashes, allTextFiles: allTextFiles, textFiles: textFiles);
+        await this.SaveFilesAsync(source: source,
+                                  destination: destination,
+                                  binaryFiles: binaryFiles,
+                                  fileHashes: fileHashes,
+                                  allTextFiles: allTextFiles,
+                                  textFiles: textFiles,
+                                  cancellationToken: cancellationToken);
     }
 
     private static IReadOnlyList<StrippedFile> GetFixedNameTextFiles(IReadOnlyList<StrippedFile> allTextFiles)
@@ -87,7 +94,8 @@ public sealed class HashedContentOptimizer : IHashedContentOptimizer
                                       IReadOnlyList<StrippedFile> binaryFiles,
                                       Dictionary<string, string> fileHashes,
                                       IReadOnlyList<StrippedFile> allTextFiles,
-                                      Dictionary<string, string> textFiles)
+                                      Dictionary<string, string> textFiles,
+                                      CancellationToken cancellationToken)
     {
         this._logger.LogInformation($"Writing files to {destination}");
 
@@ -107,7 +115,7 @@ public sealed class HashedContentOptimizer : IHashedContentOptimizer
 
             string content = textFiles[textFile.Path];
             EnsureFolderExists(destinationPath);
-            await File.WriteAllTextAsync(path: destinationPath, contents: content, encoding: Encoding.UTF8);
+            await File.WriteAllTextAsync(path: destinationPath, contents: content, encoding: Encoding.UTF8, cancellationToken: cancellationToken);
         }
     }
 
@@ -332,7 +340,7 @@ public sealed class HashedContentOptimizer : IHashedContentOptimizer
         }
     }
 
-    private async Task<Dictionary<string, string>> HashBinaryFilesAsync(IReadOnlyList<StrippedFile> binaryFiles)
+    private async Task<Dictionary<string, string>> HashBinaryFilesAsync(IReadOnlyList<StrippedFile> binaryFiles, CancellationToken cancellationToken)
     {
         this._logger.LogInformation("Hashed Binary:");
 
@@ -340,7 +348,7 @@ public sealed class HashedContentOptimizer : IHashedContentOptimizer
 
         foreach (StrippedFile file in binaryFiles)
         {
-            string hash = await HashFileAsync(file.Path);
+            string hash = await HashFileAsync(filePath: file.Path, cancellationToken: cancellationToken);
 
             string hashedFile = this.MakeNewHashFileName(file: file, hash: hash);
 
@@ -377,7 +385,7 @@ public sealed class HashedContentOptimizer : IHashedContentOptimizer
                 {
                     string hashedBinary = fileHashes[binaryFile.Path];
                     string relative = PathHelpers.GetRelativePath(documentFullPath: file.Path, referencedFileFullPath: binaryFile.Path);
-                    string newRelative = relative.Substring(startIndex: 0, relative.Length - binaryFile.FileName.Length) + hashedBinary;
+                    string newRelative = string.Concat(relative.AsSpan(start: 0, relative.Length - binaryFile.FileName.Length), str1: hashedBinary);
 
                     hasChange |= this.ChangeContent(relative: relative, newRelative: newRelative, hashedFilePath: binaryFile.Path, newHashedPath: hashedBinary, content: ref content);
                 }
@@ -394,13 +402,13 @@ public sealed class HashedContentOptimizer : IHashedContentOptimizer
         } while (changes);
     }
 
-    private static async Task<Dictionary<string, string>> LoadTextFilesAsync(IReadOnlyList<StrippedFile> allTextFiles)
+    private static async Task<Dictionary<string, string>> LoadTextFilesAsync(IReadOnlyList<StrippedFile> allTextFiles, CancellationToken cancellationToken)
     {
         Dictionary<string, string> textFiles = new(StringComparer.Ordinal);
 
         foreach (StrippedFile file in allTextFiles)
         {
-            string contents = await File.ReadAllTextAsync(file.Path);
+            string contents = await File.ReadAllTextAsync(path: file.Path, cancellationToken: cancellationToken);
 
             textFiles.Add(key: file.Path, value: contents);
         }
@@ -425,9 +433,9 @@ public sealed class HashedContentOptimizer : IHashedContentOptimizer
         return file.FileName.Substring(startIndex: 0, file.FileName.Length - file.Extension.Length);
     }
 
-    private static async Task<string> HashFileAsync(string filePath)
+    private static async Task<string> HashFileAsync(string filePath, CancellationToken cancellationToken)
     {
-        byte[] b = await File.ReadAllBytesAsync(filePath);
+        byte[] b = await File.ReadAllBytesAsync(path: filePath, cancellationToken: cancellationToken);
 
         return HashFileContent(b);
     }
