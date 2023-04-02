@@ -53,6 +53,7 @@ Please ADD ALL Changes to the UNRELASED SECTION and not a specific release
 - Dependencies - Updated Philips.CodeAnalysis.MaintainabilityAnalyzers to 1.2.32
 - Dependencies - Updated SmartAnalyzers.CSharpExtensions.Annotations to 4.2.8
 - Dependencies - Updated FunFair.Test.Common to 6.0.26.2754
+- Dependencies - Updated Microsoft.NET.Test.Sdk to 17.5.0
 
 ### Removed
 
