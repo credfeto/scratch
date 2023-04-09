@@ -85,7 +85,7 @@ public sealed class HashedContentOptimizer : IHashedContentOptimizer
     {
         return Directory.GetFiles(path: source, searchPattern: "*", searchOption: SearchOption.AllDirectories)
                         .Select(p => this.GetStrippedFile(sourceBasePath: source, fileName: p))
-                        .OrderBy(s => s.Path)
+                        .OrderBy(keySelector: s => s.Path, comparer: StringComparer.Ordinal)
                         .ToArray();
     }
 
