@@ -21,7 +21,7 @@ public sealed class BuildOptimised : LoggingTestBase
         this._hashedContentOptimizer = new HashedContentOptimizer(hashedFileDetector: this._hashedFileDetector, this.GetTypedLogger<HashedContentOptimizer>());
     }
 
-    [Fact]
+    [Fact(Skip = "Need to correct paths")]
     public async Task BuildAsync()
     {
         await Task.CompletedTask;
