@@ -54,9 +54,9 @@ Please ADD ALL Changes to the UNRELASED SECTION and not a specific release
 - Dependencies - Updated FunFair.Test.Common to 6.0.26.2754
 - Dependencies - Updated Microsoft.NET.Test.Sdk to 17.5.0
 - Dependencies - Updated NonBlocking to 2.1.1
-- Dependencies - Updated SonarAnalyzer.CSharp to 8.55.0.65544
 - SDK - Updated DotNet SDK to 7.0.203
 - Dependencies - Updated Meziantou.Analyzer to 2.0.36
+- Dependencies - Updated SonarAnalyzer.CSharp to 8.56.0.67649
 
 ### Removed
 
