@@ -15,6 +15,30 @@ namespace Experiments.Implementations;
 
 public sealed class HashedContentOptimizer : IHashedContentOptimizer
 {
+    private static readonly IReadOnlyList<string> FixedResourceNames = new[]
+                                                                       {
+                                                                           "index.html",
+                                                                           "favicon.ico",
+                                                                           "manifest.json",
+                                                                           "robots.txt",
+                                                                           "mimetypes.json",
+                                                                           "packagemanifest.json",
+                                                                           "routing.json",
+                                                                           "api.json"
+                                                                       };
+
+    private static readonly IReadOnlyList<string> TextExtensions = new[]
+                                                                   {
+                                                                       "html",
+                                                                       "js",
+                                                                       "css",
+                                                                       "json",
+                                                                       "txt",
+                                                                       "xml",
+                                                                       "svg",
+                                                                       "map"
+                                                                   };
+
     private readonly IHashedFileDetector _hashedFileDetector;
     private readonly ILogger<HashedContentOptimizer> _logger;
 
@@ -466,12 +490,12 @@ public sealed class HashedContentOptimizer : IHashedContentOptimizer
 
     private static bool IsFixedResourceName(string fileName)
     {
-        return fileName is "index.html" or "favicon.ico" or "manifest.json" or "robots.txt" or "mimetypes.json" or "packagemanifest.json" or "routing.json" or "api.json";
+        return FixedResourceNames.Contains(value: fileName, comparer: StringComparer.Ordinal);
     }
 
     private static bool IsText(string extension)
     {
-        return extension is "html" or "js" or "css" or "json" or "txt" or "xml" or "svg" or "map";
+        return TextExtensions.Contains(value: extension, comparer: StringComparer.Ordinal);
     }
 
     [DebuggerDisplay("{Path}")]
