@@ -55,8 +55,8 @@ Please ADD ALL Changes to the UNRELASED SECTION and not a specific release
 - Dependencies - Updated Microsoft.NET.Test.Sdk to 17.5.0
 - Dependencies - Updated NonBlocking to 2.1.1
 - Dependencies - Updated SonarAnalyzer.CSharp to 8.55.0.65544
-- Dependencies - Updated Meziantou.Analyzer to 2.0.32
 - SDK - Updated DotNet SDK to 7.0.203
+- Dependencies - Updated Meziantou.Analyzer to 2.0.36
 
 ### Removed
 
