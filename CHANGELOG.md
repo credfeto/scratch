@@ -46,7 +46,6 @@ Please ADD ALL Changes to the UNRELASED SECTION and not a specific release
 - FF-1429 - Updated FunFair.Test.Common to 6.0.7.2278
 - FF-1429 - Updated SonarAnalyzer.CSharp to 8.48.0.56517
 - FF-3881 - Updated DotNet SDK to 7.0.200
-- Dependencies - Updated Credfeto.Enumeration.Source.Generation to 1.0.7.19
 - Dependencies - Updated Microsoft.VisualStudio.Threading.Analyzers to 17.5.22
 - Dependencies - Updated NSubstitute.Analyzers.CSharp to 1.0.16
 - Dependencies - Updated Philips.CodeAnalysis.MaintainabilityAnalyzers to 1.2.32
@@ -57,6 +56,7 @@ Please ADD ALL Changes to the UNRELASED SECTION and not a specific release
 - Dependencies - Updated Meziantou.Analyzer to 2.0.36
 - Dependencies - Updated SonarAnalyzer.CSharp to 8.56.0.67649
 - Dependencies - Updated FunFair.Test.Common to 6.0.29.1
+- Dependencies - Updated Credfeto.Enumeration.Source.Generation to 1.0.9.588
 
 ### Removed
 
