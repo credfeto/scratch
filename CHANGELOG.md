@@ -46,7 +46,6 @@ Please ADD ALL Changes to the UNRELASED SECTION and not a specific release
 - FF-1429 - Updated FunFair.Test.Common to 6.0.7.2278
 - FF-1429 - Updated SonarAnalyzer.CSharp to 8.48.0.56517
 - FF-3881 - Updated DotNet SDK to 7.0.200
-- Dependencies - Updated Microsoft.VisualStudio.Threading.Analyzers to 17.5.22
 - Dependencies - Updated NSubstitute.Analyzers.CSharp to 1.0.16
 - Dependencies - Updated Philips.CodeAnalysis.MaintainabilityAnalyzers to 1.2.32
 - Dependencies - Updated SmartAnalyzers.CSharpExtensions.Annotations to 4.2.8
@@ -59,6 +58,7 @@ Please ADD ALL Changes to the UNRELASED SECTION and not a specific release
 - Dependencies - Updated FunFair.CodeAnalysis to 7.0.0.18
 - Dependencies - Updated Microsoft.NET.Test.Sdk to 17.6.0
 - SDK - Updated DotNet SDK to 8.0.100-preview.4.23260.5
+- Dependencies - Updated Microsoft.VisualStudio.Threading.Analyzers to 17.6.40
 
 ### Removed
 
