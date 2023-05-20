@@ -51,7 +51,6 @@ Please ADD ALL Changes to the UNRELASED SECTION and not a specific release
 - Dependencies - Updated Philips.CodeAnalysis.MaintainabilityAnalyzers to 1.2.32
 - Dependencies - Updated SmartAnalyzers.CSharpExtensions.Annotations to 4.2.8
 - Dependencies - Updated NonBlocking to 2.1.1
-- SDK - Updated DotNet SDK to 7.0.203
 - Dependencies - Updated Credfeto.Enumeration.Source.Generation to 1.0.9.588
 - Dependencies - Updated Roslynator.Analyzers to 4.3.0
 - Dependencies - Updated SonarAnalyzer.CSharp to 9.0.0.68202
@@ -59,6 +58,7 @@ Please ADD ALL Changes to the UNRELASED SECTION and not a specific release
 - Dependencies - Updated Meziantou.Analyzer to 2.0.50
 - Dependencies - Updated FunFair.CodeAnalysis to 7.0.0.18
 - Dependencies - Updated Microsoft.NET.Test.Sdk to 17.6.0
+- SDK - Updated DotNet SDK to 8.0.100-preview.4.23260.5
 
 ### Removed
 
