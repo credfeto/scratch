@@ -237,7 +237,7 @@ public sealed class HashedContentOptimizer : IHashedContentOptimizer
 
     private static string BuildExpression(string escapedFilename)
     {
-        return string.Join(separator: "|", BuildCaptures(escapedFilename));
+        return string.Join(separator: '|', BuildCaptures(escapedFilename));
     }
 
     private static IEnumerable<string> BuildCaptures(string escapedFilename)
