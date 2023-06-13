@@ -59,6 +59,7 @@ Please ADD ALL Changes to the UNRELASED SECTION and not a specific release
 - Dependencies - Updated Microsoft.VisualStudio.Threading.Analyzers to 17.6.40
 - Dependencies - Updated Meziantou.Analyzer to 2.0.61
 - Dependencies - Updated SonarAnalyzer.CSharp to 9.3.0.71466
+- Dependencies - Updated coverlet to 6.0.0
 
 ### Removed
 
