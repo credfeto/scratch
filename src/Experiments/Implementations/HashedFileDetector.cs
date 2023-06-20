@@ -14,7 +14,6 @@ internal sealed class HashedFileDetector : IHashedFileDetector
                                                                      "chunk"
                                                                  };
 
-    /// <inheritdoc />
     public bool IsHashedFileName(string fileName)
     {
         for (string filenameWithoutExtension = Path.GetFileNameWithoutExtension(fileName);
