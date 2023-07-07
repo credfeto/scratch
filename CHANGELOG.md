@@ -61,6 +61,7 @@ Please ADD ALL Changes to the UNRELASED SECTION and not a specific release
 - Dependencies - Updated Microsoft.NET.Test.Sdk to 17.6.3
 - Dependencies - Updated Meziantou.Analyzer to 2.0.63
 - Dependencies - Updated xunit.analyzers to 1.2.0
+- Dependencies - Updated xunit to 2.5.0
 
 ### Removed
 
