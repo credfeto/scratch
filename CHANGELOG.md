@@ -49,7 +49,6 @@ Please ADD ALL Changes to the UNRELASED SECTION and not a specific release
 - Dependencies - Updated NSubstitute.Analyzers.CSharp to 1.0.16
 - Dependencies - Updated Philips.CodeAnalysis.MaintainabilityAnalyzers to 1.2.32
 - Dependencies - Updated SmartAnalyzers.CSharpExtensions.Annotations to 4.2.8
-- Dependencies - Updated NonBlocking to 2.1.1
 - Dependencies - Updated Credfeto.Enumeration.Source.Generation to 1.0.9.588
 - Dependencies - Updated Roslynator.Analyzers to 4.3.0
 - Dependencies - Updated FunFair.CodeAnalysis to 7.0.0.18
@@ -63,6 +62,7 @@ Please ADD ALL Changes to the UNRELASED SECTION and not a specific release
 - Dependencies - Updated xunit.analyzers to 1.2.0
 - Dependencies - Updated xunit to 2.5.0
 - Dependencies - Updated xunit.runner.visualstudio to 2.5.0
+- Dependencies - Updated NonBlocking to 2.1.2
 
 ### Removed
 
