@@ -54,7 +54,6 @@ Please ADD ALL Changes to the UNRELASED SECTION and not a specific release
 - Dependencies - Updated FunFair.CodeAnalysis to 7.0.0.18
 - Dependencies - Updated Microsoft.VisualStudio.Threading.Analyzers to 17.6.40
 - Dependencies - Updated coverlet to 6.0.0
-- Dependencies - Updated FunFair.Test.Common to 6.1.1.49
 - SDK - Updated DotNet SDK to 8.0.100-preview.5.23303.2
 - Dependencies - Updated SonarAnalyzer.CSharp to 9.4.0.72892
 - Dependencies - Updated Microsoft.NET.Test.Sdk to 17.6.3
@@ -63,6 +62,7 @@ Please ADD ALL Changes to the UNRELASED SECTION and not a specific release
 - Dependencies - Updated xunit to 2.5.0
 - Dependencies - Updated xunit.runner.visualstudio to 2.5.0
 - Dependencies - Updated NonBlocking to 2.1.2
+- Dependencies - Updated FunFair.Test.Common to 6.1.2.83
 
 ### Removed
 
