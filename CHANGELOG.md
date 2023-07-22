@@ -63,7 +63,7 @@ Please ADD ALL Changes to the UNRELASED SECTION and not a specific release
 - Dependencies - Updated BenchmarkDotNet to 0.13.6
 - Dependencies - Updated FunFair.Test.Common to 6.1.3.87
 - Dependencies - Updated SonarAnalyzer.CSharp to 9.5.0.73987
-- Dependencies - Updated Meziantou.Analyzer to 2.0.68
+- Dependencies - Updated Meziantou.Analyzer to 2.0.70
 
 ### Removed
 
