@@ -58,12 +58,12 @@ Please ADD ALL Changes to the UNRELASED SECTION and not a specific release
 - Dependencies - Updated xunit.runner.visualstudio to 2.5.0
 - Dependencies - Updated NonBlocking to 2.1.2
 - Dependencies - Updated BenchmarkDotNet to 0.13.6
-- Dependencies - Updated SonarAnalyzer.CSharp to 9.6.0.74858
 - Dependencies - Updated FunFair.CodeAnalysis to 7.0.1.87
 - Dependencies - Updated FunFair.Test.Common to 6.1.4.103
 - SDK - Updated DotNet SDK to 8.0.100-preview.7.23376.3
 - Dependencies - Updated Meziantou.Analyzer to 2.0.81
 - Dependencies - Updated Roslynator.Analyzers to 4.4.0
+- Dependencies - Updated SonarAnalyzer.CSharp to 9.7.0.75501
 
 ### Removed
 
