@@ -53,7 +53,6 @@ Please ADD ALL Changes to the UNRELASED SECTION and not a specific release
 - Dependencies - Updated Roslynator.Analyzers to 4.3.0
 - Dependencies - Updated Microsoft.VisualStudio.Threading.Analyzers to 17.6.40
 - Dependencies - Updated coverlet to 6.0.0
-- SDK - Updated DotNet SDK to 8.0.100-preview.5.23303.2
 - Dependencies - Updated Microsoft.NET.Test.Sdk to 17.6.3
 - Dependencies - Updated xunit.analyzers to 1.2.0
 - Dependencies - Updated xunit to 2.5.0
@@ -64,6 +63,7 @@ Please ADD ALL Changes to the UNRELASED SECTION and not a specific release
 - Dependencies - Updated FunFair.CodeAnalysis to 7.0.1.87
 - Dependencies - Updated FunFair.Test.Common to 6.1.4.103
 - Dependencies - Updated Meziantou.Analyzer to 2.0.79
+- SDK - Updated DotNet SDK to 8.0.100-preview.7.23376.3
 
 ### Removed
 
