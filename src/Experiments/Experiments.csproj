@@ -54,7 +54,7 @@
     <ProjectReference Include="..\Models\Models.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="FunFair.Test.Common" Version="6.1.4.103" />
+    <PackageReference Include="FunFair.Test.Common" Version="6.1.5.120" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="7.0.0" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.7.0" />
     <PackageReference Include="TeamCity.VSTest.TestAdapter" Version="1.0.36" />
