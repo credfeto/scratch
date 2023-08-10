@@ -50,7 +50,6 @@ Please ADD ALL Changes to the UNRELASED SECTION and not a specific release
 - Dependencies - Updated Philips.CodeAnalysis.MaintainabilityAnalyzers to 1.2.32
 - Dependencies - Updated SmartAnalyzers.CSharpExtensions.Annotations to 4.2.8
 - Dependencies - Updated Credfeto.Enumeration.Source.Generation to 1.0.9.588
-- Dependencies - Updated Microsoft.VisualStudio.Threading.Analyzers to 17.6.40
 - Dependencies - Updated coverlet to 6.0.0
 - Dependencies - Updated xunit.analyzers to 1.2.0
 - Dependencies - Updated xunit to 2.5.0
@@ -64,6 +63,7 @@ Please ADD ALL Changes to the UNRELASED SECTION and not a specific release
 - Dependencies - Updated BenchmarkDotNet to 0.13.7
 - Dependencies - Updated Microsoft.NET.Test.Sdk to 17.7.0
 - Dependencies - Updated FunFair.Test.Common to 6.1.5.120
+- Dependencies - Updated Microsoft.VisualStudio.Threading.Analyzers to 17.7.30
 
 ### Removed
 
