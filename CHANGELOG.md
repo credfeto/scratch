@@ -63,8 +63,8 @@ Please ADD ALL Changes to the UNRELASED SECTION and not a specific release
 - Dependencies - Updated FunFair.CodeAnalysis to 7.0.2.121
 - Dependencies - Updated Microsoft.NET.Test.Sdk to 17.7.2
 - Dependencies - Updated Credfeto.Enumeration.Source.Generation to 1.0.16.111
-- Dependencies - Updated Meziantou.Analyzer to 2.0.83
 - Dependencies - Updated SonarAnalyzer.CSharp to 9.9.0.77355
+- Dependencies - Updated Meziantou.Analyzer to 2.0.84
 
 ### Removed
 
