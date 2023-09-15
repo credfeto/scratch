@@ -58,13 +58,13 @@ Please ADD ALL Changes to the UNRELASED SECTION and not a specific release
 - Dependencies - Updated TeamCity.VSTest.TestAdapter to 1.0.37
 - Dependencies - Updated Roslynator.Analyzers to 4.5.0
 - Dependencies - Updated Microsoft.NET.Test.Sdk to 17.7.2
-- Dependencies - Updated SonarAnalyzer.CSharp to 9.9.0.77355
 - Dependencies - Updated BenchmarkDotNet to 0.13.8
 - SDK - Updated DotNet SDK to 8.0.100-rc.1.23455.8
 - Dependencies - Updated Meziantou.Analyzer to 2.0.85
 - Dependencies - Updated Credfeto.Enumeration.Source.Generation to 1.1.0.138
 - Dependencies - Updated FunFair.Test.Common to 6.1.10.156
 - Dependencies - Updated FunFair.CodeAnalysis to 7.0.3.138
+- Dependencies - Updated SonarAnalyzer.CSharp to 9.10.0.77988
 
 ### Removed
 
