@@ -50,7 +50,6 @@ Please ADD ALL Changes to the UNRELASED SECTION and not a specific release
 - Dependencies - Updated Philips.CodeAnalysis.MaintainabilityAnalyzers to 1.2.32
 - Dependencies - Updated SmartAnalyzers.CSharpExtensions.Annotations to 4.2.8
 - Dependencies - Updated coverlet to 6.0.0
-- Dependencies - Updated xunit to 2.5.0
 - Dependencies - Updated xunit.runner.visualstudio to 2.5.0
 - Dependencies - Updated NonBlocking to 2.1.2
 - Dependencies - Updated Microsoft.VisualStudio.Threading.Analyzers to 17.7.30
@@ -65,6 +64,7 @@ Please ADD ALL Changes to the UNRELASED SECTION and not a specific release
 - Dependencies - Updated FunFair.CodeAnalysis to 7.0.3.138
 - Dependencies - Updated SonarAnalyzer.CSharp to 9.10.0.77988
 - Dependencies - Updated xunit.analyzers to 1.3.0
+- Dependencies - Updated xunit to 2.5.1
 
 ### Removed
 
