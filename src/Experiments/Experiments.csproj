@@ -46,10 +46,6 @@
     <EnforceExtendedAnalyzerRules>false</EnforceExtendedAnalyzerRules>
   </PropertyGroup>
   <ItemGroup>
-    <!-- Note that this is not a "normal" ProjectReference.
-         It needs the additional 'OutputItemType' and 'ReferenceOutputAssmbly' attributes. -->
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\Implementations\Implementations.csproj" />
     <ProjectReference Include="..\Models\Models.csproj" />
   </ItemGroup>
