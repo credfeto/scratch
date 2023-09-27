@@ -3,8 +3,8 @@ using System.Runtime.CompilerServices;
 
 namespace Experiments.InlineStructOptimisations;
 
-[SuppressMessage("Microsoft.Design", "CA1815", Justification = "No equals needed here")]
-[SuppressMessage("FunFair.CodeAnalysis", "FFS0011", Justification = "Can't be read only for InlineArray")]
+[SuppressMessage(category: "Microsoft.Design", checkId: "CA1815", Justification = "No equals needed here")]
+[SuppressMessage(category: "FunFair.CodeAnalysis", checkId: "FFS0011", Justification = "Can't be read only for InlineArray")]
 [InlineArray(32)]
 public struct KeccakSizedArray
 {
