@@ -1,7 +1,7 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Runtime.CompilerServices;
 
-namespace Experiments.InlineStructOptimisations;
+namespace Implementations.InlineStructOptimisations;
 
 [SuppressMessage(category: "Microsoft.Design", checkId: "CA1815", Justification = "No equals needed here")]
 [SuppressMessage(category: "FunFair.CodeAnalysis", checkId: "FFS0011", Justification = "Can't be read only for InlineArray")]

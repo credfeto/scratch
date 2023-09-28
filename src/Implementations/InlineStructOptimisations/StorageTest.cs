@@ -1,6 +1,6 @@
 using System.Diagnostics;
 
-namespace Experiments.InlineStructOptimisations;
+namespace Implementations.InlineStructOptimisations;
 
 [DebuggerDisplay("{Bytes}")]
 public readonly record struct StorageTest<T>(T Bytes)

@@ -1,4 +1,4 @@
-﻿#define MEMORY
+﻿#define INLINE_ARRAY
 using System.Diagnostics;
 using BenchmarkDotNet.Running;
 
@@ -10,6 +10,7 @@ public static class Program
     {
         RunRegexBenchmarks();
         RunMemoryBenchmarks();
+        RunInlineArrayBenchmarks();
     }
 
     [Conditional("REGEX")]
@@ -22,5 +23,11 @@ public static class Program
     private static void RunMemoryBenchmarks()
     {
         BenchmarkRunner.Run<JsonDeserialiserMemoryBench>();
+    }
+
+    [Conditional("INLINE_ARRAY")]
+    private static void RunInlineArrayBenchmarks()
+    {
+        BenchmarkRunner.Run<InlineArrayBench>();
     }
 }
