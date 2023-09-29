@@ -64,14 +64,14 @@ public sealed class InlineArrayTests : LoggingTestBase
 
     private static KeccakSizedArray CreateInlineArray()
     {
-        KeccakSizedArray source = new();
+        Span<byte> source = stackalloc byte[KeccakSizedArray.Length];
 
         for (int i = 0; i < 32; ++i)
         {
             source[i] = (byte)(32 - i);
         }
 
-        return source;
+        return new(source);
     }
 
     private void Dump(in StorageTest<KeccakSizedArray> test)

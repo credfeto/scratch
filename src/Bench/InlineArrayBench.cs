@@ -36,14 +36,16 @@ public abstract class InlineArrayBench : BenchBase
     [Benchmark]
     public void UsingInlineArray()
     {
+        Span<byte> source = stackalloc byte[SIZE];
+
         for (int iteration = 0; iteration < ITERATIONS; ++iteration)
         {
-            KeccakSizedArray item = new();
-
             for (int i = 0; i < SIZE; ++i)
             {
-                item[i] = (byte)this._randomSource.Next(minValue: 0, maxValue: 255);
+                source[i] = (byte)this._randomSource.Next(minValue: 0, maxValue: 255);
             }
+
+            KeccakSizedArray item = new(source);
 
             this.Test(new StorageTest<KeccakSizedArray>(item));
         }
