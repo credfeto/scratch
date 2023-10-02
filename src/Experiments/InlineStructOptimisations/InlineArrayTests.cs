@@ -1,5 +1,7 @@
 using System;
 using System.Diagnostics;
+using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
 using FunFair.Test.Common;
 using Implementations.InlineStructOptimisations;
 using Xunit;
@@ -48,11 +50,23 @@ public sealed class InlineArrayTests : LoggingTestBase
     {
         KeccakSizedArray source = CreateInlineArray();
 
+        Span<byte> sp = AsSpan(ref source);
+
+        this.Dump(sp);
+
         StorageTest<KeccakSizedArray> test = CreateInlineStorage(source);
 
         St s = new(test);
 
         this.Dump(s.Test);
+    }
+
+    private static unsafe Span<byte> AsSpan<T>(ref T val)
+        where T : unmanaged
+    {
+        Unsafe.ReadUnaligned<byte>(ref val);
+
+        return new Span<byte>(, Marshal.SizeOf<T>());
     }
 
     private static StorageTest<KeccakSizedArray> CreateInlineStorage(KeccakSizedArray source)
@@ -84,9 +98,16 @@ public sealed class InlineArrayTests : LoggingTestBase
 
     private void Dump(in StorageTest<ReadOnlyMemory<byte>> test)
     {
+        ReadOnlySpan<byte> sp = test.Bytes.Span;
+
+        this.Dump(sp);
+    }
+
+    private void Dump(ReadOnlySpan<byte> sp)
+    {
         for (int i = 0; i < 32; ++i)
         {
-            this.Output.WriteLine($"{i}: {test.Bytes.Span[i]}");
+            this.Output.WriteLine($"{i}: {sp[i]}");
         }
     }
 
