@@ -14,10 +14,10 @@ public struct KeccakSizedArray
 
     public KeccakSizedArray(in ReadOnlySpan<byte> source)
     {
-        source.CopyTo(MemoryMarshal.CreateSpan(ref this._element0, Length));
+        source.CopyTo(MemoryMarshal.CreateSpan(reference: ref this._element0, length: Length));
     }
 
     [SuppressMessage(category: "SonarAnalyzer.CSharp", checkId: "S1144: Unused private property", Justification = "Required for InlineArray to work")]
     [SuppressMessage(category: "SonarAnalyzer.CSharp", checkId: "S4487: Unused private property", Justification = "Required for InlineArray to work")]
-    private byte _element0;
+    private readonly byte _element0;
 }
