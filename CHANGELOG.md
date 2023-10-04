@@ -58,13 +58,13 @@ Please ADD ALL Changes to the UNRELASED SECTION and not a specific release
 - Dependencies - Updated BenchmarkDotNet to 0.13.8
 - SDK - Updated DotNet SDK to 8.0.100-rc.1.23455.8
 - Dependencies - Updated Credfeto.Enumeration.Source.Generation to 1.1.0.138
-- Dependencies - Updated FunFair.Test.Common to 6.1.10.156
 - Dependencies - Updated FunFair.CodeAnalysis to 7.0.3.138
 - Dependencies - Updated xunit.analyzers to 1.3.0
 - Dependencies - Updated xunit to 2.5.1
 - Dependencies - Updated xunit.runner.visualstudio to 2.5.1
 - Dependencies - Updated SonarAnalyzer.CSharp to 9.11.0.78383
 - Dependencies - Updated Meziantou.Analyzer to 2.0.92
+- Dependencies - Updated FunFair.Test.Common to 6.1.11.175
 
 ### Removed
 
