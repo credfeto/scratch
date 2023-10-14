@@ -19,5 +19,7 @@ public struct KeccakSizedArray
 
     [SuppressMessage(category: "SonarAnalyzer.CSharp", checkId: "S1144: Unused private property", Justification = "Required for InlineArray to work")]
     [SuppressMessage(category: "SonarAnalyzer.CSharp", checkId: "S4487: Unused private property", Justification = "Required for InlineArray to work")]
-    private readonly byte _element0;
+    [SuppressMessage(category: "ReSharper", checkId: "PrivateFieldCanBeConvertedToLocalVariable", Justification = "Required for InlineArray to work")]
+    [SuppressMessage(category: "ReSharper", checkId: "FieldCanBeMadeReadOnly.Local", Justification = "Required for InlineArray to work")]
+    private byte _element0;
 }
