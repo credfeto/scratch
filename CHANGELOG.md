@@ -62,9 +62,9 @@ Please ADD ALL Changes to the UNRELASED SECTION and not a specific release
 - Dependencies - Updated xunit.analyzers to 1.4.0
 - Dependencies - Updated BenchmarkDotNet to 0.13.9
 - Dependencies - Updated FunFair.Test.Common to 6.1.12.182
-- Dependencies - Updated xunit to 2.5.2
 - Dependencies - Updated xunit.runner.visualstudio to 2.5.3
 - Dependencies - Updated Meziantou.Analyzer to 2.0.93
+- Dependencies - Updated xunit to 2.5.3
 
 ### Removed
 
