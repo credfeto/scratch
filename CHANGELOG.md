@@ -47,7 +47,6 @@ Please ADD ALL Changes to the UNRELASED SECTION and not a specific release
 - FF-1429 - Updated SonarAnalyzer.CSharp to 8.48.0.56517
 - FF-3881 - Updated DotNet SDK to 7.0.200
 - Dependencies - Updated NSubstitute.Analyzers.CSharp to 1.0.16
-- Dependencies - Updated Philips.CodeAnalysis.MaintainabilityAnalyzers to 1.2.32
 - Dependencies - Updated SmartAnalyzers.CSharpExtensions.Annotations to 4.2.8
 - Dependencies - Updated coverlet to 6.0.0
 - Dependencies - Updated NonBlocking to 2.1.2
@@ -65,6 +64,7 @@ Please ADD ALL Changes to the UNRELASED SECTION and not a specific release
 - Dependencies - Updated Roslynator.Analyzers to 4.6.0
 - Dependencies - Updated FunFair.Test.Common to 6.1.14.194
 - Dependencies - Updated Meziantou.Analyzer to 2.0.94
+- Dependencies - Updated Philips.CodeAnalysis.MaintainabilityAnalyzers to 1.3.0
 
 ### Removed
 
