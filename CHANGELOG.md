@@ -57,7 +57,6 @@ Please ADD ALL Changes to the UNRELASED SECTION and not a specific release
 - SDK - Updated DotNet SDK to 8.0.100-rc.2.23502.2
 - Dependencies - Updated SonarAnalyzer.CSharp to 9.12.0.78982
 - Dependencies - Updated xunit.analyzers to 1.4.0
-- Dependencies - Updated BenchmarkDotNet to 0.13.9
 - Dependencies - Updated xunit.runner.visualstudio to 2.5.3
 - Dependencies - Updated TeamCity.VSTest.TestAdapter to 1.0.38
 - Dependencies - Updated FunFair.Test.Common to 6.1.14.194
@@ -65,6 +64,7 @@ Please ADD ALL Changes to the UNRELASED SECTION and not a specific release
 - Dependencies - Updated Meziantou.Analyzer to 2.0.103
 - Dependencies - Updated Roslynator.Analyzers to 4.6.1
 - Dependencies - Updated xunit to 2.6.0
+- Dependencies - Updated BenchmarkDotNet to 0.13.10
 
 ### Removed
 
