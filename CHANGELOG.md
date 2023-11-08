@@ -51,7 +51,6 @@ Please ADD ALL Changes to the UNRELASED SECTION and not a specific release
 - Dependencies - Updated coverlet to 6.0.0
 - Dependencies - Updated NonBlocking to 2.1.2
 - Dependencies - Updated Microsoft.VisualStudio.Threading.Analyzers to 17.7.30
-- Dependencies - Updated Microsoft.NET.Test.Sdk to 17.7.2
 - Dependencies - Updated Credfeto.Enumeration.Source.Generation to 1.1.0.138
 - Dependencies - Updated FunFair.CodeAnalysis to 7.0.3.138
 - SDK - Updated DotNet SDK to 8.0.100-rc.2.23502.2
@@ -65,6 +64,7 @@ Please ADD ALL Changes to the UNRELASED SECTION and not a specific release
 - Dependencies - Updated BenchmarkDotNet to 0.13.10
 - Dependencies - Updated xunit to 2.6.1
 - Dependencies - Updated Meziantou.Analyzer to 2.0.105
+- Dependencies - Updated Microsoft.NET.Test.Sdk to 17.8.0
 
 ### Removed
 
