@@ -64,7 +64,7 @@ Please ADD ALL Changes to the UNRELASED SECTION and not a specific release
 - Dependencies - Updated Roslynator.Analyzers to 4.6.1
 - Dependencies - Updated BenchmarkDotNet to 0.13.10
 - Dependencies - Updated xunit to 2.6.1
-- Dependencies - Updated Meziantou.Analyzer to 2.0.104
+- Dependencies - Updated Meziantou.Analyzer to 2.0.105
 
 ### Removed
 
