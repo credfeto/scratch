@@ -65,6 +65,7 @@ Please ADD ALL Changes to the UNRELASED SECTION and not a specific release
 - Dependencies - Updated FunFair.Test.Common to 6.1.17.224
 - Dependencies - Updated Meziantou.Analyzer to 2.0.109
 - Dependencies - Updated Philips.CodeAnalysis.MaintainabilityAnalyzers to 1.4.0
+- Dependencies - Updated Microsoft.Extensions to 8.0.0
 
 ### Removed
 
