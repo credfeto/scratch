@@ -53,7 +53,6 @@ Please ADD ALL Changes to the UNRELASED SECTION and not a specific release
 - Dependencies - Updated Microsoft.VisualStudio.Threading.Analyzers to 17.7.30
 - Dependencies - Updated Credfeto.Enumeration.Source.Generation to 1.1.0.138
 - Dependencies - Updated FunFair.CodeAnalysis to 7.0.3.138
-- SDK - Updated DotNet SDK to 8.0.100-rc.2.23502.2
 - Dependencies - Updated SonarAnalyzer.CSharp to 9.12.0.78982
 - Dependencies - Updated xunit.runner.visualstudio to 2.5.3
 - Dependencies - Updated TeamCity.VSTest.TestAdapter to 1.0.38
@@ -66,6 +65,7 @@ Please ADD ALL Changes to the UNRELASED SECTION and not a specific release
 - Dependencies - Updated Meziantou.Analyzer to 2.0.109
 - Dependencies - Updated Philips.CodeAnalysis.MaintainabilityAnalyzers to 1.4.0
 - Dependencies - Updated Microsoft.Extensions to 8.0.0
+- SDK - Updated DotNet SDK to 8.0.100
 
 ### Removed
 
