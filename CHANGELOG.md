@@ -51,7 +51,6 @@ Please ADD ALL Changes to the UNRELASED SECTION and not a specific release
 - Dependencies - Updated coverlet to 6.0.0
 - Dependencies - Updated NonBlocking to 2.1.2
 - Dependencies - Updated SonarAnalyzer.CSharp to 9.12.0.78982
-- Dependencies - Updated xunit.runner.visualstudio to 2.5.3
 - Dependencies - Updated TeamCity.VSTest.TestAdapter to 1.0.38
 - Dependencies - Updated BenchmarkDotNet to 0.13.10
 - Dependencies - Updated Microsoft.NET.Test.Sdk to 17.8.0
@@ -66,6 +65,7 @@ Please ADD ALL Changes to the UNRELASED SECTION and not a specific release
 - Dependencies - Updated FunFair.Test.Common to 6.1.19.238
 - Dependencies - Updated xunit.analyzers to 1.6.0
 - Dependencies - Updated xunit to 2.6.2
+- Dependencies - Updated xunit.runner.visualstudio to 2.5.4
 
 ### Removed
 
