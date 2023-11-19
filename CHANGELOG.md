@@ -54,7 +54,6 @@ Please ADD ALL Changes to the UNRELASED SECTION and not a specific release
 - Dependencies - Updated xunit.runner.visualstudio to 2.5.3
 - Dependencies - Updated TeamCity.VSTest.TestAdapter to 1.0.38
 - Dependencies - Updated BenchmarkDotNet to 0.13.10
-- Dependencies - Updated xunit to 2.6.1
 - Dependencies - Updated Microsoft.NET.Test.Sdk to 17.8.0
 - Dependencies - Updated Roslynator.Analyzers to 4.6.2
 - Dependencies - Updated Philips.CodeAnalysis.MaintainabilityAnalyzers to 1.4.0
@@ -66,6 +65,7 @@ Please ADD ALL Changes to the UNRELASED SECTION and not a specific release
 - Dependencies - Updated Credfeto.Enumeration.Source.Generation to 1.1.1.168
 - Dependencies - Updated FunFair.Test.Common to 6.1.19.238
 - Dependencies - Updated xunit.analyzers to 1.6.0
+- Dependencies - Updated xunit to 2.6.2
 
 ### Removed
 
