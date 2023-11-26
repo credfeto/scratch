@@ -46,11 +46,6 @@ public sealed class ReleaseNoteFormatting : TestBase
     {
         this._output.WriteLine(SIMPLE);
 
-        static string MakeUpperCase(Match match)
-        {
-            return Italic(match.ToString());
-        }
-
         this._output.WriteLine(message: "****************************************************");
         StringBuilder builder = new();
         string[] text = SIMPLE.Split(Environment.NewLine);
@@ -66,16 +61,17 @@ public sealed class ReleaseNoteFormatting : TestBase
                 continue;
             }
 
-            builder.AppendLine(Regex.Replace(input: line,
-                                             pattern: "(ff\\-\\d+)",
-                                             evaluator: MakeUpperCase,
-                                             RegexOptions.IgnoreCase | RegexOptions.ExplicitCapture,
-                                             matchTimeout: TimeOut)
+            builder.AppendLine(Regex.Replace(input: line, pattern: "(ff\\-\\d+)", evaluator: MakeUpperCase, RegexOptions.IgnoreCase | RegexOptions.ExplicitCapture, matchTimeout: TimeOut)
                                     .Trim());
         }
 
         this._output.WriteLine(builder.ToString());
 
         Assert.True(condition: true, userMessage: "Not really a test");
+
+        static string MakeUpperCase(Match match)
+        {
+            return Italic(match.ToString());
+        }
     }
 }
