@@ -50,7 +50,6 @@ Please ADD ALL Changes to the UNRELEASED SECTION and not a specific release
 - Dependencies - Updated SmartAnalyzers.CSharpExtensions.Annotations to 4.2.8
 - Dependencies - Updated coverlet to 6.0.0
 - Dependencies - Updated NonBlocking to 2.1.2
-- Dependencies - Updated SonarAnalyzer.CSharp to 9.12.0.78982
 - Dependencies - Updated TeamCity.VSTest.TestAdapter to 1.0.38
 - Dependencies - Updated BenchmarkDotNet to 0.13.10
 - Dependencies - Updated Microsoft.NET.Test.Sdk to 17.8.0
@@ -66,6 +65,7 @@ Please ADD ALL Changes to the UNRELEASED SECTION and not a specific release
 - Dependencies - Updated Roslynator.Analyzers to 4.6.4
 - Dependencies - Updated FunFair.Test.Common to 6.1.21.247
 - Dependencies - Updated Meziantou.Analyzer to 2.0.112
+- Dependencies - Updated SonarAnalyzer.CSharp to 9.14.0.81108
 
 ### Removed
 
