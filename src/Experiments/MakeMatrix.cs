@@ -74,6 +74,7 @@ public sealed class MakeMatrix : TestBase
         public T To { get; }
 
         [SuppressMessage(category: "SonarAnalyzer.CSharp", checkId: "S1144: Unused private property", Justification = "For testing purposes")]
+        [SuppressMessage(category: "ReSharper", checkId: "UnusedMember.Local", Justification = "Required for test")]
         public bool? Compatibile { get; set; }
     }
 }
