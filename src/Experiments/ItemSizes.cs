@@ -28,8 +28,13 @@ public sealed class ItemSizes : TestBase
 
     private static int GetSizeInt<T>([NotNull] T item)
     {
-        RuntimeTypeHandle th = item!.GetType()
-                                    .TypeHandle;
+        if (item is null)
+        {
+            throw new ArgumentNullException(nameof(item));
+        }
+
+        RuntimeTypeHandle th = item.GetType()
+                                   .TypeHandle;
 
         return Marshal.ReadInt32(ptr: th.Value, ofs: 4);
     }
@@ -67,8 +72,10 @@ public sealed class ItemSizes : TestBase
     [StructLayout(LayoutKind.Auto)]
     private readonly struct TestValueTypeWithOnlyValueTypes
     {
+        [SuppressMessage(category: "ReSharper", checkId: "UnusedAutoPropertyAccessor.Local", Justification = "Required for test")]
         public int I { get; }
 
+        [SuppressMessage(category: "ReSharper", checkId: "UnusedAutoPropertyAccessor.Local", Justification = "Required for test")]
         public long J { get; }
 
         public TestValueTypeWithOnlyValueTypes(int i, long j)
@@ -86,15 +93,19 @@ public sealed class ItemSizes : TestBase
             this.J = j;
         }
 
+        [SuppressMessage(category: "ReSharper", checkId: "UnusedAutoPropertyAccessor.Local", Justification = "Required for test")]
         public int I { get; }
 
+        [SuppressMessage(category: "ReSharper", checkId: "UnusedAutoPropertyAccessor.Local", Justification = "Required for test")]
         public long J { get; }
     }
 
     private readonly struct TestValueTypeWithOnlyMixedValueTypesAndReferenceTypes
     {
+        [SuppressMessage(category: "ReSharper", checkId: "UnusedAutoPropertyAccessor.Local", Justification = "Required for test")]
         public int I { get; }
 
+        [SuppressMessage(category: "ReSharper", checkId: "UnusedAutoPropertyAccessor.Local", Justification = "Required for test")]
         public string J { get; }
 
         public TestValueTypeWithOnlyMixedValueTypesAndReferenceTypes(int i, string j)
@@ -112,8 +123,10 @@ public sealed class ItemSizes : TestBase
             this.J = j;
         }
 
+        [SuppressMessage(category: "ReSharper", checkId: "UnusedAutoPropertyAccessor.Local", Justification = "Required for test")]
         public int I { get; }
 
+        [SuppressMessage(category: "ReSharper", checkId: "UnusedAutoPropertyAccessor.Local", Justification = "Required for test")]
         public string J { get; }
     }
 
@@ -126,10 +139,13 @@ public sealed class ItemSizes : TestBase
             this.K = k;
         }
 
+        [SuppressMessage(category: "ReSharper", checkId: "UnusedAutoPropertyAccessor.Local", Justification = "Required for test")]
         public int I { get; }
 
+        [SuppressMessage(category: "ReSharper", checkId: "UnusedAutoPropertyAccessor.Local", Justification = "Required for test")]
         public string J { get; }
 
+        [SuppressMessage(category: "ReSharper", checkId: "UnusedAutoPropertyAccessor.Local", Justification = "Required for test")]
         public TestRefTypeWithOnlyMixedValueTypesAndReferenceTypes K { get; }
     }
 }

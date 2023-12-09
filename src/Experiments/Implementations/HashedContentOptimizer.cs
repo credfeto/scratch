@@ -154,7 +154,12 @@ public sealed class HashedContentOptimizer : IHashedContentOptimizer
 
     private static void EnsureFolderExists(string destinationPath)
     {
-        string dp = Path.GetDirectoryName(destinationPath)!;
+        string? dp = Path.GetDirectoryName(destinationPath);
+
+        if (string.IsNullOrEmpty(dp))
+        {
+            throw new PathTooLongException($"Could not resolve path for {destinationPath}");
+        }
 
         if (!Directory.Exists(dp))
         {
@@ -162,9 +167,7 @@ public sealed class HashedContentOptimizer : IHashedContentOptimizer
         }
     }
 
-    private void ChangeReferencesInNonRenamableTextFiles(IReadOnlyList<StrippedFile> fixedNameTextFiles,
-                                                         Dictionary<string, string> textFiles,
-                                                         Dictionary<string, string> fileHashes)
+    private void ChangeReferencesInNonRenamableTextFiles(IReadOnlyList<StrippedFile> fixedNameTextFiles, Dictionary<string, string> textFiles, Dictionary<string, string> fileHashes)
     {
         this._logger.LogInformation("Changing references in non-renamable text files");
 
@@ -195,22 +198,6 @@ public sealed class HashedContentOptimizer : IHashedContentOptimizer
     {
         Regex regex = GetRegex(relative);
 
-        string Evaluator(Match m)
-        {
-            string txt = m.Value;
-
-            if (string.IsNullOrEmpty(txt))
-            {
-                return string.Empty;
-            }
-
-            return Quote(txt[0]
-                             .ToString(),
-                         txt[txt.Length - 1]
-                             .ToString(),
-                         toQuote: newRelative);
-        }
-
         string changedContent = regex.Replace(input: content, evaluator: Evaluator);
 
         if (!StringComparer.Ordinal.Equals(x: content, y: changedContent))
@@ -224,6 +211,22 @@ public sealed class HashedContentOptimizer : IHashedContentOptimizer
         }
 
         return false;
+
+        string Evaluator(Match m)
+        {
+            string txt = m.Value;
+
+            if (string.IsNullOrEmpty(txt))
+            {
+                return string.Empty;
+            }
+
+            return Quote(txt[0]
+                             .ToString(),
+                         txt[^1]
+                             .ToString(),
+                         toQuote: newRelative);
+        }
     }
 
     private static Regex GetRegex(string relative)
@@ -344,11 +347,7 @@ public sealed class HashedContentOptimizer : IHashedContentOptimizer
         }
     }
 
-    private void MakeReplacement(IReadOnlyList<StrippedFile> renamableTextFiles,
-                                 Dictionary<string, string> fileHashes,
-                                 Dictionary<string, string> textFiles,
-                                 StrippedFile file,
-                                 string newHashedPath)
+    private void MakeReplacement(IReadOnlyList<StrippedFile> renamableTextFiles, Dictionary<string, string> fileHashes, Dictionary<string, string> textFiles, StrippedFile file, string newHashedPath)
     {
         foreach (StrippedFile referencing in renamableTextFiles)
         {
@@ -361,11 +360,7 @@ public sealed class HashedContentOptimizer : IHashedContentOptimizer
             string newRelative = PathHelpers.GetRelativePath(documentFullPath: referencing.Path, referencedFileFullPath: newHashedPath);
             string referencingContent = textFiles[referencing.Path];
 
-            bool changed = this.ChangeContent(relative: relativeInReferencing,
-                                              newRelative: newRelative,
-                                              hashedFilePath: file.Path,
-                                              newHashedPath: newHashedPath,
-                                              content: ref referencingContent);
+            bool changed = this.ChangeContent(relative: relativeInReferencing, newRelative: newRelative, hashedFilePath: file.Path, newHashedPath: newHashedPath, content: ref referencingContent);
 
             if (changed)
             {
@@ -421,11 +416,7 @@ public sealed class HashedContentOptimizer : IHashedContentOptimizer
                     string relative = PathHelpers.GetRelativePath(documentFullPath: file.Path, referencedFileFullPath: binaryFile.Path);
                     string newRelative = string.Concat(relative.AsSpan(start: 0, relative.Length - binaryFile.FileName.Length), str1: hashedBinary);
 
-                    hasChange |= this.ChangeContent(relative: relative,
-                                                    newRelative: newRelative,
-                                                    hashedFilePath: binaryFile.Path,
-                                                    newHashedPath: hashedBinary,
-                                                    content: ref content);
+                    hasChange |= this.ChangeContent(relative: relative, newRelative: newRelative, hashedFilePath: binaryFile.Path, newHashedPath: hashedBinary, content: ref content);
                 }
 
                 if (hasChange)
