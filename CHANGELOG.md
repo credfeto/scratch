@@ -47,7 +47,6 @@ Please ADD ALL Changes to the UNRELEASED SECTION and not a specific release
 - FF-1429 - Updated SonarAnalyzer.CSharp to 8.48.0.56517
 - FF-3881 - Updated DotNet SDK to 7.0.200
 - Dependencies - Updated NSubstitute.Analyzers.CSharp to 1.0.16
-- Dependencies - Updated SmartAnalyzers.CSharpExtensions.Annotations to 4.2.8
 - Dependencies - Updated coverlet to 6.0.0
 - Dependencies - Updated NonBlocking to 2.1.2
 - Dependencies - Updated TeamCity.VSTest.TestAdapter to 1.0.38
@@ -67,6 +66,7 @@ Please ADD ALL Changes to the UNRELEASED SECTION and not a specific release
 - Dependencies - Updated xunit.runner.visualstudio to 2.5.5
 - Dependencies - Updated FunFair.Test.Common to 6.1.23.276
 - Dependencies - Updated Meziantou.Analyzer to 2.0.122
+- Dependencies - Updated SmartAnalyzers.CSharpExtensions.Annotations to 4.2.9
 
 ### Removed
 
