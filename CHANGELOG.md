@@ -49,7 +49,6 @@ Please ADD ALL Changes to the UNRELEASED SECTION and not a specific release
 - Dependencies - Updated NSubstitute.Analyzers.CSharp to 1.0.16
 - Dependencies - Updated coverlet to 6.0.0
 - Dependencies - Updated NonBlocking to 2.1.2
-- Dependencies - Updated TeamCity.VSTest.TestAdapter to 1.0.38
 - Dependencies - Updated Microsoft.NET.Test.Sdk to 17.8.0
 - Dependencies - Updated Philips.CodeAnalysis.MaintainabilityAnalyzers to 1.4.0
 - Dependencies - Updated Microsoft.Extensions to 8.0.0
@@ -67,6 +66,7 @@ Please ADD ALL Changes to the UNRELEASED SECTION and not a specific release
 - Dependencies - Updated FunFair.Test.Common to 6.1.23.276
 - Dependencies - Updated SmartAnalyzers.CSharpExtensions.Annotations to 4.2.9
 - Dependencies - Updated Meziantou.Analyzer to 2.0.123
+- Dependencies - Updated TeamCity.VSTest.TestAdapter to 1.0.39
 
 ### Removed
 
