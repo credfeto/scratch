@@ -15,13 +15,13 @@ public abstract partial class RegexBench : BenchBase
     private const string GOOD = "0123456789abcdef";
     private const string BAD = "0123456789abcdefg";
 
-    private const string REGEX_PATERN = "^[0-9a-fA-F]+$";
-    private static readonly RegexOptions RegexMatchOptions = RegexOptions.CultureInvariant | RegexOptions.ExplicitCapture | RegexOptions.Singleline;
+    private const string REGEX_PATTERN = "^[0-9a-fA-F]+$";
+    private const RegexOptions REGEX_MATCH_OPTIONS = RegexOptions.CultureInvariant | RegexOptions.ExplicitCapture | RegexOptions.Singleline;
 
     [SuppressMessage(category: "Meziantou.Analyzers", checkId: "MA0110: Use regex source generator", Justification = "cannot be for a test case")]
-    private static readonly Regex CompiledRegex = new(pattern: REGEX_PATERN, options: RegexMatchOptions, TimeSpan.FromMilliseconds(TIMEOUT));
+    private static readonly Regex CompiledRegex = new(pattern: REGEX_PATTERN, options: REGEX_MATCH_OPTIONS, TimeSpan.FromMilliseconds(TIMEOUT));
 
-    [GeneratedRegex(pattern: REGEX_PATERN, options: RegexMatchOptions, matchTimeoutMilliseconds: TIMEOUT)]
+    [GeneratedRegex(pattern: REGEX_PATTERN, options: REGEX_MATCH_OPTIONS, matchTimeoutMilliseconds: TIMEOUT)]
     private static partial Regex SourceGeneratedRegex();
 
     [Benchmark]
