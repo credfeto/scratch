@@ -44,12 +44,12 @@ public sealed class MakeMatrix : TestBase
     public void Produce()
     {
         int[] source =
-        {
+        [
             1,
             2,
             3,
             4
-        };
+        ];
 
         CompatibilityCheck<int>[,] m = Matrix(source);
 
