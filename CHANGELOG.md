@@ -18,6 +18,7 @@ Please ADD ALL Changes to the UNRELEASED SECTION and not a specific release
 - Dependencies - Updated Roslynator.Analyzers to 4.9.0
 - Dependencies - Updated xunit.analyzers to 1.10.0
 - Dependencies - Updated xunit to 2.6.6
+- Dependencies - Updated BenchmarkDotNet to 0.13.12
 ### Removed
 ### Removed
 - Nothing
