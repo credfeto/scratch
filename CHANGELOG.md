@@ -18,7 +18,7 @@ Please ADD ALL Changes to the UNRELEASED SECTION and not a specific release
 - Dependencies - Updated xunit.analyzers to 1.10.0
 - Dependencies - Updated xunit to 2.6.6
 - Dependencies - Updated BenchmarkDotNet to 0.13.12
-- Dependencies - Updated FunFair.Test.Common to 6.1.37.329
+- Dependencies - Updated FunFair.Test.Common to 6.1.39.333
 ### Removed
 ### Removed
 - Nothing
