@@ -19,6 +19,7 @@ Please ADD ALL Changes to the UNRELEASED SECTION and not a specific release
 - Dependencies - Updated xunit to 2.6.6
 - Dependencies - Updated BenchmarkDotNet to 0.13.12
 - Dependencies - Updated FunFair.Test.Common to 6.1.39.333
+- Dependencies - Updated SonarAnalyzer.CSharp to 9.17.0.82934
 ### Removed
 ### Removed
 - Nothing
