@@ -15,8 +15,8 @@ namespace Experiments.Implementations;
 
 public sealed class HashedContentOptimizer : IHashedContentOptimizer
 {
-    private static readonly IReadOnlyList<string> FixedResourceNames = new[]
-                                                                       {
+    private static readonly IReadOnlyList<string> FixedResourceNames = [
+
                                                                            "index.html",
                                                                            "favicon.ico",
                                                                            "manifest.json",
@@ -25,10 +25,10 @@ public sealed class HashedContentOptimizer : IHashedContentOptimizer
                                                                            "packagemanifest.json",
                                                                            "routing.json",
                                                                            "api.json"
-                                                                       };
+                                                                       ];
 
-    private static readonly IReadOnlyList<string> TextExtensions = new[]
-                                                                   {
+    private static readonly IReadOnlyList<string> TextExtensions = [
+
                                                                        "html",
                                                                        "js",
                                                                        "css",
@@ -37,7 +37,7 @@ public sealed class HashedContentOptimizer : IHashedContentOptimizer
                                                                        "xml",
                                                                        "svg",
                                                                        "map"
-                                                                   };
+                                                                   ];
 
     private readonly IHashedFileDetector _hashedFileDetector;
     private readonly ILogger<HashedContentOptimizer> _logger;
