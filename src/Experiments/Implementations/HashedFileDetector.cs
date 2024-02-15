@@ -7,12 +7,12 @@ namespace Experiments.Implementations;
 
 internal sealed class HashedFileDetector : IHashedFileDetector
 {
-    private static readonly IReadOnlyList<string> NonHexSuffix = new[]
-                                                                 {
-                                                                     "bundle",
-                                                                     "chunked",
-                                                                     "chunk"
-                                                                 };
+    private static readonly IReadOnlyList<string> NonHexSuffix =
+    [
+        "bundle",
+        "chunked",
+        "chunk"
+    ];
 
     public bool IsHashedFileName(string fileName)
     {
