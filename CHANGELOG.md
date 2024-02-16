@@ -11,7 +11,6 @@ Please ADD ALL Changes to the UNRELEASED SECTION and not a specific release
 ### Fixed
 ### Changed
 - Dependencies - Updated Nullable.Extended.Analyzer to 1.15.6169
-- Dependencies - Updated xunit.analyzers to 1.10.0
 - Dependencies - Updated xunit to 2.6.6
 - Dependencies - Updated BenchmarkDotNet to 0.13.12
 - Dependencies - Updated Roslynator.Analyzers to 4.10.0
@@ -24,6 +23,7 @@ Please ADD ALL Changes to the UNRELEASED SECTION and not a specific release
 - Dependencies - Updated Meziantou.Analyzer to 2.0.141
 - Dependencies - Updated NSubstitute.Analyzers.CSharp to 1.0.17
 - SDK - Updated DotNet SDK to 8.0.200
+- Dependencies - Updated xunit.analyzers to 1.11.0
 ### Removed
 ### Removed
 - Nothing
