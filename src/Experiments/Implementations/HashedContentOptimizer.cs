@@ -15,29 +15,29 @@ namespace Experiments.Implementations;
 
 public sealed class HashedContentOptimizer : IHashedContentOptimizer
 {
-    private static readonly IReadOnlyList<string> FixedResourceNames = [
+    private static readonly IReadOnlyList<string> FixedResourceNames =
+    [
+        "index.html",
+        "favicon.ico",
+        "manifest.json",
+        "robots.txt",
+        "mimetypes.json",
+        "packagemanifest.json",
+        "routing.json",
+        "api.json"
+    ];
 
-                                                                           "index.html",
-                                                                           "favicon.ico",
-                                                                           "manifest.json",
-                                                                           "robots.txt",
-                                                                           "mimetypes.json",
-                                                                           "packagemanifest.json",
-                                                                           "routing.json",
-                                                                           "api.json"
-                                                                       ];
-
-    private static readonly IReadOnlyList<string> TextExtensions = [
-
-                                                                       "html",
-                                                                       "js",
-                                                                       "css",
-                                                                       "json",
-                                                                       "txt",
-                                                                       "xml",
-                                                                       "svg",
-                                                                       "map"
-                                                                   ];
+    private static readonly IReadOnlyList<string> TextExtensions =
+    [
+        "html",
+        "js",
+        "css",
+        "json",
+        "txt",
+        "xml",
+        "svg",
+        "map"
+    ];
 
     private readonly IHashedFileDetector _hashedFileDetector;
     private readonly ILogger<HashedContentOptimizer> _logger;
