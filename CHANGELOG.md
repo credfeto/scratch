@@ -18,7 +18,6 @@ Please ADD ALL Changes to the UNRELEASED SECTION and not a specific release
 - Dependencies - Updated xunit.analyzers to 1.11.0
 - Dependencies - Updated xunit.runner.visualstudio to 2.5.7
 - Dependencies - Updated xunit to 2.7.0
-- SDK - Updated DotNet SDK to 8.0.201
 - Dependencies - Updated Roslynator.Analyzers to 4.11.0
 - Dependencies - Updated coverlet to 6.0.1
 - Dependencies - Updated TeamCity.VSTest.TestAdapter to 1.0.40
@@ -28,6 +27,7 @@ Please ADD ALL Changes to the UNRELEASED SECTION and not a specific release
 - Dependencies - Updated FunFair.Test.Common to 6.1.45.389
 - Dependencies - Updated Credfeto.Enumeration.Source.Generation to 1.1.4.303
 - Dependencies - Updated Microsoft.Extensions to 8.0.1
+- SDK - Updated DotNet SDK to 8.0.202
 ### Removed
 ### Removed
 - Nothing
