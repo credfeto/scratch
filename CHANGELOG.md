@@ -10,9 +10,6 @@ Please ADD ALL Changes to the UNRELEASED SECTION and not a specific release
 ### Added
 ### Fixed
 ### Changed
-- Dependencies - Updated FunFair.Test.Common to 6.1.48.414
-- Dependencies - Updated SonarAnalyzer.CSharp to 9.23.1.88495
-- SDK - Updated DotNet SDK to 8.0.204
 ### Removed
 ### Removed
 ### Deployment Changes
@@ -20,6 +17,12 @@ Please ADD ALL Changes to the UNRELEASED SECTION and not a specific release
 <!--
 Releases that have at least been deployed to staging, BUT NOT necessarily released to live.  Changes should be moved from [Unreleased] into here as they are merged into the appropriate release branch
 -->
+## [0.0.7] - 2024-04-10
+### Changed
+- Dependencies - Updated FunFair.Test.Common to 6.1.48.414
+- Dependencies - Updated SonarAnalyzer.CSharp to 9.23.1.88495
+- SDK - Updated DotNet SDK to 8.0.204
+
 ## [0.0.6] - 2024-03-29
 ### Changed
 - Dependencies - Updated Nullable.Extended.Analyzer to 1.15.6169
