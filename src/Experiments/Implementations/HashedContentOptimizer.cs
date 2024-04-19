@@ -107,10 +107,12 @@ public sealed class HashedContentOptimizer : IHashedContentOptimizer
 
     private IReadOnlyList<StrippedFile> FindFiles(string source)
     {
-        return Directory.GetFiles(path: source, searchPattern: "*", searchOption: SearchOption.AllDirectories)
-                        .Select(p => this.GetStrippedFile(sourceBasePath: source, fileName: p))
-                        .OrderBy(keySelector: s => s.Path, comparer: StringComparer.Ordinal)
-                        .ToArray();
+        return
+        [
+            ..Directory.EnumerateFiles(path: source, searchPattern: "*", searchOption: SearchOption.AllDirectories)
+                       .Select(p => this.GetStrippedFile(sourceBasePath: source, fileName: p))
+                       .OrderBy(keySelector: s => s.Path, comparer: StringComparer.Ordinal)
+        ];
     }
 
     private async Task SaveFilesAsync(string source,
