@@ -10,6 +10,15 @@ Please ADD ALL Changes to the UNRELEASED SECTION and not a specific release
 ### Added
 ### Fixed
 ### Changed
+### Removed
+### Removed
+### Deployment Changes
+
+<!--
+Releases that have at least been deployed to staging, BUT NOT necessarily released to live.  Changes should be moved from [Unreleased] into here as they are merged into the appropriate release branch
+-->
+## [0.0.9] - 2024-05-15
+### Changed
 - Dependencies - Updated FunFair.CodeAnalysis to 7.0.14.369
 - Dependencies - Updated xunit.analyzers to 1.13.0
 - Dependencies - Updated xunit.runner.visualstudio to 2.8.0
@@ -20,13 +29,7 @@ Please ADD ALL Changes to the UNRELEASED SECTION and not a specific release
 - Dependencies - Updated SonarAnalyzer.CSharp to 9.25.0.90414
 - Dependencies - Updated Roslynator.Analyzers to 4.12.3
 - SDK - Updated DotNet SDK to 8.0.300
-### Removed
-### Removed
-### Deployment Changes
 
-<!--
-Releases that have at least been deployed to staging, BUT NOT necessarily released to live.  Changes should be moved from [Unreleased] into here as they are merged into the appropriate release branch
--->
 ## [0.0.8] - 2024-04-20
 ### Changed
 - Dependencies - Updated FunFair.CodeAnalysis to 7.0.13.341
