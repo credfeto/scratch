@@ -1,42 +1,42 @@
 ".NET update":
- - any: [ ''src/global.json'' ]
+ - any: [ 'src/global.json' ]
 "bench":
- - any: [ ''src/$Bench/**/*'' ]
+ - any: [ 'src/$Bench/**/*' ]
 "C#":
- - any: [ ''./**/*.cs', './**/*.csproj'' ]
+ - any: [ './**/*.cs', './**/*.csproj' ]
 "C# Project":
- - any: [ ''./**/*.csproj'' ]
+ - any: [ './**/*.csproj' ]
 "C# Solution":
- - any: [ ''./**/*.sln'' ]
+ - any: [ './**/*.sln' ]
 "Change Log":
- - any: [ ''CHANGELOG.md'' ]
+ - any: [ 'CHANGELOG.md' ]
 "Config Change":
- - any: [ ''src/**/*.json', '!src/global.json'' ]
+ - any: [ 'src/**/*.json', '!src/global.json' ]
 "experiments":
- - any: [ ''src/$Experiments/**/*'' ]
+ - any: [ 'src/$Experiments/**/*' ]
 "github-actions":
- - any: [ ''.github/workflows/*.yml'' ]
+ - any: [ '.github/workflows/*.yml' ]
 "implementations":
- - any: [ ''src/$Implementations/**/*'' ]
+ - any: [ 'src/$Implementations/**/*' ]
 "Legal Text":
- - any: [ ''tools/LegalText/**/*'' ]
+ - any: [ 'tools/LegalText/**/*' ]
 "Markdown":
- - any: [ ''./**/*.md'' ]
+ - any: [ './**/*.md' ]
 "Migration Script":
- - any: [ ''tools/MigrationScripts/**/*'' ]
+ - any: [ 'tools/MigrationScripts/**/*' ]
 "models":
- - any: [ ''src/$Models/**/*'' ]
+ - any: [ 'src/$Models/**/*' ]
 "Powershell":
- - any: [ ''./**/*.ps1', './**/*.psm1'' ]
+ - any: [ './**/*.ps1', './**/*.psm1' ]
 "Read Me":
- - any: [ ''README.md'' ]
+ - any: [ 'README.md' ]
 "Setup":
- - any: [ ''SETUP.md'' ]
+ - any: [ 'SETUP.md' ]
 "Solidity":
- - any: [ ''./**/*.sol'' ]
+ - any: [ './**/*.sol' ]
 "SQL":
- - any: [ ''./**/*.sql', 'db/**/*'' ]
+ - any: [ './**/*.sql', 'db/**/*' ]
 "Static Code Analysis Rules":
- - any: [ ''src/CodeAnalysis.ruleset'' ]
+ - any: [ 'src/CodeAnalysis.ruleset' ]
 "unit-tests":
- - any: [ ''src/*.Tests.*/**/*', 'src/*.Tests.Integration.*/**/*', 'src/*.Tests.Integration/**/*', 'src/*.Tests/**/*'' ]
+ - any: [ 'src/*.Tests.*/**/*', 'src/*.Tests.Integration.*/**/*', 'src/*.Tests.Integration/**/*', 'src/*.Tests/**/*' ]
