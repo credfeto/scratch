@@ -3,6 +3,7 @@ using System.Runtime.CompilerServices;
 
 namespace Bench;
 
+[SuppressMessage(category: "Microsoft.Performance", checkId: "CA1822:Mark methods static", Justification = "Benchmark")]
 public abstract class BenchBase
 {
     [SuppressMessage(category: "codecracker.CSharp", checkId: "CC0091:MarkMembersAsStatic", Justification = "Benchmark")]
