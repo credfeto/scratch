@@ -10,6 +10,15 @@ Please ADD ALL Changes to the UNRELEASED SECTION and not a specific release
 ### Added
 ### Fixed
 ### Changed
+### Removed
+### Removed
+### Deployment Changes
+
+<!--
+Releases that have at least been deployed to staging, BUT NOT necessarily released to live.  Changes should be moved from [Unreleased] into here as they are merged into the appropriate release branch
+-->
+## [0.0.11] - 2024-07-25
+### Changed
 - Dependencies - Updated FunFair.CodeAnalysis to 7.0.15.397
 - Dependencies - Updated CSharpIsNullAnalyzer to 0.1.593
 - Dependencies - Updated Meziantou.Analyzer to 2.0.161
@@ -20,13 +29,7 @@ Please ADD ALL Changes to the UNRELEASED SECTION and not a specific release
 - Dependencies - Updated FunFair.Test.Common to 6.1.62.556
 - Dependencies - Updated Microsoft.NET.Test.Sdk to 17.10.0
 - Dependencies - Updated SonarAnalyzer.CSharp to 9.30.0.95878
-### Removed
-### Removed
-### Deployment Changes
 
-<!--
-Releases that have at least been deployed to staging, BUT NOT necessarily released to live.  Changes should be moved from [Unreleased] into here as they are merged into the appropriate release branch
--->
 ## [0.0.10] - 2024-05-16
 ### Changed
 - Dependencies - Updated FunFair.Test.Common to 6.1.54.488
