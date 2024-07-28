@@ -475,7 +475,8 @@ public sealed class HashedContentOptimizer : IHashedContentOptimizer
     {
         byte[] x = SHA256.HashData(b);
 
-        return Convert.ToHexStringLower(x);
+        return Convert.ToHexString(x)
+                      .ToLowerInvariant();
     }
 
     private StrippedFile GetStrippedFile(string sourceBasePath, string fileName)
