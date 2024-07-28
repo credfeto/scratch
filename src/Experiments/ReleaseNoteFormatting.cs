@@ -54,7 +54,7 @@ public sealed class ReleaseNoteFormatting : TestBase
         {
             if (line.StartsWith(value: "### ", comparisonType: StringComparison.Ordinal))
             {
-                string replacement = Bold(Underline(line.Substring(startIndex: 4)
+                string replacement = Bold(Underline(line[4..]
                                                         .Trim()));
                 builder.AppendLine(replacement);
 

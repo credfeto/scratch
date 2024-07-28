@@ -149,7 +149,7 @@ public sealed class HashedContentOptimizer : IHashedContentOptimizer
     {
         string hashedPath = fileHashes[file.Path];
         this._logger.LogInformation($"Generating Destination file for {hashedPath} from {source} to {destination}");
-        string destinationPath = Path.Combine(path1: destination, hashedPath.Substring(source.Length));
+        string destinationPath = Path.Combine(path1: destination, hashedPath[source.Length..]);
 
         return destinationPath;
     }
@@ -449,19 +449,19 @@ public sealed class HashedContentOptimizer : IHashedContentOptimizer
 
     private string MakeNewHashFileName(StrippedFile file, string hash)
     {
-        string path = file.Path.Substring(startIndex: 0, file.Path.Length - file.FileName.Length);
+        string path = file.Path[..^file.FileName.Length];
 
         if (this._hashedFileDetector.IsHashedFileName(path))
         {
             return path + RemoveHash(file) + "mrhash." + hash + "." + file.Extension;
         }
 
-        return path + file.FileName.Substring(startIndex: 0, file.FileName.Length - file.Extension.Length) + "mrhash." + hash + "." + file.Extension;
+        return path + file.FileName[..^file.Extension.Length] + "mrhash." + hash + "." + file.Extension;
     }
 
     private static string RemoveHash(StrippedFile file)
     {
-        return file.FileName.Substring(startIndex: 0, file.FileName.Length - file.Extension.Length);
+        return file.FileName[..^file.Extension.Length];
     }
 
     private static async Task<string> HashFileAsync(string filePath, CancellationToken cancellationToken)
@@ -475,9 +475,7 @@ public sealed class HashedContentOptimizer : IHashedContentOptimizer
     {
         byte[] x = SHA256.HashData(b);
 
-        return BitConverter.ToString(x)
-                           .ToLowerInvariant()
-                           .Replace(oldValue: "-", newValue: string.Empty, comparisonType: StringComparison.Ordinal);
+        return Convert.ToHexStringLower(x);
     }
 
     private StrippedFile GetStrippedFile(string sourceBasePath, string fileName)
@@ -486,7 +484,7 @@ public sealed class HashedContentOptimizer : IHashedContentOptimizer
         string e = Path.GetExtension(fileName)
                        .TrimStart('.');
 
-        return new(Path: fileName, fileName.Substring(sourceBasePath.Length), FileName: f, Extension: e, !IsFixedResourceName(f), IsText(e), this._hashedFileDetector.IsHashedFileName(fileName));
+        return new(Path: fileName, fileName[sourceBasePath.Length..], FileName: f, Extension: e, !IsFixedResourceName(f), IsText(e), this._hashedFileDetector.IsHashedFileName(fileName));
     }
 
     private static bool IsFixedResourceName(string fileName)
