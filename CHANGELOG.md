@@ -10,13 +10,6 @@ Please ADD ALL Changes to the UNRELEASED SECTION and not a specific release
 ### Added
 ### Fixed
 ### Changed
-- Dependencies - Updated Meziantou.Analyzer to 2.0.163
-- Dependencies - Updated FunFair.CodeAnalysis to 7.0.19.498
-- Dependencies - Updated FunFair.Test.Common to 6.1.64.606
-- Dependencies - Updated BenchmarkDotNet to 0.14.0
-- SDK - Updated DotNet SDK to 8.0.400
-- Dependencies - Updated Microsoft.VisualStudio.Threading.Analyzers to 17.11.20
-- Dependencies - Updated SonarAnalyzer.CSharp to 9.32.0.97167
 ### Removed
 ### Removed
 ### Deployment Changes
@@ -24,6 +17,16 @@ Please ADD ALL Changes to the UNRELEASED SECTION and not a specific release
 <!--
 Releases that have at least been deployed to staging, BUT NOT necessarily released to live.  Changes should be moved from [Unreleased] into here as they are merged into the appropriate release branch
 -->
+## [0.0.12] - 2024-08-14
+### Changed
+- Dependencies - Updated Meziantou.Analyzer to 2.0.163
+- Dependencies - Updated FunFair.CodeAnalysis to 7.0.19.498
+- Dependencies - Updated FunFair.Test.Common to 6.1.64.606
+- Dependencies - Updated BenchmarkDotNet to 0.14.0
+- SDK - Updated DotNet SDK to 8.0.400
+- Dependencies - Updated Microsoft.VisualStudio.Threading.Analyzers to 17.11.20
+- Dependencies - Updated SonarAnalyzer.CSharp to 9.32.0.97167
+
 ## [0.0.11] - 2024-07-25
 ### Changed
 - Dependencies - Updated FunFair.CodeAnalysis to 7.0.15.397
