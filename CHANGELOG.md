@@ -10,10 +10,6 @@ Please ADD ALL Changes to the UNRELEASED SECTION and not a specific release
 ### Added
 ### Fixed
 ### Changed
-- Dependencies - Updated FunFair.CodeAnalysis to 7.0.22.521
-- Dependencies - Updated xunit.analyzers to 1.16.0
-- Dependencies - Updated FunFair.Test.Common to 6.1.68.628
-- Dependencies - Updated Microsoft.NET.Test.Sdk to 17.11.1
 ### Removed
 ### Removed
 ### Deployment Changes
@@ -21,6 +17,13 @@ Please ADD ALL Changes to the UNRELEASED SECTION and not a specific release
 <!--
 Releases that have at least been deployed to staging, BUT NOT necessarily released to live.  Changes should be moved from [Unreleased] into here as they are merged into the appropriate release branch
 -->
+## [0.0.15] - 2024-09-05
+### Changed
+- Dependencies - Updated FunFair.CodeAnalysis to 7.0.22.521
+- Dependencies - Updated xunit.analyzers to 1.16.0
+- Dependencies - Updated FunFair.Test.Common to 6.1.68.628
+- Dependencies - Updated Microsoft.NET.Test.Sdk to 17.11.1
+
 ## [0.0.14] - 2024-08-20
 ### Changed
 - Dependencies - Updated FunFair.CodeAnalysis to 7.0.21.517
