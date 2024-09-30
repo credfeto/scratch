@@ -169,7 +169,9 @@ public sealed class HashedContentOptimizer : IHashedContentOptimizer
         }
     }
 
-    private void ChangeReferencesInNonRenamableTextFiles(IReadOnlyList<StrippedFile> fixedNameTextFiles, Dictionary<string, string> textFiles, Dictionary<string, string> fileHashes)
+    private void ChangeReferencesInNonRenamableTextFiles(IReadOnlyList<StrippedFile> fixedNameTextFiles,
+                                                         Dictionary<string, string> textFiles,
+                                                         Dictionary<string, string> fileHashes)
     {
         this._logger.LogInformation("Changing references in non-renamable text files");
 
@@ -349,7 +351,11 @@ public sealed class HashedContentOptimizer : IHashedContentOptimizer
         }
     }
 
-    private void MakeReplacement(IReadOnlyList<StrippedFile> renamableTextFiles, Dictionary<string, string> fileHashes, Dictionary<string, string> textFiles, StrippedFile file, string newHashedPath)
+    private void MakeReplacement(IReadOnlyList<StrippedFile> renamableTextFiles,
+                                 Dictionary<string, string> fileHashes,
+                                 Dictionary<string, string> textFiles,
+                                 StrippedFile file,
+                                 string newHashedPath)
     {
         foreach (StrippedFile referencing in renamableTextFiles)
         {
@@ -362,7 +368,11 @@ public sealed class HashedContentOptimizer : IHashedContentOptimizer
             string newRelative = PathHelpers.GetRelativePath(documentFullPath: referencing.Path, referencedFileFullPath: newHashedPath);
             string referencingContent = textFiles[referencing.Path];
 
-            bool changed = this.ChangeContent(relative: relativeInReferencing, newRelative: newRelative, hashedFilePath: file.Path, newHashedPath: newHashedPath, content: ref referencingContent);
+            bool changed = this.ChangeContent(relative: relativeInReferencing,
+                                              newRelative: newRelative,
+                                              hashedFilePath: file.Path,
+                                              newHashedPath: newHashedPath,
+                                              content: ref referencingContent);
 
             if (changed)
             {
@@ -418,7 +428,11 @@ public sealed class HashedContentOptimizer : IHashedContentOptimizer
                     string relative = PathHelpers.GetRelativePath(documentFullPath: file.Path, referencedFileFullPath: binaryFile.Path);
                     string newRelative = string.Concat(relative.AsSpan(start: 0, relative.Length - binaryFile.FileName.Length), str1: hashedBinary);
 
-                    hasChange |= this.ChangeContent(relative: relative, newRelative: newRelative, hashedFilePath: binaryFile.Path, newHashedPath: hashedBinary, content: ref content);
+                    hasChange |= this.ChangeContent(relative: relative,
+                                                    newRelative: newRelative,
+                                                    hashedFilePath: binaryFile.Path,
+                                                    newHashedPath: hashedBinary,
+                                                    content: ref content);
                 }
 
                 if (hasChange)
@@ -485,7 +499,13 @@ public sealed class HashedContentOptimizer : IHashedContentOptimizer
         string e = Path.GetExtension(fileName)
                        .TrimStart('.');
 
-        return new(Path: fileName, fileName[sourceBasePath.Length..], FileName: f, Extension: e, !IsFixedResourceName(f), IsText(e), this._hashedFileDetector.IsHashedFileName(fileName));
+        return new(Path: fileName,
+                   fileName[sourceBasePath.Length..],
+                   FileName: f,
+                   Extension: e,
+                   !IsFixedResourceName(f),
+                   IsText(e),
+                   this._hashedFileDetector.IsHashedFileName(fileName));
     }
 
     private static bool IsFixedResourceName(string fileName)
