@@ -10,12 +10,6 @@ Please ADD ALL Changes to the UNRELEASED SECTION and not a specific release
 ### Added
 ### Fixed
 ### Changed
-- Dependencies - Updated xunit to 2.9.2
-- SDK - Updated Dotnet to 9.0 RC1
-- SDK - Updated DotNet SDK to 9.0.100-rc.2.24474.11
-- Dependencies - Updated Meziantou.Analyzer to 2.0.170
-- Dependencies - Updated Roslynator.Analyzers to 4.12.8
-- Dependencies - Updated Microsoft.Extensions to 8.0.2
 ### Removed
 ### Removed
 ### Deployment Changes
@@ -23,6 +17,15 @@ Please ADD ALL Changes to the UNRELEASED SECTION and not a specific release
 <!--
 Releases that have at least been deployed to staging, BUT NOT necessarily released to live.  Changes should be moved from [Unreleased] into here as they are merged into the appropriate release branch
 -->
+## [0.0.17] - 2024-10-17
+### Changed
+- Dependencies - Updated xunit to 2.9.2
+- SDK - Updated Dotnet to 9.0 RC1
+- SDK - Updated DotNet SDK to 9.0.100-rc.2.24474.11
+- Dependencies - Updated Meziantou.Analyzer to 2.0.170
+- Dependencies - Updated Roslynator.Analyzers to 4.12.8
+- Dependencies - Updated Microsoft.Extensions to 8.0.2
+
 ## [0.0.16] - 2024-09-26
 ### Changed
 - Dependencies - Updated FunFair.CodeAnalysis to 7.0.23.533
