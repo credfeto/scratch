@@ -10,9 +10,6 @@ Please ADD ALL Changes to the UNRELEASED SECTION and not a specific release
 ### Added
 ### Fixed
 ### Changed
-- Dependencies - Updated FunFair.CodeAnalysis to 7.0.26.665
-- Dependencies - Updated FunFair.Test.Common to 6.1.231.921
-- Dependencies - Updated Credfeto.Enumeration to 1.1.17.637
 ### Removed
 ### Removed
 ### Deployment Changes
@@ -20,6 +17,12 @@ Please ADD ALL Changes to the UNRELEASED SECTION and not a specific release
 <!--
 Releases that have at least been deployed to staging, BUT NOT necessarily released to live.  Changes should be moved from [Unreleased] into here as they are merged into the appropriate release branch
 -->
+## [0.0.203] - 2024-10-27
+### Changed
+- Dependencies - Updated FunFair.CodeAnalysis to 7.0.26.665
+- Dependencies - Updated FunFair.Test.Common to 6.1.231.921
+- Dependencies - Updated Credfeto.Enumeration to 1.1.17.637
+
 ## [0.0.202] - 2024-10-26
 ### Changed
 - Dependencies - Updated Roslynator.Analyzers to 4.12.9
