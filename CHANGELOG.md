@@ -10,10 +10,6 @@ Please ADD ALL Changes to the UNRELEASED SECTION and not a specific release
 ### Added
 ### Fixed
 ### Changed
-- Dependencies - Updated FunFair.Test.Common to 6.1.239.979
-- Dependencies - Updated Credfeto.Enumeration to 1.1.24.699
-- Dependencies - Updated Meziantou.Analyzer to 2.0.180
-- Dependencies - Updated Microsoft.NET.Test.Sdk to 17.12.0
 ### Removed
 ### Removed
 ### Deployment Changes
@@ -21,6 +17,13 @@ Please ADD ALL Changes to the UNRELEASED SECTION and not a specific release
 <!--
 Releases that have at least been deployed to staging, BUT NOT necessarily released to live.  Changes should be moved from [Unreleased] into here as they are merged into the appropriate release branch
 -->
+## [0.0.211] - 2024-11-20
+### Changed
+- Dependencies - Updated FunFair.Test.Common to 6.1.239.979
+- Dependencies - Updated Credfeto.Enumeration to 1.1.24.699
+- Dependencies - Updated Meziantou.Analyzer to 2.0.180
+- Dependencies - Updated Microsoft.NET.Test.Sdk to 17.12.0
+
 ## [0.0.210] - 2024-11-13
 ### Changed
 - SDK - Updated DotNet SDK to 9.0.100
