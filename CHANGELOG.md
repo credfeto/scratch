@@ -11,6 +11,7 @@ Please ADD ALL Changes to the UNRELEASED SECTION and not a specific release
 ### Fixed
 ### Changed
 - SDK - Updated DotNet SDK to 9.0.102
+- Dependencies - Updated FunFair.CodeAnalysis to 7.0.55.846
 ### Removed
 ### Removed
 ### Deployment Changes
