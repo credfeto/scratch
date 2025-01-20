@@ -10,11 +10,6 @@ Please ADD ALL Changes to the UNRELEASED SECTION and not a specific release
 ### Added
 ### Fixed
 ### Changed
-- SDK - Updated DotNet SDK to 9.0.102
-- Dependencies - Updated Microsoft.Extensions to 9.0.1
-- Dependencies - Updated Credfeto.Enumeration to 1.2.54.847
-- Dependencies - Updated FunFair.CodeAnalysis to 7.0.57.858
-- Dependencies - Updated FunFair.Test.Common to 6.1.247.1082
 ### Removed
 ### Removed
 ### Deployment Changes
@@ -22,6 +17,14 @@ Please ADD ALL Changes to the UNRELEASED SECTION and not a specific release
 <!--
 Releases that have at least been deployed to staging, BUT NOT necessarily released to live.  Changes should be moved from [Unreleased] into here as they are merged into the appropriate release branch
 -->
+## [0.0.241] - 2025-01-20
+### Changed
+- SDK - Updated DotNet SDK to 9.0.102
+- Dependencies - Updated Microsoft.Extensions to 9.0.1
+- Dependencies - Updated Credfeto.Enumeration to 1.2.54.847
+- Dependencies - Updated FunFair.CodeAnalysis to 7.0.57.858
+- Dependencies - Updated FunFair.Test.Common to 6.1.247.1082
+
 ## [0.0.240] - 2025-01-11
 ### Changed
 - Dependencies - Updated Credfeto.Enumeration to 1.2.53.824
