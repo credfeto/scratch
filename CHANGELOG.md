@@ -10,7 +10,6 @@ Please ADD ALL Changes to the UNRELEASED SECTION and not a specific release
 ### Added
 ### Fixed
 ### Changed
-- Dependencies - Updated Credfeto.Enumeration to 1.2.66.909
 ### Removed
 ### Removed
 ### Deployment Changes
@@ -18,6 +17,10 @@ Please ADD ALL Changes to the UNRELEASED SECTION and not a specific release
 <!--
 Releases that have at least been deployed to staging, BUT NOT necessarily released to live.  Changes should be moved from [Unreleased] into here as they are merged into the appropriate release branch
 -->
+## [0.0.252] - 2025-02-04
+### Changed
+- Dependencies - Updated Credfeto.Enumeration to 1.2.66.909
+
 ## [0.0.251] - 2025-02-03
 ### Changed
 - Dependencies - Updated Roslynator.Analyzers to 4.12.11
