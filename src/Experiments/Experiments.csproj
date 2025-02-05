@@ -57,7 +57,7 @@
     <ProjectReference Include="..\Models\Models.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="FunFair.Test.Common" Version="6.1.255.1124" />
+    <PackageReference Include="FunFair.Test.Common" Version="6.1.256.1131" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="9.0.1" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.12.0" />
     <PackageReference Include="xunit" Version="2.9.3" />
