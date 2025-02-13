@@ -22,7 +22,12 @@ public sealed class BigIntegerTests : TestBase
     [InlineData("20853920117998328678")]
     public void Parse(string value)
     {
-        bool ok = BigInteger.TryParse(value: value, style: NumberStyles.Integer, provider: CultureInfo.InvariantCulture, out BigInteger parsed);
+        bool ok = BigInteger.TryParse(
+            value: value,
+            style: NumberStyles.Integer,
+            provider: CultureInfo.InvariantCulture,
+            out BigInteger parsed
+        );
         Assert.True(condition: ok, userMessage: "Should have parsed");
         this._output.WriteLine($"{parsed}");
     }
@@ -30,7 +35,10 @@ public sealed class BigIntegerTests : TestBase
     [Fact]
     public void Percentage50()
     {
-        BigInteger total = BigInteger.Parse(value: "250000000000000000", provider: CultureInfo.InvariantCulture);
+        BigInteger total = BigInteger.Parse(
+            value: "250000000000000000",
+            provider: CultureInfo.InvariantCulture
+        );
 
         const int percentage = 50;
         BigInteger expected = total / 2;
@@ -53,7 +61,10 @@ public sealed class BigIntegerTests : TestBase
         Assert.True(percentage >= 0, userMessage: "Should be 0% or more");
         Assert.True(percentage <= 100, userMessage: "Should be 100% or less");
 
-        BigInteger total = BigInteger.Parse(value: "250000000000000000", provider: CultureInfo.InvariantCulture);
+        BigInteger total = BigInteger.Parse(
+            value: "250000000000000000",
+            provider: CultureInfo.InvariantCulture
+        );
 
         this.Check(percentage: percentage, total: total);
     }

@@ -20,7 +20,15 @@ public sealed class CheckState : TestBase
     [InlineData(100, true)]
     public void DoStuff(int lastCheckedOffset, bool pass)
     {
-        DateTime now = new(year: 2019, month: 1, day: 1, hour: 12, minute: 34, second: 56, kind: DateTimeKind.Utc);
+        DateTime now = new(
+            year: 2019,
+            month: 1,
+            day: 1,
+            hour: 12,
+            minute: 34,
+            second: 56,
+            kind: DateTimeKind.Utc
+        );
         DateTime lastChecked = now.AddSeconds(lastCheckedOffset);
 
         TimeSpan whenCanRetry = now - lastChecked;

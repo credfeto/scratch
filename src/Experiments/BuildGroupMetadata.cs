@@ -24,19 +24,23 @@ public sealed class BuildGroupMetadata : TestBase
 
         foreach (string item in tests)
         {
-            this._output.WriteLine($"public const string {item} = @\"{groupNames[group % groupNames.Length]}\";");
+            this._output.WriteLine(
+                $"public const string {item} = @\"{groupNames[group % groupNames.Length]}\";"
+            );
             ++group;
         }
     }
 
     private static string[] BuildGroupNames(int groupCount)
     {
-        return [..Enumerable.Range(start: 1, count: groupCount)
-                         .Select(n => $"Group {n:x2}")
-                         ];
+        return [.. Enumerable.Range(start: 1, count: groupCount).Select(n => $"Group {n:x2}")];
     }
 
-    [SuppressMessage(category: "Meziantou.Analyzer", checkId: "MA0051: Method is too long", Justification = "Code generation")]
+    [SuppressMessage(
+        category: "Meziantou.Analyzer",
+        checkId: "MA0051: Method is too long",
+        Justification = "Code generation"
+    )]
     [Fact]
     public void Generate()
     {
@@ -250,7 +254,7 @@ public sealed class BuildGroupMetadata : TestBase
             "ReferenceGame2CoinFlipMultiInsteadOfConfirmingRoundOverHouseRaisesTimeoutMidRoundPlayerSettles1Tests",
             "ReferenceGame2CoinFlipMultiNoneOrderly0Tests",
             "ReferenceGame2CoinFlipMultiNoneOrderly1Tests",
-            "ReferenceGame2CoinFlipMultiNoneOrderly2Tests"
+            "ReferenceGame2CoinFlipMultiNoneOrderly2Tests",
         ];
 
         this.BuildGroups(groupCount: 22, tests: tests);

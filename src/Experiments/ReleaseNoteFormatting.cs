@@ -9,7 +9,8 @@ namespace Experiments;
 
 public sealed class ReleaseNoteFormatting : TestBase
 {
-    private const string SIMPLE = @"### Added
+    private const string SIMPLE =
+        @"### Added
 - Some Stuff
 - Some Other Stuff
 ### Changed
@@ -54,19 +55,23 @@ public sealed class ReleaseNoteFormatting : TestBase
         {
             if (line.StartsWith(value: "### ", comparisonType: StringComparison.Ordinal))
             {
-                string replacement = Bold(Underline(line[4..]
-                                                        .Trim()));
+                string replacement = Bold(Underline(line[4..].Trim()));
                 builder.AppendLine(replacement);
 
                 continue;
             }
 
-            builder.AppendLine(Regex.Replace(input: line,
-                                             pattern: "(ff\\-\\d+)",
-                                             evaluator: MakeUpperCase,
-                                             RegexOptions.IgnoreCase | RegexOptions.ExplicitCapture,
-                                             matchTimeout: TimeOut)
-                                    .Trim());
+            builder.AppendLine(
+                Regex
+                    .Replace(
+                        input: line,
+                        pattern: "(ff\\-\\d+)",
+                        evaluator: MakeUpperCase,
+                        RegexOptions.IgnoreCase | RegexOptions.ExplicitCapture,
+                        matchTimeout: TimeOut
+                    )
+                    .Trim()
+            );
         }
 
         this._output.WriteLine(builder.ToString());

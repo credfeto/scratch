@@ -18,7 +18,10 @@ public sealed class BuildOptimised : LoggingTestBase
         : base(outpout)
     {
         this._hashedFileDetector = new HashedFileDetector();
-        this._hashedContentOptimizer = new HashedContentOptimizer(hashedFileDetector: this._hashedFileDetector, this.GetTypedLogger<HashedContentOptimizer>());
+        this._hashedContentOptimizer = new HashedContentOptimizer(
+            hashedFileDetector: this._hashedFileDetector,
+            this.GetTypedLogger<HashedContentOptimizer>()
+        );
     }
 
     [Fact(Skip = "Need to correct paths")]
@@ -26,6 +29,10 @@ public sealed class BuildOptimised : LoggingTestBase
     {
         await Task.CompletedTask;
 
-        await this._hashedContentOptimizer.OptimizeAsync(source: SOURCE, destination: DESTINATION, cancellationToken: CancellationToken.None);
+        await this._hashedContentOptimizer.OptimizeAsync(
+            source: SOURCE,
+            destination: DESTINATION,
+            cancellationToken: CancellationToken.None
+        );
     }
 }

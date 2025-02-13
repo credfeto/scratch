@@ -3,7 +3,8 @@ using System;
 namespace Experiments.ReferenceObjects.Services;
 
 public sealed class GenericInterface2<TType1, TType2> : IGenericInterface2<TType1, TType2>
-    where TType1 : class where TType2 : class
+    where TType1 : class
+    where TType2 : class
 {
     public Type ItemType => typeof(TType1);
 
