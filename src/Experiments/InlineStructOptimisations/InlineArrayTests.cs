@@ -10,9 +10,7 @@ namespace Experiments.InlineStructOptimisations;
 public sealed class InlineArrayTests : LoggingTestBase
 {
     public InlineArrayTests(ITestOutputHelper output)
-        : base(output)
-    {
-    }
+        : base(output) { }
 
     [Fact]
     public void UsingReadOnlyMemory()

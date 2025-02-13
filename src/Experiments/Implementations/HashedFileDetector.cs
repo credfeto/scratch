@@ -7,19 +7,15 @@ namespace Experiments.Implementations;
 
 internal sealed class HashedFileDetector : IHashedFileDetector
 {
-    private static readonly IReadOnlyList<string> NonHexSuffix =
-    [
-        "bundle",
-        "chunked",
-        "chunk"
-    ];
+    private static readonly IReadOnlyList<string> NonHexSuffix = ["bundle", "chunked", "chunk"];
 
     public bool IsHashedFileName(string fileName)
     {
-        for (string filenameWithoutExtension = Path.GetFileNameWithoutExtension(fileName);
-             filenameWithoutExtension.Contains(value: '.', comparisonType: StringComparison.Ordinal);
-             filenameWithoutExtension = Path.GetFileNameWithoutExtension(filenameWithoutExtension))
-
+        for (
+            string filenameWithoutExtension = Path.GetFileNameWithoutExtension(fileName);
+            filenameWithoutExtension.Contains(value: '.', comparisonType: StringComparison.Ordinal);
+            filenameWithoutExtension = Path.GetFileNameWithoutExtension(filenameWithoutExtension)
+        )
         {
             string hash = ExtractHashFromFileName(filenameWithoutExtension);
 
@@ -46,7 +42,9 @@ internal sealed class HashedFileDetector : IHashedFileDetector
 
     private static bool IsNonHexSuffix(string hash)
     {
-        return NonHexSuffix.Any(suffix => StringComparer.InvariantCultureIgnoreCase.Equals(x: hash, y: suffix));
+        return NonHexSuffix.Any(suffix =>
+            StringComparer.InvariantCultureIgnoreCase.Equals(x: hash, y: suffix)
+        );
     }
 
     private static bool IsHexDigit(char x)
@@ -56,7 +54,6 @@ internal sealed class HashedFileDetector : IHashedFileDetector
 
     private static string ExtractHashFromFileName(string filenameWithoutExtension)
     {
-        return Path.GetExtension(filenameWithoutExtension)
-                   .TrimStart(trimChar: '.');
+        return Path.GetExtension(filenameWithoutExtension).TrimStart(trimChar: '.');
     }
 }

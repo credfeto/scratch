@@ -33,8 +33,7 @@ public sealed class ItemSizes : TestBase
             throw new ArgumentNullException(nameof(item));
         }
 
-        RuntimeTypeHandle th = item.GetType()
-                                   .TypeHandle;
+        RuntimeTypeHandle th = item.GetType().TypeHandle;
 
         return Marshal.ReadInt32(ptr: th.Value, ofs: 4);
     }
@@ -51,7 +50,9 @@ public sealed class ItemSizes : TestBase
         this.OutputSize(default(double));
         this.OutputSize(default(byte));
         this.OutputSize(new TestValueTypeWithOnlyValueTypes(i: 1, j: 5));
-        this.OutputSize(new TestValueTypeWithOnlyMixedValueTypesAndReferenceTypes(i: 44, j: "Hello"));
+        this.OutputSize(
+            new TestValueTypeWithOnlyMixedValueTypesAndReferenceTypes(i: 44, j: "Hello")
+        );
 
         Assert.True(condition: true, userMessage: "Not really a test");
     }
@@ -61,10 +62,18 @@ public sealed class ItemSizes : TestBase
     {
         this.OutputSize(string.Empty);
         this.OutputSize("Hello World");
-        this.OutputSize("Hello World sdfshfhdfkdsjfhdjfhdjksh fdhsjfhjkfhdsjhf kshfkdsjhf kjhfjdkshfjdhfs shfskhfsdjkhk");
+        this.OutputSize(
+            "Hello World sdfshfhdfkdsjfhdjfhdjksh fdhsjfhjkfhdsjhf kshfkdsjhf kjhfjdkshfjdhfs shfskhfsdjkhk"
+        );
         this.OutputSize(new TestRefTypeWithOnlyValueTypes(i: 1, j: 5));
         this.OutputSize(new TestRefTypeWithOnlyMixedValueTypesAndReferenceTypes(i: 44, j: "Hello"));
-        this.OutputSize(new TestRefTypeWithOnlyMixedValueTypesAndReferenceTypes2(i: 44, j: "Hello", new(i: 44, j: "Hello")));
+        this.OutputSize(
+            new TestRefTypeWithOnlyMixedValueTypesAndReferenceTypes2(
+                i: 44,
+                j: "Hello",
+                new(i: 44, j: "Hello")
+            )
+        );
 
         Assert.True(condition: true, userMessage: "Not really a test");
     }
@@ -72,10 +81,18 @@ public sealed class ItemSizes : TestBase
     [StructLayout(LayoutKind.Auto)]
     private readonly struct TestValueTypeWithOnlyValueTypes
     {
-        [SuppressMessage(category: "ReSharper", checkId: "UnusedAutoPropertyAccessor.Local", Justification = "Required for test")]
+        [SuppressMessage(
+            category: "ReSharper",
+            checkId: "UnusedAutoPropertyAccessor.Local",
+            Justification = "Required for test"
+        )]
         public int I { get; }
 
-        [SuppressMessage(category: "ReSharper", checkId: "UnusedAutoPropertyAccessor.Local", Justification = "Required for test")]
+        [SuppressMessage(
+            category: "ReSharper",
+            checkId: "UnusedAutoPropertyAccessor.Local",
+            Justification = "Required for test"
+        )]
         public long J { get; }
 
         public TestValueTypeWithOnlyValueTypes(int i, long j)
@@ -93,19 +110,35 @@ public sealed class ItemSizes : TestBase
             this.J = j;
         }
 
-        [SuppressMessage(category: "ReSharper", checkId: "UnusedAutoPropertyAccessor.Local", Justification = "Required for test")]
+        [SuppressMessage(
+            category: "ReSharper",
+            checkId: "UnusedAutoPropertyAccessor.Local",
+            Justification = "Required for test"
+        )]
         public int I { get; }
 
-        [SuppressMessage(category: "ReSharper", checkId: "UnusedAutoPropertyAccessor.Local", Justification = "Required for test")]
+        [SuppressMessage(
+            category: "ReSharper",
+            checkId: "UnusedAutoPropertyAccessor.Local",
+            Justification = "Required for test"
+        )]
         public long J { get; }
     }
 
     private readonly struct TestValueTypeWithOnlyMixedValueTypesAndReferenceTypes
     {
-        [SuppressMessage(category: "ReSharper", checkId: "UnusedAutoPropertyAccessor.Local", Justification = "Required for test")]
+        [SuppressMessage(
+            category: "ReSharper",
+            checkId: "UnusedAutoPropertyAccessor.Local",
+            Justification = "Required for test"
+        )]
         public int I { get; }
 
-        [SuppressMessage(category: "ReSharper", checkId: "UnusedAutoPropertyAccessor.Local", Justification = "Required for test")]
+        [SuppressMessage(
+            category: "ReSharper",
+            checkId: "UnusedAutoPropertyAccessor.Local",
+            Justification = "Required for test"
+        )]
         public string J { get; }
 
         public TestValueTypeWithOnlyMixedValueTypesAndReferenceTypes(int i, string j)
@@ -123,29 +156,53 @@ public sealed class ItemSizes : TestBase
             this.J = j;
         }
 
-        [SuppressMessage(category: "ReSharper", checkId: "UnusedAutoPropertyAccessor.Local", Justification = "Required for test")]
+        [SuppressMessage(
+            category: "ReSharper",
+            checkId: "UnusedAutoPropertyAccessor.Local",
+            Justification = "Required for test"
+        )]
         public int I { get; }
 
-        [SuppressMessage(category: "ReSharper", checkId: "UnusedAutoPropertyAccessor.Local", Justification = "Required for test")]
+        [SuppressMessage(
+            category: "ReSharper",
+            checkId: "UnusedAutoPropertyAccessor.Local",
+            Justification = "Required for test"
+        )]
         public string J { get; }
     }
 
     private sealed class TestRefTypeWithOnlyMixedValueTypesAndReferenceTypes2
     {
-        public TestRefTypeWithOnlyMixedValueTypesAndReferenceTypes2(int i, string j, TestRefTypeWithOnlyMixedValueTypesAndReferenceTypes k)
+        public TestRefTypeWithOnlyMixedValueTypesAndReferenceTypes2(
+            int i,
+            string j,
+            TestRefTypeWithOnlyMixedValueTypesAndReferenceTypes k
+        )
         {
             this.I = i;
             this.J = j;
             this.K = k;
         }
 
-        [SuppressMessage(category: "ReSharper", checkId: "UnusedAutoPropertyAccessor.Local", Justification = "Required for test")]
+        [SuppressMessage(
+            category: "ReSharper",
+            checkId: "UnusedAutoPropertyAccessor.Local",
+            Justification = "Required for test"
+        )]
         public int I { get; }
 
-        [SuppressMessage(category: "ReSharper", checkId: "UnusedAutoPropertyAccessor.Local", Justification = "Required for test")]
+        [SuppressMessage(
+            category: "ReSharper",
+            checkId: "UnusedAutoPropertyAccessor.Local",
+            Justification = "Required for test"
+        )]
         public string J { get; }
 
-        [SuppressMessage(category: "ReSharper", checkId: "UnusedAutoPropertyAccessor.Local", Justification = "Required for test")]
+        [SuppressMessage(
+            category: "ReSharper",
+            checkId: "UnusedAutoPropertyAccessor.Local",
+            Justification = "Required for test"
+        )]
         public TestRefTypeWithOnlyMixedValueTypesAndReferenceTypes K { get; }
     }
 }

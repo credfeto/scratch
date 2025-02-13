@@ -9,9 +9,7 @@ namespace Experiments;
 public sealed class EnumTests : LoggingTestBase
 {
     public EnumTests(ITestOutputHelper output)
-        : base(output)
-    {
-    }
+        : base(output) { }
 
     [Fact]
     public void DoIt()

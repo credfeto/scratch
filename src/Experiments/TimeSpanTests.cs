@@ -25,7 +25,12 @@ public sealed class TimeSpanTests : TestBase
     {
         TimeSpan ts = TimeSpan.Parse(input: value, formatProvider: CultureInfo.InvariantCulture);
 
-        this._output.WriteLine(ts.ToString(format: @"dd\ \d\a\y\s\,\ hh\ \h\o\u\r\s\ mm\ \m\i\n\s\ ss\ \s\e\c\o\n\d\s", formatProvider: CultureInfo.InvariantCulture));
+        this._output.WriteLine(
+            ts.ToString(
+                format: @"dd\ \d\a\y\s\,\ hh\ \h\o\u\r\s\ mm\ \m\i\n\s\ ss\ \s\e\c\o\n\d\s",
+                formatProvider: CultureInfo.InvariantCulture
+            )
+        );
 
         Assert.NotEqual(expected: TimeSpan.Zero, actual: ts);
     }

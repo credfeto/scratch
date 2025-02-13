@@ -9,7 +9,8 @@ namespace Experiments;
 
 public sealed class RemoveBlankLinesBetweenXmlDocAndSuppressMessage : TestBase
 {
-    private const string EXAMPLE = @"
+    private const string EXAMPLE =
+        @"
         public CasinoMetadataDto? Metadata { get; set; }
 
         [SuppressMessage(category: ""ReSharper"", checkId: ""AutoPropertyCanBeMadeGetOnly.Global"", Justification = ""TODO: Review"")]
@@ -27,14 +28,23 @@ public sealed class RemoveBlankLinesBetweenXmlDocAndSuppressMessage : TestBase
     }
 
     [Fact]
-    [SuppressMessage(category: "Meziantou.Analyzers", checkId: "MA0110: Use regex source generator", Justification = "cannot be for a test case")]
+    [SuppressMessage(
+        category: "Meziantou.Analyzers",
+        checkId: "MA0110: Use regex source generator",
+        Justification = "cannot be for a test case"
+    )]
     public void Detect()
     {
         this._output.WriteLine("-------------------------");
 
-        const string pattern = @"^((\s+)///\s</(.*?)\>((\r|\n|\r\n)?))(?<LinesToRemove>(\r|\n|\r\n){1,})(\s+\[(System\.Diagnostics\.CodeAnalysis\.)?SuppressMessage)";
+        const string pattern =
+            @"^((\s+)///\s</(.*?)\>((\r|\n|\r\n)?))(?<LinesToRemove>(\r|\n|\r\n){1,})(\s+\[(System\.Diagnostics\.CodeAnalysis\.)?SuppressMessage)";
 
-        Regex regex = new(pattern: pattern, RegexOptions.Multiline | RegexOptions.Compiled | RegexOptions.ExplicitCapture, TimeSpan.FromSeconds(2));
+        Regex regex = new(
+            pattern: pattern,
+            RegexOptions.Multiline | RegexOptions.Compiled | RegexOptions.ExplicitCapture,
+            TimeSpan.FromSeconds(2)
+        );
 
         MatchCollection matches = regex.Matches(EXAMPLE);
 
