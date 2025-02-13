@@ -7,4 +7,4 @@ namespace Models;
     checkId: "MA0036: Make class static",
     Justification = "cannot be for a test case"
 )]
-public sealed class T2 { }
+public sealed class T2;

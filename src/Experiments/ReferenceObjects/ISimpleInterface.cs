@@ -1,3 +1,3 @@
 namespace Experiments.ReferenceObjects;
 
-public interface ISimpleInterface { }
+public interface ISimpleInterface;

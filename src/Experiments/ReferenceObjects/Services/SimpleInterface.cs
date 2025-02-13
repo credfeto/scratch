@@ -7,4 +7,4 @@ namespace Experiments.ReferenceObjects.Services;
     checkId: "S2094: Empty class make it an interface",
     Justification = "For testing purposes"
 )]
-public sealed class SimpleInterface : ISimpleInterface { }
+public sealed class SimpleInterface : ISimpleInterface;
