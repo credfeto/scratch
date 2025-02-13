@@ -31,9 +31,9 @@ public sealed class BuildGroupMetadata : TestBase
 
     private static string[] BuildGroupNames(int groupCount)
     {
-        return Enumerable.Range(start: 1, count: groupCount)
+        return [..Enumerable.Range(start: 1, count: groupCount)
                          .Select(n => $"Group {n:x2}")
-                         .ToArray();
+                         ];
     }
 
     [SuppressMessage(category: "Meziantou.Analyzer", checkId: "MA0051: Method is too long", Justification = "Code generation")]

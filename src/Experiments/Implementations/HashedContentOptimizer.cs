@@ -83,26 +83,26 @@ public sealed class HashedContentOptimizer : IHashedContentOptimizer
 
     private static IReadOnlyList<StrippedFile> GetFixedNameTextFiles(IReadOnlyList<StrippedFile> allTextFiles)
     {
-        return allTextFiles.Where(f => !f.IsRenamable)
-                           .ToArray();
+        return [..allTextFiles.Where(f => !f.IsRenamable)
+                           ];
     }
 
     private static IReadOnlyList<StrippedFile> GetRenamableTextFiles(IReadOnlyList<StrippedFile> allTextFiles)
     {
-        return allTextFiles.Where(f => f.IsRenamable)
-                           .ToArray();
+        return [..allTextFiles.Where(f => f.IsRenamable)
+                           ];
     }
 
     private static IReadOnlyList<StrippedFile> GetAllTextFiles(IReadOnlyList<StrippedFile> files)
     {
-        return files.Where(f => f.IsText)
-                    .ToArray();
+        return [..files.Where(f => f.IsText)
+                    ];
     }
 
     private static IReadOnlyList<StrippedFile> GetBinaryFiles(IReadOnlyList<StrippedFile> files)
     {
-        return files.Where(f => !f.IsText && f.IsRenamable)
-                    .ToArray();
+        return [..files.Where(f => f is { IsText: false, IsRenamable: true })
+                    ];
     }
 
     private IReadOnlyList<StrippedFile> FindFiles(string source)
