@@ -10,6 +10,15 @@ Please ADD ALL Changes to the UNRELEASED SECTION and not a specific release
 ### Added
 ### Fixed
 ### Changed
+### Removed
+### Removed
+### Deployment Changes
+
+<!--
+Releases that have at least been deployed to staging, BUT NOT necessarily released to live.  Changes should be moved from [Unreleased] into here as they are merged into the appropriate release branch
+-->
+## [0.0.253] - 2025-02-13
+### Changed
 - Dependencies - Updated xunit.analyzers to 1.20.0
 - Dependencies - Updated xunit.runner.visualstudio to 3.0.2
 - Dependencies - Updated FunFair.Test.Common to 6.1.257.1137
@@ -20,13 +29,7 @@ Please ADD ALL Changes to the UNRELEASED SECTION and not a specific release
 - Dependencies - Updated Roslynator.Analyzers to 4.13.0
 - Dependencies - Updated Microsoft.Extensions to 9.0.2
 - Dependencies - Updated Microsoft.NET.Test.Sdk to 17.13.0
-### Removed
-### Removed
-### Deployment Changes
 
-<!--
-Releases that have at least been deployed to staging, BUT NOT necessarily released to live.  Changes should be moved from [Unreleased] into here as they are merged into the appropriate release branch
--->
 ## [0.0.252] - 2025-02-04
 ### Changed
 - Dependencies - Updated Credfeto.Enumeration to 1.2.66.909
