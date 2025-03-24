@@ -3,7 +3,6 @@ using System.Diagnostics;
 using FunFair.Test.Common;
 using Implementations.InlineStructOptimisations;
 using Xunit;
-using Xunit.Abstractions;
 
 namespace Experiments.InlineStructOptimisations;
 

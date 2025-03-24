@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using FunFair.Test.Common;
 using Xunit;
-using Xunit.Abstractions;
 
 namespace Experiments;
 
