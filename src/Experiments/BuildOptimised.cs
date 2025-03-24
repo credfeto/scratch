@@ -3,7 +3,6 @@ using System.Threading.Tasks;
 using Experiments.Implementations;
 using FunFair.Test.Common;
 using Xunit;
-using Xunit.Abstractions;
 
 namespace Experiments;
 
@@ -32,7 +31,7 @@ public sealed class BuildOptimised : LoggingTestBase
         await this._hashedContentOptimizer.OptimizeAsync(
             source: SOURCE,
             destination: DESTINATION,
-            cancellationToken: CancellationToken.None
+            cancellationToken: this.CancellationToken()
         );
     }
 }
