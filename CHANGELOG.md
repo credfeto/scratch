@@ -13,6 +13,7 @@ Please ADD ALL Changes to the UNRELEASED SECTION and not a specific release
 - Dependencies - Updated Credfeto.Enumeration to 1.2.75.1045
 - Dependencies - Updated FunFair.CodeAnalysis to 7.0.79.1041
 - Dependencies - Updated FunFair.Test.Common to 6.1.268.1269
+- Dependencies - Updated Meziantou.Analyzer to 2.0.197
 ### Removed
 ### Removed
 ### Deployment Changes
