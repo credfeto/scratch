@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using FunFair.Test.Common;
@@ -23,9 +23,7 @@ public sealed class BuildGroupMetadata : TestBase
 
         foreach (string item in tests)
         {
-            this._output.WriteLine(
-                $"public const string {item} = @\"{groupNames[group % groupNames.Length]}\";"
-            );
+            this._output.WriteLine($"public const string {item} = @\"{groupNames[group % groupNames.Length]}\";");
             ++group;
         }
     }
