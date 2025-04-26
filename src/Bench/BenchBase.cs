@@ -3,11 +3,7 @@ using System.Runtime.CompilerServices;
 
 namespace Bench;
 
-[SuppressMessage(
-    category: "Microsoft.Performance",
-    checkId: "CA1822:Mark methods static",
-    Justification = "Benchmark"
-)]
+[SuppressMessage(category: "Microsoft.Performance", checkId: "CA1822:Mark methods static", Justification = "Benchmark")]
 public abstract class BenchBase
 {
     [SuppressMessage(
@@ -20,11 +16,7 @@ public abstract class BenchBase
         checkId: "CA1822:Mark methods static",
         Justification = "Benchmark"
     )]
-    [SuppressMessage(
-        category: "ReSharper",
-        checkId: "UnusedParameter.Global",
-        Justification = "Simplifies benchmarks"
-    )]
+    [SuppressMessage(category: "ReSharper", checkId: "UnusedParameter.Global", Justification = "Simplifies benchmarks")]
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     protected void Test<T>(T value)
     {
