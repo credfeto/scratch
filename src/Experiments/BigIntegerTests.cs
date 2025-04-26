@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Globalization;
 using System.Numerics;
 using FunFair.Test.Common;
@@ -34,10 +34,7 @@ public sealed class BigIntegerTests : TestBase
     [Fact]
     public void Percentage50()
     {
-        BigInteger total = BigInteger.Parse(
-            value: "250000000000000000",
-            provider: CultureInfo.InvariantCulture
-        );
+        BigInteger total = BigInteger.Parse(value: "250000000000000000", provider: CultureInfo.InvariantCulture);
 
         const int percentage = 50;
         BigInteger expected = total / 2;
@@ -60,10 +57,7 @@ public sealed class BigIntegerTests : TestBase
         Assert.True(percentage >= 0, userMessage: "Should be 0% or more");
         Assert.True(percentage <= 100, userMessage: "Should be 100% or less");
 
-        BigInteger total = BigInteger.Parse(
-            value: "250000000000000000",
-            provider: CultureInfo.InvariantCulture
-        );
+        BigInteger total = BigInteger.Parse(value: "250000000000000000", provider: CultureInfo.InvariantCulture);
 
         this.Check(percentage: percentage, total: total);
     }
