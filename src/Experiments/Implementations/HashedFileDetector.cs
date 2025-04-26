@@ -42,9 +42,7 @@ internal sealed class HashedFileDetector : IHashedFileDetector
 
     private static bool IsNonHexSuffix(string hash)
     {
-        return NonHexSuffix.Any(suffix =>
-            StringComparer.InvariantCultureIgnoreCase.Equals(x: hash, y: suffix)
-        );
+        return NonHexSuffix.Any(suffix => StringComparer.InvariantCultureIgnoreCase.Equals(x: hash, y: suffix));
     }
 
     private static bool IsHexDigit(char x)
