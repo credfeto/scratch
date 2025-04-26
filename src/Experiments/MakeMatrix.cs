@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using FunFair.Test.Common;
@@ -15,11 +15,7 @@ public sealed class MakeMatrix : TestBase
         this._output = output ?? throw new ArgumentNullException(nameof(output));
     }
 
-    [SuppressMessage(
-        category: "Microsoft.Design",
-        checkId: "CA1814: Use Jagged Array",
-        Justification = "By Design"
-    )]
+    [SuppressMessage(category: "Microsoft.Design", checkId: "CA1814: Use Jagged Array", Justification = "By Design")]
     private static CompatibilityCheck<T>[,] Matrix<T>(IReadOnlyList<T> make)
     {
         CompatibilityCheck<T>[,] x = new CompatibilityCheck<T>[make.Count, make.Count - 1];
@@ -75,11 +71,7 @@ public sealed class MakeMatrix : TestBase
             checkId: "S1144: Unused private property",
             Justification = "For testing purposes"
         )]
-        [SuppressMessage(
-            category: "ReSharper",
-            checkId: "UnusedMember.Local",
-            Justification = "Required for test"
-        )]
+        [SuppressMessage(category: "ReSharper", checkId: "UnusedMember.Local", Justification = "Required for test")]
         public bool? Compatibile { get; set; }
     }
 }
