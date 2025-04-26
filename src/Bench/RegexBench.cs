@@ -30,11 +30,7 @@ public abstract partial class RegexBench : BenchBase
         TimeSpan.FromMilliseconds(TIMEOUT)
     );
 
-    [GeneratedRegex(
-        pattern: REGEX_PATTERN,
-        options: REGEX_MATCH_OPTIONS,
-        matchTimeoutMilliseconds: TIMEOUT
-    )]
+    [GeneratedRegex(pattern: REGEX_PATTERN, options: REGEX_MATCH_OPTIONS, matchTimeoutMilliseconds: TIMEOUT)]
     private static partial Regex SourceGeneratedRegex();
 
     [Benchmark]
