@@ -33,9 +33,7 @@ public sealed class DependencyInjectionTests : TestBase
             services.AddSingleton(typeof(IGenericInterface<>), typeof(GenericInterface<>))
         );
 
-        IGenericInterface<T1> simpleInterface = serviceProvider.GetRequiredService<
-            IGenericInterface<T1>
-        >();
+        IGenericInterface<T1> simpleInterface = serviceProvider.GetRequiredService<IGenericInterface<T1>>();
         Assert.NotNull(simpleInterface);
 
         Assert.Equal(typeof(T1), actual: simpleInterface.ItemType);
@@ -48,9 +46,7 @@ public sealed class DependencyInjectionTests : TestBase
             services.AddSingleton(typeof(IGenericInterface2<,>), typeof(GenericInterface2<,>))
         );
 
-        IGenericInterface2<T1, T2> simpleInterface = serviceProvider.GetRequiredService<
-            IGenericInterface2<T1, T2>
-        >();
+        IGenericInterface2<T1, T2> simpleInterface = serviceProvider.GetRequiredService<IGenericInterface2<T1, T2>>();
         Assert.NotNull(simpleInterface);
 
         Assert.Equal(typeof(T1), actual: simpleInterface.ItemType);
