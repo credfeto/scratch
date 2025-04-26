@@ -5,11 +5,7 @@ using System.Runtime.InteropServices;
 
 namespace Implementations.InlineStructOptimisations;
 
-[SuppressMessage(
-    category: "Microsoft.Design",
-    checkId: "CA1815",
-    Justification = "No equals needed here"
-)]
+[SuppressMessage(category: "Microsoft.Design", checkId: "CA1815", Justification = "No equals needed here")]
 [SuppressMessage(
     category: "FunFair.CodeAnalysis",
     checkId: "FFS0011",
