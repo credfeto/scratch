@@ -17,16 +17,8 @@ public sealed class RelativePathTests : LoggingTestBase
     [InlineData("/folder/index.html", "/folder/image.jpg", "image.jpg")]
     [InlineData("/folder1/index.html", "/folder2/index.html", "../folder2/index.html")]
     [InlineData("/folder1/folder1a/index.html", "/folder2/index.html", "../../folder2/index.html")]
-    [InlineData(
-        "/folder1/index.html",
-        "/folder2/folder2a/index.html",
-        "../folder2/folder2a/index.html"
-    )]
-    public void ProducesSaneRelativePath(
-        string documentPath,
-        string referencedFilePath,
-        string expectedRelativePath
-    )
+    [InlineData("/folder1/index.html", "/folder2/folder2a/index.html", "../folder2/folder2a/index.html")]
+    public void ProducesSaneRelativePath(string documentPath, string referencedFilePath, string expectedRelativePath)
     {
         string relativePath = PathHelpers.GetRelativePath(
             documentFullPath: documentPath,
