@@ -9,22 +9,15 @@ internal static class PathHelpers
 {
     public static string GetRelativePath(string documentFullPath, string referencedFileFullPath)
     {
-        IReadOnlyList<string> documentPathParts = documentFullPath.Split(
-            Path.DirectorySeparatorChar
-        );
-        IReadOnlyList<string> referencedFilePathParts = referencedFileFullPath.Split(
-            Path.DirectorySeparatorChar
-        );
+        IReadOnlyList<string> documentPathParts = documentFullPath.Split(Path.DirectorySeparatorChar);
+        IReadOnlyList<string> referencedFilePathParts = referencedFileFullPath.Split(Path.DirectorySeparatorChar);
 
         int commonLength = FindCommonPartLength(
             documentPathParts: documentPathParts,
             referencedFilePathParts: referencedFilePathParts
         );
 
-        if (
-            commonLength == referencedFilePathParts.Count
-            && documentPathParts.Count == commonLength
-        )
+        if (commonLength == referencedFilePathParts.Count && documentPathParts.Count == commonLength)
         {
             return documentPathParts[commonLength - 1];
         }
@@ -33,9 +26,7 @@ internal static class PathHelpers
 
         return string.Join(
             Path.DirectorySeparatorChar.ToString(),
-            Enumerable
-                .Repeat(element: "..", count: upDir)
-                .Concat(referencedFilePathParts.Skip(commonLength))
+            Enumerable.Repeat(element: "..", count: upDir).Concat(referencedFilePathParts.Skip(commonLength))
         );
     }
 
