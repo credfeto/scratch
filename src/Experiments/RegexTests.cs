@@ -12,21 +12,14 @@ public sealed class RegexTests : TestBase
 {
     private const string REGEX_PATTERN = "^[0-9a-fA-F]+$";
     private const RegexOptions OPTIONS =
-        RegexOptions.Compiled
-        | RegexOptions.CultureInvariant
-        | RegexOptions.ExplicitCapture
-        | RegexOptions.Singleline;
+        RegexOptions.Compiled | RegexOptions.CultureInvariant | RegexOptions.ExplicitCapture | RegexOptions.Singleline;
 
     [SuppressMessage(
         category: "Meziantou.Analyzers",
         checkId: "MA0110: Use regex source generator",
         Justification = "cannot be for a test case"
     )]
-    private static readonly Regex Regex = new(
-        pattern: REGEX_PATTERN,
-        options: OPTIONS,
-        TimeSpan.FromSeconds(1)
-    );
+    private static readonly Regex Regex = new(pattern: REGEX_PATTERN, options: OPTIONS, TimeSpan.FromSeconds(1));
 
     [Theory]
     [InlineData("1234567890abcdefABCDEF", true)]
