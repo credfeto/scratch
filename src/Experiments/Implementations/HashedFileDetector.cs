@@ -11,9 +11,11 @@ internal sealed class HashedFileDetector : IHashedFileDetector
 
     public bool IsHashedFileName(string fileName)
     {
-        for (string filenameWithoutExtension = Path.GetFileNameWithoutExtension(fileName);
-             filenameWithoutExtension.Contains(value: '.', comparisonType: StringComparison.Ordinal);
-             filenameWithoutExtension = Path.GetFileNameWithoutExtension(filenameWithoutExtension))
+        for (
+            string filenameWithoutExtension = Path.GetFileNameWithoutExtension(fileName);
+            filenameWithoutExtension.Contains(value: '.', comparisonType: StringComparison.Ordinal);
+            filenameWithoutExtension = Path.GetFileNameWithoutExtension(filenameWithoutExtension)
+        )
         {
             string hash = ExtractHashFromFileName(filenameWithoutExtension);
 
@@ -50,7 +52,6 @@ internal sealed class HashedFileDetector : IHashedFileDetector
 
     private static string ExtractHashFromFileName(string filenameWithoutExtension)
     {
-        return Path.GetExtension(filenameWithoutExtension)
-                   .TrimStart(trimChar: '.');
+        return Path.GetExtension(filenameWithoutExtension).TrimStart(trimChar: '.');
     }
 }
