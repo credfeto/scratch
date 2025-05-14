@@ -10,8 +10,6 @@ Please ADD ALL Changes to the UNRELEASED SECTION and not a specific release
 ### Added
 ### Fixed
 ### Changed
-- SDK - Updated DotNet SDK to 9.0.300
-- Dependencies - Updated Microsoft.VisualStudio.Threading.Analyzers to 17.14.15
 ### Removed
 ### Removed
 ### Deployment Changes
@@ -19,6 +17,11 @@ Please ADD ALL Changes to the UNRELEASED SECTION and not a specific release
 <!--
 Releases that have at least been deployed to staging, BUT NOT necessarily released to live.  Changes should be moved from [Unreleased] into here as they are merged into the appropriate release branch
 -->
+## [0.0.272] - 2025-05-14
+### Changed
+- SDK - Updated DotNet SDK to 9.0.300
+- Dependencies - Updated Microsoft.VisualStudio.Threading.Analyzers to 17.14.15
+
 ## [0.0.271] - 2025-05-14
 ### Changed
 - Dependencies - Updated Nullable.Extended.Analyzer to 1.15.6581
