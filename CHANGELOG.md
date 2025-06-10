@@ -10,8 +10,6 @@ Please ADD ALL Changes to the UNRELEASED SECTION and not a specific release
 ### Added
 ### Fixed
 ### Changed
-- Dependencies - Updated Microsoft.Extensions to 9.0.6
-- Dependencies - Updated Credfeto.Enumeration to 1.2.110.1215
 ### Removed
 ### Removed
 ### Deployment Changes
@@ -19,6 +17,11 @@ Please ADD ALL Changes to the UNRELEASED SECTION and not a specific release
 <!--
 Releases that have at least been deployed to staging, BUT NOT necessarily released to live.  Changes should be moved from [Unreleased] into here as they are merged into the appropriate release branch
 -->
+## [0.0.301] - 2025-06-10
+### Changed
+- Dependencies - Updated Microsoft.Extensions to 9.0.6
+- Dependencies - Updated Credfeto.Enumeration to 1.2.110.1215
+
 ## [0.0.300] - 2025-06-10
 ### Changed
 - Dependencies - Updated Credfeto.Enumeration to 1.2.109.1213
