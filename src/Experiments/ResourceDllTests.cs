@@ -1,6 +1,7 @@
 using System;
 using System.Buffers.Text;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.IO;
@@ -75,16 +76,102 @@ public sealed class ResourceDllTests : LoggingFolderCleanupTestBase
             new(MakeFullyQualifiedResourceName(ns: ns, name: resourceBaseName), dataProvider: () => File.OpenRead(filename), isPublic: true)
         ];
 
-        CSharpCompilationOptions options = GenerateOptions();
-
         const string assemblyName = ns + ".dll";
         string assemblyFileName = Path.Combine(path1: target, path2: assemblyName);
-        CSharpCompilation compilation = CSharpCompilation.Create(assemblyName: assemblyName, options: options);
 
-        EmitResult compilationResult = compilation.Emit(outputPath: assemblyFileName, manifestResources: resources, cancellationToken: this.CancellationToken());
+        EmitResult compilationResult = this.Compile(assemblyName: assemblyName, assemblyFileName: assemblyFileName, resources: resources);
         Assert.True(condition: compilationResult.Success, userMessage: "Compilation failed");
 
         await this.VerifyResourcesAsync(assemblyFileName: assemblyFileName, MakePartiallyQualifiedResourceName(ns: ns, name: resourceBaseName), filesToPack: filesToPack);
+    }
+
+    private static string AddAssemblyMetadata(Settings settings, string publicKey)
+    {
+        const string metadataKey = "DeveloperPublicKey";
+
+        return new StringBuilder().AppendLine("using System;")
+                                  .AppendLine("using System.Reflection;")
+                                  .AppendLine()
+                                  .AppendLine($"[assembly: {nameof(AssemblyTitleAttribute)}({EncodeString(settings.ProductName)})]")
+                                  .AppendLine($"[assembly: {nameof(AssemblyProductAttribute)}({EncodeString(settings.Summary)})]")
+                                  .AppendLine($"[assembly: {nameof(AssemblyDescriptionAttribute)}({EncodeString(settings.Description)})]")
+                                  .AppendLine($"[assembly: {nameof(AssemblyVersionAttribute)}({EncodeString(settings.Version.DottedVersion.ToString())})]")
+                                  .AppendLine($"[assembly: {nameof(AssemblyFileVersionAttribute)}({EncodeString(settings.Version.DottedVersion.ToString())})]")
+                                  .AppendLine($"[assembly: {nameof(AssemblyInformationalVersionAttribute)}({EncodeString(settings.Version.Version)})]")
+                                  .AppendLine($"[assembly: {nameof(AssemblyCompanyAttribute)}({EncodeString(settings.Author)})]")
+                                  .AppendLine($"[assembly: {nameof(AssemblyMetadataAttribute)}(key:{EncodeString(metadataKey)}, value:{EncodeString(publicKey)})]")
+                                  .ToString();
+    }
+
+    private static string EncodeString(string value)
+    {
+        if (string.IsNullOrWhiteSpace(value))
+        {
+            return $"string.{nameof(string.Empty)}";
+        }
+
+        return "\"" + Escape(value) + "\"";
+    }
+
+    private static string Escape(string value)
+    {
+        return value.Replace(oldValue: "\"", newValue: "\\\"", comparisonType: StringComparison.Ordinal);
+    }
+
+    private EmitResult Compile(string assemblyName, string assemblyFileName, ResourceDescription[] resources)
+    {
+        Settings settings = new(Author: "Test",
+                                new("1.0.0.1-test"),
+                                ContentType: ComponentType.LOBBY,
+                                ProductName: assemblyName,
+                                Copyright: "Me",
+                                Description: "Description",
+                                Summary: "Summary",
+                                LicenseUrl: null,
+                                ProjectUrl: null,
+                                IconUrl: null,
+                                ReleaseNotes: "RN",
+                                ["Tag1"],
+                                Id: assemblyName);
+
+        string source = AddAssemblyMetadata(settings: settings, publicKey: "0x123457");
+
+        SyntaxTree tree = SyntaxFactory.ParseSyntaxTree(source,
+                                                        new CSharpParseOptions(languageVersion: LanguageVersion.Latest, documentationMode: DocumentationMode.None, kind: SourceCodeKind.Regular),
+                                                        cancellationToken: this.CancellationToken());
+
+        CSharpCompilationOptions options = GenerateOptions();
+        IReadOnlyList<MetadataReference> references = BuildReferences();
+        CSharpCompilation compilation = CSharpCompilation.Create(assemblyName: assemblyName, references: references, options: options)
+                                                         .AddSyntaxTrees(tree);
+
+        EmitResult compilationResult = compilation.Emit(outputPath: assemblyFileName, manifestResources: resources, cancellationToken: this.CancellationToken());
+
+        return compilationResult;
+    }
+
+    private static IReadOnlyList<MetadataReference> BuildReferences()
+    {
+        string[] references =
+        [
+            Ref<string>()
+        ];
+
+        return
+        [
+            .. references.Distinct(StringComparer.Ordinal)
+                         .Order(StringComparer.OrdinalIgnoreCase)
+                         .Select(selector: fileName => MetadataReference.CreateFromFile(fileName))
+        ];
+    }
+
+    [SuppressMessage(category: "FunFair.CodeAnalysis", checkId: "FFS0008:Don't disable warnings with #pragma", Justification = "Needed in this case")]
+    private static string Ref<T>()
+    {
+#pragma warning disable IL3000
+        return typeof(T).GetTypeInfo()
+                        .Assembly.Location;
+#pragma warning restore IL3000
     }
 
     private static string MakeFullyQualifiedResourceName(string ns, string name)
@@ -174,4 +261,152 @@ public sealed class ResourceDllTests : LoggingFolderCleanupTestBase
                    bufferSize: 1, // bufferSize == 1 used to avoid unnecessary buffer in FileStream
                    FileOptions.Asynchronous | FileOptions.SequentialScan);
     }
+
+    [DebuggerDisplay(value: "Version: {Version} Pre-Release: {IsPreRelease}")]
+    private readonly record struct PackageVersion : IComparable<PackageVersion>, IComparable
+    {
+        [SuppressMessage(category: "Microsoft.IDE", checkId: "IDE0057: Simplify substring", Justification = "For compatibility with netstandard")]
+        public PackageVersion(string version)
+        {
+            if (string.IsNullOrWhiteSpace(version))
+            {
+                throw new ArgumentNullException(nameof(version));
+            }
+
+            int pos = GetPreReleaseIndex(version);
+
+            if (pos != -1)
+            {
+                string dotted = version.Substring(startIndex: 0, length: pos);
+
+                if (!System.Version.TryParse(input: dotted, out Version? dv))
+                {
+                    throw new ArgumentOutOfRangeException(nameof(version), actualValue: version, message: "Version is not a version");
+                }
+
+                this.DottedVersion = dv;
+                this.PreReleaseTag = version.Substring(pos + 1);
+            }
+            else
+            {
+                if (!System.Version.TryParse(input: version, out Version? dv))
+                {
+                    throw new ArgumentOutOfRangeException(nameof(version), actualValue: version, message: "Version is not a version");
+                }
+
+                this.DottedVersion = dv;
+                this.PreReleaseTag = string.Empty;
+            }
+
+            this.Version = version;
+        }
+
+        public string Version { get; }
+
+        public Version DottedVersion { get; }
+
+        public string PreReleaseTag { get; }
+
+        public bool IsPreRelease => !string.IsNullOrWhiteSpace(this.PreReleaseTag);
+
+        public int CompareTo(object? obj)
+        {
+            if (obj is null)
+            {
+                return 1;
+            }
+
+            return obj is PackageVersion typed
+                ? CompareToCommon(this, right: typed)
+                : NotAPackageVersion(obj);
+        }
+
+        public int CompareTo(PackageVersion other)
+        {
+            return CompareToCommon(this, right: other);
+        }
+
+        [SuppressMessage(category: "Meziantou.Analyzer", checkId: "MA0089:Use overload with char instead of string", Justification = "For compatibility with netstandard")]
+        [SuppressMessage(category: "Microsoft.Performance", checkId: "CA1865:Use overload with char instead of string", Justification = "For compatibility with netstandard")]
+        private static int GetPreReleaseIndex(string version)
+        {
+            return version.IndexOf(value: "-", comparisonType: StringComparison.Ordinal);
+        }
+
+        public override string ToString()
+        {
+            return this.Version;
+        }
+
+        [SuppressMessage(category: "SonarAnalyzer.CSharp", checkId: "S1172: Parameter unused", Justification = "Used for name")]
+        [SuppressMessage(category: "ReSharper", checkId: "EntityNameCapturedOnly.Local", Justification = "Used for name")]
+        private static int NotAPackageVersion(object? obj)
+        {
+            throw new ArgumentException(message: "Must be of type PackageVersion", nameof(obj));
+        }
+
+        public static bool operator <(in PackageVersion left, in PackageVersion right)
+        {
+            return CompareToCommon(left: left, right: right) < 0;
+        }
+
+        public static bool operator >(in PackageVersion left, in PackageVersion right)
+        {
+            return CompareToCommon(left: left, right: right) > 0;
+        }
+
+        public static bool operator <=(in PackageVersion left, in PackageVersion right)
+        {
+            return CompareToCommon(left: left, right: right) <= 0;
+        }
+
+        public static bool operator >=(in PackageVersion left, in PackageVersion right)
+        {
+            return CompareToCommon(left: left, right: right) >= 0;
+        }
+
+        private static int CompareToCommon(in PackageVersion left, in PackageVersion right)
+        {
+            int cmp = left.DottedVersion.CompareTo(right.DottedVersion);
+
+            if (cmp != 0)
+            {
+                return cmp;
+            }
+
+            if (left.IsPreRelease && right.IsPreRelease)
+            {
+                return StringComparer.OrdinalIgnoreCase.Compare(x: left.PreReleaseTag, y: right.PreReleaseTag);
+            }
+
+            if (left.IsPreRelease && !right.IsPreRelease)
+            {
+                return -1;
+            }
+
+            if (!left.IsPreRelease && right.IsPreRelease)
+            {
+                return 1;
+            }
+
+            return 0;
+        }
+    }
+
+    [SuppressMessage(category: "Meziantou.Analyzer", checkId: "MA0109:Consider adding a Span<T> overload", Justification = "Not needed here")]
+    [DebuggerDisplay("{Id}\\{Version} :{ProductName}")]
+    private sealed record Settings(
+        string Author,
+        PackageVersion Version,
+        ComponentType ContentType,
+        string ProductName,
+        string Copyright,
+        string Description,
+        string Summary,
+        Uri? LicenseUrl,
+        Uri? ProjectUrl,
+        Uri? IconUrl,
+        string ReleaseNotes,
+        IReadOnlyList<string> Tags,
+        string Id);
 }
