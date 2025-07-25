@@ -4,5 +4,5 @@ internal enum ComponentType
 {
     ADMIN,
     LOBBY,
-    GAME
+    GAME,
 }
