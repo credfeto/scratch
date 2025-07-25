@@ -19,7 +19,7 @@ internal static class FileHelper
 
         return await Task.WhenAll(
             filenames.Select(file =>
-                                 WriteBytesAsync(basePath: basePath, file: file, cancellationToken: cancellationToken)
+                WriteBytesAsync(basePath: basePath, file: file, cancellationToken: cancellationToken)
             )
         );
     }
