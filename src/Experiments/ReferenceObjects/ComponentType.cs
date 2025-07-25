@@ -1,4 +1,4 @@
-namespace Experiments;
+namespace Experiments.ReferenceObjects;
 
 internal enum ComponentType
 {

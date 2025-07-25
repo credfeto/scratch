@@ -14,6 +14,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Experiments.Helpers;
+using Experiments.ReferenceObjects;
 using FunFair.Test.Common;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
@@ -25,6 +26,9 @@ namespace Experiments;
 
 public sealed class ResourceDllTests : LoggingFolderCleanupTestBase
 {
+    private const string CONTENT_RESOURCE_NAME = "Content";
+    private const string ADDITIONAL_RESOURCE_NAME = "Additional";
+
     private static readonly string[] ExampleTempFiles = ["Example.txt", "Banana.jpg"];
 
     private static readonly RecyclableMemoryStreamManager MemoryStreamManager = new();
@@ -48,9 +52,9 @@ public sealed class ResourceDllTests : LoggingFolderCleanupTestBase
         FolderHelpers.EnsureFolderExists(source);
         FolderHelpers.EnsureFolderExists(target);
 
-        const string resourceBaseName = "example";
 
-        string filename = Path.Combine(path1: target, resourceBaseName + ".resources");
+
+        string filename = Path.Combine(path1: target, CONTENT_RESOURCE_NAME + ".resources");
 
         IReadOnlyList<string> filesToPack = await FileHelper.CreateTempFilesAsync(basePath: source, filenames: ExampleTempFiles, this.CancellationToken());
 
@@ -70,10 +74,14 @@ public sealed class ResourceDllTests : LoggingFolderCleanupTestBase
             writer.Generate();
         }
 
+        byte[] additionalData = Guid.NewGuid()
+                                    .ToByteArray();
+
         const string ns = "Credfeto.Resources.Example";
         ResourceDescription[] resources =
         [
-            new(MakeFullyQualifiedResourceName(ns: ns, name: resourceBaseName), dataProvider: () => File.OpenRead(filename), isPublic: true)
+            new(MakeFullyQualifiedResourceName(ns: ns, name: CONTENT_RESOURCE_NAME), dataProvider: () => File.OpenRead(filename), isPublic: true),
+            new(MakeFullyQualifiedResourceName(ns: ns, name: ADDITIONAL_RESOURCE_NAME), dataProvider: () => new MemoryStream(additionalData, false), isPublic: true)
         ];
 
         const string assemblyName = ns + ".dll";
@@ -82,7 +90,7 @@ public sealed class ResourceDllTests : LoggingFolderCleanupTestBase
         EmitResult compilationResult = this.Compile(assemblyName: assemblyName, assemblyFileName: assemblyFileName, resources: resources);
         Assert.True(condition: compilationResult.Success, userMessage: "Compilation failed");
 
-        await this.VerifyResourcesAsync(assemblyFileName: assemblyFileName, MakePartiallyQualifiedResourceName(ns: ns, name: resourceBaseName), filesToPack: filesToPack);
+        await this.VerifyResourcesAsync(assemblyFileName: assemblyFileName, MakePartiallyQualifiedResourceName(ns: ns, name: CONTENT_RESOURCE_NAME), filesToPack: filesToPack);
     }
 
     private static string AddAssemblyMetadata(Settings settings, string publicKey)
