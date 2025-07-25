@@ -52,12 +52,69 @@ public sealed class ResourceDllTests : LoggingFolderCleanupTestBase
         FolderHelpers.EnsureFolderExists(source);
         FolderHelpers.EnsureFolderExists(target);
 
-
-
         string filename = Path.Combine(path1: target, CONTENT_RESOURCE_NAME + ".resources");
 
         IReadOnlyList<string> filesToPack = await FileHelper.CreateTempFilesAsync(basePath: source, filenames: ExampleTempFiles, this.CancellationToken());
 
+        await this.GenerateResourcesFromFilesAsync(filename: filename, filesToPack: filesToPack);
+
+        Dictionary<string, string> additionalData = new(StringComparer.Ordinal)
+                                                    {
+                                                        ["Test1"] = Guid.NewGuid()
+                                                                        .ToString(),
+                                                        ["Test2"] = Guid.NewGuid()
+                                                                        .ToString(),
+                                                        [".jpg"] = "application/json"
+                                                    };
+
+        const string ns = "Credfeto.Resources.Example";
+        ResourceDescription[] resources =
+        [
+            new(MakeFullyQualifiedResourceName(ns: ns, name: CONTENT_RESOURCE_NAME), dataProvider: () => File.OpenRead(filename), isPublic: true),
+            new(MakeFullyQualifiedResourceName(ns: ns, name: ADDITIONAL_RESOURCE_NAME), dataProvider: () => GenerateResourcesFromDictionary(additionalData), isPublic: true)
+        ];
+
+        const string assemblyName = ns + ".dll";
+        string assemblyFileName = Path.Combine(path1: target, path2: assemblyName);
+
+        EmitResult compilationResult = this.Compile(assemblyName: assemblyName, assemblyFileName: assemblyFileName, resources: resources);
+        Assert.True(condition: compilationResult.Success, userMessage: "Compilation failed");
+
+        Assembly ass = await LoadAssemblyFromFileAsync(new(assemblyFileName), fileName: assemblyFileName, this.CancellationToken());
+
+        await this.VerifyResourcesAsync(ass: ass, MakePartiallyQualifiedResourceName(ns: ns, name: CONTENT_RESOURCE_NAME), filesToPack: filesToPack);
+
+        this.VerifyAdditionalResource(ass: ass, MakePartiallyQualifiedResourceName(ns: ns, name: ADDITIONAL_RESOURCE_NAME));
+    }
+
+    [SuppressMessage(category: "Meziantou.Analyzer", checkId: "MA0045: Use async", Justification = "Not here")]
+    private static Stream GenerateResourcesFromDictionary(Dictionary<string, string> additionalData)
+    {
+        MemoryStream rws = new();
+
+        using (MemoryStream rws2 = new())
+        {
+            using (ResourceWriter writer = new(rws2))
+            {
+                foreach ((string key, string value) in additionalData)
+                {
+                    writer.AddResource(name: key, value: value);
+                }
+
+                writer.AddResource(name: "$KEYS", string.Join(separator: ',', values: additionalData.Keys));
+
+                writer.Generate();
+                rws2.Seek(offset: 0, loc: SeekOrigin.Begin);
+                rws2.CopyTo(rws);
+                rws.Seek(offset: 0, loc: SeekOrigin.Begin);
+
+                return rws;
+            }
+        }
+    }
+
+    private async Task GenerateResourcesFromFilesAsync(string filename, IReadOnlyList<string> filesToPack)
+    {
         using (ResourceWriter writer = new(filename))
         {
             foreach (string file in filesToPack)
@@ -73,24 +130,19 @@ public sealed class ResourceDllTests : LoggingFolderCleanupTestBase
 
             writer.Generate();
         }
+    }
 
-        byte[] additionalData = Guid.NewGuid()
-                                    .ToByteArray();
+    private void VerifyAdditionalResource(Assembly ass, string res)
+    {
+        ResourceManager rm = new(baseName: res, assembly: ass);
 
-        const string ns = "Credfeto.Resources.Example";
-        ResourceDescription[] resources =
-        [
-            new(MakeFullyQualifiedResourceName(ns: ns, name: CONTENT_RESOURCE_NAME), dataProvider: () => File.OpenRead(filename), isPublic: true),
-            new(MakeFullyQualifiedResourceName(ns: ns, name: ADDITIONAL_RESOURCE_NAME), dataProvider: () => new MemoryStream(additionalData, false), isPublic: true)
-        ];
+        string[] keys = rm.GetString(name: "$KEYS", culture: CultureInfo.InvariantCulture)
+                          ?.Split(',') ?? [];
 
-        const string assemblyName = ns + ".dll";
-        string assemblyFileName = Path.Combine(path1: target, path2: assemblyName);
-
-        EmitResult compilationResult = this.Compile(assemblyName: assemblyName, assemblyFileName: assemblyFileName, resources: resources);
-        Assert.True(condition: compilationResult.Success, userMessage: "Compilation failed");
-
-        await this.VerifyResourcesAsync(assemblyFileName: assemblyFileName, MakePartiallyQualifiedResourceName(ns: ns, name: CONTENT_RESOURCE_NAME), filesToPack: filesToPack);
+        foreach (string key in keys)
+        {
+            this.Output.WriteLine($"{key} = {rm.GetString(name: key, culture: CultureInfo.InvariantCulture)}");
+        }
     }
 
     private static string AddAssemblyMetadata(Settings settings, string publicKey)
@@ -144,7 +196,7 @@ public sealed class ResourceDllTests : LoggingFolderCleanupTestBase
 
         string source = AddAssemblyMetadata(settings: settings, publicKey: "0x123457");
 
-        SyntaxTree tree = SyntaxFactory.ParseSyntaxTree(source,
+        SyntaxTree tree = SyntaxFactory.ParseSyntaxTree(text: source,
                                                         new CSharpParseOptions(languageVersion: LanguageVersion.Latest, documentationMode: DocumentationMode.None, kind: SourceCodeKind.Regular),
                                                         cancellationToken: this.CancellationToken());
 
@@ -192,10 +244,8 @@ public sealed class ResourceDllTests : LoggingFolderCleanupTestBase
         return ns + name;
     }
 
-    private async Task VerifyResourcesAsync(string assemblyFileName, string res, IReadOnlyList<string> filesToPack)
+    private async Task VerifyResourcesAsync(Assembly ass, string res, IReadOnlyList<string> filesToPack)
     {
-        Assembly ass = await LoadAssemblyFromFileAsync(new(assemblyFileName), fileName: assemblyFileName, this.CancellationToken());
-
         ResourceManager rm = new(baseName: res, assembly: ass);
 
         foreach (string file in filesToPack)
