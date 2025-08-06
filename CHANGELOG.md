@@ -10,6 +10,15 @@ Please ADD ALL Changes to the UNRELEASED SECTION and not a specific release
 ### Added
 ### Fixed
 ### Changed
+### Removed
+### Removed
+### Deployment Changes
+
+<!--
+Releases that have at least been deployed to staging, BUT NOT necessarily released to live.  Changes should be moved from [Unreleased] into here as they are merged into the appropriate release branch
+-->
+## [0.0.312] - 2025-08-06
+### Changed
 - SDK - Updated DotNet SDK to 9.0.303
 - Dependencies - Updated FunFair.CodeAnalysis to 7.1.13.1330
 - Dependencies - Updated Meziantou.Analyzer to 2.0.210
@@ -21,13 +30,7 @@ Please ADD ALL Changes to the UNRELEASED SECTION and not a specific release
 - Dependencies - Updated xunit.v3 to 3.0.0
 - Dependencies - Updated FunFair.Test.Common to 6.1.280.1580
 - Dependencies - Updated Microsoft.Extensions to 9.0.8
-### Removed
-### Removed
-### Deployment Changes
 
-<!--
-Releases that have at least been deployed to staging, BUT NOT necessarily released to live.  Changes should be moved from [Unreleased] into here as they are merged into the appropriate release branch
--->
 ## [0.0.311] - 2025-06-23
 ### Changed
 - Dependencies - Updated FunFair.Test.Common to 6.1.273.1481
