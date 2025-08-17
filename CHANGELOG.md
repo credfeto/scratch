@@ -13,6 +13,7 @@ Please ADD ALL Changes to the UNRELEASED SECTION and not a specific release
 - Dependencies - Updated FunFair.CodeAnalysis to 7.1.22.1366
 - Dependencies - Updated Philips.CodeAnalysis.MaintainabilityAnalyzers to 1.8.0
 - Dependencies - Updated xunit.analyzers to 1.24.0
+- Dependencies - Updated xunit.v3 to 3.0.1
 ### Removed
 ### Removed
 ### Deployment Changes
