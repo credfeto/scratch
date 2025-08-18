@@ -19,7 +19,7 @@
     <IlcGenerateStackTraceData>false</IlcGenerateStackTraceData>
     <IlcOptimizationPreference>Size</IlcOptimizationPreference>
     <ImplicitUsings>disable</ImplicitUsings>
-    <IncludeOpenAPIAnalyzers>true</IncludeOpenAPIAnalyzers>
+    <WarnOnPackingNonPackableProject>false</WarnOnPackingNonPackableProject>
     <IsPackable>false</IsPackable>
     <IsPublishable>false</IsPublishable>
     <JsonSerializerIsReflectionEnabledByDefault>false</JsonSerializerIsReflectionEnabledByDefault>
