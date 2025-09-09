@@ -11,14 +11,10 @@ namespace Experiments;
 public sealed class RegexTests : TestBase
 {
     private const string REGEX_PATTERN = "^[0-9a-fA-F]+$";
-    private const RegexOptions OPTIONS =
-        RegexOptions.Compiled | RegexOptions.CultureInvariant | RegexOptions.ExplicitCapture | RegexOptions.Singleline;
 
-    [SuppressMessage(
-        category: "Meziantou.Analyzers",
-        checkId: "MA0110: Use regex source generator",
-        Justification = "cannot be for a test case"
-    )]
+    private const RegexOptions OPTIONS = RegexOptions.Compiled | RegexOptions.CultureInvariant | RegexOptions.ExplicitCapture | RegexOptions.Singleline;
+
+    [SuppressMessage(category: "Meziantou.Analyzers", checkId: "MA0110: Use regex source generator", Justification = "cannot be for a test case")]
     private static readonly Regex Regex = new(pattern: REGEX_PATTERN, options: OPTIONS, TimeSpan.FromSeconds(1));
 
     [Theory]
@@ -96,5 +92,35 @@ public sealed class RegexTests : TestBase
     private static bool IsUpperCaseHexLetter(in char c)
     {
         return c is >= 'A' and <= 'F';
+    }
+
+    [SuppressMessage(category: "Meziantou.Analyzers", checkId: "MA0110: Use regex source generator", Justification = "cannot be for a test case")]
+    [Theory]
+    [InlineData("@rinukam143 Rotom registered in Pokédex: ✔ 👾 @rinukam143 Rotom (Mow) registered in Alt. Dex: ❌", true)]
+    [InlineData("@rinukam143 Rotom registered in Pokédex: ❌ 👾 @rinukam143 Rotom (Mow) registered in Alt. Dex: ✔", true)]
+    [InlineData("@rinukam143 Rotom registered in Pokédex: ❌ 👾 @rinukam143 Rotom (Mow) registered in Alt. Dex: ❌", true)]
+    [InlineData("@rinukam143 Rotom registered in Pokédex: ✔ 👾 @rinukam143 Rotom (Mow) registered in Alt. Dex: ✔", false)]
+    [InlineData("@rinukam143 Deino registered in Pokédex: ❌", true)]
+    [InlineData("I'm a banana", false)]
+    public void Match(string source, bool matched)
+    {
+        const string pattern = "^@rinukam143\\s+(.+)\\s+registered\\s+in\\s+Pokédex:\\s+❌$|@rinukam143\\s+(.+)\\s+registered\\s+in\\s+Pokédex:\\s+[✔❌]\\s+👾\\s+@rinukam143\\s+(.+)\\s+registered\\s+in\\s+Alt.\\s+Dex:\\s+❌$|@rinukam143\\s+(.+)\\s+registered\\s+in\\s+Pokédex:\\s+❌\\s+👾\\s+@rinukam143\\s+(.+)\\s+registered\\s+in\\s+Alt.\\s+Dex:\\s+[✔❌]$"
+            ;
+
+/*
+ * {
+     "Streamer": "sleepypan",
+     "Bot": "PokemonCommunityGame",
+     "MatchType": "REGEX",
+     "Match": "^@rinukam143\\s+(.+)\\s+registered\\s+in\\s+Pokédex:\\s+❌$",
+              "^@rinukam143\\s+(.+)\\s+registered\\s+in\\s+Pokédex:\\s+❌$|@rinukam143\\s+(.+)\\s+registered\\s+in\\s+Pokédex:\\s+[✔❌]\\s+👾\\s+@rinukam143\\s+(.+)\\s+registered\\s+in\\s+Alt.\\s+Dex:\\s+❌$|@rinukam143\\s+(.+)\\s+registered\\s+in\\s+Pokédex:\\s+❌\\s+👾\\s+@rinukam143\\s+(.+)\\s+registered\\s+in\\s+Alt.\\s+Dex:\\s+[✔❌]$"
+     "Issue": "!pokecatch"
+   },
+
+ */
+        Regex test = new(pattern: pattern, options: OPTIONS, TimeSpan.FromSeconds(1));
+
+        bool isMatch = test.IsMatch(source);
+        Assert.Equal(expected: matched, actual: isMatch);
     }
 }
