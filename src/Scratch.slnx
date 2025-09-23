@@ -1,0 +1,29 @@
+<Solution>
+  <Folder Name="/!!Config/">
+    <File Path="../CHANGELOG.md" />
+    <File Path="../LICENSE" />
+    <File Path="../README.md" />
+    <File Path="CodeAnalysis.ruleset" />
+    <File Path="global.json" />
+  </Folder>
+  <Folder Name="/!!Config/Workflows/">
+    <File Path="../.github/workflows/all-contributors.yml" />
+    <File Path="../.github/workflows/build-and-publish-pre-release.yml" />
+    <File Path="../.github/workflows/build-and-publish-release.yml" />
+    <File Path="../.github/workflows/codeql-analysis-csharp.yml" />
+    <File Path="../.github/workflows/codeql-analysis-javascript.yml" />
+    <File Path="../.github/workflows/codeql-analysis-python.yml" />
+    <File Path="../.github/workflows/create-prs-for-stale-branches.yml" />
+    <File Path="../.github/workflows/on_new_pr.yml" />
+    <File Path="../.github/workflows/pr-lint.yml" />
+    <File Path="../.github/workflows/pr-update.yml" />
+    <File Path="../.github/workflows/pull-request.yml" />
+    <File Path="../.github/workflows/reformat-sql.yml" />
+    <File Path="../.github/workflows/reformat-yaml.yml" />
+    <File Path="../.github/workflows/update-labels.yml" />
+  </Folder>
+  <Project Path="Bench/Bench.csproj" />
+  <Project Path="Experiments/Experiments.csproj" />
+  <Project Path="Implementations/Implementations.csproj" />
+  <Project Path="Models/Models.csproj" />
+</Solution>
