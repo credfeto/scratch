@@ -10,13 +10,13 @@ Please ADD ALL Changes to the UNRELEASED SECTION and not a specific release
 ### Added
 ### Fixed
 ### Changed
-- Dependencies - Updated FunFair.Test.Common to 6.2.0.1690
 - Dotnet 10
 - Dependencies - Updated FunFair.CodeAnalysis to 7.1.25.1550
 - Dependencies - Updated Meziantou.Analyzer to 2.0.229
 - Dependencies - Updated Roslynator.Analyzers to 4.14.1
 - Dependencies - Updated xunit.v3 to 3.1.0
 - Dependencies - Updated BenchmarkDotNet to 0.15.4
+- Dependencies - Updated FunFair.Test.Common to 6.2.2.1777
 ### Removed
 ### Removed
 ### Deployment Changes
