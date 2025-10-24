@@ -10,6 +10,15 @@ Please ADD ALL Changes to the UNRELEASED SECTION and not a specific release
 ### Added
 ### Fixed
 ### Changed
+### Removed
+### Removed
+### Deployment Changes
+
+<!--
+Releases that have at least been deployed to staging, BUT NOT necessarily released to live.  Changes should be moved from [Unreleased] into here as they are merged into the appropriate release branch
+-->
+## [0.0.323] - 2025-10-24
+### Changed
 - Dotnet 10
 - Dependencies - Updated FunFair.CodeAnalysis to 7.1.25.1550
 - Dependencies - Updated Meziantou.Analyzer to 2.0.229
@@ -18,13 +27,7 @@ Please ADD ALL Changes to the UNRELEASED SECTION and not a specific release
 - Dependencies - Updated BenchmarkDotNet to 0.15.4
 - Dependencies - Updated FunFair.Test.Common to 6.2.2.1777
 - Dependencies - Updated Microsoft.NET.Test.Sdk to 18.0.0
-### Removed
-### Removed
-### Deployment Changes
 
-<!--
-Releases that have at least been deployed to staging, BUT NOT necessarily released to live.  Changes should be moved from [Unreleased] into here as they are merged into the appropriate release branch
--->
 ## [0.0.322] - 2025-09-12
 ### Changed
 - Dependencies - Updated Credfeto.Enumeration to 1.2.129.1430
