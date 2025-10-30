@@ -9,7 +9,7 @@ namespace Bench;
 [MemoryDiagnoser(false)]
 [SuppressMessage(category: "", checkId: "SCS0005", Justification = "Needed for predictability")]
 [SuppressMessage(category: "", checkId: "CA5394", Justification = "Needed for predictability")]
-[SuppressMessage(category: "", checkId: "CS1503", Justification = "Needed for predictability")]
+
 public abstract class InlineArrayBench : BenchBase
 {
     private const int SIZE = 32;
