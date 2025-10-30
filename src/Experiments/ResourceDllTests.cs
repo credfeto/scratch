@@ -39,7 +39,7 @@ public sealed class ResourceDllTests : LoggingFolderCleanupTestBase
     }
 
     [Fact]
-    [SuppressMessage(category: "Microsoft.Design", checkId: "CA2000: Call dispose", Justification = "Because")]
+    
     public async Task GenerateResourceDllAsync()
     {
         string source = Path.Combine(path1: this.TempFolder,
@@ -397,7 +397,7 @@ public sealed class ResourceDllTests : LoggingFolderCleanupTestBase
         }
 
         [SuppressMessage(category: "SonarAnalyzer.CSharp", checkId: "S1172: Parameter unused", Justification = "Used for name")]
-        [SuppressMessage(category: "ReSharper", checkId: "EntityNameCapturedOnly.Local", Justification = "Used for name")]
+        
         private static int NotAPackageVersion(object? obj)
         {
             throw new ArgumentException(message: "Must be of type PackageVersion", nameof(obj));
@@ -451,7 +451,7 @@ public sealed class ResourceDllTests : LoggingFolderCleanupTestBase
         }
     }
 
-    [SuppressMessage(category: "Meziantou.Analyzer", checkId: "MA0109:Consider adding a Span<T> overload", Justification = "Not needed here")]
+    
     [DebuggerDisplay("{Id}\\{Version} :{ProductName}")]
     private sealed record Settings(
         string Author,
