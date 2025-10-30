@@ -3,7 +3,6 @@ using System.Runtime.CompilerServices;
 
 namespace Bench;
 
-
 public abstract class BenchBase
 {
     [SuppressMessage(
@@ -16,7 +15,6 @@ public abstract class BenchBase
         checkId: "CA1822:Mark methods static",
         Justification = "Benchmark"
     )]
-    
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     protected void Test<T>(T value)
     {
