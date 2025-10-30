@@ -12,7 +12,7 @@ public sealed class RemoveBlankLinesBetweenXmlDocAndSuppressMessage : TestBase
         @"
         public CasinoMetadataDto? Metadata { get; set; }
 
-        [SuppressMessage(category: ""ReSharper"", checkId: ""AutoPropertyCanBeMadeGetOnly.Global"", Justification = ""TODO: Review"")]
+        
         public WalletAppId WalletAppId { get; set; } = default!;
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage(category: ""ReSharper"", checkId: ""AutoPropertyCanBeMadeGetOnly.Global"", Justification = ""TODO: Review"")]
