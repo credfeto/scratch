@@ -10,9 +10,6 @@ Please ADD ALL Changes to the UNRELEASED SECTION and not a specific release
 ### Added
 ### Fixed
 ### Changed
-- SDK - Updated DotNet SDK to 10.0.100
-- Dependencies - Updated Meziantou.Analyzer to 2.0.252
-- Dependencies - Updated BenchmarkDotNet to 0.15.6
 ### Removed
 ### Removed
 ### Deployment Changes
@@ -20,6 +17,12 @@ Please ADD ALL Changes to the UNRELEASED SECTION and not a specific release
 <!--
 Releases that have at least been deployed to staging, BUT NOT necessarily released to live.  Changes should be moved from [Unreleased] into here as they are merged into the appropriate release branch
 -->
+## [0.0.324] - 2025-11-13
+### Changed
+- SDK - Updated DotNet SDK to 10.0.100
+- Dependencies - Updated Meziantou.Analyzer to 2.0.252
+- Dependencies - Updated BenchmarkDotNet to 0.15.6
+
 ## [0.0.323] - 2025-10-24
 ### Changed
 - Dotnet 10
