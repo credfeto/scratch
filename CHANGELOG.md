@@ -13,11 +13,11 @@ Please ADD ALL Changes to the UNRELEASED SECTION and not a specific release
 - SDK - Updated DotNet SDK to 10.0.101
 - Dependencies - Updated FunFair.CodeAnalysis to 7.1.29.1663
 - Dependencies - Updated Roslynator.Analyzers to 4.15.0
-- Dependencies - Updated SonarAnalyzer.CSharp to 10.16.1.129956
 - Dependencies - Updated xunit.analyzers to 1.26.0
 - Dependencies - Updated xunit.v3 to 3.2.1
 - Dependencies - Updated Credfeto.Enumeration to 1.2.134.1689
 - Dependencies - Updated Meziantou.Analyzer to 2.0.261
+- Dependencies - Updated SonarAnalyzer.CSharp to 10.17.0.131074
 ### Removed
 ### Removed
 ### Deployment Changes
