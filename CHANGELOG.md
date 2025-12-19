@@ -15,9 +15,9 @@ Please ADD ALL Changes to the UNRELEASED SECTION and not a specific release
 - Dependencies - Updated xunit.analyzers to 1.26.0
 - Dependencies - Updated xunit.v3 to 3.2.1
 - Dependencies - Updated Credfeto.Enumeration to 1.2.134.1689
-- Dependencies - Updated Meziantou.Analyzer to 2.0.261
 - Dependencies - Updated SonarAnalyzer.CSharp to 10.17.0.131074
 - Dependencies - Updated FunFair.CodeAnalysis to 7.1.30.1674
+- Dependencies - Updated Meziantou.Analyzer to 2.0.263
 ### Removed
 ### Removed
 ### Deployment Changes
