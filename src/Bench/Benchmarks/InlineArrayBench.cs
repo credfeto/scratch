@@ -3,7 +3,7 @@ using System.Diagnostics.CodeAnalysis;
 using BenchmarkDotNet.Attributes;
 using Implementations.InlineStructOptimisations;
 
-namespace Bench;
+namespace Bench.Benchmarks;
 
 [SimpleJob]
 [MemoryDiagnoser(false)]

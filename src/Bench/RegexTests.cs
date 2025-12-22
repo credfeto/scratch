@@ -13,7 +13,7 @@ public sealed class RegexTests : LoggingTestBase
     [Fact]
     public void Run_Benchmarks()
     {
-        (Summary _, AccumulationLogger logger) = Benchmark<RegexBench>();
+        (Summary _, AccumulationLogger logger) = Benchmark<Benchmarks.RegexBench>();
 
         this.Output.WriteLine(logger.GetLog());
     }

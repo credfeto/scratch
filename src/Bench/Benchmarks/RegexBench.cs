@@ -5,7 +5,7 @@ using System.Runtime.CompilerServices;
 using System.Text.RegularExpressions;
 using BenchmarkDotNet.Attributes;
 
-namespace Bench;
+namespace Bench.Benchmarks;
 
 [SimpleJob]
 [MemoryDiagnoser(false)]

@@ -3,7 +3,7 @@ using System.Text;
 using System.Text.Json;
 using BenchmarkDotNet.Attributes;
 
-namespace Bench;
+namespace Bench.Benchmarks;
 
 [SimpleJob]
 [MemoryDiagnoser(false)]

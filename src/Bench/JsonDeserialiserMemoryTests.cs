@@ -1,3 +1,4 @@
+using Bench.Benchmarks;
 using BenchmarkDotNet.Loggers;
 using BenchmarkDotNet.Reports;
 using FunFair.Test.Common;
