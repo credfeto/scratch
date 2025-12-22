@@ -10,6 +10,15 @@ Please ADD ALL Changes to the UNRELEASED SECTION and not a specific release
 ### Added
 ### Fixed
 ### Changed
+### Removed
+### Removed
+### Deployment Changes
+
+<!--
+Releases that have at least been deployed to staging, BUT NOT necessarily released to live.  Changes should be moved from [Unreleased] into here as they are merged into the appropriate release branch
+-->
+## [0.0.328] - 2025-12-22
+### Changed
 - SDK - Updated DotNet SDK to 10.0.101
 - Dependencies - Updated Roslynator.Analyzers to 4.15.0
 - Dependencies - Updated xunit.analyzers to 1.26.0
@@ -18,13 +27,7 @@ Please ADD ALL Changes to the UNRELEASED SECTION and not a specific release
 - Dependencies - Updated SonarAnalyzer.CSharp to 10.17.0.131074
 - Dependencies - Updated FunFair.CodeAnalysis to 7.1.30.1674
 - Dependencies - Updated Meziantou.Analyzer to 2.0.264
-### Removed
-### Removed
-### Deployment Changes
 
-<!--
-Releases that have at least been deployed to staging, BUT NOT necessarily released to live.  Changes should be moved from [Unreleased] into here as they are merged into the appropriate release branch
--->
 ## [0.0.327] - 2025-11-29
 ### Changed
 - Dependencies - Updated Credfeto.Enumeration to 1.2.133.1545
