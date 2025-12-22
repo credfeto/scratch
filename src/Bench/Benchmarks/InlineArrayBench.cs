@@ -23,10 +23,7 @@ public abstract class InlineArrayBench : BenchBase
         {
             byte[] item = new byte[SIZE];
 
-            for (int i = 0; i < SIZE; ++i)
-            {
-                item[i] = (byte)this._randomSource.Next(minValue: 0, maxValue: 255);
-            }
+            this._randomSource.NextBytes(item);
 
             this.Test(new StorageTest<ReadOnlyMemory<byte>>(item));
         }
@@ -39,10 +36,7 @@ public abstract class InlineArrayBench : BenchBase
 
         for (int iteration = 0; iteration < ITERATIONS; ++iteration)
         {
-            for (int i = 0; i < SIZE; ++i)
-            {
-                source[i] = (byte)this._randomSource.Next(minValue: 0, maxValue: 255);
-            }
+            this._randomSource.NextBytes(source);
 
             KeccakSizedArray item = new(source);
 
