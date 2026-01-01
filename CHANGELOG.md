@@ -10,8 +10,8 @@ Please ADD ALL Changes to the UNRELEASED SECTION and not a specific release
 ### Added
 ### Fixed
 ### Changed
-- Dependencies - Updated Meziantou.Analyzer to 2.0.266
 - Dependencies - Updated AsyncFixer to 2.1.0
+- Dependencies - Updated Meziantou.Analyzer to 2.0.267
 ### Removed
 ### Removed
 ### Deployment Changes
