@@ -11,7 +11,7 @@ Please ADD ALL Changes to the UNRELEASED SECTION and not a specific release
 ### Fixed
 ### Changed
 - Dependencies - Updated AsyncFixer to 2.1.0
-- Dependencies - Updated Meziantou.Analyzer to 2.0.270
+- Dependencies - Updated Meziantou.Analyzer to 2.0.271
 ### Removed
 ### Removed
 ### Deployment Changes
