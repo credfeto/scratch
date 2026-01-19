@@ -12,9 +12,9 @@ Please ADD ALL Changes to the UNRELEASED SECTION and not a specific release
 ### Changed
 - Dependencies - Updated AsyncFixer to 2.1.0
 - Dependencies - Updated SonarAnalyzer.CSharp to 10.18.0.131500
-- Dependencies - Updated Meziantou.Analyzer to 2.0.279
 - Dependencies - Updated xunit.analyzers to 1.27.0
 - Dependencies - Updated xunit.v3 to 3.2.2
+- Dependencies - Updated Meziantou.Analyzer to 2.0.283
 ### Removed
 ### Removed
 ### Deployment Changes
