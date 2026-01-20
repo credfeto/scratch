@@ -10,12 +10,6 @@ Please ADD ALL Changes to the UNRELEASED SECTION and not a specific release
 ### Added
 ### Fixed
 ### Changed
-- Dependencies - Updated AsyncFixer to 2.1.0
-- Dependencies - Updated SonarAnalyzer.CSharp to 10.18.0.131500
-- Dependencies - Updated xunit.analyzers to 1.27.0
-- Dependencies - Updated xunit.v3 to 3.2.2
-- Dependencies - Updated Meziantou.Analyzer to 2.0.283
-- SDK - Updated DotNet SDK to 10.0.102
 ### Removed
 ### Removed
 ### Deployment Changes
@@ -23,6 +17,15 @@ Please ADD ALL Changes to the UNRELEASED SECTION and not a specific release
 <!--
 Releases that have at least been deployed to staging, BUT NOT necessarily released to live.  Changes should be moved from [Unreleased] into here as they are merged into the appropriate release branch
 -->
+## [0.0.329] - 2026-01-20
+### Changed
+- Dependencies - Updated AsyncFixer to 2.1.0
+- Dependencies - Updated SonarAnalyzer.CSharp to 10.18.0.131500
+- Dependencies - Updated xunit.analyzers to 1.27.0
+- Dependencies - Updated xunit.v3 to 3.2.2
+- Dependencies - Updated Meziantou.Analyzer to 2.0.283
+- SDK - Updated DotNet SDK to 10.0.102
+
 ## [0.0.328] - 2025-12-22
 ### Changed
 - SDK - Updated DotNet SDK to 10.0.101
