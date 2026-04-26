@@ -15,9 +15,9 @@ Please ADD ALL Changes to the UNRELEASED SECTION and not a specific release
 - Dependencies - Updated Philips.CodeAnalysis.DuplicateCodeAnalyzer to 2.0.0
 - Dependencies - Updated Philips.CodeAnalysis.MaintainabilityAnalyzers to 2.0.0
 - Dependencies - Updated FunFair.CodeAnalysis to 7.1.39.1841
-- Dependencies - Updated Meziantou.Analyzer to 3.0.52
 - Dependencies - Updated SonarAnalyzer.CSharp to 10.24.0.138807
 - Dependencies - Updated Credfeto.Enumeration to 1.2.141.1822
+- Dependencies - Updated Meziantou.Analyzer to 3.0.54
 ### Removed
 ### Removed
 ### Deployment Changes
