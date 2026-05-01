@@ -14,10 +14,10 @@ Please ADD ALL Changes to the UNRELEASED SECTION and not a specific release
 - Dependencies - Updated FunFair.Test.Source.Generator to 6.2.19.2017
 - Dependencies - Updated Philips.CodeAnalysis.DuplicateCodeAnalyzer to 2.0.0
 - Dependencies - Updated Philips.CodeAnalysis.MaintainabilityAnalyzers to 2.0.0
-- Dependencies - Updated SonarAnalyzer.CSharp to 10.24.0.138807
 - Dependencies - Updated Credfeto.Enumeration to 1.2.141.1822
 - Dependencies - Updated FunFair.CodeAnalysis to 7.1.41.1934
 - Dependencies - Updated Meziantou.Analyzer to 3.0.58
+- Dependencies - Updated SonarAnalyzer.CSharp to 10.25.0.139117
 ### Removed
 ### Removed
 ### Deployment Changes
