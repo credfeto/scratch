@@ -1,3 +1,4 @@
+---
 name: "all-contributors"
 on:
   issue_comment:
