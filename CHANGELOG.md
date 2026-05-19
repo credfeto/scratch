@@ -7,8 +7,10 @@ Please ADD ALL Changes to the UNRELEASED SECTION and not a specific release
 -->
 
 ## [Unreleased]
+### Security
 ### Added
 ### Fixed
+- Pre-existing lint failures: duplicate changelog section, YAML document-start, SQL formatting
 ### Changed
 - Dependencies - Updated Philips.CodeAnalysis.DuplicateCodeAnalyzer to 2.0.0
 - Dependencies - Updated Philips.CodeAnalysis.MaintainabilityAnalyzers to 2.0.0
@@ -19,9 +21,7 @@ Please ADD ALL Changes to the UNRELEASED SECTION and not a specific release
 - Dependencies - Updated FunFair.Test.Source.Generator to 6.2.23.2204
 - Dependencies - Updated Meziantou.Analyzer to 3.0.86
 ### Removed
-### Removed
 ### Deployment Changes
-
 <!--
 Releases that have at least been deployed to staging, BUT NOT necessarily released to live.  Changes should be moved from [Unreleased] into here as they are merged into the appropriate release branch
 -->
@@ -960,9 +960,7 @@ Releases that have at least been deployed to staging, BUT NOT necessarily releas
 - Dependencies - Updated xunit.runner.visualstudio to 2.5.6
 
 ## [0.0.3] - 2021-12-15
-
 ### Changed
-
 - FF-1429 - Updated coverlet to 3.0.3
 - FF-1429 - Updated Microsoft.NET.Test.Sdk to 16.9.1
 - FF-1429 - Updated Microsoft.NET.Test.Sdk to 16.9.4
