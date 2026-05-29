@@ -14,13 +14,13 @@ Please ADD ALL Changes to the UNRELEASED SECTION and not a specific release
 ### Changed
 - Dependencies - Updated Philips.CodeAnalysis.DuplicateCodeAnalyzer to 2.0.0
 - Dependencies - Updated Philips.CodeAnalysis.MaintainabilityAnalyzers to 2.0.0
-- Dependencies - Updated Meziantou.Analyzer to 3.0.86
 - Dependencies - Updated FunFair.Test.Source.Generator to 6.2.25.2243
 - Dependencies - Updated Credfeto.Enumeration to 1.2.143.1876
 - Dependencies - Updated FunFair.CodeAnalysis to 7.2.0.1978
 - Dependencies - Updated SonarAnalyzer.CSharp to 10.26.0.140279
 - Dependencies - Updated FunFair.Test.Common to 6.2.25.2243
 - SDK - Updated DotNet SDK to 10.0.300
+- Dependencies - Updated Meziantou.Analyzer to 3.0.98
 ### Removed
 ### Deployment Changes
 <!--
