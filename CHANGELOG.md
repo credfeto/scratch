@@ -10,6 +10,14 @@ Please ADD ALL Changes to the UNRELEASED SECTION and not a specific release
 ### Security
 ### Added
 ### Fixed
+### Changed
+### Removed
+### Deployment Changes
+<!--
+Releases that have at least been deployed to staging, BUT NOT necessarily released to live.  Changes should be moved from [Unreleased] into here as they are merged into the appropriate release branch
+-->
+## [0.0.335] - 2026-06-01
+### Fixed
 - Pre-existing lint failures: duplicate changelog section, YAML document-start, SQL formatting
 ### Changed
 - Dependencies - Updated Philips.CodeAnalysis.DuplicateCodeAnalyzer to 2.0.0
@@ -21,11 +29,7 @@ Please ADD ALL Changes to the UNRELEASED SECTION and not a specific release
 - Dependencies - Updated Meziantou.Analyzer to 3.0.98
 - Dependencies - Updated SonarAnalyzer.CSharp to 10.27.0.140913
 - Dependencies - Updated Credfeto.Enumeration to 1.2.144.1906
-### Removed
-### Deployment Changes
-<!--
-Releases that have at least been deployed to staging, BUT NOT necessarily released to live.  Changes should be moved from [Unreleased] into here as they are merged into the appropriate release branch
--->
+
 ## [0.0.334] - 2026-03-18
 ### Changed
 - Dependencies - Updated Credfeto.Enumeration to 1.2.140.1751
