@@ -10,9 +10,11 @@ Please ADD ALL Changes to the UNRELEASED SECTION and not a specific release
 ### Security
 ### Added
 ### Fixed
+- GitHub Actions on_new_pr workflow now correctly checks out repository before running local composite actions
 ### Changed
 - Dependencies - Updated FunFair.CodeAnalysis to 7.2.1.2035
 - Dependencies - Updated Meziantou.Analyzer to 3.0.100
+- Dependencies - Updated actions/checkout to 6.0.3
 ### Removed
 ### Deployment Changes
 <!--
