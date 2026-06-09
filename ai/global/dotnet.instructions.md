@@ -178,6 +178,19 @@ See [code-quality.instructions.md](code-quality.instructions.md) for general asy
 - Never call `Substitute.For<T>()` in classes deriving from `TestBase` or `DependencyInjectionTestsBase`.
 - Remove unused `using NSubstitute;` after replacing all `Substitute.For<>()` calls.
 
+## xunit Assertion Patterns
+
+- `Assert.Single(collection)` returns the single element — capture it directly instead of asserting then indexing:
+
+  ```csharp
+  // WRONG
+  Assert.Single(collection);
+  var item = collection[0];
+
+  // CORRECT
+  var item = Assert.Single(collection);
+  ```
+
 ## DI Setup Test Patterns
 
 Use `AddMockedService<T>()` in tests deriving from `DependencyInjectionTestsBase` — see [dotnet.examples.md](dotnet.examples.md) for `AddMockedService` and `IOptions` patterns.
@@ -212,6 +225,35 @@ Use `AddMockedService<T>()` in tests deriving from `DependencyInjectionTestsBase
 - One type per file — class, record, struct, interface, or enum.
 - File name must match the type name exactly (e.g. `FooBar.cs` for `class FooBar`).
 
+## Data Types: Prefer Records over Classes
+
+Use a positional `record` (or `readonly record struct`) instead of a hand-written data class wherever the type is a pure carrier of data with no behaviour.
+
+```csharp
+// WRONG — hand-written data class
+public sealed class GlobalJsonInfo
+{
+    public GlobalJsonInfo(string? sdkVersion, string? rollForward, bool? allowPrerelease)
+    {
+        this.SdkVersion = sdkVersion;
+        this.RollForward = rollForward;
+        this.AllowPrerelease = allowPrerelease;
+    }
+
+    public string? SdkVersion { get; }
+    public string? RollForward { get; }
+    public bool? AllowPrerelease { get; }
+}
+
+// CORRECT — positional record
+[DebuggerDisplay("SdkVersion={SdkVersion}, RollForward={RollForward}, AllowPrerelease={AllowPrerelease}")]
+public sealed record GlobalJsonInfo(string? SdkVersion, string? RollForward, bool? AllowPrerelease);
+```
+
+- Always add `[DebuggerDisplay("...")]` showing all key properties (see [Debugger Diagnostics](#debugger-diagnostics)).
+- If the type is a pure value (no identity semantics, small, immutable) prefer `readonly record struct` over `record class`.
+- If the target framework does **not** support records (e.g. `netstandard2.0`), continue using a `class` or `struct`, but manually implement everything a record would provide: a constructor that sets all properties, read-only auto-properties, `Equals`, `GetHashCode`, `ToString`, and `IEquatable<T>`.
+
 ## Value Types (struct / record struct)
 
 - Prefer `struct` or `record struct` over `class` for small, short-lived, immutable data — avoids heap allocations.
@@ -219,6 +261,27 @@ Use `AddMockedService<T>()` in tests deriving from `DependencyInjectionTestsBase
 - Prefer `readonly struct` or `readonly record struct` to enforce immutability and enable compiler optimisations.
 - Avoid mutable structs — unexpected copy semantics cause subtle bugs.
 - Do not use `struct` for types that need inheritance or will be boxed frequently.
+
+## Exception Classes
+
+Use `Credfeto.Exceptions.SourceGenerator` to define exception types — it generates all required constructors automatically.
+
+1. Add the package to the project (analyzer only — not a runtime dependency):
+
+   ```xml
+   <PackageReference Include="Credfeto.Exceptions.SourceGenerator" Version="0.0.1.30" PrivateAssets="All" ExcludeAssets="runtime" />
+   ```
+
+2. Declare the exception as a `sealed partial class` with a `[Description]` attribute for the default message:
+
+   ```csharp
+   [Description("Default message")]
+   public sealed partial class MyException : Exception;
+   ```
+
+- Always use the **latest stable release** of `Credfeto.Exceptions.SourceGenerator`.
+- Never hand-write exception constructors when this generator is available.
+- Apply the same rule to any project that already defines exceptions: add the package and convert existing hand-written exception classes to `partial`.
 
 ## Debugger Diagnostics
 
