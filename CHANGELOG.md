@@ -10,16 +10,20 @@ Please ADD ALL Changes to the UNRELEASED SECTION and not a specific release
 ### Security
 ### Added
 ### Fixed
-- GitHub Actions on_new_pr workflow now correctly checks out repository before running local composite actions
 ### Changed
-- Dependencies - Updated FunFair.CodeAnalysis to 7.2.1.2035
-- Dependencies - Updated actions/checkout to 6.0.3
-- Dependencies - Updated Meziantou.Analyzer to 3.0.101
 ### Removed
 ### Deployment Changes
 <!--
 Releases that have at least been deployed to staging, BUT NOT necessarily released to live.  Changes should be moved from [Unreleased] into here as they are merged into the appropriate release branch
 -->
+## [0.0.336] - 2026-06-09
+### Fixed
+- GitHub Actions on_new_pr workflow now correctly checks out repository before running local composite actions
+### Changed
+- Dependencies - Updated FunFair.CodeAnalysis to 7.2.1.2035
+- Dependencies - Updated actions/checkout to 6.0.3
+- Dependencies - Updated Meziantou.Analyzer to 3.0.101
+
 ## [0.0.335] - 2026-06-01
 ### Fixed
 - Pre-existing lint failures: duplicate changelog section, YAML document-start, SQL formatting
