@@ -13,6 +13,7 @@ Please ADD ALL Changes to the UNRELEASED SECTION and not a specific release
 ### Changed
 - SDK - Updated DotNet SDK to 10.0.301
 - Dependencies - Updated Credfeto.Enumeration to 1.2.145.1962
+- Dependencies - Updated Meziantou.Analyzer to 3.0.102
 ### Removed
 ### Deployment Changes
 <!--
