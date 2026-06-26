@@ -9,7 +9,8 @@ namespace Bench.Benchmarks;
 [MemoryDiagnoser(false)]
 [SuppressMessage(category: "", checkId: "SCS0005", Justification = "Needed for predictability")]
 [SuppressMessage(category: "", checkId: "CA5394", Justification = "Needed for predictability")]
-public abstract class InlineArrayBench : BenchBase
+[SuppressMessage(category: "FunFair.CodeAnalysis", checkId: "FFS0012:Make Sealed", Justification = "Benchmarks")]
+public class InlineArrayBench : BenchBase
 {
     private const int SIZE = 32;
     private const int ITERATIONS = 1000;
