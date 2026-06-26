@@ -4,7 +4,7 @@
 
 ## FFS0012 Suppression on Benchmark Classes (APPROVED EXCEPTION)
 
-Benchmark classes decorated with `[SimpleJob]` (from BenchmarkDotNet) must be non-abstract and cannot be sealed. BenchmarkDotNet generates derived types from benchmark classes at runtime to inject measurement infrastructure; sealing the class would prevent this code generation from compiling.
+Benchmark classes decorated with `[SimpleJob]` (from BenchmarkDotNet) must be concrete (non-abstract) and non-static so that BenchmarkDotNet can instantiate them via reflection. Sealing these classes would satisfy FFS0012 directly; however, the project convention — matching the pattern in `FunFair.Test.Common` — is to leave benchmark classes non-sealed and suppress FFS0012 instead.
 
 The approved pattern for benchmark classes that cannot be sealed is:
 
