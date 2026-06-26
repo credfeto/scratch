@@ -10,6 +10,7 @@ Please ADD ALL Changes to the UNRELEASED SECTION and not a specific release
 ### Security
 ### Added
 ### Fixed
+- Benchmark classes suppressed FFS0012 as they cannot be sealed (required by BenchmarkDotNet)
 ### Changed
 - Dependencies - Updated FunFair.CodeAnalysis to 7.2.2.2066
 ### Removed
