@@ -6,7 +6,7 @@
 
 Benchmark classes decorated with `[SimpleJob]` (from BenchmarkDotNet) must be concrete (non-abstract) and non-static so that BenchmarkDotNet can instantiate them via reflection. Sealing these classes would satisfy FFS0012 directly; however, the project convention — matching the pattern in `FunFair.Test.Common` — is to leave benchmark classes non-sealed and suppress FFS0012 instead.
 
-The approved pattern for benchmark classes that cannot be sealed is:
+The approved pattern for non-sealed benchmark classes is:
 
 ```csharp
 [SimpleJob]
@@ -22,7 +22,7 @@ This `[SuppressMessage]` is **explicitly permitted** for all benchmark classes u
 
 - Inherit from `BenchBase`
 - Are decorated with `[SimpleJob]`
-- Cannot be sealed due to BenchmarkDotNet's runtime code-generation requirement
+- Are not sealed (sealing is technically valid but the project convention is to suppress FFS0012 instead)
 
 This pattern matches the documented example in the external NuGet package `FunFair.Test.Common` (owned by this repo's owner), specifically in its `ExampleBenchmarks.cs` test file. Do not search for this file locally — it is not present in this repository.
 
