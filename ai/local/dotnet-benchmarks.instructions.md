@@ -24,6 +24,6 @@ This `[SuppressMessage]` is **explicitly permitted** for all benchmark classes u
 - Are decorated with `[SimpleJob]`
 - Cannot be sealed due to BenchmarkDotNet's runtime code-generation requirement
 
-This pattern matches the documented example in `FunFair.Test.Common.Tests/ExampleBenchmarks.cs` (the package owned by this repo's owner).
+This pattern matches the documented example in the external NuGet package `FunFair.Test.Common` (owned by this repo's owner), specifically in its `ExampleBenchmarks.cs` test file. Do not search for this file locally — it is not present in this repository.
 
 AI agents do **not** need additional per-PR approval to apply this suppression on benchmark classes meeting the above criteria.
