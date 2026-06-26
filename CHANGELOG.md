@@ -10,7 +10,7 @@ Please ADD ALL Changes to the UNRELEASED SECTION and not a specific release
 ### Security
 ### Added
 ### Fixed
-- Benchmark classes changed from abstract to non-abstract so BenchmarkDotNet can instantiate them; FFS0012 suppressed as classes cannot be sealed (BenchmarkDotNet generates derived types at runtime)
+- Benchmark suite can now be executed; benchmark classes were previously abstract and could not be instantiated by BenchmarkDotNet
 ### Changed
 - Dependencies - Updated FunFair.CodeAnalysis to 7.2.2.2066
 - Dependencies - Updated Meziantou.Analyzer to 3.0.114
