@@ -12,6 +12,7 @@ Please ADD ALL Changes to the UNRELEASED SECTION and not a specific release
 ### Fixed
 ### Changed
 - Dependencies - Updated Meziantou.Analyzer to 3.0.114
+- Dependencies - Updated Microsoft.VisualStudio.Threading.Analyzers to 18.7.23
 ### Removed
 ### Deployment Changes
 <!--
