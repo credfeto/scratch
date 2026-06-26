@@ -11,6 +11,7 @@ Please ADD ALL Changes to the UNRELEASED SECTION and not a specific release
 ### Added
 ### Fixed
 ### Changed
+- Dependencies - Updated Meziantou.Analyzer to 3.0.114
 ### Removed
 ### Deployment Changes
 <!--
