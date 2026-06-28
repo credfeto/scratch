@@ -14,7 +14,6 @@ This is an index of local instructions that apply to just this project.
 
 ## Instruction Files
 <!-- Locally Maintained -->
-
 | File | Covers |
 | --- | --- |
 | [dotnet-benchmarks.instructions.md](dotnet-benchmarks.instructions.md) | Approved FFS0012 suppression pattern for BenchmarkDotNet classes |
