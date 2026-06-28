@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Text;
 using System.Text.Json;
 using BenchmarkDotNet.Attributes;
@@ -7,7 +8,8 @@ namespace Bench.Benchmarks;
 
 [SimpleJob]
 [MemoryDiagnoser(false)]
-public abstract class JsonDeserialiserMemoryBench : BenchBase
+[SuppressMessage(category: "FunFair.CodeAnalysis", checkId: "FFS0012:Make Sealed", Justification = "Benchmarks")]
+public class JsonDeserialiserMemoryBench : BenchBase
 {
     private const string GOOD = "{ \"foo\": \"bar\" }";
     private static readonly byte[] GoodBytes = Encoding.UTF8.GetBytes(GOOD);
