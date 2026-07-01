@@ -12,11 +12,11 @@ Please ADD ALL Changes to the UNRELEASED SECTION and not a specific release
 ### Fixed
 - Benchmark suite can now be executed; benchmark classes were previously abstract and could not be instantiated by BenchmarkDotNet
 ### Changed
-- Dependencies - Updated Meziantou.Analyzer to 3.0.114
 - Dependencies - Updated Microsoft.VisualStudio.Threading.Analyzers to 18.7.23
 - Dependencies - Updated FunFair.Test.Source.Generator to 6.3.1.2342
 - Dependencies - Updated Credfeto.Enumeration to 1.2.149.2059
 - Dependencies - Updated FunFair.CodeAnalysis to 7.2.4.2117
+- Dependencies - Updated Meziantou.Analyzer to 3.0.117
 ### Removed
 ### Deployment Changes
 <!--
