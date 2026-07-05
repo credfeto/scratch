@@ -13,6 +13,7 @@ Please ADD ALL Changes to the UNRELEASED SECTION and not a specific release
 ### Changed
 - Dependencies - Updated FunFair.Test to 6.3.3.2407
 - Dependencies - Updated FunFair.Test.Source.Generator to 6.3.3.2407
+- Dependencies - Updated FunFair.CodeAnalysis to 7.2.6.2145
 ### Removed
 ### Deployment Changes
 <!--
