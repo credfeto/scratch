@@ -20,6 +20,9 @@ outputs:
   is_public:
     description: "Whether the repository is public ('true' or 'false')"
     value: ${{steps.check.outputs.is_public}}
+  lookup_error:
+    description: "Error message if the lookup failed, otherwise empty. On failure other outputs default to the most restrictive values (false/empty)"
+    value: ${{steps.check.outputs.lookup_error}}
 
 runs:
   using: composite
@@ -30,10 +33,21 @@ runs:
       with:
         github-token: ${{inputs.github-token}}
         script: |
-          const { data: repo } = await github.rest.repos.get({
-            owner: context.repo.owner,
-            repo: context.repo.repo,
-          });
+          let repo;
+          try {
+            ({ data: repo } = await github.rest.repos.get({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+            }));
+          } catch (err) {
+            core.warning(`⚠️ Could not retrieve repository info — defaulting to restrictive values: ${err.message}`);
+            core.setOutput('is_template', 'false');
+            core.setOutput('is_fork', 'false');
+            core.setOutput('fork_parent', '');
+            core.setOutput('is_public', 'false');
+            core.setOutput('lookup_error', err.message);
+            return;
+          }
 
           const isPublic = !repo.private;
           const isTemplate = !!repo.is_template;
@@ -48,3 +62,4 @@ runs:
           core.setOutput('is_fork', isFork ? 'true' : 'false');
           core.setOutput('fork_parent', forkParent);
           core.setOutput('is_public', isPublic ? 'true' : 'false');
+          core.setOutput('lookup_error', '');

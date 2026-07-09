@@ -41,12 +41,14 @@ jobs:
           IS_FORK: ${{steps.repo-info.outputs.is_fork}}
           FORK_PARENT: ${{steps.repo-info.outputs.fork_parent}}
           IS_PUBLIC: ${{steps.repo-info.outputs.is_public}}
+          LOOKUP_ERROR: ${{steps.repo-info.outputs.lookup_error}}
         with:
           script: |
             const isTemplate = process.env.IS_TEMPLATE === 'true';
             const isFork = process.env.IS_FORK === 'true';
             const forkParent = process.env.FORK_PARENT;
             const isPublic = process.env.IS_PUBLIC === 'true';
+            const lookupError = process.env.LOOKUP_ERROR;
 
             core.summary
               .addHeading('Repository Status')
@@ -61,3 +63,7 @@ jobs:
             core.info(`Template repository: ${isTemplate ? '✅ Yes' : '❌ No'}`);
             core.info(`Forked repository: ${isFork ? `✅ Yes (from ${forkParent})` : '❌ No'}`);
             core.info(`Visibility: ${isPublic ? '🌐 Public' : '🔒 Private'}`);
+
+            if (lookupError) {
+              core.warning(`⚠️ Repository lookup failed, values above are restrictive defaults: ${lookupError}`);
+            }
