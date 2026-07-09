@@ -1,0 +1,63 @@
+--- # Report template, fork, and visibility status for this repository
+name: "Status"
+
+on:
+  workflow_dispatch: {}
+  schedule:
+    - cron: "0 6 * * *"
+  push:
+    branches:
+      - "**"
+    paths:
+      - ".github/workflows/status.yml"
+
+concurrency:
+  group: "status-${{github.ref}}"
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  status:
+    name: "Status"
+    runs-on: ubuntu-latest
+    steps:
+      - name: "Checkout Source"
+        uses: actions/checkout@v7.0.0
+        with:
+          fetch-depth: 1
+
+      - name: "Get Repository Info"
+        id: repo-info
+        uses: ./.github/actions/get-repo-info
+        with:
+          github-token: ${{github.token}}
+
+      - name: "Show Summary"
+        uses: actions/github-script@v9.0.0
+        env:
+          IS_TEMPLATE: ${{steps.repo-info.outputs.is_template}}
+          IS_FORK: ${{steps.repo-info.outputs.is_fork}}
+          FORK_PARENT: ${{steps.repo-info.outputs.fork_parent}}
+          IS_PUBLIC: ${{steps.repo-info.outputs.is_public}}
+        with:
+          script: |
+            const isTemplate = process.env.IS_TEMPLATE === 'true';
+            const isFork = process.env.IS_FORK === 'true';
+            const forkParent = process.env.FORK_PARENT;
+            const isPublic = process.env.IS_PUBLIC === 'true';
+
+            core.summary
+              .addHeading('Repository Status')
+              .addTable([
+                [{data: 'Property', header: true}, {data: 'Value', header: true}],
+                ['Template repository', isTemplate ? '✅ Yes' : '❌ No'],
+                ['Forked repository', isFork ? `✅ Yes (from ${forkParent})` : '❌ No'],
+                ['Visibility', isPublic ? '🌐 Public' : '🔒 Private'],
+              ])
+              .write();
+
+            core.info(`Template repository: ${isTemplate ? '✅ Yes' : '❌ No'}`);
+            core.info(`Forked repository: ${isFork ? `✅ Yes (from ${forkParent})` : '❌ No'}`);
+            core.info(`Visibility: ${isPublic ? '🌐 Public' : '🔒 Private'}`);
