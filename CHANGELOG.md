@@ -11,17 +11,20 @@ Please ADD ALL Changes to the UNRELEASED SECTION and not a specific release
 ### Added
 ### Fixed
 ### Changed
+### Removed
+### Deployment Changes
+<!--
+Releases that have at least been deployed to staging, BUT NOT necessarily released to live.  Changes should be moved from [Unreleased] into here as they are merged into the appropriate release branch
+-->
+## [0.0.342] - 2026-07-14
+### Changed
 - Dependencies - Updated FunFair.Test to 6.3.4.2441
 - Dependencies - Updated FunFair.Test.Source.Generator to 6.3.4.2441
 - Dependencies - Updated Meziantou.Analyzer to 3.0.122
 - Dependencies - Updated SonarAnalyzer.CSharp to 10.29.0.143774
 - Dependencies - Updated Credfeto.Enumeration to 1.2.150.2166
 - Dependencies - Updated FunFair.CodeAnalysis to 7.2.8.2196
-### Removed
-### Deployment Changes
-<!--
-Releases that have at least been deployed to staging, BUT NOT necessarily released to live.  Changes should be moved from [Unreleased] into here as they are merged into the appropriate release branch
--->
+
 ## [0.0.341] - 2026-07-02
 ### Fixed
 - Benchmark suite can now be executed; benchmark classes were previously abstract and could not be instantiated by BenchmarkDotNet
