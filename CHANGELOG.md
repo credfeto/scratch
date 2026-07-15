@@ -12,6 +12,7 @@ Please ADD ALL Changes to the UNRELEASED SECTION and not a specific release
 ### Fixed
 ### Changed
 - Dependencies - Updated Meziantou.Analyzer to 3.0.123
+- SDK - Updated DotNet SDK to 10.0.302
 ### Removed
 ### Deployment Changes
 <!--
