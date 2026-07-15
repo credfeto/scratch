@@ -11,13 +11,16 @@ Please ADD ALL Changes to the UNRELEASED SECTION and not a specific release
 ### Added
 ### Fixed
 ### Changed
-- Dependencies - Updated Meziantou.Analyzer to 3.0.123
-- SDK - Updated DotNet SDK to 10.0.302
 ### Removed
 ### Deployment Changes
 <!--
 Releases that have at least been deployed to staging, BUT NOT necessarily released to live.  Changes should be moved from [Unreleased] into here as they are merged into the appropriate release branch
 -->
+## [0.0.343] - 2026-07-15
+### Changed
+- Dependencies - Updated Meziantou.Analyzer to 3.0.123
+- SDK - Updated DotNet SDK to 10.0.302
+
 ## [0.0.342] - 2026-07-14
 ### Changed
 - Dependencies - Updated FunFair.Test to 6.3.4.2441
