@@ -8,7 +8,7 @@ namespace Bench.Benchmarks;
 
 [SimpleJob]
 [MemoryDiagnoser(false)]
-[SuppressMessage(category: "FunFair.CodeAnalysis", checkId: "FFS0012:Make Sealed", Justification = "Benchmarks")]
+
 public class JsonDeserialiserMemoryBench : BenchBase
 {
     private const string GOOD = "{ \"foo\": \"bar\" }";
