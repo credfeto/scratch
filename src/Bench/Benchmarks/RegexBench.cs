@@ -9,7 +9,6 @@ namespace Bench.Benchmarks;
 
 [SimpleJob]
 [MemoryDiagnoser(false)]
-
 public partial class RegexBench : BenchBase
 {
     private const int TIMEOUT = 1000;
