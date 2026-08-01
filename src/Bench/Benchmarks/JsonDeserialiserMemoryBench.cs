@@ -8,7 +8,6 @@ namespace Bench.Benchmarks;
 
 [SimpleJob]
 [MemoryDiagnoser(false)]
-
 public class JsonDeserialiserMemoryBench : BenchBase
 {
     private const string GOOD = "{ \"foo\": \"bar\" }";
