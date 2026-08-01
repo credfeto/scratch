@@ -9,7 +9,7 @@ namespace Bench.Benchmarks;
 
 [SimpleJob]
 [MemoryDiagnoser(false)]
-[SuppressMessage(category: "FunFair.CodeAnalysis", checkId: "FFS0012:Make Sealed", Justification = "Benchmarks")]
+
 public partial class RegexBench : BenchBase
 {
     private const int TIMEOUT = 1000;
