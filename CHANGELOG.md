@@ -11,6 +11,13 @@ Please ADD ALL Changes to the UNRELEASED SECTION and not a specific release
 ### Added
 ### Fixed
 ### Changed
+### Removed
+### Deployment Changes
+<!--
+Releases that have at least been deployed to staging, BUT NOT necessarily released to live.  Changes should be moved from [Unreleased] into here as they are merged into the appropriate release branch
+-->
+## [0.0.345] - 2026-08-12
+### Changed
 - Dependencies - Updated FunFair.CodeAnalysis to 7.2.11.2216
 - Dependencies - Updated Roslynator.Analyzers to 4.16.0
 - Dependencies - Updated SonarAnalyzer.CSharp to 10.32.0.713
@@ -18,11 +25,7 @@ Please ADD ALL Changes to the UNRELEASED SECTION and not a specific release
 - Dependencies - Updated FunFair.Test.Source.Generator to 6.3.7.2568
 - SDK - Updated DotNet SDK to 10.0.400
 - Dependencies - Updated Meziantou.Analyzer to 3.0.147
-### Removed
-### Deployment Changes
-<!--
-Releases that have at least been deployed to staging, BUT NOT necessarily released to live.  Changes should be moved from [Unreleased] into here as they are merged into the appropriate release branch
--->
+
 ## [0.0.344] - 2026-07-17
 ### Changed
 - Dependencies - Updated FunFair.Test to 6.3.5.2471
