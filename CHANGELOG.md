@@ -12,9 +12,9 @@ Please ADD ALL Changes to the UNRELEASED SECTION and not a specific release
 ### Fixed
 ### Changed
 - Dependencies - Updated FunFair.CodeAnalysis to 7.2.12.2288
-- Dependencies - Updated Meziantou.Analyzer to 3.0.151
 - Dependencies - Updated FunFair.Test to 6.3.8.2585
 - Dependencies - Updated FunFair.Test.Source.Generator to 6.3.8.2585
+- Dependencies - Updated Meziantou.Analyzer to 3.0.156
 ### Removed
 ### Deployment Changes
 <!--
