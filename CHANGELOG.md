@@ -11,13 +11,13 @@ Please ADD ALL Changes to the UNRELEASED SECTION and not a specific release
 ### Added
 ### Fixed
 ### Changed
-- Dependencies - Updated FunFair.Test to 6.3.8.2585
 - Dependencies - Updated FunFair.Test.Source.Generator to 6.3.8.2585
 - Dependencies - Updated xunit.analyzers to 2.0.0
 - Dependencies - Updated xunit.v3 to 4.0.0
 - Dependencies - Updated FunFair.CodeAnalysis to 7.2.13.2323
 - Dependencies - Updated Meziantou.Analyzer to 3.0.167
 - Dependencies - Updated Roslynator.Analyzers to 4.16.1
+- Dependencies - Updated FunFair.Test to 6.3.9.2602
 ### Removed
 ### Deployment Changes
 <!--
