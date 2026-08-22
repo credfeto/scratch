@@ -19,6 +19,7 @@ Please ADD ALL Changes to the UNRELEASED SECTION and not a specific release
 - Dependencies - Updated FunFair.Test to 6.3.9.2602
 - Dependencies - Updated FunFair.Test.Source.Generator to 6.3.9.2602
 - Dependencies - Updated Credfeto.Enumeration to 1.2.152.2216
+- Dependencies - Updated CSharpIsNullAnalyzer to 0.2.19
 ### Removed
 ### Deployment Changes
 <!--
