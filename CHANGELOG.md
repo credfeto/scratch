@@ -11,6 +11,13 @@ Please ADD ALL Changes to the UNRELEASED SECTION and not a specific release
 ### Added
 ### Fixed
 ### Changed
+### Removed
+### Deployment Changes
+<!--
+Releases that have at least been deployed to staging, BUT NOT necessarily released to live.  Changes should be moved from [Unreleased] into here as they are merged into the appropriate release branch
+-->
+## [0.0.346] - 2026-08-22
+### Changed
 - Dependencies - Updated xunit.analyzers to 2.0.0
 - Dependencies - Updated xunit.v3 to 4.0.0
 - Dependencies - Updated FunFair.CodeAnalysis to 7.2.13.2323
@@ -21,11 +28,7 @@ Please ADD ALL Changes to the UNRELEASED SECTION and not a specific release
 - Dependencies - Updated Meziantou.Analyzer to 3.0.177
 - Dependencies - Updated Roslynator.Analyzers to 5.0.0
 - Dependencies - Updated SonarAnalyzer.CSharp to 10.33.0.1635
-### Removed
-### Deployment Changes
-<!--
-Releases that have at least been deployed to staging, BUT NOT necessarily released to live.  Changes should be moved from [Unreleased] into here as they are merged into the appropriate release branch
--->
+
 ## [0.0.345] - 2026-08-12
 ### Changed
 - Dependencies - Updated FunFair.CodeAnalysis to 7.2.11.2216
