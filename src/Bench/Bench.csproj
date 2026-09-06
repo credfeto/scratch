@@ -58,8 +58,8 @@
     <ProjectReference Include="..\Implementations\Implementations.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="FunFair.Test.Common" Version="6.4.3.2685" />
-    <PackageReference Include="xunit.v3.mtp-v2" Version="4.0.0" />
+    <PackageReference Include="FunFair.Test.Common" Version="6.4.3.2685" IncludeAssets="compile;runtime" />
+    <PackageReference Include="xunit.v3.aot.mtp-v2" Version="4.0.0" IncludeAssets="all" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="AsyncFixer" Version="2.1.0" PrivateAssets="All" ExcludeAssets="runtime" />
