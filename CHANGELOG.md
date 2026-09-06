@@ -15,6 +15,7 @@ Please ADD ALL Changes to the UNRELEASED SECTION and not a specific release
 ### Fixed
 ### Changed
 - Dependencies - Updated Nullable.Extended.Analyzer to 1.16.6891
+- Dependencies - Updated FunFair.Test to 6.4.3.2685
 ### Removed
 ### Deployment Changes
 <!--
