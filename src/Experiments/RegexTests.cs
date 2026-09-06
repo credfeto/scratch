@@ -23,7 +23,7 @@ public sealed class RegexTests : TestBase
 
     [Theory]
     [InlineData("1234567890abcdefABCDEF", true)]
-    public void ShouldBeHexRegexString(string input, bool expected)
+    public static void ShouldBeHexRegexString(string input, bool expected)
     {
         bool actual = Regex.IsMatch(input);
 
@@ -32,7 +32,7 @@ public sealed class RegexTests : TestBase
 
     [Theory]
     [InlineData("1234567890abcdefABCDEF", true)]
-    public void ShouldBeHexRegexSpan(string input, bool expected)
+    public static void ShouldBeHexRegexSpan(string input, bool expected)
     {
         ReadOnlySpan<char> span = input;
         bool actual = Regex.IsMatch(span);
@@ -42,7 +42,7 @@ public sealed class RegexTests : TestBase
 
     [Theory]
     [InlineData("1234567890abcdefABCDEF", true)]
-    public void ShouldBeHexMethodSpan(string input, bool expected)
+    public static void ShouldBeHexMethodSpan(string input, bool expected)
     {
         bool actual = IsValidHexStringWithoutPrefix(input);
 
