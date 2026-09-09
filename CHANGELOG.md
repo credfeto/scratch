@@ -13,13 +13,7 @@ Please ADD ALL Changes to the UNRELEASED SECTION and not a specific release
 ### Security
 ### Added
 ### Fixed
-- Fixed xunit v3 AOT/non-AOT package mismatch causing CS0433 type collisions in Bench and Experiments test projects
 ### Changed
-- Dependencies - Updated Nullable.Extended.Analyzer to 1.16.6891
-- Dependencies - Updated FunFair.Test.Source.Generator to 6.4.3.2685
-- Dependencies - Updated FunFair.Test to 6.4.3.2685
-- Dependencies - Updated Meziantou.Analyzer to 3.0.231
-- SDK - Updated DotNet SDK to 10.0.401
 ### Deprecated
 ### Removed
 ### Deployment Changes
@@ -27,6 +21,16 @@ Please ADD ALL Changes to the UNRELEASED SECTION and not a specific release
 <!--
 Releases that have at least been deployed to staging, BUT NOT necessarily released to live.  Changes should be moved from [Unreleased] into here as they are merged into the appropriate release branch
 -->
+
+## [0.0.348] - 2026-09-09
+### Fixed
+- Fixed xunit v3 AOT/non-AOT package mismatch causing CS0433 type collisions in Bench and Experiments test projects
+### Changed
+- Dependencies - Updated Nullable.Extended.Analyzer to 1.16.6891
+- Dependencies - Updated FunFair.Test.Source.Generator to 6.4.3.2685
+- Dependencies - Updated FunFair.Test to 6.4.3.2685
+- Dependencies - Updated Meziantou.Analyzer to 3.0.231
+- SDK - Updated DotNet SDK to 10.0.401
 
 ## [0.0.347] - 2026-09-06
 ### Changed
