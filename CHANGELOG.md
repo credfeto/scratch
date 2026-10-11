@@ -15,7 +15,7 @@ Please ADD ALL Changes to the UNRELEASED SECTION and not a specific release
 ### Fixed
 ### Changed
 - Dependencies - Updated SonarAnalyzer.CSharp to 10.35.0.4138
-- Dependencies - Updated Meziantou.Analyzer to 3.0.294
+- Dependencies - Updated Meziantou.Analyzer to 3.0.299
 ### Deprecated
 ### Removed
 ### Deployment Changes
