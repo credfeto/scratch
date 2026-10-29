@@ -14,10 +14,6 @@ Please ADD ALL Changes to the UNRELEASED SECTION and not a specific release
 ### Added
 ### Fixed
 ### Changed
-- Dependencies - Updated FunFair.Test to 6.4.7.2960
-- Dependencies - Updated FunFair.Test.Source.Generator to 6.4.7.2960
-- Dependencies - Updated Nullable.Extended.Analyzer to 1.19.0
-- Dependencies - Updated Microsoft.IO.RecyclableMemoryStream to 4.0.1
 ### Deprecated
 ### Removed
 ### Deployment Changes
@@ -25,6 +21,13 @@ Please ADD ALL Changes to the UNRELEASED SECTION and not a specific release
 <!--
 Releases that have at least been deployed to staging, BUT NOT necessarily released to live.  Changes should be moved from [Unreleased] into here as they are merged into the appropriate release branch
 -->
+
+## [0.0.352] - 2026-10-29
+### Changed
+- Dependencies - Updated FunFair.Test to 6.4.7.2960
+- Dependencies - Updated FunFair.Test.Source.Generator to 6.4.7.2960
+- Dependencies - Updated Nullable.Extended.Analyzer to 1.19.0
+- Dependencies - Updated Microsoft.IO.RecyclableMemoryStream to 4.0.1
 
 ## [0.0.351] - 2026-10-27
 ### Changed
