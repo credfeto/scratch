@@ -7,7 +7,6 @@
     <Copyright>Mark Ridgwell</Copyright>
     <DebuggerSupport>true</DebuggerSupport>
     <DisableImplicitNuGetFallbackFolder>true</DisableImplicitNuGetFallbackFolder>
-    <EnableMicrosoftExtensionsConfigurationBinderSourceGenerator>true</EnableMicrosoftExtensionsConfigurationBinderSourceGenerator>
     <EnableNETAnalyzers>true</EnableNETAnalyzers>
     <EnablePackageValidation>true</EnablePackageValidation>
     <EnableTrimAnalyzer>false</EnableTrimAnalyzer>
@@ -55,7 +54,7 @@
   </ItemGroup>
   <Import Project="$(SolutionDir)UnitTests.props" Condition="Exists('$(SolutionDir)UnitTests.props')" />
   <ItemGroup>
-    <ProjectReference Include="..\Implementations\Implementations.csproj" />
+    <ProjectReference Include="../Implementations/Implementations.csproj" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="FunFair.Test.Common" Version="6.4.7.2960" IncludeAssets="compile;runtime" />
