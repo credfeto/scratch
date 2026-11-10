@@ -7,7 +7,7 @@ using BenchmarkDotNet.Attributes;
 
 namespace Bench.Benchmarks;
 
-[SimpleJob]
+[InProcess]
 [MemoryDiagnoser(false)]
 public partial class RegexBench : BenchBase
 {

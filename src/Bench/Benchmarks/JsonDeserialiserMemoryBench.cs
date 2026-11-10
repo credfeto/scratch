@@ -6,7 +6,7 @@ using BenchmarkDotNet.Attributes;
 
 namespace Bench.Benchmarks;
 
-[SimpleJob]
+[InProcess]
 [MemoryDiagnoser(false)]
 public class JsonDeserialiserMemoryBench : BenchBase
 {

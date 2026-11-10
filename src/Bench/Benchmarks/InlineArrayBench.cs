@@ -5,7 +5,7 @@ using Implementations.InlineStructOptimisations;
 
 namespace Bench.Benchmarks;
 
-[SimpleJob]
+[InProcess]
 [MemoryDiagnoser(false)]
 [SuppressMessage(category: "", checkId: "SCS0005", Justification = "Needed for predictability")]
 [SuppressMessage(category: "", checkId: "CA5394", Justification = "Needed for predictability")]
