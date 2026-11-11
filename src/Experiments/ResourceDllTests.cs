@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Buffers.Text;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -34,57 +34,88 @@ public sealed class ResourceDllTests : LoggingFolderCleanupTestBase
     private static readonly RecyclableMemoryStreamManager MemoryStreamManager = new();
 
     public ResourceDllTests(ITestOutputHelper output)
-        : base(output)
-    {
-    }
+        : base(output) { }
 
     [Fact]
-    
     public async Task GenerateResourceDllAsync()
     {
-        string source = Path.Combine(path1: this.TempFolder,
-                                     Guid.NewGuid()
-                                         .ToString());
-        string target = Path.Combine(path1: this.TempFolder,
-                                     Guid.NewGuid()
-                                         .ToString());
+        string source = Path.Combine(path1: this.TempFolder, Guid.NewGuid().ToString());
+        string target = Path.Combine(path1: this.TempFolder, Guid.NewGuid().ToString());
 
         FolderHelpers.EnsureFolderExists(source);
         FolderHelpers.EnsureFolderExists(target);
 
         string filename = Path.Combine(path1: target, CONTENT_RESOURCE_NAME + ".resources");
 
-        IReadOnlyList<string> filesToPack = await FileHelper.CreateTempFilesAsync(basePath: source, filenames: ExampleTempFiles, this.CancellationToken());
+        IReadOnlyList<string> filesToPack = await FileHelper.CreateTempFilesAsync(
+            basePath: source,
+            filenames: ExampleTempFiles,
+            this.CancellationToken()
+        );
 
         await this.GenerateResourcesFromFilesAsync(filename: filename, filesToPack: filesToPack);
 
         Dictionary<string, string> additionalData = new(StringComparer.Ordinal)
-                                                    {
-                                                        ["Test1"] = Guid.NewGuid()
-                                                                        .ToString(),
-                                                        ["Test2"] = Guid.NewGuid()
-                                                                        .ToString(),
-                                                        [".jpg"] = "application/json"
-                                                    };
+        {
+            ["Test1"] = Guid.NewGuid().ToString(),
+            ["Test2"] = Guid.NewGuid().ToString(),
+            [".jpg"] = "application/json",
+        };
 
         const string ns = "Credfeto.Resources.Example";
-        ResourceDescription[] resources =
-        [
-            new(MakeFullyQualifiedResourceName(ns: ns, name: CONTENT_RESOURCE_NAME), dataProvider: () => File.OpenRead(filename), isPublic: true),
-            new(MakeFullyQualifiedResourceName(ns: ns, name: ADDITIONAL_RESOURCE_NAME), dataProvider: () => GenerateResourcesFromDictionary(additionalData), isPublic: true)
-        ];
+        ResourceDescription[] resources = BuildResourceDescriptions(
+            ns: ns,
+            filename: filename,
+            additionalData: additionalData
+        );
 
         const string assemblyName = ns + ".dll";
         string assemblyFileName = Path.Combine(path1: target, path2: assemblyName);
 
-        EmitResult compilationResult = this.Compile(assemblyName: assemblyName, assemblyFileName: assemblyFileName, resources: resources);
+        EmitResult compilationResult = this.Compile(
+            assemblyName: assemblyName,
+            assemblyFileName: assemblyFileName,
+            resources: resources
+        );
         Assert.True(condition: compilationResult.Success, userMessage: "Compilation failed");
 
-        Assembly ass = await LoadAssemblyFromFileAsync(new(assemblyFileName), fileName: assemblyFileName, this.CancellationToken());
+        Assembly ass = await LoadAssemblyFromFileAsync(
+            new(assemblyFileName),
+            fileName: assemblyFileName,
+            this.CancellationToken()
+        );
 
-        await this.VerifyResourcesAsync(ass: ass, MakePartiallyQualifiedResourceName(ns: ns, name: CONTENT_RESOURCE_NAME), filesToPack: filesToPack);
+        await this.VerifyResourcesAsync(
+            ass: ass,
+            MakePartiallyQualifiedResourceName(ns: ns, name: CONTENT_RESOURCE_NAME),
+            filesToPack: filesToPack
+        );
 
-        this.VerifyAdditionalResource(ass: ass, MakePartiallyQualifiedResourceName(ns: ns, name: ADDITIONAL_RESOURCE_NAME));
+        this.VerifyAdditionalResource(
+            ass: ass,
+            MakePartiallyQualifiedResourceName(ns: ns, name: ADDITIONAL_RESOURCE_NAME)
+        );
+    }
+
+    private static ResourceDescription[] BuildResourceDescriptions(
+        string ns,
+        string filename,
+        Dictionary<string, string> additionalData
+    )
+    {
+        return
+        [
+            new(
+                MakeFullyQualifiedResourceName(ns: ns, name: CONTENT_RESOURCE_NAME),
+                dataProvider: () => File.OpenRead(filename),
+                isPublic: true
+            ),
+            new(
+                MakeFullyQualifiedResourceName(ns: ns, name: ADDITIONAL_RESOURCE_NAME),
+                dataProvider: () => GenerateResourcesFromDictionary(additionalData),
+                isPublic: true
+            ),
+        ];
     }
 
     [SuppressMessage(category: "Meziantou.Analyzer", checkId: "MA0045: Use async", Justification = "Not here")]
@@ -136,8 +167,7 @@ public sealed class ResourceDllTests : LoggingFolderCleanupTestBase
     {
         ResourceManager rm = new(baseName: res, assembly: ass);
 
-        string[] keys = rm.GetString(name: "$KEYS", culture: CultureInfo.InvariantCulture)
-                          ?.Split(',') ?? [];
+        string[] keys = rm.GetString(name: "$KEYS", culture: CultureInfo.InvariantCulture)?.Split(',') ?? [];
 
         foreach (string key in keys)
         {
@@ -149,18 +179,27 @@ public sealed class ResourceDllTests : LoggingFolderCleanupTestBase
     {
         const string metadataKey = "DeveloperPublicKey";
 
-        return new StringBuilder().AppendLine("using System;")
-                                  .AppendLine("using System.Reflection;")
-                                  .AppendLine()
-                                  .AppendLine($"[assembly: {nameof(AssemblyTitleAttribute)}({EncodeString(settings.ProductName)})]")
-                                  .AppendLine($"[assembly: {nameof(AssemblyProductAttribute)}({EncodeString(settings.Summary)})]")
-                                  .AppendLine($"[assembly: {nameof(AssemblyDescriptionAttribute)}({EncodeString(settings.Description)})]")
-                                  .AppendLine($"[assembly: {nameof(AssemblyVersionAttribute)}({EncodeString(settings.Version.DottedVersion.ToString())})]")
-                                  .AppendLine($"[assembly: {nameof(AssemblyFileVersionAttribute)}({EncodeString(settings.Version.DottedVersion.ToString())})]")
-                                  .AppendLine($"[assembly: {nameof(AssemblyInformationalVersionAttribute)}({EncodeString(settings.Version.Version)})]")
-                                  .AppendLine($"[assembly: {nameof(AssemblyCompanyAttribute)}({EncodeString(settings.Author)})]")
-                                  .AppendLine($"[assembly: {nameof(AssemblyMetadataAttribute)}(key:{EncodeString(metadataKey)}, value:{EncodeString(publicKey)})]")
-                                  .ToString();
+        return new StringBuilder()
+            .AppendLine("using System;")
+            .AppendLine("using System.Reflection;")
+            .AppendLine()
+            .AppendLine($"[assembly: {nameof(AssemblyTitleAttribute)}({EncodeString(settings.ProductName)})]")
+            .AppendLine($"[assembly: {nameof(AssemblyProductAttribute)}({EncodeString(settings.Summary)})]")
+            .AppendLine($"[assembly: {nameof(AssemblyDescriptionAttribute)}({EncodeString(settings.Description)})]")
+            .AppendLine(
+                $"[assembly: {nameof(AssemblyVersionAttribute)}({EncodeString(settings.Version.DottedVersion.ToString())})]"
+            )
+            .AppendLine(
+                $"[assembly: {nameof(AssemblyFileVersionAttribute)}({EncodeString(settings.Version.DottedVersion.ToString())})]"
+            )
+            .AppendLine(
+                $"[assembly: {nameof(AssemblyInformationalVersionAttribute)}({EncodeString(settings.Version.Version)})]"
+            )
+            .AppendLine($"[assembly: {nameof(AssemblyCompanyAttribute)}({EncodeString(settings.Author)})]")
+            .AppendLine(
+                $"[assembly: {nameof(AssemblyMetadataAttribute)}(key:{EncodeString(metadataKey)}, value:{EncodeString(publicKey)})]"
+            )
+            .ToString();
     }
 
     private static string EncodeString(string value)
@@ -180,57 +219,71 @@ public sealed class ResourceDllTests : LoggingFolderCleanupTestBase
 
     private EmitResult Compile(string assemblyName, string assemblyFileName, ResourceDescription[] resources)
     {
-        Settings settings = new(Author: "Test",
-                                new("1.0.0.1-test"),
-                                ContentType: ComponentType.LOBBY,
-                                ProductName: assemblyName,
-                                Copyright: "Me",
-                                Description: "Description",
-                                Summary: "Summary",
-                                LicenseUrl: null,
-                                ProjectUrl: null,
-                                IconUrl: null,
-                                ReleaseNotes: "RN",
-                                ["Tag1"],
-                                Id: assemblyName);
+        Settings settings = new(
+            Author: "Test",
+            new("1.0.0.1-test"),
+            ContentType: ComponentType.LOBBY,
+            ProductName: assemblyName,
+            Copyright: "Me",
+            Description: "Description",
+            Summary: "Summary",
+            LicenseUrl: null,
+            ProjectUrl: null,
+            IconUrl: null,
+            ReleaseNotes: "RN",
+            ["Tag1"],
+            Id: assemblyName
+        );
 
         string source = AddAssemblyMetadata(settings: settings, publicKey: "0x123457");
 
-        SyntaxTree tree = SyntaxFactory.ParseSyntaxTree(text: source,
-                                                        new CSharpParseOptions(languageVersion: LanguageVersion.Latest, documentationMode: DocumentationMode.None, kind: SourceCodeKind.Regular),
-                                                        cancellationToken: this.CancellationToken());
+        SyntaxTree tree = SyntaxFactory.ParseSyntaxTree(
+            text: source,
+            new CSharpParseOptions(
+                languageVersion: LanguageVersion.Latest,
+                documentationMode: DocumentationMode.None,
+                kind: SourceCodeKind.Regular
+            ),
+            cancellationToken: this.CancellationToken()
+        );
 
         CSharpCompilationOptions options = GenerateOptions();
         IReadOnlyList<MetadataReference> references = BuildReferences();
-        CSharpCompilation compilation = CSharpCompilation.Create(assemblyName: assemblyName, references: references, options: options)
-                                                         .AddSyntaxTrees(tree);
+        CSharpCompilation compilation = CSharpCompilation
+            .Create(assemblyName: assemblyName, references: references, options: options)
+            .AddSyntaxTrees(tree);
 
-        EmitResult compilationResult = compilation.Emit(outputPath: assemblyFileName, manifestResources: resources, cancellationToken: this.CancellationToken());
+        EmitResult compilationResult = compilation.Emit(
+            outputPath: assemblyFileName,
+            manifestResources: resources,
+            cancellationToken: this.CancellationToken()
+        );
 
         return compilationResult;
     }
 
     private static IReadOnlyList<MetadataReference> BuildReferences()
     {
-        string[] references =
-        [
-            Ref<string>()
-        ];
+        string[] references = [Ref<string>()];
 
         return
         [
-            .. references.Distinct(StringComparer.Ordinal)
-                         .Order(StringComparer.OrdinalIgnoreCase)
-                         .Select(selector: fileName => MetadataReference.CreateFromFile(fileName))
+            .. references
+                .Distinct(StringComparer.Ordinal)
+                .Order(StringComparer.OrdinalIgnoreCase)
+                .Select(selector: fileName => MetadataReference.CreateFromFile(fileName)),
         ];
     }
 
-    [SuppressMessage(category: "FunFair.CodeAnalysis", checkId: "FFS0008:Don't disable warnings with #pragma", Justification = "Needed in this case")]
+    [SuppressMessage(
+        category: "FunFair.CodeAnalysis",
+        checkId: "FFS0008:Don't disable warnings with #pragma",
+        Justification = "Needed in this case"
+    )]
     private static string Ref<T>()
     {
 #pragma warning disable IL3000
-        return typeof(T).GetTypeInfo()
-                        .Assembly.Location;
+        return typeof(T).GetTypeInfo().Assembly.Location;
 #pragma warning restore IL3000
     }
 
@@ -274,19 +327,18 @@ public sealed class ResourceDllTests : LoggingFolderCleanupTestBase
 
     private static CSharpCompilationOptions GenerateOptions()
     {
-        return new(outputKind: OutputKind.DynamicallyLinkedLibrary,
-                   optimizationLevel: OptimizationLevel.Release,
-                   checkOverflow: true,
-                   allowUnsafe: false,
-                   platform: Platform.AnyCpu,
-                   generalDiagnosticOption: ReportDiagnostic.Suppress,
-                   warningLevel: 4,
-                   specificDiagnosticOptions:
-                   [
-                       new(key: "CS8021", value: ReportDiagnostic.Suppress)
-                   ],
-                   deterministic: true,
-                   nullableContextOptions: NullableContextOptions.Enable);
+        return new(
+            outputKind: OutputKind.DynamicallyLinkedLibrary,
+            optimizationLevel: OptimizationLevel.Release,
+            checkOverflow: true,
+            allowUnsafe: false,
+            platform: Platform.AnyCpu,
+            generalDiagnosticOption: ReportDiagnostic.Suppress,
+            warningLevel: 4,
+            specificDiagnosticOptions: [new(key: "CS8021", value: ReportDiagnostic.Suppress)],
+            deterministic: true,
+            nullableContextOptions: NullableContextOptions.Enable
+        );
     }
 
     private static string MakeEntryHash(string mapping)
@@ -296,7 +348,11 @@ public sealed class ResourceDllTests : LoggingFolderCleanupTestBase
         return Base64Url.EncodeToString(hash);
     }
 
-    private static async ValueTask<Assembly> LoadAssemblyFromFileAsync(AssemblyLoadContext loadContext, string fileName, CancellationToken cancellationToken)
+    private static async ValueTask<Assembly> LoadAssemblyFromFileAsync(
+        AssemblyLoadContext loadContext,
+        string fileName,
+        CancellationToken cancellationToken
+    )
     {
         await using (MemoryStream ms = MemoryStreamManager.GetStream())
         {
@@ -312,18 +368,24 @@ public sealed class ResourceDllTests : LoggingFolderCleanupTestBase
 
     private static FileStream OpenFile(string fileName)
     {
-        return new(path: fileName,
-                   mode: FileMode.Open,
-                   access: FileAccess.Read,
-                   share: FileShare.Read,
-                   bufferSize: 1, // bufferSize == 1 used to avoid unnecessary buffer in FileStream
-                   FileOptions.Asynchronous | FileOptions.SequentialScan);
+        return new(
+            path: fileName,
+            mode: FileMode.Open,
+            access: FileAccess.Read,
+            share: FileShare.Read,
+            bufferSize: 1, // bufferSize == 1 used to avoid unnecessary buffer in FileStream
+            FileOptions.Asynchronous | FileOptions.SequentialScan
+        );
     }
 
     [DebuggerDisplay(value: "Version: {Version} Pre-Release: {IsPreRelease}")]
     private readonly record struct PackageVersion : IComparable<PackageVersion>, IComparable
     {
-        [SuppressMessage(category: "Microsoft.IDE", checkId: "IDE0057: Simplify substring", Justification = "For compatibility with netstandard")]
+        [SuppressMessage(
+            category: "Microsoft.IDE",
+            checkId: "IDE0057: Simplify substring",
+            Justification = "For compatibility with netstandard"
+        )]
         public PackageVersion(string version)
         {
             if (string.IsNullOrWhiteSpace(version))
@@ -339,7 +401,11 @@ public sealed class ResourceDllTests : LoggingFolderCleanupTestBase
 
                 if (!System.Version.TryParse(input: dotted, out Version? dv))
                 {
-                    throw new ArgumentOutOfRangeException(nameof(version), actualValue: version, message: "Version is not a version");
+                    throw new ArgumentOutOfRangeException(
+                        nameof(version),
+                        actualValue: version,
+                        message: "Version is not a version"
+                    );
                 }
 
                 this.DottedVersion = dv;
@@ -349,7 +415,11 @@ public sealed class ResourceDllTests : LoggingFolderCleanupTestBase
             {
                 if (!System.Version.TryParse(input: version, out Version? dv))
                 {
-                    throw new ArgumentOutOfRangeException(nameof(version), actualValue: version, message: "Version is not a version");
+                    throw new ArgumentOutOfRangeException(
+                        nameof(version),
+                        actualValue: version,
+                        message: "Version is not a version"
+                    );
                 }
 
                 this.DottedVersion = dv;
@@ -374,9 +444,7 @@ public sealed class ResourceDllTests : LoggingFolderCleanupTestBase
                 return 1;
             }
 
-            return obj is PackageVersion typed
-                ? CompareToCommon(this, right: typed)
-                : NotAPackageVersion(obj);
+            return obj is PackageVersion typed ? CompareToCommon(this, right: typed) : NotAPackageVersion(obj);
         }
 
         public int CompareTo(PackageVersion other)
@@ -384,8 +452,16 @@ public sealed class ResourceDllTests : LoggingFolderCleanupTestBase
             return CompareToCommon(this, right: other);
         }
 
-        [SuppressMessage(category: "Meziantou.Analyzer", checkId: "MA0089:Use overload with char instead of string", Justification = "For compatibility with netstandard")]
-        [SuppressMessage(category: "Microsoft.Performance", checkId: "CA1865:Use overload with char instead of string", Justification = "For compatibility with netstandard")]
+        [SuppressMessage(
+            category: "Meziantou.Analyzer",
+            checkId: "MA0089:Use overload with char instead of string",
+            Justification = "For compatibility with netstandard"
+        )]
+        [SuppressMessage(
+            category: "Microsoft.Performance",
+            checkId: "CA1865:Use overload with char instead of string",
+            Justification = "For compatibility with netstandard"
+        )]
         private static int GetPreReleaseIndex(string version)
         {
             return version.IndexOf(value: "-", comparisonType: StringComparison.Ordinal);
@@ -396,8 +472,11 @@ public sealed class ResourceDllTests : LoggingFolderCleanupTestBase
             return this.Version;
         }
 
-        [SuppressMessage(category: "SonarAnalyzer.CSharp", checkId: "S1172: Parameter unused", Justification = "Used for name")]
-        
+        [SuppressMessage(
+            category: "SonarAnalyzer.CSharp",
+            checkId: "S1172: Parameter unused",
+            Justification = "Used for name"
+        )]
         private static int NotAPackageVersion(object? obj)
         {
             throw new ArgumentException(message: "Must be of type PackageVersion", nameof(obj));
@@ -451,7 +530,6 @@ public sealed class ResourceDllTests : LoggingFolderCleanupTestBase
         }
     }
 
-    
     [DebuggerDisplay("{Id}\\{Version} :{ProductName}")]
     private sealed record Settings(
         string Author,
@@ -466,5 +544,6 @@ public sealed class ResourceDllTests : LoggingFolderCleanupTestBase
         Uri? IconUrl,
         string ReleaseNotes,
         IReadOnlyList<string> Tags,
-        string Id);
+        string Id
+    );
 }

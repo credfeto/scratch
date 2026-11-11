@@ -13,9 +13,12 @@ Please ADD ALL Changes to the UNRELEASED SECTION and not a specific release
 ### Security
 ### Added
 ### Fixed
+- Trailing whitespace and missing or extra end-of-file newlines corrected
 ### Changed
 - Dependencies - Updated Credfeto.Enumeration to 1.2.158.2511
 - SDK - Updated DotNet SDK to 11.0.100-rc.3.26522.148
+- Projects retargeted to .NET 11 with runtime-async enabled
+- Benchmarks run in-process instead of with SimpleJob as BenchmarkDotNet 0.15.8 does not support .NET 11
 ### Deprecated
 ### Removed
 ### Deployment Changes
