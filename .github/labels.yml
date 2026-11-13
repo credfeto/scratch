@@ -12,9 +12,9 @@
   color: "0000aa"
   description: "Pull request created automatically"
 
-- name: "bench"
-  color: "96f7d2"
-  description: "Changes in Bench project"
+- name: "bench-benchmark-tests"
+  color: "0e8a16"
+  description: "Changes in Bench.Benchmark.Tests project"
 
 - name: "Blocked"
   color: "ff0000"
