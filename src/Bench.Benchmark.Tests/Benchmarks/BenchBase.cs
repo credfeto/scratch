@@ -1,7 +1,7 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Runtime.CompilerServices;
 
-namespace Bench.Benchmarks;
+namespace Bench.Benchmark.Tests.Benchmarks;
 
 public abstract class BenchBase
 {

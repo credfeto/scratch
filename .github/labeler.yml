@@ -3,7 +3,7 @@
 ".NET update":
   - any: ['src/global.json']
 "bench":
-  - any: ['src/Bench/**/*']
+  - any: ['src/Bench.Benchmark.Tests/**/*']
 "C#":
   - any: ['./**/*.cs', './**/*.csproj']
 "C# Project":

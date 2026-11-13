@@ -4,7 +4,7 @@ using System.Text;
 using System.Text.Json;
 using BenchmarkDotNet.Attributes;
 
-namespace Bench.Benchmarks;
+namespace Bench.Benchmark.Tests.Benchmarks;
 
 [InProcess]
 [MemoryDiagnoser(false)]

@@ -18,7 +18,7 @@ public class MyBench : BenchBase
 }
 ```
 
-This `[SuppressMessage]` is **explicitly permitted** for all benchmark classes under `src/Bench/` that:
+This `[SuppressMessage]` is **explicitly permitted** for all benchmark classes under `src/Bench.Benchmark.Tests/` that:
 
 - Inherit from `BenchBase`
 - Are decorated with `[SimpleJob]`

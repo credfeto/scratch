@@ -5,7 +5,7 @@ using System.Runtime.CompilerServices;
 using System.Text.RegularExpressions;
 using BenchmarkDotNet.Attributes;
 
-namespace Bench.Benchmarks;
+namespace Bench.Benchmark.Tests.Benchmarks;
 
 [InProcess]
 [MemoryDiagnoser(false)]

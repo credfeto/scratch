@@ -3,7 +3,7 @@ using BenchmarkDotNet.Reports;
 using FunFair.Test.Common;
 using Xunit;
 
-namespace Bench;
+namespace Bench.Benchmark.Tests;
 
 public sealed class RegexTests : LoggingTestBase
 {
