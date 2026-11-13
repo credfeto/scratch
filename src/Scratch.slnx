@@ -22,7 +22,7 @@
     <File Path="../.github/workflows/reformat-yaml.yml" />
     <File Path="../.github/workflows/update-labels.yml" />
   </Folder>
-  <Project Path="Bench/Bench.csproj" />
+  <Project Path="Bench.Benchmark.Tests/Bench.Benchmark.Tests.csproj" />
   <Project Path="Experiments/Experiments.csproj" />
   <Project Path="Implementations/Implementations.csproj" />
   <Project Path="Models/Models.csproj" />

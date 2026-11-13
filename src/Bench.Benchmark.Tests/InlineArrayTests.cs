@@ -1,10 +1,10 @@
-using Bench.Benchmarks;
+using Bench.Benchmark.Tests.Benchmarks;
 using BenchmarkDotNet.Loggers;
 using BenchmarkDotNet.Reports;
 using FunFair.Test.Common;
 using Xunit;
 
-namespace Bench;
+namespace Bench.Benchmark.Tests;
 
 public sealed class InlineArrayTests : LoggingTestBase
 {
