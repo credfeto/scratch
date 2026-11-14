@@ -20,11 +20,11 @@ Please ADD ALL Changes to the UNRELEASED SECTION and not a specific release
 - Benchmarks run in-process instead of with SimpleJob as BenchmarkDotNet 0.15.8 does not support .NET 11
 - Benchmarks - Renamed the Bench benchmark project to Bench.Benchmark.Tests so the benchmark project naming check passes and the benchmarks are kept out of the main test run
 - SDK - Updated DotNet SDK to 11.0.100
-- Dependencies - Updated Meziantou.Analyzer to 3.0.339
 - Dependencies - Updated SonarAnalyzer.CSharp to 10.36.0.15337
 - Dependencies - Updated xunit.analyzers to 2.3.0
 - Dependencies - Updated xunit.v3 to 4.0.3
 - Dependencies - Updated FunFair.CodeAnalysis to 7.2.26.2691
+- Dependencies - Updated Meziantou.Analyzer to 3.0.340
 ### Deprecated
 ### Removed
 ### Deployment Changes
