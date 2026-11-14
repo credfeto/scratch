@@ -21,6 +21,7 @@ Please ADD ALL Changes to the UNRELEASED SECTION and not a specific release
 - Benchmarks - Renamed the Bench benchmark project to Bench.Benchmark.Tests so the benchmark project naming check passes and the benchmarks are kept out of the main test run
 - SDK - Updated DotNet SDK to 11.0.100
 - Dependencies - Updated FunFair.CodeAnalysis to 7.2.25.2636
+- Dependencies - Updated Meziantou.Analyzer to 3.0.339
 ### Deprecated
 ### Removed
 ### Deployment Changes
