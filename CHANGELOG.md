@@ -13,6 +13,17 @@ Please ADD ALL Changes to the UNRELEASED SECTION and not a specific release
 ### Security
 ### Added
 ### Fixed
+### Changed
+### Deprecated
+### Removed
+### Deployment Changes
+
+<!--
+Releases that have at least been deployed to staging, BUT NOT necessarily released to live.  Changes should be moved from [Unreleased] into here as they are merged into the appropriate release branch
+-->
+
+## [0.0.355] - 2026-11-15
+### Fixed
 - Trailing whitespace and missing or extra end-of-file newlines corrected
 ### Changed
 - Projects retargeted to .NET 11 with runtime-async enabled
@@ -26,13 +37,6 @@ Please ADD ALL Changes to the UNRELEASED SECTION and not a specific release
 - Dependencies - Updated Credfeto.Enumeration to 1.2.159.2554
 - Dependencies - Updated Philips.CodeAnalysis.MaintainabilityAnalyzers to 2.2.0
 - Dependencies - Updated FunFair.CodeAnalysis to 7.2.28.2699
-### Deprecated
-### Removed
-### Deployment Changes
-
-<!--
-Releases that have at least been deployed to staging, BUT NOT necessarily released to live.  Changes should be moved from [Unreleased] into here as they are merged into the appropriate release branch
--->
 
 ## [0.0.354] - 2026-11-03
 ### Changed
